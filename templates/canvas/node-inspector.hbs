@@ -1,0 +1,838 @@
+{{!-- Боковая панель инспектора узла. При смене выделения перерисовывается отдельно
+      (parts: ["inspector"]), так что PART холста не трогается. --}}
+<aside class="storyflow-inspector">
+  {{#if hasNode}}
+    {{#if missingComponent}}
+      <div class="storyflow-insp-missing">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.MissingComponent"}}</h3>
+        <p>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.MissingComponentHint"}}</p>
+        <code class="storyflow-insp-missing-type">{{nodeType}}</code>
+      </div>
+    {{else}}
+    <header class="storyflow-insp-header" style="--node-color: {{nodeColor}};">
+      <i class="fa-solid {{nodeIcon}} storyflow-insp-icon"></i>
+      <div class="storyflow-insp-head-text">
+        <h3 title="{{nodeType}}">{{nodeLabel}}</h3>
+        {{#if nodeSummary}}<p class="storyflow-insp-summary">{{nodeSummary}}</p>{{/if}}
+      </div>
+    </header>
+
+    <form class="storyflow-insp-form" data-node-id="{{nodeId}}" autocomplete="off">
+      <div class="form-group storyflow-insp-field">
+        <label>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.NodeName"}}</label>
+        <input type="text" name="sfNodeName" value="{{nodeName}}" placeholder="{{nodeLabel}}" />
+      </div>
+      {{!-- Одна строка поля, используется и в сгруппированных, и в несгруппированных секциях. --}}
+      {{#*inline "fieldRow"}}
+        <div class="form-group storyflow-insp-field{{#if this.hiddenRow}} storyflow-field-hidden{{/if}}" data-field="{{this.name}}">
+          <label>{{this.label}}</label>
+          {{#if this.isCheckbox}}
+            <label class="storyflow-toggle">
+              <input type="checkbox" name="{{this.name}}" {{#if this.value}}checked{{/if}} />
+              <span class="storyflow-toggle-track"></span>
+            </label>
+          {{/if}}
+          {{#if this.isNumber}}
+            {{#if this.isSlider}}
+              <div class="storyflow-slider-field">
+                <input type="range" name="{{this.name}}" value="{{this.value}}"
+                       {{#if this.hasMin}}min="{{this.min}}"{{/if}}
+                       {{#if this.hasMax}}max="{{this.max}}"{{/if}} step="1" />
+                <output data-for="{{this.name}}">{{this.value}}</output>
+              </div>
+            {{else}}
+              <input type="number" name="{{this.name}}" value="{{this.value}}"
+                     {{#if this.hasMin}}min="{{this.min}}"{{/if}}
+                     {{#if this.hasMax}}max="{{this.max}}"{{/if}} step="1" />
+            {{/if}}
+          {{/if}}
+          {{#if this.isSegmented}}
+            <div class="storyflow-segmented">
+              {{#each this.optionViews}}
+                <label class="storyflow-seg-option">
+                  <input type="radio" name="{{../name}}" value="{{this.value}}" {{#if this.selected}}checked{{/if}} />
+                  <span>{{this.label}}</span>
+                </label>
+              {{/each}}
+            </div>
+          {{/if}}
+          {{#if this.isDropdown}}
+            <select name="{{this.name}}" class="storyflow-insp-select">
+              {{#if this.isDynamic}}<option value=""></option>{{/if}}
+              {{#each this.optionViews}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          {{/if}}
+          {{#if this.isRefSelect}}
+            <div class="storyflow-ref-picker">
+              <input type="hidden" name="{{this.name}}" value="{{this.value}}" />
+              <input type="text" class="storyflow-ref-search" autocomplete="off"
+                     placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.RefSearch'}}"
+                     value="{{this.refSelectedLabel}}" />
+              <div class="storyflow-ref-options">
+                <button type="button" class="storyflow-ref-option" data-value="" data-label="">
+                  {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RefNone"}}
+                </button>
+                {{#each this.refOptions}}
+                  <button type="button" class="storyflow-ref-option {{#if this.selected}}is-selected{{/if}}"
+                          data-value="{{this.value}}" data-label="{{this.label}}">{{this.label}}</button>
+                {{/each}}
+              </div>
+            </div>
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RefDropHint"}}</p>
+          {{/if}}
+          {{#if this.isNodePicker}}
+            {{!-- Переиспользует разметку и классы ref-picker (поиск, привязка выбора кликом, оформление);
+                  дополнительный класс storyflow-node-picker цепляет наведение на пункт → подсветку на холсте. --}}
+            <div class="storyflow-ref-picker storyflow-node-picker">
+              <input type="hidden" name="{{this.name}}" value="{{this.value}}" />
+              <input type="text" class="storyflow-ref-search" autocomplete="off"
+                     placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.NodeSearch'}}"
+                     value="{{this.nodeSelectedLabel}}" />
+              <div class="storyflow-ref-options">
+                <button type="button" class="storyflow-ref-option" data-value="" data-label="">
+                  {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RefNone"}}
+                </button>
+                {{#each this.optionViews}}
+                  <button type="button" class="storyflow-ref-option {{#if this.selected}}is-selected{{/if}}"
+                          data-value="{{this.value}}" data-label="{{this.label}}">{{this.label}}</button>
+                {{/each}}
+              </div>
+            </div>
+          {{/if}}
+          {{#if this.isMultiline}}
+            {{#if this.hasMdToolbar}}
+              <div class="storyflow-md-toolbar">
+                <button type="button" data-action="mdFormat" data-md="bold" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdBold'}}"><i class="fa-solid fa-bold"></i></button>
+                <button type="button" data-action="mdFormat" data-md="italic" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdItalic'}}"><i class="fa-solid fa-italic"></i></button>
+                <button type="button" data-action="mdFormat" data-md="h1" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdHeading1'}}">H1</button>
+                <button type="button" data-action="mdFormat" data-md="h2" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdHeading2'}}">H2</button>
+                <button type="button" data-action="mdFormat" data-md="h3" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdHeading3'}}">H3</button>
+                <button type="button" data-action="mdFormat" data-md="list" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdList'}}"><i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" data-action="mdFormat" data-md="image" data-target="{{this.name}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.MdImage'}}"><i class="fa-solid fa-image"></i></button>
+              </div>
+            {{/if}}
+            <textarea name="{{this.name}}" rows="6" class="storyflow-insp-code" spellcheck="false">{{this.value}}</textarea>
+          {{/if}}
+          {{#if this.isColor}}
+            <input type="color" name="{{this.name}}" value="{{this.value}}" class="storyflow-insp-color" />
+          {{/if}}
+          {{#if this.isItemRef}}
+            <div class="storyflow-item-ref">
+              <input type="hidden" name="{{this.name}}" value="{{this.value}}" />
+              {{#if this.itemPreview}}
+                <img class="storyflow-item-ref-img" src="{{this.itemPreview.img}}" alt="" />
+                <span class="storyflow-item-ref-name">{{this.itemPreview.name}}</span>
+                <button type="button" data-action="clearItem" title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.ClearItem'}}">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              {{else}}
+                <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.ItemDropHint"}}</p>
+              {{/if}}
+            </div>
+          {{/if}}
+          {{#if this.isHtml}}
+            <textarea name="{{this.name}}" rows="6">{{this.value}}</textarea>
+          {{/if}}
+          {{#if this.isFilePath}}
+            <div class="storyflow-filepath">
+              <input type="text" name="{{this.name}}" value="{{this.value}}" />
+              <button type="button" data-action="pickFile" data-target="{{this.name}}"
+                      data-category="{{this.category}}" title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.Browse'}}">
+                <i class="fa-solid fa-file-import"></i>
+              </button>
+            </div>
+          {{/if}}
+          {{#if this.isSequencerPath}}
+            <div class="storyflow-filepath">
+              <input type="text" name="{{this.name}}" value="{{this.value}}" />
+              <button type="button" data-action="openAnimationPicker"
+                      {{#if @root.sequencerInactive}}disabled{{/if}}
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Effect.Browse'}}">
+                <i class="fa-solid fa-wand-sparkles"></i>
+              </button>
+            </div>
+            {{#if @root.effectPathMissing}}
+              <p class="storyflow-insp-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                {{localize "STORYFLOW_DUNGEONS_LAB.Effect.PathMissing"}}
+              </p>
+            {{/if}}
+            {{#if @root.isEffect}}
+              <button type="button" data-action="previewEffect" class="storyflow-effect-preview"
+                      {{#if @root.sequencerInactive}}disabled{{/if}}>
+                <i class="fa-solid fa-play"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Effect.Preview"}}
+              </button>
+            {{/if}}
+          {{/if}}
+          {{#if this.isText}}
+            <input type="text" name="{{this.name}}" value="{{this.value}}" />
+          {{/if}}
+          {{#if this.fieldErrors.length}}
+            <ul class="storyflow-field-error">
+              {{#each this.fieldErrors}}<li>{{this}}</li>{{/each}}
+            </ul>
+          {{/if}}
+          {{#if this.hint}}<p class="storyflow-insp-hint">{{this.hint}}</p>{{/if}}
+        </div>
+      {{/inline}}
+
+      {{!-- Адаптивные поля одного правила условия или гейта, с ключами по this.names.*, чтобы одна и та же
+            разметка обслуживала узел Condition и гейт видимости каждого выбора. --}}
+      {{#*inline "ruleFields"}}
+        <select name="{{this.names.source}}" class="storyflow-insp-select">
+          {{#each this.sourceOptions}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.value}}</option>
+          {{/each}}
+        </select>
+        {{#if this.keyIsSkill}}
+          <select name="{{this.names.key}}" class="storyflow-insp-select">
+            {{#each this.skillOptions}}<option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.keyIsAbility}}
+          <select name="{{this.names.key}}" class="storyflow-insp-select">
+            {{#each this.abilityOptions}}<option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.keyIsClass}}
+          <select name="{{this.names.key}}" class="storyflow-insp-select">
+            <option value=""></option>
+            {{#each this.classOptions}}<option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.isRace}}
+          <select name="{{this.names.key}}" class="storyflow-insp-select">
+            <option value=""></option>
+            {{#each this.raceOptions}}<option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.keyIsReputation}}
+          <select name="{{this.names.key}}" class="storyflow-insp-select">
+            <option value=""></option>
+            {{#each this.factionOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+          <select name="{{this.names.repMode}}" class="storyflow-insp-select">
+            {{#each this.repModeOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.isNpcAffinity}}
+          <input type="text" name="{{this.names.key}}" value="{{this.key}}"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Condition.NpcAffinityKeyPlaceholder'}}" />
+        {{/if}}
+        {{#if this.keyIsText}}
+          <input type="text" name="{{this.names.key}}" value="{{this.key}}" />
+        {{/if}}
+        <select name="{{this.names.op}}" class="storyflow-insp-select">
+          {{#each this.operators}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+        </select>
+        {{#if this.valueIsNumber}}
+          <input type="number" name="{{this.names.value}}" value="{{this.value}}" step="1" />
+        {{/if}}
+        {{#if this.isRepTier}}
+          <select name="{{this.names.value}}" class="storyflow-insp-select">
+            {{#each this.tierOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+          </select>
+        {{/if}}
+        {{#if this.showEquipped}}
+          <label class="storyflow-cond-equipped">
+            <input type="checkbox" name="{{this.names.equipped}}" {{#if this.equipped}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Condition.Equipped"}}
+          </label>
+        {{/if}}
+      {{/inline}}
+
+      {{!-- Поля по секциям: сначала несгруппированные (без заголовка), затем сворачиваемые группы. --}}
+      {{#each fieldGroups}}
+        {{#if this.label}}
+          <details class="storyflow-insp-group" open>
+            <summary>{{this.label}}</summary>
+            {{#each this.fields}}{{> fieldRow}}{{/each}}
+          </details>
+        {{else}}
+          {{#each this.fields}}{{> fieldRow}}{{/each}}
+        {{/if}}
+      {{/each}}
+
+      {{#if isJump}}
+        <button type="button" class="storyflow-generate-macro" data-action="gotoJumpTarget"
+                {{#unless hasJumpTarget}}disabled{{/unless}}>
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.GotoJumpTarget"}}
+        </button>
+      {{/if}}
+
+      {{#if isMacroTrigger}}
+        <button type="button" class="storyflow-generate-macro" data-action="generateMacro">
+          <i class="fa-solid fa-code"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.GenerateMacro"}}
+        </button>
+      {{/if}}
+
+      {{#if isEventTrigger}}
+        <button type="button" class="storyflow-reactivate-trigger" data-action="reactivateTrigger">
+          <i class="fa-solid fa-rotate-right"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.Reactivate"}}
+        </button>
+      {{/if}}
+
+      {{#if canResetTriggerState}}
+        <button type="button" class="storyflow-reset-trigger-state" data-action="resetTriggerState">
+          <i class="fa-solid fa-rotate-left"></i>
+          {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.ResetTriggerState"}}
+        </button>
+      {{/if}}
+
+      {{#if hasVoiceRecorder}}
+        <button type="button" class="storyflow-generate-macro" data-action="recordVoice">
+          <i class="fa-solid fa-microphone"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RecordVoice"}}
+        </button>
+      {{/if}}
+
+      {{#if isChoice}}
+        <fieldset class="storyflow-choices">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.Choices"}}</legend>
+          {{#each choices}}
+            <div class="storyflow-choice-row" data-choice-id="{{this.id}}">
+              <div class="storyflow-choice-head">
+                <input type="text" name="choiceLabel.{{@index}}" value="{{this.label}}"
+                       placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.ChoiceLabel'}}" />
+                <button type="button" data-action="removeChoice" data-index="{{@index}}"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.RemoveChoice'}}">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+              {{#if this.gatingEnabled}}
+              <details class="storyflow-choice-gate" {{#if this.hasGate}}open{{/if}}>
+                <summary>
+                  {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.ChoiceVisibility"}}
+                  {{#if this.hasGate}}
+                    <i class="fa-solid fa-eye-slash storyflow-gate-badge"
+                       title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.Gated'}}"></i>
+                  {{/if}}
+                </summary>
+                {{#if this.hasGate}}
+                  <div class="form-group storyflow-cond-target">
+                    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Fields.logicOperator"}}</label>
+                    <select name="{{this.logicName}}" class="storyflow-insp-select">
+                      {{#each this.logicOptions}}
+                        <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.value}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                {{/if}}
+                {{#each this.rules}}
+                  <div class="storyflow-choice-cond-row" data-choice-index="{{this.choiceIndex}}" data-rule-index="{{this.index}}">
+                    <div class="storyflow-rule-fields">{{> ruleFields}}</div>
+                    <button type="button" data-action="removeChoiceRule"
+                            data-choice-index="{{this.choiceIndex}}" data-rule-index="{{this.index}}"
+                            title="{{localize 'STORYFLOW_DUNGEONS_LAB.Condition.RemoveRule'}}">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                {{/each}}
+                <button type="button" class="storyflow-add-cond" data-action="addChoiceRule" data-choice-index="{{@index}}">
+                  <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Condition.AddRule"}}
+                </button>
+              </details>
+              {{/if}}
+            </div>
+          {{/each}}
+          <button type="button" class="storyflow-add-choice" data-action="addChoice">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.AddChoice"}}
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isBranch}}
+        <fieldset class="storyflow-paths">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.Paths"}}</legend>
+          {{#each paths}}
+            <div class="storyflow-path-row" data-path-id="{{this.id}}">
+              <input type="text" name="pathLabel.{{@index}}" value="{{this.label}}"
+                     placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.PathLabel'}}" />
+              <button type="button" data-action="removePath" data-index="{{@index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.RemovePath'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          <button type="button" class="storyflow-add-choice" data-action="addPath">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.AddPath"}}
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isRandom}}
+        <fieldset class="storyflow-random-paths">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.Paths"}}</legend>
+          {{#each randomPaths}}
+            <div class="storyflow-random-path-row" data-path-id="{{this.id}}">
+              <div class="storyflow-random-bar" style="width: {{this.pct}}%"></div>
+              <span class="storyflow-random-path-label">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.PathNumber" n=this.number}}</span>
+              <input type="number" min="0" max="100" step="1" name="randomPathWeight.{{@index}}" value="{{this.weight}}"
+                     aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.PathWeight'}}" />
+              <span class="storyflow-random-pct-sign">%</span>
+              <button type="button" data-action="removeRandomPath" data-index="{{@index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.RemovePath'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          <p class="storyflow-random-total">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RandomTotal" total=randomTotal}}</p>
+          <div class="storyflow-random-actions">
+            <button type="button" class="storyflow-add-choice" data-action="addRandomPath">
+              <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.AddPath"}}
+            </button>
+            <button type="button" data-action="equalizeRandomPaths">
+              <i class="fa-solid fa-scale-balanced"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Inspector.EqualizeRandomPaths"}}
+            </button>
+          </div>
+        </fieldset>
+      {{/if}}
+
+      {{#if isCrate}}
+        <fieldset class="storyflow-crate-items">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Crate.Items"}}</legend>
+          <ul class="storyflow-crate-summary">
+            {{#each crateItems}}
+              <li>
+                {{#if this.img}}<img src="{{this.img}}" alt="" />{{/if}}
+                <span class="nm">{{this.name}}</span>
+                <span class="pct">{{this.pct}}%</span>
+              </li>
+            {{/each}}
+          </ul>
+          <button type="button" class="storyflow-add-choice" data-action="openCrateItems">
+            <i class="fa-solid fa-box-open"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.Crate.ManageItems"}} ({{crateItemCount}})
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isCondition}}
+        <fieldset class="storyflow-conditions">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.NodeType.condition"}}</legend>
+          <div class="form-group storyflow-cond-target">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.Condition.Target"}}</label>
+            <select name="target" class="storyflow-insp-select">
+              {{#each targetOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.value}}</option>
+              {{/each}}
+            </select>
+          </div>
+          {{#if showTargetActor}}
+            <div class="form-group storyflow-cond-target-actor">
+              <select name="targetActorId" class="storyflow-insp-select">
+                <option value=""></option>
+                {{#each characterOptions}}
+                  <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          {{/if}}
+          {{#each conditions}}
+            <div class="storyflow-cond-row" data-index="{{this.index}}">
+              {{> ruleFields}}
+              <button type="button" data-action="removeCondition" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Condition.RemoveRule'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          <button type="button" class="storyflow-add-cond" data-action="addCondition">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Condition.AddRule"}}
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isCheck}}
+        <fieldset class="storyflow-checks">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.NodeType.check"}}</legend>
+          <div class="form-group storyflow-cond-target">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.Fields.logicOperator"}}</label>
+            <select name="logicOperator" class="storyflow-insp-select">
+              {{#each logicOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.value}}</option>
+              {{/each}}
+            </select>
+          </div>
+          {{#each checks}}
+            <div class="storyflow-check-row" data-index="{{this.index}}">
+              <select name="{{this.names.kind}}" class="storyflow-insp-select">
+                {{#each this.kindOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+              </select>
+              <select name="{{this.names.key}}" class="storyflow-insp-select">
+                <option value=""></option>
+                {{#each this.keyOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+              </select>
+              <input type="number" name="{{this.names.dc}}" value="{{this.dc}}" step="1" min="1" />
+              <select name="{{this.names.rollMode}}" class="storyflow-insp-select">
+                {{#each this.rollModeOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+              </select>
+              <button type="button" data-action="removeCheck" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Condition.RemoveRule'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          <button type="button" class="storyflow-add-cond" data-action="addCheck">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Check.AddCheck"}}
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isRollTrigger}}
+        <fieldset class="storyflow-roll-rules">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.RollTrigger.Rules"}}</legend>
+          {{#each rules}}
+            <div class="storyflow-rule-row" data-index="{{this.index}}">
+              <select name="{{this.names.kind}}" class="storyflow-insp-select">
+                {{#each this.kindOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+              </select>
+              <select name="{{this.names.detail}}" class="storyflow-insp-select">
+                <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.RollTrigger.AnyDetail"}}</option>
+                {{#each this.detailOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+              </select>
+              {{#unless this.isEffect}}
+                <select name="{{this.names.outcome}}" class="storyflow-insp-select">
+                  {{#each this.outcomeOptions}}<option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>{{/each}}
+                </select>
+              {{/unless}}
+              <button type="button" data-action="removeRollRule" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.RollTrigger.RemoveRule'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          <button type="button" class="storyflow-add-cond" data-action="addRollRule">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.RollTrigger.AddRule"}}
+          </button>
+        </fieldset>
+      {{/if}}
+
+      {{#if isSpellTrigger}}
+        <fieldset class="storyflow-spell-rows">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.SpellTrigger.Spells"}}</legend>
+          <div class="storyflow-spell-drop">
+            <i class="fa-solid fa-wand-sparkles"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.SpellTrigger.DropHint"}}
+          </div>
+          {{#each spellRows}}
+            <div class="storyflow-spell-row" data-index="{{this.index}}">
+              {{#if this.img}}<img src="{{this.img}}" width="24" height="24" alt="" />{{/if}}
+              <span>{{this.name}}</span>
+              <button type="button" data-action="removeSpellRow" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.SpellTrigger.RemoveSpell'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          {{#unless spellRows.length}}
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.SpellTrigger.AnySpell"}}</p>
+          {{/unless}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isActorList}}
+        <fieldset class="storyflow-spell-rows">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Legend"}}</legend>
+          <div class="storyflow-spell-drop">
+            <i class="fa-solid fa-user-plus"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.ActorList.DropHint"}}
+          </div>
+          {{#each actorRows}}
+            <div class="storyflow-spell-row" data-index="{{this.index}}">
+              {{#if this.img}}<img src="{{this.img}}" width="24" height="24" alt="" />{{/if}}
+              <span>{{this.name}}</span>
+              <button type="button" data-action="removeActorRow" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.ActorList.Remove'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          {{#unless actorRows.length}}
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Empty"}}</p>
+          {{/unless}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isAudio}}
+        <fieldset class="storyflow-spell-rows">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.AudioNode.Tracks"}}</legend>
+          <div class="storyflow-spell-drop">
+            <i class="fa-solid fa-music"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.AudioNode.DropHint"}}
+          </div>
+          {{#each audioTracks}}
+            <div class="storyflow-spell-row" data-index="{{this.index}}">
+              <span>{{this.name}}</span>
+              <button type="button" data-action="removeAudioTrack" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.AudioNode.RemoveTrack'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isQuest}}
+        <fieldset class="storyflow-quest-node">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.NodeType.quest"}}</legend>
+          <div class="form-group storyflow-insp-field">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestNode.TargetType"}}</label>
+            <select name="targetType" class="storyflow-insp-select">
+              {{#each targetTypeOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group storyflow-insp-field">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestNode.TargetEntry"}}</label>
+            <select name="targetUuid" class="storyflow-insp-select">
+              <option value=""></option>
+              {{#each targetOptions}}
+                <option value="{{this.uuid}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group storyflow-insp-field">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestNode.Operation"}}</label>
+            <select name="operation" class="storyflow-insp-select">
+              {{#each operationOptions}}
+                <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          {{#if showObjective}}
+            <div class="form-group storyflow-insp-field">
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestNode.Objective"}}</label>
+              <select name="objectiveId" class="storyflow-insp-select">
+                <option value=""></option>
+                {{#each objectiveOptions}}
+                  <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.text}}</option>
+                {{/each}}
+              </select>
+            </div>
+          {{/if}}
+          {{#if showStatus}}
+            <div class="form-group storyflow-insp-field">
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestNode.Status"}}</label>
+              <select name="status" class="storyflow-insp-select">
+                {{#each statusOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+            </div>
+          {{/if}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isShowOnMap}}
+        <fieldset class="storyflow-showonmap">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.ShowOnMap.CameraLocation"}}</legend>
+          <button type="button" class="storyflow-capture-camera" data-action="captureCamera">
+            <i class="fa-solid fa-crosshairs"></i> {{localize "STORYFLOW_DUNGEONS_LAB.ShowOnMap.Confirm"}}
+          </button>
+          {{#if cameraCaptured}}
+            <p class="storyflow-camera-readout">
+              <i class="fa-solid fa-map-location-dot"></i>
+              {{cameraSceneName}} - x {{cameraX}}, y {{cameraY}}, {{localize "STORYFLOW_DUNGEONS_LAB.ShowOnMap.Zoom"}} {{cameraScale}}
+            </p>
+          {{else}}
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.ShowOnMap.NotSet"}}</p>
+          {{/if}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isDoor}}
+        {{#if doorCaptured}}
+          <fieldset class="storyflow-door-capture">
+            <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Door.CapturedWalls"}}</legend>
+            <button type="button" class="storyflow-capture-walls" data-action="captureWalls">
+              <i class="fa-solid fa-vector-square"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Door.CaptureWalls"}}
+            </button>
+            {{#if doorHasWalls}}
+              <p class="storyflow-door-readout">
+                <i class="fa-solid fa-door-open"></i>
+                {{doorWallCount}} {{localize "STORYFLOW_DUNGEONS_LAB.Door.WallsOn"}} {{doorSceneName}}
+              </p>
+            {{else}}
+              <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Door.NotSet"}}</p>
+            {{/if}}
+          </fieldset>
+        {{/if}}
+      {{/if}}
+
+      {{#if isLight}}
+        {{#if lightCaptured}}
+          <fieldset class="storyflow-light-capture">
+            <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Light.CapturedLights"}}</legend>
+            <button type="button" class="storyflow-capture-lights" data-action="captureLights">
+              <i class="fa-solid fa-lightbulb"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Light.CaptureLights"}}
+            </button>
+            {{#if lightHasLights}}
+              <p class="storyflow-light-readout">
+                <i class="fa-solid fa-lightbulb"></i>
+                {{lightCount}} {{localize "STORYFLOW_DUNGEONS_LAB.Light.LightsOn"}} {{lightSceneName}}
+              </p>
+            {{else}}
+              <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Light.NotSet"}}</p>
+            {{/if}}
+          </fieldset>
+        {{/if}}
+      {{/if}}
+
+      {{#if isEffectFamily}}
+        {{#if sequencerInactive}}
+          <p class="storyflow-insp-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.Effect.SequencerInactive"}}
+          </p>
+        {{/if}}
+      {{/if}}
+
+      {{#if isEffect}}
+        {{#if effectPointMode}}
+          <fieldset class="storyflow-effect-point">
+            <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Effect.Location"}}</legend>
+            <button type="button" data-action="captureEffectPoint">
+              <i class="fa-solid fa-crosshairs"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Effect.PickLocation"}}
+            </button>
+            {{#if effectPointCaptured}}
+              <p class="storyflow-light-readout">
+                <i class="fa-solid fa-location-dot"></i>
+                {{effectSceneName}} · {{effectX}}, {{effectY}}
+              </p>
+            {{else}}
+              <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Effect.NoLocation"}}</p>
+            {{/if}}
+          </fieldset>
+        {{/if}}
+
+        {{#if effectLineMode}}
+          <fieldset class="storyflow-effect-point">
+            <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Effect.Line"}}</legend>
+            <button type="button" data-action="captureEffectLine">
+              <i class="fa-solid fa-arrows-left-right"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Effect.PickLine"}}
+            </button>
+            {{#if effectLineCaptured}}
+              <p class="storyflow-light-readout">
+                <i class="fa-solid fa-location-arrow"></i>
+                {{effectSceneName}} · {{effectSourceX}}, {{effectSourceY}} → {{effectTargetX}}, {{effectTargetY}}
+              </p>
+            {{else}}
+              <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Effect.NoLine"}}</p>
+            {{/if}}
+          </fieldset>
+        {{/if}}
+
+        {{#if effectTokensMode}}
+          <fieldset class="storyflow-effect-tokens">
+            <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Effect.TargetTokens"}}</legend>
+            <button type="button" data-action="captureEffectTokens">
+              <i class="fa-solid fa-users-viewfinder"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Effect.CaptureTokens"}}
+            </button>
+            {{#if effectTokenCount}}
+              <p class="storyflow-light-readout">
+                <i class="fa-solid fa-user"></i>
+                {{effectTokenCount}} {{localize "STORYFLOW_DUNGEONS_LAB.Effect.TokensOn"}} {{effectSceneName}}
+              </p>
+            {{else}}
+              <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Effect.NoTokens"}}</p>
+            {{/if}}
+          </fieldset>
+        {{/if}}
+      {{/if}}
+
+      {{#if isTiles}}
+        <fieldset class="storyflow-effect-point">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Tiles.Placements"}}</legend>
+          <button type="button" data-action="massPlaceTiles"
+                  {{#if sequencerInactive}}disabled{{/if}}>
+            <i class="fa-solid fa-fire"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tiles.MassPlace"}}
+          </button>
+          <button type="button" data-action="editTilePlacements">
+            <i class="fa-solid fa-arrow-pointer"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tiles.EditPlacements"}}
+          </button>
+          {{#if tilesCount}}
+            <p class="storyflow-light-readout">
+              <i class="fa-solid fa-border-all"></i>
+              {{tilesCount}} {{localize "STORYFLOW_DUNGEONS_LAB.Tiles.TilesOn"}} {{tilesSceneName}}
+            </p>
+          {{else}}
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Tiles.NoTiles"}}</p>
+          {{/if}}
+        </fieldset>
+      {{/if}}
+
+      {{#if isToken}}
+        {{#if tokenShowTargeting}}
+          {{#if tokenCaptured}}
+            <fieldset class="storyflow-token-capture">
+              <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Token.CapturedTokens"}}</legend>
+              <button type="button" class="storyflow-capture-tokens" data-action="captureTokens">
+                <i class="fa-solid fa-chess-pawn"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Token.CaptureTokens"}}
+              </button>
+              {{#if tokenHasTokens}}
+                <p class="storyflow-token-readout">
+                  <i class="fa-solid fa-chess-pawn"></i>
+                  {{tokenCount}} {{localize "STORYFLOW_DUNGEONS_LAB.Token.TokensOn"}} {{tokenSceneName}}
+                </p>
+              {{else}}
+                <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Token.NotSet"}}</p>
+              {{/if}}
+            </fieldset>
+          {{/if}}
+        {{/if}}
+        {{#if tokenShowDestination}}
+          {{#if tokenDestIsPoint}}
+            <fieldset class="storyflow-token-dest">
+              <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Token.Destination"}}</legend>
+              <button type="button" class="storyflow-capture-token-dest" data-action="captureTokenDestination">
+                <i class="fa-solid fa-crosshairs"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Token.CaptureDestination"}}
+              </button>
+              {{#if tokenDestCaptured}}
+                <p class="storyflow-token-dest-readout">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                  {{tokenDestSceneName}} - x {{tokenDestX}}, y {{tokenDestY}}
+                </p>
+              {{else}}
+                <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Token.DestNotSet"}}</p>
+              {{/if}}
+            </fieldset>
+          {{/if}}
+          {{#if tokenDestIsTile}}
+            <fieldset class="storyflow-token-dest-tile">
+              <legend>{{localize "STORYFLOW_DUNGEONS_LAB.Token.Destination"}}</legend>
+              <button type="button" class="storyflow-capture-token-dest-tile" data-action="captureDestinationTile">
+                <i class="fa-solid fa-border-none"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Token.CaptureDestinationTile"}}
+              </button>
+              {{#if tokenDestTileCaptured}}
+                <p class="storyflow-token-dest-readout">
+                  <i class="fa-solid fa-border-none"></i>
+                  {{tokenDestSceneName}}
+                </p>
+              {{else}}
+                <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Token.DestTileNotSet"}}</p>
+              {{/if}}
+            </fieldset>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+
+      <ul class="storyflow-insp-errors">
+        {{#each errors}}<li>{{this}}</li>{{/each}}
+      </ul>
+    </form>
+    {{/if}}
+  {{else}}
+    <p class="storyflow-insp-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.NoSelection"}}</p>
+  {{/if}}
+</aside>

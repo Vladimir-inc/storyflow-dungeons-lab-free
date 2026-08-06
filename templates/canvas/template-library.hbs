@@ -1,0 +1,161 @@
+{{!-- Библиотека шаблонов (дизайн Dungeons LAB): панель поиска и импорта, строки шаблонов с
+      углями Insert и меню-кебабом, переименование и подтверждение удаления на месте, статусная полоса в подвале. --}}
+<section class="storyflow-tpl-body storyflow-tpl-split">
+  <div class="storyflow-tpl-left">
+  <div class="storyflow-tpl-toolbar storyflow-tpl-toolbar-stacked">
+    <div class="storyflow-tpl-search">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <input type="search" name="tplSearch" value="{{query}}" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.SearchPlaceholder'}}" />
+    </div>
+    <div class="storyflow-tpl-toolbar-actions">
+      <button type="button" class="storyflow-tpl-primary" data-action="createTemplate">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.Create"}}
+      </button>
+      <button type="button" class="storyflow-tpl-import" data-action="addFolder"
+              data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.NewFolder'}}">
+        <i class="fa-solid fa-folder-plus" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="storyflow-tpl-import" data-action="importTemplate">
+        <i class="fa-solid fa-file-import" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.Import"}}
+      </button>
+    </div>
+  </div>
+
+  <div class="storyflow-tpl-scroll">
+    {{#if showEmpty}}
+      <div class="storyflow-tpl-empty">
+        <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+        <div class="storyflow-tpl-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Templates.EmptyTitle"}}</div>
+        <div class="storyflow-tpl-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Templates.EmptyBody"}}</div>
+        <button type="button" class="storyflow-tpl-primary" data-action="importTemplate">
+          <i class="fa-solid fa-file-import" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.EmptyImport"}}
+        </button>
+      </div>
+    {{/if}}
+
+    {{#if showNoResults}}
+      <div class="storyflow-tpl-noresults">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <div>{{noResultsText}}</div>
+      </div>
+    {{/if}}
+
+    {{#if showList}}
+      <ul class="storyflow-tpl-list">
+        {{#each items}}
+          {{#if this.isFolder}}
+            <li class="storyflow-tpl-folder {{#if this.collapsed}}is-collapsed{{/if}} {{#if this.builtin}}is-builtin{{/if}}"
+                data-folder-id="{{this.id}}" {{#if this.builtin}}data-builtin="1"{{/if}} data-action="toggleFolder">
+              <i class="fa-solid {{#if this.collapsed}}fa-chevron-right{{else}}fa-chevron-down{{/if}}" aria-hidden="true"></i>
+              <i class="fa-solid {{#if this.collapsed}}fa-folder{{else}}fa-folder-open{{/if}} storyflow-tpl-folder-icon" aria-hidden="true"></i>
+              <span class="storyflow-tpl-folder-name">{{this.name}}</span>
+              <span class="storyflow-tpl-folder-count">{{this.count}}</span>
+              {{#if this.builtin}}
+                {{#if this.authoring}}
+                  <i class="fa-solid fa-lock-open storyflow-tpl-folder-lock is-unlocked"
+                     data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.PresetUnlocked'}}" aria-hidden="true"></i>
+                {{else}}
+                  <i class="fa-solid fa-lock storyflow-tpl-folder-lock"
+                     data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.PresetLocked'}}" aria-hidden="true"></i>
+                {{/if}}
+              {{else}}
+              <button type="button" class="storyflow-tpl-folder-btn" data-action="renameFolder"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.MenuRename'}}">
+                <i class="fa-solid fa-i-cursor" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="storyflow-tpl-folder-btn" data-action="deleteFolder"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.DeleteFolderTooltip'}}">
+                <i class="fa-solid fa-folder-minus" aria-hidden="true"></i>
+              </button>
+              {{/if}}
+            </li>
+          {{else if this.confirming}}
+            <li class="storyflow-tpl-confirm" data-template-id="{{this.id}}">
+              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+              <div class="storyflow-tpl-confirm-text">{{{this.confirmHtml}}}</div>
+              <button type="button" class="storyflow-tpl-secondary" data-action="cancelDelete">
+                {{localize "STORYFLOW_DUNGEONS_LAB.Templates.Cancel"}}
+              </button>
+              <button type="button" class="storyflow-tpl-danger" data-action="confirmDeleteTemplate">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.ConfirmDelete"}}
+              </button>
+            </li>
+          {{else}}
+            <li class="storyflow-tpl-row {{#if this.selected}}is-selected{{/if}} {{#if this.inFolder}}in-folder{{/if}} {{#if this.preset}}is-preset{{/if}}"
+                data-template-id="{{this.id}}" {{#unless this.renaming}}{{#if this.draggable}}draggable="true"{{/if}}{{/unless}}>
+              <div class="storyflow-tpl-tile">
+                <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              </div>
+              <div class="storyflow-tpl-info">
+                {{#if this.renaming}}
+                  <input type="text" class="storyflow-tpl-rename" name="tplRename" value="{{this.name}}" autocomplete="off" />
+                  <div class="storyflow-tpl-rename-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Templates.RenameHint"}}</div>
+                {{else}}
+                  <div class="storyflow-tpl-name">{{this.name}}</div>
+                  <div class="storyflow-tpl-meta">{{this.meta}}</div>
+                {{/if}}
+              </div>
+              <button type="button" class="storyflow-tpl-primary storyflow-tpl-insert" data-action="insertTemplate"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.InsertTooltip'}}">
+                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>{{this.insertLabel}}
+              </button>
+              {{#unless this.lockedPreset}}
+              <button type="button" class="storyflow-tpl-kebab" data-action="openTemplateMenu"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.MoreActions'}}">
+                <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+              </button>
+              {{#if this.menuOpen}}
+                <div class="storyflow-tpl-catcher" data-action="closeMenus"></div>
+                <div class="storyflow-tpl-menu">
+                  <button type="button" data-action="editTemplate">
+                    <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuEdit"}}
+                  </button>
+                  <button type="button" data-action="startRename">
+                    <i class="fa-solid fa-i-cursor" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuRename"}}
+                  </button>
+                  <button type="button" data-action="moveTemplate">
+                    <i class="fa-solid fa-folder-tree" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuMove"}}
+                  </button>
+                  <button type="button" data-action="exportTemplate">
+                    <i class="fa-solid fa-file-export" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuExport"}}
+                  </button>
+                  <div class="storyflow-tpl-menu-rule"></div>
+                  <button type="button" class="storyflow-tpl-menu-danger" data-action="askDelete">
+                    <i class="fa-solid fa-trash-can" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuDelete"}}
+                  </button>
+                </div>
+              {{/if}}
+              {{/unless}}
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+
+  <footer class="storyflow-tpl-footer">
+    <span class="storyflow-tpl-footer-note"><i class="{{footerIcon}}" aria-hidden="true"></i>{{footerNote}}</span>
+    <span class="storyflow-tpl-count">{{countNote}}</span>
+  </footer>
+  </div>
+
+  <div class="storyflow-tpl-preview">
+    {{#if hasPreview}}
+      <div class="storyflow-tpl-preview-head" data-template-id="{{previewId}}">
+        <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>{{previewName}}
+        {{#if previewCanEdit}}
+        <button type="button" class="storyflow-tpl-import storyflow-tpl-preview-edit" data-action="editTemplate">
+          <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.MenuEdit"}}
+        </button>
+        {{/if}}
+      </div>
+      <div class="storyflow-tpl-preview-stage"></div>
+    {{else}}
+      <div class="storyflow-tpl-preview-empty">
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+        <div>{{localize "STORYFLOW_DUNGEONS_LAB.Templates.PreviewHint"}}</div>
+      </div>
+    {{/if}}
+  </div>
+</section>

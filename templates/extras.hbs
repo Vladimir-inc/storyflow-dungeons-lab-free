@@ -1,0 +1,30 @@
+<div class="storyflow-extras-body">
+  <ol class="extras-list">
+    {{#each features}}
+    <li class="extra-row {{#if this.enabled}}on{{/if}}">
+      <div class="extra-text">
+        <button type="button" class="extra-name" data-action="showDetail" data-feature-id="{{this.id}}"
+                title="{{this.name}}">
+          {{this.name}} <i class="fa-solid fa-circle-info"></i>
+        </button>
+        {{#if this.hint}}<span class="extra-hint">{{this.hint}}</span>{{/if}}
+      </div>
+      {{#if this.alwaysOn}}
+      <span class="extra-alwayson">{{../alwaysOnLabel}}</span>
+      {{else if this.locked}}
+      <span class="extra-toggle locked {{#if this.enabled}}on{{/if}}" aria-pressed="{{this.enabled}}"
+            title="{{localize 'STORYFLOW_DUNGEONS_LAB.Extras.GMOnly'}}">
+        <i class="fa-solid {{#if this.enabled}}fa-toggle-on{{else}}fa-toggle-off{{/if}}"></i>
+        <i class="fa-solid fa-lock"></i>
+      </span>
+      {{else}}
+      <button type="button" class="extra-toggle {{#if this.enabled}}on{{/if}}"
+              data-action="toggleFeature" data-feature-id="{{this.id}}"
+              aria-pressed="{{this.enabled}}">
+        <i class="fa-solid {{#if this.enabled}}fa-toggle-on{{else}}fa-toggle-off{{/if}}"></i>
+      </button>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ol>
+</div>

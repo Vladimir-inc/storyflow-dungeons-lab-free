@@ -1,0 +1,195 @@
+<div class="storyflow-card-store">
+  <div class="cs-head">
+    <div class="cs-eyebrow">◆ {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Eyebrow"}} ◆</div>
+    <h1 class="cs-title">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.StoreTitle"}}</h1>
+  </div>
+
+  <div class="cs-layout">
+    <aside class="cs-side">
+      <div class="cs-side-group">
+        <div class="cs-side-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.CategoriesLabel"}}</div>
+        <div class="cs-side-list" data-side-list="categories">
+          {{#each chips}}
+            <div class="cs-cat-row {{#if this.active}}is-active{{/if}}" {{#if this.color}}style="--cat: {{this.color}};"{{/if}}>
+              <button type="button" class="cs-cat" data-action="filterCards" data-filter-id="{{this.id}}">
+                {{#if this.color}}<span class="cs-cat-dot"></span>{{/if}}{{this.label}}
+              </button>
+              <span class="cs-cat-count">{{this.count}}</span>
+              {{#if this.managed}}{{#unless this.builtin}}
+                <button type="button" class="cs-cat-del" data-action="deleteCategory" data-category="{{this.label}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.DeleteCategory'}}">✕</button>
+              {{/unless}}{{/if}}
+            </div>
+          {{/each}}
+        </div>
+        <div class="cs-cat-add">
+          <input type="text" name="newCategory"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.AddCategory'}}" />
+          <button type="button" data-action="addCategory"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.AddCategory'}}">＋</button>
+        </div>
+      </div>
+
+      <div class="cs-side-group">
+        <div class="cs-side-label cs-side-label-row">
+          <span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.CollectionsLabel"}}</span>
+          <button type="button" class="cs-folder-btn" data-action="importFolder"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.ImportCollection'}}"><i class="fa-solid fa-file-import"></i></button>
+        </div>
+        <div class="cs-side-list" data-side-list="collections">
+          <div class="cs-cat-row cs-folder-row {{#if (eq folderFilter "all")}}is-active{{/if}}">
+            <button type="button" class="cs-cat" data-action="filterByFolder" data-folder-id="all">
+              <i class="fa-solid fa-layer-group cs-folder-ico"></i>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.AllCollections"}}
+            </button>
+          </div>
+          <div class="cs-cat-row cs-folder-row cs-folder-drop {{#if (eq folderFilter "unfiled")}}is-active{{/if}}" data-folder-drop="">
+            <button type="button" class="cs-cat" data-action="filterByFolder" data-folder-id="unfiled">
+              <i class="fa-solid fa-inbox cs-folder-ico"></i>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Unfiled"}}
+            </button>
+          </div>
+          <div class="cs-folder-tree">
+            {{#each folderTree}}
+              <div class="cs-cat-row cs-folder-row cs-folder-drop {{#if this.active}}is-active{{/if}}"
+                   style="--depth: {{this.depth}};" data-folder-drop="{{this.id}}">
+                <button type="button" class="cs-cat" data-action="filterByFolder" data-folder-id="{{this.id}}">
+                  <i class="fa-solid fa-folder cs-folder-ico"></i>{{this.name}}
+                </button>
+                <button type="button" class="cs-folder-btn" data-action="addSubfolder" data-parent-id="{{this.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.AddSubcollection'}}">＋</button>
+                <button type="button" class="cs-folder-btn" data-action="exportFolder" data-folder-id="{{this.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.ExportCollection'}}"><i class="fa-solid fa-file-export"></i></button>
+                <button type="button" class="cs-cat-del" data-action="deleteFolder" data-folder-id="{{this.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.DeleteCollection'}}">✕</button>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+        <div class="cs-cat-add">
+          <input type="text" name="newFolder"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.NewCollection'}}" />
+          <button type="button" data-action="createFolder"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.NewCollection'}}">＋</button>
+        </div>
+      </div>
+
+      <div class="cs-side-group">
+        <div class="cs-side-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.FactionsLabel"}}</div>
+        <div class="cs-side-list" data-side-list="factions">
+          {{#each factionChips}}
+            <div class="cs-cat-row {{#if this.active}}is-active{{/if}} {{#unless (eq this.id "all")}}cs-faction-drop{{/unless}}"
+                 {{#unless (eq this.id "all")}}data-faction-drop="{{this.id}}"{{/unless}}
+                 {{#if this.color}}style="--cat: {{this.color}};"{{/if}}>
+              <button type="button" class="cs-cat" data-action="filterByFaction" data-faction-id="{{this.id}}">
+                {{#if this.color}}<span class="cs-cat-dot"></span>{{/if}}{{this.label}}
+              </button>
+              <span class="cs-cat-count">{{this.count}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+    </aside>
+
+    <div class="cs-main">
+      <div class="cs-create-row">
+        <button type="button" class="cs-create" data-action="createCard">
+          ◆&nbsp; {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.CreateCard"}}
+        </button>
+        <button type="button" class="cs-io" data-action="exportStore"
+                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.ExportTip'}}">
+          <i class="fa-solid fa-file-export"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Export"}}
+        </button>
+        <button type="button" class="cs-io" data-action="importStore"
+                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.ImportTip'}}">
+          <i class="fa-solid fa-file-import"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Import"}}
+        </button>
+        <button type="button" class="cs-io cs-select-toggle" data-action="toggleSelectMode"
+                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.SelectTip'}}">
+          <i class="fa-solid fa-check-double"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Select"}}
+        </button>
+        <div class="cs-tools">
+          <input type="search" name="cardSearch" class="cs-search" value="{{search}}"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.SearchPlaceholder'}}" />
+          <select name="cardSort" class="cs-sort">
+            {{#each sortOptions}}
+              <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      {{#if cards.length}}
+        <div class="cs-grid" data-grid>
+          {{#each cards}}
+            {{#if this.header}}
+            <div class="cs-cat-header" style="--cat: {{this.color}};">{{this.label}}</div>
+            {{else}}
+            <div class="dl-card readonly rep-{{this.tint.tier}}" data-card-id="{{this.id}}"
+                 style="--cat: {{this.color}}; background: {{this.tint.bg}}; border-color: {{this.tint.edge}};">
+              {{#if this.img}}<img class="dl-card-art" src="{{this.img}}" alt="" />{{/if}}
+              <span class="dl-card-badge">{{#if this.category}}{{this.category}}{{else}}-{{/if}}</span>
+              <div class="dl-card-name">{{this.name}}</div>
+              <div class="dl-card-pips">◆ ◆ ◆</div>
+              {{#if this.description}}<p class="dl-card-desc">{{this.description}}</p>{{/if}}
+              <div class="dl-card-effects">
+                {{#each this.plus}}<div class="dl-eff plus"><span class="dl-eff-icon">+</span><span class="dl-eff-text">{{this}}</span></div>{{/each}}
+                {{#each this.minus}}<div class="dl-eff minus"><span class="dl-eff-icon">−</span><span class="dl-eff-text">{{this}}</span></div>{{/each}}
+              </div>
+              <div class="dl-card-rep-badge" style="background: {{this.tint.repBg}}; color: {{this.tint.repColor}}; border-color: {{this.tint.repBorder}};">
+                {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Threshold"}} {{this.tint.repText}}
+              </div>
+              {{#if this.usedBy.length}}
+                <div class="dl-card-usedby">
+                  <span class="dl-card-usedby-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.UsedBy"}}</span>
+                  <div class="dl-card-usedby-chips">
+                    {{#each this.usedBy}}
+                      <span class="dl-card-usedby-chip" style="--cat: {{this.color}};">
+                        <span class="dl-card-usedby-dot"></span>{{this.name}}
+                        <button type="button" class="dl-card-usedby-del" data-action="removeFromFaction"
+                                data-card-id="{{../id}}" data-faction-id="{{this.id}}"
+                                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.RemoveCard'}}">✕</button>
+                      </span>
+                    {{/each}}
+                  </div>
+                </div>
+              {{/if}}
+              <div class="dl-card-actions">
+                <button type="button" class="dl-card-edit" data-action="editCard" data-card-id="{{this.id}}">
+                  <i class="fa-solid fa-pen"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Modify"}}
+                </button>
+                <button type="button" class="dl-card-add" data-action="addToFaction" data-card-id="{{this.id}}">
+                  <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.AddToFaction"}}
+                </button>
+                <button type="button" class="dl-card-dup" data-action="duplicateCard" data-card-id="{{this.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.Duplicate'}}">
+                  <i class="fa-solid fa-copy"></i>
+                </button>
+                {{#unless this.builtin}}
+                <button type="button" class="dl-card-del" data-action="deleteCard" data-card-id="{{this.id}}">
+                  <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.DeleteCard"}}
+                </button>
+                {{/unless}}
+              </div>
+            </div>
+            {{/if}}
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="cs-empty">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.StoreEmpty"}}</div>
+      {{/if}}
+
+      <div class="cs-bulkbar" data-bulkbar>
+        <span class="cs-bulkbar-count" data-bulk-count></span>
+        <button type="button" class="cs-bulkbar-assign" data-action="bulkAssign">
+          <i class="fa-solid fa-people-group"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.AssignSelected"}}
+        </button>
+        <button type="button" class="cs-bulkbar-clear" data-action="clearSelection">
+          {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.ClearSelection"}}
+        </button>
+        <button type="button" class="cs-bulkbar-done" data-action="toggleSelectMode">
+          {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Done"}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

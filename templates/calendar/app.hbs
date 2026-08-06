@@ -1,0 +1,123 @@
+<div class="storyflow-calendar-window">
+  <header class="cal-header">
+    <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+    <span class="cal-title">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Title"}}</span>
+    <span class="cal-summary">{{headerSummary}}</span>
+    {{#if isGM}}<button type="button" data-action="openSeasons" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.SeasonsTip'}}"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>{{/if}}
+  </header>
+  <div class="cal-body">
+    <div class="cal-grid-pane">
+      <div class="cal-monthnav">
+        <button type="button" data-action="prevMonth"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <span class="cal-monthtitle">{{monthTitle}}</span>
+        <button type="button" data-action="nextMonth"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        <button type="button" data-action="goToday">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Today"}}</button>
+      </div>
+      <div class="cal-weekdays">{{#each weekdays}}<span>{{this}}</span>{{/each}}</div>
+      <div class="cal-grid">
+        {{#each days}}
+        <div class="cal-day {{#if this.isToday}}is-today{{/if}} {{#if this.isSelected}}is-selected{{/if}} {{#if this.isPast}}is-past{{/if}}"
+             data-action="selectDay" data-day="{{this.n}}">
+          <div class="cal-day-head">
+            <span class="cal-day-n">{{this.n}}</span>
+            <svg width="11" height="11" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1A1722"></circle><path d="{{this.moonD}}" fill="#B8B2A2"></path></svg>
+          </div>
+          <div class="cal-day-foot">
+            {{#if this.showWeather}}<i class="fa-solid {{this.icon}}" aria-hidden="true" style="color:{{this.iconColor}};"></i><span class="cal-day-temp">{{this.temp}}</span>{{/if}}
+            {{#if this.veiled}}<i class="fa-solid fa-eye-slash cal-veiled" aria-hidden="true" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.VeiledTip'}}"></i>{{/if}}
+            <span class="cal-spacer"></span>
+            {{#if this.hasEvent}}<span class="cal-event-dot" data-tooltip="{{this.eventTip}}"></span>{{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <aside class="cal-day-panel">
+      <div class="cal-panel-head">
+        <div class="cal-panel-kicker">{{panel.kicker}}</div>
+        <div class="cal-panel-daterow">
+          <span class="cal-panel-date">{{panel.dateText}}</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" data-tooltip="{{panel.moonLabel}}"><circle cx="12" cy="12" r="10" fill="#1A1722" stroke="var(--storyflow-border-strong)" stroke-width="1"></circle><path d="{{panel.moonD}}" fill="#D9D2C0"></path></svg>
+        </div>
+        <div class="cal-panel-sub">{{panel.moonLabel}} · {{panel.seasonLabel}}</div>
+      </div>
+      {{#if panel.showGmPanel}}
+      <div class="cal-gm-controls">
+        {{#if showEmptyBanner}}
+        <div class="cal-empty-banner">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.EmptyMonthBanner"}}</div>
+        {{/if}}
+        <div class="cal-cond-menu {{#if condMenu.open}}is-open{{/if}}">
+          <button type="button" class="cal-cond-trigger" data-action="toggleCondMenu" aria-haspopup="menu" aria-expanded="{{#if condMenu.open}}true{{else}}false{{/if}}"><i class="fa-solid {{condMenu.icon}}" aria-hidden="true" style="color:{{condMenu.color}};"></i><span class="cal-cond-current">{{condMenu.label}}</span><i class="fa-solid fa-chevron-down cal-cond-caret" aria-hidden="true"></i></button>
+          {{#if condMenu.open}}
+          <div class="cal-cond-panel" role="menu">
+            {{#each condItems}}<button type="button" role="menuitem" class="cal-cond-item {{#if this.on}}is-on{{/if}}" data-action="setCondition" data-cond="{{this.key}}" style="--sf-delay:{{this.delay}};"><i class="fa-solid {{this.icon}}" aria-hidden="true" style="color:{{this.color}};"></i><span class="cal-cond-text"><span class="cal-cond-label">{{this.label}}</span>{{#if this.flavor}}<span class="cal-cond-flavor">{{this.flavor}}</span>{{/if}}</span>{{#if this.on}}<i class="fa-solid fa-check cal-cond-check" aria-hidden="true"></i>{{/if}}</button>{{/each}}
+            <div class="cal-cond-sep" role="separator"></div>
+            <button type="button" role="menuitem" class="cal-cond-item cal-cond-config" data-action="openSeasons"><i class="fa-solid fa-sliders" aria-hidden="true"></i><span class="cal-cond-text"><span class="cal-cond-label">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.ConfigureEffects"}}</span></span></button>
+          </div>
+          {{/if}}
+        </div>
+        <div class="cal-row"><label>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Temperature"}}</label>
+          <button type="button" data-action="tempDown">−</button><span class="cal-temp">{{draftTempText}}</span><button type="button" data-action="tempUp">+</button>
+        </div>
+        <div class="cal-row"><label>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Wind"}}</label>
+          <select name="wind">{{#each windOptions}}<option value="{{this.key}}" {{#if this.on}}selected{{/if}}>{{this.label}}</option>{{/each}}</select>
+        </div>
+        <div class="cal-roll">
+          <button type="button" data-action="rollWeather"><i class="fa-solid fa-dice-d20" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.RollWeather"}}</button>
+          <span class="cal-roll-text">{{rollText}}</span>
+        </div>
+        <div class="cal-apply">
+          <button type="button" data-action="applyWeather" class="cal-primary"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i>{{applyLabel}}</button>
+          {{#if canClear}}<button type="button" data-action="clearWeather" class="cal-danger">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Clear"}}</button>{{/if}}
+        </div>
+      </div>
+      {{/if}}
+      {{#if panel.showPlayerWeather}}
+      <div class="cal-player-weather">
+        <div class="cal-weather-card">
+          <i class="fa-solid {{panel.weather.icon}}" aria-hidden="true" style="color:{{panel.weather.color}};"></i>
+          <div class="cal-weather-info">
+            <div class="cal-weather-label">{{panel.weather.label}}</div>
+            <div class="cal-weather-meta">{{panel.weather.meta}}</div>
+          </div>
+        </div>
+        <div class="cal-weather-flavor">{{panel.weather.flavor}}</div>
+      </div>
+      {{/if}}
+      {{#if panel.showPlayerVeiled}}
+      <div class="cal-player-empty">
+        <i class="fa-solid fa-smog" aria-hidden="true"></i>
+        <div class="cal-player-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.VeiledTitle"}}</div>
+        <div class="cal-player-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.VeiledBody"}}</div>
+      </div>
+      {{/if}}
+      {{#if panel.showPlayerNone}}
+      <div class="cal-player-empty">
+        <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+        <div class="cal-player-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.NoneTitle"}}</div>
+        <div class="cal-player-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.NoneBody"}}</div>
+      </div>
+      {{/if}}
+      <div class="cal-events">
+        <div class="cal-events-title">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Events"}}</div>
+        {{#each panel.events}}
+        <div class="cal-event-row {{#if this.fired}}is-fired{{/if}} {{#if this.broken}}is-broken{{/if}}">
+          <i class="fa-solid {{#if this.isGraph}}fa-diagram-project{{else}}fa-bell{{/if}}" aria-hidden="true"></i>
+          <span class="cal-event-time">{{this.timeText}}</span>
+          <span class="cal-event-label">{{this.label}}</span>
+          {{#if this.fired}}<i class="fa-solid fa-check" aria-hidden="true"></i>{{/if}}
+          {{#if this.broken}}<i class="fa-solid fa-triangle-exclamation" aria-hidden="true" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.BrokenEvent'}}"></i>{{/if}}
+          {{#if ../isGM}}
+          <button type="button" data-action="editEvent" data-event-id="{{this.id}}"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+          <button type="button" data-action="deleteEvent" data-event-id="{{this.id}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+          {{/if}}
+        </div>
+        {{else}}
+        <div class="cal-events-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.NoEvents"}}</div>
+        {{/each}}
+        {{#if isGM}}<button type="button" class="cal-add-event" data-action="addEvent"><i class="fa-solid fa-plus" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.AddEvent"}}</button>{{/if}}
+      </div>
+    </aside>
+  </div>
+  <footer class="cal-footer"><i class="fa-solid {{footerIcon}}" aria-hidden="true"></i>{{footerNote}}</footer>
+</div>

@@ -1,0 +1,23 @@
+<div class="sf-deck-board">
+  <div class="sf-deck-stage">
+    <svg class="sf-deck-edges" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="sf-deck-widgets"></div>
+  </div>
+  {{#if empty}}
+    <div class="sf-deck-empty">
+      <i class="fa-solid fa-plus sf-deck-empty-plus" data-action="openPalette"></i>
+      <p class="sf-deck-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Deck.EmptyTitle"}}</p>
+      <p class="sf-deck-empty-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Deck.EmptyHint"}}</p>
+    </div>
+  {{/if}}
+  <button type="button" class="sf-deck-add" data-action="openPalette"
+          aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.AddWidget'}}">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+  <div class="sf-deck-zoom">
+    <button type="button" data-action="zoomIn" aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.ZoomIn'}}"><i class="fa-solid fa-plus"></i></button>
+    <span class="sf-deck-zoom-pct" data-action="zoomReset">100%</span>
+    <button type="button" data-action="zoomOut" aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.ZoomOut'}}"><i class="fa-solid fa-minus"></i></button>
+    <button type="button" data-action="zoomToFit" aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.ZoomToFit'}}"><i class="fa-solid fa-expand"></i></button>
+  </div>
+</div>

@@ -1,0 +1,219 @@
+{{!-- Вкладка квестов: боковая панель при свечах (строки карточек по категориям) и деталь. ГМ правит на месте. --}}
+<section class="storyflow-qb-content qb-quests {{#if isActive}}active{{/if}}">
+  <div class="qb-body">
+    <aside class="qb-side">
+      <div class="qb-side-head">
+        <span class="qb-count">{{questCountLabel}}</span>
+        {{#if isGM}}
+          <button type="button" class="qb-side-add" data-action="addCategory" data-catkind="quest">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.CategoryShort"}}
+          </button>
+        {{/if}}
+      </div>
+      <div class="qb-rows">
+        {{#each questCategories}}
+          {{#unless this.isGeneral}}
+            <div class="qb-cat-head">
+              <i class="fa-solid fa-bookmark qb-cat-bookmark"></i>
+              <span class="qb-cat-name">{{this.name}}</span>
+              {{#if ../isGM}}
+                <span class="qb-cat-controls">
+                  <i class="fa-solid fa-chevron-up" data-action="moveCategoryUp" data-catkind="quest" data-catid="{{this.id}}"></i>
+                  <i class="fa-solid fa-chevron-down" data-action="moveCategoryDown" data-catkind="quest" data-catid="{{this.id}}"></i>
+                  <i class="fa-solid fa-pen" data-action="renameCategory" data-catkind="quest" data-catid="{{this.id}}"></i>
+                  <i class="fa-solid fa-trash" data-action="removeCategory" data-catkind="quest" data-catid="{{this.id}}"></i>
+                </span>
+              {{/if}}
+              <span class="qb-cat-count">{{this.entries.length}}</span>
+            </div>
+            {{#unless this.entries.length}}
+              <div class="qb-cat-empty">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NoEntries"}}</div>
+            {{/unless}}
+          {{/unless}}
+          {{#each this.entries}}
+            <div class="qb-row {{#if (eq this.uuid ../../selectedQuest.uuid)}}is-selected{{/if}} {{#if this.hidden}}is-hidden{{/if}} {{#if this.unread}}is-announced{{/if}}"
+                 data-action="selectEntry" data-kind="quests" data-uuid="{{this.uuid}}">
+              <i class="fa-solid {{#if this.hidden}}fa-lock{{else}}fa-scroll{{/if}} qb-row-icon"></i>
+              <div class="qb-row-main">
+                <div class="qb-row-name">{{this.name}}</div>
+                <div class="qb-row-meta">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Progress" done=this.progress.done total=this.progress.total}}</div>
+              </div>
+              {{#if ../../isGM}}
+                {{#if this.unread}}<i class="fa-solid fa-bell qb-bell" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.AnnouncedHint'}}"></i>{{/if}}
+                {{#if this.hidden}}<i class="fa-solid fa-eye-slash qb-eye-ind" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.HiddenHint'}}"></i>{{/if}}
+              {{else}}
+                {{#if this.unread}}<span class="qb-dot" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.UnreadHint'}}"></span>{{/if}}
+              {{/if}}
+              <span class="qb-badge status-{{this.status}}">{{this.statusLabel}}</span>
+            </div>
+          {{/each}}
+        {{/each}}
+      </div>
+    </aside>
+
+    <div class="qb-detail" data-kind="quests" data-uuid="{{selectedQuest.uuid}}">
+      {{#if selectedQuest}}
+        <div class="qb-kicker">{{selectedQuest.categoryName}}</div>
+        <div class="qb-title-row">
+          {{#if isGM}}
+            <input type="text" class="qb-name-input" data-edit="name" value="{{selectedQuest.name}}" />
+          {{else}}
+            <h2>{{selectedQuest.name}}</h2>
+          {{/if}}
+          <span class="qb-badge status-{{selectedQuest.status}}">{{selectedQuest.statusLabel}}</span>
+        </div>
+        <div class="qb-rule"></div>
+
+        {{#if isGM}}
+          <div class="qb-toolbar">
+            <div class="qb-toolbar-row">
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.StatusLabel"}}</label>
+              <select data-edit="status">
+                {{#each selectedQuest.statusOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Category"}}</label>
+              <select data-edit="category">
+                <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.General"}}</option>
+                {{#each selectedQuest.categoryOptions}}
+                  <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="qb-toolbar-row">
+              <button type="button" class="qb-btn" data-action="toggleReveal" data-uuid="{{selectedQuest.uuid}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.ToggleReveal'}}">
+                <i class="fa-solid {{#if selectedQuest.hidden}}fa-eye-slash{{else}}fa-eye{{/if}}"></i>
+                {{#if selectedQuest.hidden}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.HiddenLabel"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.VisibleLabel"}}{{/if}}
+              </button>
+              <button type="button" class="qb-btn" data-action="announceEntry" data-uuid="{{selectedQuest.uuid}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.AnnounceHint'}}">
+                <i class="fa-solid fa-bell"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Announce"}}
+              </button>
+              <button type="button" class="qb-btn qb-btn-reward" data-action="openRewards" data-uuid="{{selectedQuest.uuid}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.OpenHint'}}">
+                <i class="fa-solid fa-gem"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Rewards.OpenButton"}}
+              </button>
+              <span class="qb-spacer"></span>
+              <button type="button" class="qb-btn-danger" data-action="deleteEntry" data-uuid="{{selectedQuest.uuid}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.DeleteEntry'}}">
+                <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Delete"}}
+              </button>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if isGM}}
+          <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Description"}}</p>
+          <textarea class="qb-desc-edit" data-edit="description" rows="5">{{selectedQuest.description}}</textarea>
+        {{else}}
+          <div class="qb-description">{{{selectedQuest.enrichedDescription}}}</div>
+        {{/if}}
+
+        <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Objectives"}}</p>
+        <ul class="qb-objectives">
+          {{#each selectedQuest.objectives}}
+            <li class="qb-objective {{#if this.done}}is-done{{/if}} {{#if this.hidden}}is-hidden{{/if}}">
+              {{#if ../isGM}}
+                <input type="checkbox" data-edit="objDone" data-objid="{{this.id}}" {{#if this.done}}checked{{/if}} />
+                <input type="text" class="qb-obj-text" data-edit="objText" data-objid="{{this.id}}" value="{{this.text}}" />
+                <i class="fa-solid {{#if this.hidden}}fa-eye-slash{{else}}fa-eye{{/if}}"
+                   data-action="toggleObjectiveHidden" data-uuid="{{../selectedQuest.uuid}}" data-objid="{{this.id}}"
+                   data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.ToggleReveal'}}"></i>
+                <i class="fa-solid fa-chevron-up" data-action="moveObjectiveUp" data-uuid="{{../selectedQuest.uuid}}" data-objid="{{this.id}}"></i>
+                <i class="fa-solid fa-chevron-down" data-action="moveObjectiveDown" data-uuid="{{../selectedQuest.uuid}}" data-objid="{{this.id}}"></i>
+                <i class="fa-solid fa-trash" data-action="removeObjective" data-uuid="{{../selectedQuest.uuid}}" data-objid="{{this.id}}"></i>
+              {{else}}
+                <i class="fa-{{#if this.done}}solid fa-circle-check{{else}}regular fa-circle{{/if}}"></i>
+                <span>{{this.text}}</span>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+        {{#if isGM}}
+          <button type="button" class="qb-btn qb-add-objective" data-action="addObjective" data-uuid="{{selectedQuest.uuid}}">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.AddObjective"}}
+          </button>
+        {{/if}}
+
+        {{#if isGM}}
+          <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Section"}}</p>
+          <div class="qb-rewards">
+            <div class="qb-rewards-grid">
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Gold"}}
+                <input type="number" min="0" data-edit="rewardGold" value="{{selectedQuest.rewards.gold}}" />
+              </label>
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Xp"}}
+                <input type="number" min="0" data-edit="rewardXp" value="{{selectedQuest.rewards.xp}}" />
+              </label>
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Faction"}}
+                <select data-edit="rewardFaction">
+                  <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.NoFaction"}}</option>
+                  {{#each selectedQuest.rewards.factionOptions}}
+                    <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+                  {{/each}}
+                </select>
+              </label>
+              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Reputation"}}
+                <input type="number" data-edit="rewardRep" value="{{selectedQuest.rewards.reputation}}" />
+              </label>
+            </div>
+            <div class="qb-reward-items">
+              {{#each selectedQuest.rewards.items}}
+                <div class="qb-reward-item">
+                  {{#if this.img}}<img src="{{this.img}}" alt="" />{{/if}}
+                  <span class="qb-reward-item-name">{{this.name}}</span>
+                  <label class="qb-reward-qty">×
+                    <input type="number" min="1" data-edit="rewardQty" data-idx="{{@index}}" value="{{this.qty}}" />
+                  </label>
+                  <i class="fa-solid fa-trash" data-action="removeRewardItem" data-idx="{{@index}}"
+                     data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.RemoveItem'}}"></i>
+                </div>
+              {{/each}}
+              <div class="qb-rewards-drop">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                {{localize "STORYFLOW_DUNGEONS_LAB.Rewards.DropHint"}}
+              </div>
+            </div>
+          </div>
+        {{else}}
+          {{#if selectedQuest.rewards.any}}
+            <div class="qb-rewards-summary">
+              <i class="fa-solid fa-gem"></i>
+              <div>
+                <div class="qb-rewards-summary-title">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Section"}}</div>
+                <div class="qb-rewards-summary-body">
+                  {{#if selectedQuest.rewards.gold}}<span>{{selectedQuest.rewards.gold}} gp</span>{{/if}}
+                  {{#if selectedQuest.rewards.xp}}<span>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.XpEach" xp=selectedQuest.rewards.xp}}</span>{{/if}}
+                  {{#if selectedQuest.rewards.factionName}}<span>{{selectedQuest.rewards.factionName}} {{#if selectedQuest.rewards.reputation}}{{selectedQuest.rewards.reputation}}{{/if}}</span>{{/if}}
+                  {{#each selectedQuest.rewards.items}}<span>{{this.name}}{{#if (eq this.qty 1)}}{{else}} ×{{this.qty}}{{/if}}</span>{{/each}}
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      {{else}}
+        <div class="qb-empty-state">
+          <i class="fa-solid fa-scroll"></i>
+          <div class="qb-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyQuestsTitle"}}</div>
+          <div class="qb-empty-text">
+            {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyQuestsGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyQuestsPlayer"}}{{/if}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <footer class="qb-footer">
+    <span class="qb-footer-note">
+      <i class="fa-solid {{#if isGM}}fa-crown{{else}}fa-check-to-slot{{/if}}"></i>
+      {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterPlayer"}}{{/if}}
+    </span>
+    {{#if isGM}}
+      <button type="button" class="qb-primary-btn" data-action="addQuest">
+        <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NewQuest"}}
+      </button>
+    {{/if}}
+  </footer>
+</section>

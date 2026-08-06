@@ -1,0 +1,16 @@
+{{!-- Контекстное меню по правому клику, рендерится ОТДЕЛЬНО через render({parts:["contextmenu"]}). Корневой
+      <menu> присутствует ВСЕГДА (скрыт, когда закрыт), чтобы у PART всегда был один корневой
+      элемент - на пустом PART рендер AppV2 падает. Повторяет устройство поповера палитры. --}}
+<menu class="storyflow-context-menu {{#unless contextMenu.open}}storyflow-hidden{{/unless}}"
+      style="left:{{contextMenu.x}}px; top:{{contextMenu.y}}px;">
+  {{#if contextMenu.open}}
+    {{#each contextMenu.items}}
+    <li>
+      <button type="button" class="storyflow-context-item" data-action="{{this.action}}" {{#if this.disabled}}disabled{{/if}}>
+        <i class="{{this.icon}}"></i>
+        <span>{{this.label}}</span>
+      </button>
+    </li>
+    {{/each}}
+  {{/if}}
+</menu>

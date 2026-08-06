@@ -1,0 +1,74 @@
+{
+  "id": "storyflow-dungeons-lab",
+  "title": "StoryFlow Dungeons Lab",
+  "description": "A production-ready Foundry VTT module targeting v13 and v14, built with ApplicationV2 and modern DataModels.",
+  "version": "0.1.477",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Dungeons Lab",
+      "discord": "",
+      "flags": {}
+    }
+  ],
+  "license": "LICENSE",
+  "esmodules": [
+    "dist/module.mjs",
+    "welcome.mjs"
+  ],
+  "styles": [
+    "dist/styles/module.css"
+  ],
+  "socket": true,
+  "documentTypes": {
+    "JournalEntryPage": {
+      "graph": {},
+      "trader": {},
+      "quest": {},
+      "lore": {}
+    },
+    "RegionBehavior": {
+      "storyflowTrigger": {}
+    }
+  },
+  "relationships": {
+    "requires": [
+      {
+        "id": "tagger",
+        "type": "module"
+      },
+      {
+        "id": "dungeons-lab-hub",
+        "type": "module"
+      }
+    ],
+    "recommends": [],
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system"
+      }
+    ]
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    }
+  ],
+  "flags": {
+    "storyflowEdition": "mega-bomzh"
+  },
+  "url": "https://github.com/Vladimir-inc/storyflow-dungeons-lab-free",
+  "manifest": "",
+  "download": ""
+}

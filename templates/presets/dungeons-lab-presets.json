@@ -1,0 +1,1951 @@
+{
+  "module": "storyflow-dungeons-lab",
+  "type": "storyflow-templates",
+  "formatVersion": 1,
+  "templates": [
+    {
+      "id": "9sS6liB3LKkxh2Ey",
+      "name": "Long Rest - Consume Rations",
+      "createdAt": "2026-07-23T21:01:44.195Z",
+      "updatedAt": "2026-08-05T17:40:38.932Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "vuxQ17vVI1HBCdQ0",
+            "type": "notification",
+            "name": "",
+            "x": 1178.8759765625,
+            "y": 375.09844970703125,
+            "data": {
+              "style": "toast",
+              "text": "You consume 1 ration",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "d6gu2fzqAeJ3H8S2",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 891.49755859375,
+            "y": 376.242431640625,
+            "data": {
+              "mode": "remove",
+              "itemUuid": "Item.f4w4GxBi0nYXmhX4",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "4ePOT47m7NbODEeV",
+            "type": "end",
+            "name": "",
+            "x": 1177.7376708984375,
+            "y": 500.44232177734375,
+            "data": {}
+          },
+          {
+            "id": "gnKYLzPza5V50ySG",
+            "type": "action.applyEffect",
+            "name": "",
+            "x": 1180.8175048828125,
+            "y": 647.2825317382812,
+            "data": {
+              "effectId": "exhaustion",
+              "mode": "apply",
+              "target": "trigger"
+            }
+          },
+          {
+            "id": "2sU2T21KprPktt6h",
+            "type": "condition",
+            "name": "",
+            "x": 666.2974853515625,
+            "y": 480.04241943359375,
+            "data": {
+              "logicOperator": "AND",
+              "target": "trigger",
+              "targetActorId": "",
+              "conditions": [
+                {
+                  "sourceType": "item",
+                  "key": "Rations",
+                  "operator": "EQUALS",
+                  "equipped": false,
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "bbbJT55CCmC9aYp0",
+            "type": "check",
+            "name": "",
+            "x": 909.0576171875,
+            "y": 571.0823364257812,
+            "data": {
+              "logicOperator": "AND",
+              "hideBreakdown": true,
+              "checks": [
+                {
+                  "kind": "save",
+                  "key": "con",
+                  "dc": 15,
+                  "rollMode": "normal"
+                }
+              ],
+              "kind": "skill",
+              "key": "",
+              "dc": 10,
+              "rollMode": "ask"
+            }
+          },
+          {
+            "id": "sPHj5186n1Z5sAs7",
+            "type": "comment",
+            "name": "",
+            "x": 372.5999755859375,
+            "y": 300.199951171875,
+            "data": {
+              "text": "Consume 1 rations from the players inventory. \n\nDoesn't Work for Group! Only one character",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          },
+          {
+            "id": "8SWEcwfsguCWTISt",
+            "type": "trigger.start",
+            "name": "",
+            "x": 394.4000244140625,
+            "y": 482.199951171875,
+            "data": {
+              "label": ""
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "NJIR0sd2u52m483E",
+            "source": {
+              "node": "2sU2T21KprPktt6h",
+              "pin": "true"
+            },
+            "target": {
+              "node": "d6gu2fzqAeJ3H8S2",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "KXEEyacexe1A64f6",
+            "source": {
+              "node": "d6gu2fzqAeJ3H8S2",
+              "pin": "out"
+            },
+            "target": {
+              "node": "vuxQ17vVI1HBCdQ0",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "fuVgYNrXvuA7Ygtm",
+            "source": {
+              "node": "2sU2T21KprPktt6h",
+              "pin": "false"
+            },
+            "target": {
+              "node": "bbbJT55CCmC9aYp0",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "YVPJhutdwhivvJPH",
+            "source": {
+              "node": "bbbJT55CCmC9aYp0",
+              "pin": "success"
+            },
+            "target": {
+              "node": "4ePOT47m7NbODEeV",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "CL6VwZpBvYRW05CJ",
+            "source": {
+              "node": "bbbJT55CCmC9aYp0",
+              "pin": "failure"
+            },
+            "target": {
+              "node": "gnKYLzPza5V50ySG",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_7",
+            "source": {
+              "node": "8SWEcwfsguCWTISt",
+              "pin": "out"
+            },
+            "target": {
+              "node": "2sU2T21KprPktt6h",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "sepHQLmcnJhTrrdX",
+      "name": "Dialog Example with Reputation",
+      "createdAt": "2026-07-23T21:01:51.782Z",
+      "updatedAt": "2026-07-23T21:01:51.782Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "p1E0xf3jXdmt4Zpu",
+            "type": "trigger.start",
+            "name": "",
+            "x": -11.878528594970703,
+            "y": 281.0349426269531,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "CgEYI0rA6cErM1r9",
+            "type": "display",
+            "name": "",
+            "x": 233.84010314941406,
+            "y": 285.5200500488281,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "Halt! State your business in Ravenholt, traveler.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "lsqzdJvXC2oVNK2z",
+            "type": "choice",
+            "name": "",
+            "x": 868.9199829101562,
+            "y": 173.72010803222656,
+            "data": {
+              "prompt": "The Alchemist? Nobody's seen her in days. You family?",
+              "choices": [
+                {
+                  "id": "Da2QP4CMWrKsuZfx",
+                  "label": "Yes, she's my sister"
+                },
+                {
+                  "id": "HJtcl5YliawfMh1k",
+                  "label": "No, just business."
+                }
+              ],
+              "background": "carry",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "u8cxL94Kfqv9oECR",
+            "type": "choice",
+            "name": "",
+            "x": 458.4400329589844,
+            "y": 283.3200378417969,
+            "data": {
+              "prompt": "Halt! State your business in Ravenholt, traveler.",
+              "choices": [
+                {
+                  "id": "Da2QP4CMWrKsuZfx",
+                  "label": "I'm here to see the Alchemist"
+                },
+                {
+                  "id": "HJtcl5YliawfMh1k",
+                  "label": "None of your concern."
+                }
+              ],
+              "background": "carry",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "wK7EIvxfaNMJnb27",
+            "type": "display",
+            "name": "",
+            "x": 656.6400756835938,
+            "y": 186.48007202148438,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "The Alchemist? Nobody's seen her in days. You family?",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "PsP1aEWxlOmZVLbw",
+            "type": "display",
+            "name": "",
+            "x": 679.0398559570312,
+            "y": 376.080078125,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "Careful with that tone. This is your only warning.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "Lk4ZSSUL1iNBzvXl",
+            "type": "display",
+            "name": "",
+            "x": 1273.4403076171875,
+            "y": 148.56011962890625,
+            "data": {
+              "speakerName": "Master",
+              "portraitPath": "",
+              "bodyHtml": "Gate Opens, you can go",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "LGWMoGBGKj6lj85j",
+            "type": "display",
+            "name": "",
+            "x": 1080.320068359375,
+            "y": 147.28012084960938,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "...Alright. Third house past the well. Tell her Garrick says hello.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "eTNQytaWAmKG9ZBH",
+            "type": "display",
+            "name": "",
+            "x": 1082.4801025390625,
+            "y": 247.1201171875,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "Business, huh? Show me your papers.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "YrNSG1UGTxddluMm",
+            "type": "choice",
+            "name": "",
+            "x": 886.9199829101562,
+            "y": 380.9201354980469,
+            "data": {
+              "prompt": "Careful with that tone. This is your only warning.",
+              "choices": [
+                {
+                  "id": "Da2QP4CMWrKsuZfx",
+                  "label": "Apologies, that was uncalled for."
+                },
+                {
+                  "id": "HJtcl5YliawfMh1k",
+                  "label": "Or what?"
+                }
+              ],
+              "background": "carry",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "dF0em9NSyitfI9CM",
+            "type": "display",
+            "name": "",
+            "x": 1115.440185546875,
+            "y": 345.20001220703125,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "...Fine. Get moving, and watch your mouth next time.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "rLcFIEt1iuh1N6Cv",
+            "type": "action.modifyReputation",
+            "name": "",
+            "x": 1355.12060546875,
+            "y": 308.0801086425781,
+            "data": {
+              "factionId": "storyflow-merchants",
+              "mode": "subtract",
+              "value": 1,
+              "target": "all"
+            }
+          },
+          {
+            "id": "gVeqiOHZqpx10ksy",
+            "type": "display",
+            "name": "",
+            "x": 1120.4005126953125,
+            "y": 492.800048828125,
+            "data": {
+              "speakerName": "NPC",
+              "portraitPath": "",
+              "bodyHtml": "Then let steel do the talking.",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "uTuG893VKf34oEtB",
+            "type": "action.modifyReputation",
+            "name": "",
+            "x": 1332.39990234375,
+            "y": 546,
+            "data": {
+              "factionId": "storyflow-merchants",
+              "mode": "subtract",
+              "value": 10,
+              "target": "all"
+            }
+          },
+          {
+            "id": "ofUDoOaFJOAr0DvA",
+            "type": "comment",
+            "name": "",
+            "x": -37.93208694458008,
+            "y": 140.44320678710938,
+            "data": {
+              "text": "**Dialog example with reputation effects = check the graph**",
+              "bgColor": "#5f5326",
+              "w": 203,
+              "h": 77
+            }
+          },
+          {
+            "id": "SkEPOgrYEMwwAZci",
+            "type": "comment",
+            "name": "",
+            "x": -37.32965850830078,
+            "y": 333.77435302734375,
+            "data": {
+              "text": "USE Right Mouse Button on \"Start\" Node to Check this Graph",
+              "bgColor": "#047c28",
+              "w": 203,
+              "h": 77
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_11",
+            "source": {
+              "node": "p1E0xf3jXdmt4Zpu",
+              "pin": "out"
+            },
+            "target": {
+              "node": "CgEYI0rA6cErM1r9",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "CgEYI0rA6cErM1r9",
+              "pin": "out"
+            },
+            "target": {
+              "node": "u8cxL94Kfqv9oECR",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "u8cxL94Kfqv9oECR",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "wK7EIvxfaNMJnb27",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_4",
+            "source": {
+              "node": "wK7EIvxfaNMJnb27",
+              "pin": "out"
+            },
+            "target": {
+              "node": "lsqzdJvXC2oVNK2z",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_5",
+            "source": {
+              "node": "u8cxL94Kfqv9oECR",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "PsP1aEWxlOmZVLbw",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_6",
+            "source": {
+              "node": "PsP1aEWxlOmZVLbw",
+              "pin": "out"
+            },
+            "target": {
+              "node": "YrNSG1UGTxddluMm",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_7",
+            "source": {
+              "node": "lsqzdJvXC2oVNK2z",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "LGWMoGBGKj6lj85j",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_8",
+            "source": {
+              "node": "LGWMoGBGKj6lj85j",
+              "pin": "out"
+            },
+            "target": {
+              "node": "Lk4ZSSUL1iNBzvXl",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_9",
+            "source": {
+              "node": "lsqzdJvXC2oVNK2z",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "eTNQytaWAmKG9ZBH",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_10",
+            "source": {
+              "node": "YrNSG1UGTxddluMm",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "dF0em9NSyitfI9CM",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_11",
+            "source": {
+              "node": "dF0em9NSyitfI9CM",
+              "pin": "out"
+            },
+            "target": {
+              "node": "rLcFIEt1iuh1N6Cv",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_12",
+            "source": {
+              "node": "YrNSG1UGTxddluMm",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "gVeqiOHZqpx10ksy",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_13",
+            "source": {
+              "node": "gVeqiOHZqpx10ksy",
+              "pin": "out"
+            },
+            "target": {
+              "node": "uTuG893VKf34oEtB",
+              "pin": "in"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "UGTvYtiOdpykRuDG",
+      "name": "Trap. 1d6 dmg + DC15 dex save",
+      "createdAt": "2026-08-05T17:39:43.630Z",
+      "updatedAt": "2026-08-05T17:39:43.630Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "HRMygb90OnWMpZVK",
+            "type": "trigger.region",
+            "name": "TRAP",
+            "x": 443.2810974121094,
+            "y": 526.6389770507812,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "whoTriggers": "any",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "MKRgeGdxogHbb9s0",
+            "type": "check",
+            "name": "",
+            "x": 654.9906005859375,
+            "y": 527.1009521484375,
+            "data": {
+              "logicOperator": "AND",
+              "hideBreakdown": true,
+              "quietRoll": false,
+              "checks": [
+                {
+                  "kind": "save",
+                  "key": "dex",
+                  "dc": 15,
+                  "rollMode": "normal"
+                }
+              ],
+              "kind": "skill",
+              "key": "",
+              "dc": 10,
+              "rollMode": "ask"
+            }
+          },
+          {
+            "id": "1YhUfr9oL7TJ9jCD",
+            "type": "end",
+            "name": "",
+            "x": 920.4813842773438,
+            "y": 452.6725769042969,
+            "data": {}
+          },
+          {
+            "id": "lcF60fvQN00DgGKU",
+            "type": "action.healDamage",
+            "name": "",
+            "x": 935.1578979492188,
+            "y": 608.0104370117188,
+            "data": {
+              "mode": "damage",
+              "formula": "1d6",
+              "target": "trigger"
+            }
+          },
+          {
+            "id": "0Yaoau68ogOGEhzQ",
+            "type": "action.applyEffect",
+            "name": "",
+            "x": 1145.727294921875,
+            "y": 608.9998779296875,
+            "data": {
+              "effectId": "bleeding",
+              "mode": "apply",
+              "target": "trigger"
+            }
+          },
+          {
+            "id": "EDUY7UvPfIjphaPX",
+            "type": "comment",
+            "name": "",
+            "x": 411.3699951171875,
+            "y": 341.3200378417969,
+            "data": {
+              "text": "Trap\nWhen a player step in the area => DC 15 dex save.\nFAIL: Apply damage and bleeding effect\nSUCCESS: Nothing",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_7",
+            "source": {
+              "node": "HRMygb90OnWMpZVK",
+              "pin": "out"
+            },
+            "target": {
+              "node": "MKRgeGdxogHbb9s0",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_8",
+            "source": {
+              "node": "MKRgeGdxogHbb9s0",
+              "pin": "success"
+            },
+            "target": {
+              "node": "1YhUfr9oL7TJ9jCD",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_9",
+            "source": {
+              "node": "MKRgeGdxogHbb9s0",
+              "pin": "failure"
+            },
+            "target": {
+              "node": "lcF60fvQN00DgGKU",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_10",
+            "source": {
+              "node": "lcF60fvQN00DgGKU",
+              "pin": "out"
+            },
+            "target": {
+              "node": "0Yaoau68ogOGEhzQ",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "6TKPoOfr1vw2mjdf",
+      "name": "Dialog on the curent map",
+      "createdAt": "2026-08-05T17:43:34.329Z",
+      "updatedAt": "2026-08-05T17:43:34.329Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "wHJNCEYiwsz5GG50",
+            "type": "trigger.start",
+            "name": "",
+            "x": 429.8199462890625,
+            "y": 550.840087890625,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "zUjhbvpuEF9DkBqN",
+            "type": "showOnMap",
+            "name": "",
+            "x": 656.6285400390625,
+            "y": 547.43017578125,
+            "data": {
+              "sceneId": "",
+              "x": 0,
+              "y": 0,
+              "scale": 1,
+              "duration": 2,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "VzAl6qFfeKluofOT",
+            "type": "text",
+            "name": "",
+            "x": 871.92626953125,
+            "y": 547.8262939453125,
+            "data": {
+              "speakerName": "",
+              "portraitPath": "",
+              "bodyHtml": "",
+              "voiceOverPath": "",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "OTRtsQ8gtclJ2eSq",
+            "type": "choice",
+            "name": "",
+            "x": 1102.132080078125,
+            "y": 546.6277465820312,
+            "data": {
+              "prompt": "",
+              "choices": [
+                {
+                  "id": "DwTHdZXi0G3RBXXq",
+                  "label": "CHOICE 1"
+                },
+                {
+                  "id": "vYSGeqJmPi8s9tUq",
+                  "label": "CHOICE 2"
+                }
+              ],
+              "background": "scene",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "iNlP0sqwnkvPzojT",
+            "type": "text",
+            "name": "",
+            "x": 1324.239013671875,
+            "y": 465.4297790527344,
+            "data": {
+              "speakerName": "",
+              "portraitPath": "",
+              "bodyHtml": "",
+              "voiceOverPath": "",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "Eu4mbWvd5IkqO9tk",
+            "type": "text",
+            "name": "",
+            "x": 1343.4954833984375,
+            "y": 639.2305908203125,
+            "data": {
+              "speakerName": "",
+              "portraitPath": "",
+              "bodyHtml": "",
+              "voiceOverPath": "",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "lUotB11SaGNlQyG4",
+            "type": "comment",
+            "name": "",
+            "x": 405.360107421875,
+            "y": 354.6900634765625,
+            "data": {
+              "text": "# Dialog on the current map\n1) Select point on the map in \"Show on map\" node\n2) Write some text in \"text\" node\n3) Write choices in \"Choice\" node",
+              "bgColor": "#5f5326",
+              "w": 289,
+              "h": 118
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_12",
+            "source": {
+              "node": "wHJNCEYiwsz5GG50",
+              "pin": "out"
+            },
+            "target": {
+              "node": "zUjhbvpuEF9DkBqN",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_13",
+            "source": {
+              "node": "zUjhbvpuEF9DkBqN",
+              "pin": "out"
+            },
+            "target": {
+              "node": "VzAl6qFfeKluofOT",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_14",
+            "source": {
+              "node": "VzAl6qFfeKluofOT",
+              "pin": "out"
+            },
+            "target": {
+              "node": "OTRtsQ8gtclJ2eSq",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_4",
+            "source": {
+              "node": "OTRtsQ8gtclJ2eSq",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "iNlP0sqwnkvPzojT",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_5",
+            "source": {
+              "node": "OTRtsQ8gtclJ2eSq",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "Eu4mbWvd5IkqO9tk",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "hyei4YDXKFklQA2F",
+      "name": "Epic Check",
+      "createdAt": "2026-08-05T17:47:05.957Z",
+      "updatedAt": "2026-08-05T17:47:05.957Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "iEziPOwhIbgZI52A",
+            "type": "trigger.start",
+            "name": "",
+            "x": 416,
+            "y": 394,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "srYXPBL4AaE123yJ",
+            "type": "check",
+            "name": "",
+            "x": 639.4003295898438,
+            "y": 389.4999694824219,
+            "data": {
+              "logicOperator": "AND",
+              "hideBreakdown": true,
+              "quietRoll": false,
+              "checks": [
+                {
+                  "kind": "skill",
+                  "key": "ste",
+                  "dc": 10,
+                  "rollMode": "ask"
+                }
+              ],
+              "kind": "skill",
+              "key": "",
+              "dc": 10,
+              "rollMode": "ask"
+            }
+          },
+          {
+            "id": "aHztJCkhTBMSWLT1",
+            "type": "notification",
+            "name": "",
+            "x": 924.9002075195312,
+            "y": 325.2998352050781,
+            "data": {
+              "style": "toast",
+              "text": "You are save! ",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "PsspQ2DYyfI4WNiQ",
+            "type": "notification",
+            "name": "",
+            "x": 933.0001220703125,
+            "y": 454.3998718261719,
+            "data": {
+              "style": "toast",
+              "text": "Some body see you! ",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "u5TeKMb1fpvXeZVy",
+            "type": "comment",
+            "name": "",
+            "x": 402.89990234375,
+            "y": 164.3999481201172,
+            "data": {
+              "text": "# Epic roll for stealth \n1) Select a skill in \"check\" node\n2) Change text in \"Notification\" node",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_6",
+            "source": {
+              "node": "iEziPOwhIbgZI52A",
+              "pin": "out"
+            },
+            "target": {
+              "node": "srYXPBL4AaE123yJ",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_7",
+            "source": {
+              "node": "srYXPBL4AaE123yJ",
+              "pin": "success"
+            },
+            "target": {
+              "node": "aHztJCkhTBMSWLT1",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "srYXPBL4AaE123yJ",
+              "pin": "failure"
+            },
+            "target": {
+              "node": "PsspQ2DYyfI4WNiQ",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "lcIEQqQvLLR0ZzFl",
+      "name": "Region. Remove item and give gold",
+      "createdAt": "2026-08-05T17:54:24.812Z",
+      "updatedAt": "2026-08-05T18:02:46.719Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "2b5rGVDPoL9qUd8e",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 511.8999938964844,
+            "y": 347.5999755859375,
+            "data": {
+              "mode": "remove",
+              "itemUuid": "Item.i2AZoL6YbblIUr2r",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "RudNoyiUZkFmDTX4",
+            "type": "action.giveGold",
+            "name": "",
+            "x": 744.7998657226562,
+            "y": 346.0998229980469,
+            "data": {
+              "mode": "give",
+              "formula": "10",
+              "target": "trigger"
+            }
+          },
+          {
+            "id": "gvidhB44xbgV2Nsu",
+            "type": "trigger.region",
+            "name": "",
+            "x": 293.5999755859375,
+            "y": 346.4999084472656,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "whoTriggers": "any",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "K7Fj5vDdIEp6hWPF",
+            "type": "comment",
+            "name": "",
+            "x": 258.9000244140625,
+            "y": 136.20004272460938,
+            "data": {
+              "text": "# Remove item and give some gold.\n\nExample: Player for in the mine and went to some place, where he can sell this item. \n\n",
+              "bgColor": "#5f5326",
+              "w": 244,
+              "h": 143
+            }
+          },
+          {
+            "id": "ksLxhFZLmWBAkeqa",
+            "type": "trigger.start",
+            "name": "",
+            "x": 294.2801208496094,
+            "y": 475.3599853515625,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "jHmTkxjEcs2HlvyW",
+            "type": "comment",
+            "name": "",
+            "x": 483.7999267578125,
+            "y": 466.8800354003906,
+            "data": {
+              "text": "You can swap \"Region\" Node with \"Start\" node",
+              "bgColor": "#5f5326",
+              "w": 209,
+              "h": 55
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_5",
+            "source": {
+              "node": "2b5rGVDPoL9qUd8e",
+              "pin": "out"
+            },
+            "target": {
+              "node": "RudNoyiUZkFmDTX4",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_6",
+            "source": {
+              "node": "gvidhB44xbgV2Nsu",
+              "pin": "out"
+            },
+            "target": {
+              "node": "2b5rGVDPoL9qUd8e",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "d91xCoi9wURvojbw",
+      "name": "Spawn enemy tokens on selected tiles",
+      "createdAt": "2026-08-05T17:59:03.207Z",
+      "updatedAt": "2026-08-05T17:59:03.207Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "76jmpRqZiQy0swJ4",
+            "type": "trigger.start",
+            "name": "",
+            "x": 246,
+            "y": 338,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "gjHBO0AfybL4siB3",
+            "type": "action.token",
+            "name": "",
+            "x": 477,
+            "y": 338,
+            "data": {
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "",
+              "tokenIds": [],
+              "tag": "",
+              "tagScope": "active",
+              "actorIds": [],
+              "duration": 1,
+              "actorUuid": "",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "",
+              "destTagScope": "active"
+            }
+          },
+          {
+            "id": "4LTbwYK6MOQ7eqqw",
+            "type": "action.token",
+            "name": "",
+            "x": 713,
+            "y": 336,
+            "data": {
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "",
+              "tokenIds": [],
+              "tag": "",
+              "tagScope": "active",
+              "actorIds": [],
+              "duration": 1,
+              "actorUuid": "",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "",
+              "destTagScope": "active"
+            }
+          },
+          {
+            "id": "N1CspgHyOmpkUnEl",
+            "type": "action.token",
+            "name": "",
+            "x": 930,
+            "y": 335,
+            "data": {
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "",
+              "tokenIds": [],
+              "tag": "",
+              "tagScope": "active",
+              "actorIds": [],
+              "duration": 1,
+              "actorUuid": "",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "",
+              "destTagScope": "active"
+            }
+          },
+          {
+            "id": "cYbLmuVhaLtupcYS",
+            "type": "comment",
+            "name": "",
+            "x": 224,
+            "y": 51,
+            "data": {
+              "text": "# Spawn tokens on the tile\n1) Open token node\n2) select an actor to spawn \n3) in tagger field write a tag of the tile\n4) In next node select different tag to tile \n\nExample: \nYou want to spawn 3 enemy tokens in exact place. You can swap \"Start\" node with \"Region Trigger\" node",
+              "bgColor": "#5f5326",
+              "w": 357,
+              "h": 201
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_7",
+            "source": {
+              "node": "76jmpRqZiQy0swJ4",
+              "pin": "out"
+            },
+            "target": {
+              "node": "gjHBO0AfybL4siB3",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_2",
+            "source": {
+              "node": "gjHBO0AfybL4siB3",
+              "pin": "out"
+            },
+            "target": {
+              "node": "4LTbwYK6MOQ7eqqw",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "4LTbwYK6MOQ7eqqw",
+              "pin": "out"
+            },
+            "target": {
+              "node": "N1CspgHyOmpkUnEl",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "YYd7HRddBYt7erV3",
+      "name": "Complex dialog with quest reveal and jump node",
+      "createdAt": "2026-08-05T18:09:30.019Z",
+      "updatedAt": "2026-08-05T18:09:30.019Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "fDLP7mo8eMhk5BQA",
+            "type": "text",
+            "name": "",
+            "x": 774.9951782226562,
+            "y": 489.39642333984375,
+            "data": {
+              "speakerName": "Master",
+              "portraitPath": "5uao5.jpg",
+              "bodyHtml": "The man reeks of a pungent, musty odor; the capillaries in his eyes have burst, and his clothes are completely torn.",
+              "voiceOverPath": "storyflow-recordings/the-man-reeks.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "I67IkugwOsYlqN0S",
+            "type": "text",
+            "name": "",
+            "x": 956.8134155273438,
+            "y": 484.107177734375,
+            "data": {
+              "speakerName": "Stranger",
+              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
+              "bodyHtml": "You have to understand me, we must do what is destined! We must free ourselves! Cast off the shackles of slavery! Tomorrow night, I will be waiting for you in the woods.",
+              "voiceOverPath": "storyflow-recordings/you-have-to.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "X0a2hxQmjxt9xW2F",
+            "type": "text",
+            "name": "",
+            "x": 1398.1353759765625,
+            "y": 644.437744140625,
+            "data": {
+              "speakerName": "Stranger",
+              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
+              "bodyHtml": "It doesn't matter who I am, what matters is who you are! Will you come with me?",
+              "voiceOverPath": "storyflow-recordings/it-doesn-t-matter.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "VMPXShrn97gus3X2",
+            "type": "text",
+            "name": "",
+            "x": 1395.16015625,
+            "y": 527.7434692382812,
+            "data": {
+              "speakerName": "Stranger",
+              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
+              "bodyHtml": "Excellent! Glory to our path of liberation!",
+              "voiceOverPath": "storyflow-recordings/excellent-glory-to.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "9A3vve2gQVADV4hU",
+            "type": "text",
+            "name": "",
+            "x": 1405.1142578125,
+            "y": 426.22515869140625,
+            "data": {
+              "speakerName": "Stranger",
+              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
+              "bodyHtml": "Fool! I wanted to grant you freedom, and you threw it away so easily!",
+              "voiceOverPath": "storyflow-recordings/fool-i-wanted.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "9kB6uOwAxhvBVgNo",
+            "type": "trigger.region",
+            "name": "",
+            "x": 144.80001831054688,
+            "y": 481.8799743652344,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "whoTriggers": "any",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "D1z8xYOAfxB7CvGy",
+            "type": "showOnMap",
+            "name": "",
+            "x": 361.9201354980469,
+            "y": 487.8399658203125,
+            "data": {
+              "sceneId": "",
+              "x": 0,
+              "y": 0,
+              "scale": 1,
+              "duration": 2,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "DfbTmix9SnBNMFJ6",
+            "type": "text",
+            "name": "",
+            "x": 577.6397705078125,
+            "y": 485.7600402832031,
+            "data": {
+              "speakerName": "Stranger",
+              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
+              "bodyHtml": "Listen, listen to me. The end is near. You and I both know it, believe me...",
+              "voiceOverPath": "storyflow-recordings/listen-listen-to.mp3",
+              "background": "scene",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "vOxVsML1iDeUwWjz",
+            "type": "quest",
+            "name": "",
+            "x": 1882.396728515625,
+            "y": 524.5897827148438,
+            "data": {
+              "targetType": "quest",
+              "targetUuid": "JournalEntry.kc1gR1jde4E1WZcV.JournalEntryPage.CMWDWf8H5SV3aDDD",
+              "operation": "announce",
+              "objectiveId": "",
+              "status": "active"
+            }
+          },
+          {
+            "id": "h6RMUdWgU4ccnxCl",
+            "type": "notification",
+            "name": "",
+            "x": 1612.825927734375,
+            "y": 525.3555297851562,
+            "data": {
+              "style": "toast",
+              "text": "New Quest Available",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "sxndhuzR1A7reZaQ",
+            "type": "comment",
+            "name": "",
+            "x": 32.09093475341797,
+            "y": 319.7274475097656,
+            "data": {
+              "text": "# Example of a complex dialog with Quest Reveal and Jump Node. ",
+              "bgColor": "#5f5326",
+              "w": 346,
+              "h": 69
+            }
+          },
+          {
+            "id": "s812WTB7PrQ1ZjYa",
+            "type": "comment",
+            "name": "",
+            "x": 341.199951171875,
+            "y": 403.20001220703125,
+            "data": {
+              "text": "Show something on the map\n",
+              "bgColor": "#076e29",
+              "w": 173,
+              "h": 48
+            }
+          },
+          {
+            "id": "evtUnxGy7eZpT4wY",
+            "type": "comment",
+            "name": "",
+            "x": 1157.400146484375,
+            "y": 344.00006103515625,
+            "data": {
+              "text": "# CHOICE - 3 WAYS",
+              "bgColor": "#0d558c",
+              "w": 132,
+              "h": 90
+            }
+          },
+          {
+            "id": "0sQE7CfOQmZhi46W",
+            "type": "comment",
+            "name": "",
+            "x": 556.0000610351562,
+            "y": 392.4000244140625,
+            "data": {
+              "text": "# DIALOG ",
+              "bgColor": "#076e29",
+              "w": 547,
+              "h": 48
+            }
+          },
+          {
+            "id": "RMlshoSmM7155Wn1",
+            "type": "choice",
+            "name": "Select options",
+            "x": 1157.67822265625,
+            "y": 476.15704345703125,
+            "data": {
+              "prompt": "",
+              "choices": [
+                {
+                  "id": "ZfLHh0qWz712dWj2",
+                  "label": "I'm not going anywhere with you."
+                },
+                {
+                  "id": "U2USHLHsatiKtVps",
+                  "label": "See you tomorrow night."
+                },
+                {
+                  "id": "RXOT33AExe0hqNmv",
+                  "label": "Who even are you?"
+                }
+              ],
+              "background": "scene",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "2qDwE2MWjm3yV8J5",
+            "type": "jump",
+            "name": "",
+            "x": 1681.800048828125,
+            "y": 649.199951171875,
+            "data": {
+              "targetNodeId": "RMlshoSmM7155Wn1",
+              "showLink": true
+            }
+          },
+          {
+            "id": "kFBemvkO9UljY9PN",
+            "type": "comment",
+            "name": "",
+            "x": 1406.7999267578125,
+            "y": 332.79998779296875,
+            "data": {
+              "text": "# DIALOG ",
+              "bgColor": "#076e29",
+              "w": 131,
+              "h": 48
+            }
+          },
+          {
+            "id": "Y1u8Y7jwb3IMeHIC",
+            "type": "comment",
+            "name": "",
+            "x": 1689.5999755859375,
+            "y": 686.7999267578125,
+            "data": {
+              "text": "JUMP BACK TO SELECT OPTION\n",
+              "bgColor": "#8d2571",
+              "w": 134,
+              "h": 54
+            }
+          },
+          {
+            "id": "gGw8TeDZUNlgX0Yk",
+            "type": "comment",
+            "name": "",
+            "x": 1618,
+            "y": 427.99993896484375,
+            "data": {
+              "text": "NOTIFICATION TO PLAYERS",
+              "bgColor": "#356c2d",
+              "w": 134,
+              "h": 54
+            }
+          },
+          {
+            "id": "GSWr0bgx7RcXyYr1",
+            "type": "comment",
+            "name": "",
+            "x": 1884.800048828125,
+            "y": 432.39990234375,
+            "data": {
+              "text": "REVEAL A QUEST",
+              "bgColor": "#356c2d",
+              "w": 134,
+              "h": 54
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "Y0hVMlSwd45oBCqQ",
+            "source": {
+              "node": "DfbTmix9SnBNMFJ6",
+              "pin": "out"
+            },
+            "target": {
+              "node": "fDLP7mo8eMhk5BQA",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "VqViymMSXfXQakoo",
+            "source": {
+              "node": "fDLP7mo8eMhk5BQA",
+              "pin": "out"
+            },
+            "target": {
+              "node": "I67IkugwOsYlqN0S",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "Mcpq1mb4G7kG4uTB",
+            "source": {
+              "node": "I67IkugwOsYlqN0S",
+              "pin": "out"
+            },
+            "target": {
+              "node": "RMlshoSmM7155Wn1",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "1K5Qtb8pkpTsut4z",
+            "source": {
+              "node": "RMlshoSmM7155Wn1",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "9A3vve2gQVADV4hU",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "R8rPgfgS1nqNrV5h",
+            "source": {
+              "node": "RMlshoSmM7155Wn1",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "VMPXShrn97gus3X2",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "BFvBkOwkZaFy6Eqp",
+            "source": {
+              "node": "RMlshoSmM7155Wn1",
+              "pin": "choice_2"
+            },
+            "target": {
+              "node": "X0a2hxQmjxt9xW2F",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "j52vmqZCsOtsWeIY",
+            "source": {
+              "node": "VMPXShrn97gus3X2",
+              "pin": "out"
+            },
+            "target": {
+              "node": "h6RMUdWgU4ccnxCl",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_14",
+            "source": {
+              "node": "9kB6uOwAxhvBVgNo",
+              "pin": "out"
+            },
+            "target": {
+              "node": "D1z8xYOAfxB7CvGy",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_15",
+            "source": {
+              "node": "D1z8xYOAfxB7CvGy",
+              "pin": "out"
+            },
+            "target": {
+              "node": "DfbTmix9SnBNMFJ6",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_16",
+            "source": {
+              "node": "h6RMUdWgU4ccnxCl",
+              "pin": "out"
+            },
+            "target": {
+              "node": "vOxVsML1iDeUwWjz",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_12",
+            "source": {
+              "node": "X0a2hxQmjxt9xW2F",
+              "pin": "out"
+            },
+            "target": {
+              "node": "2qDwE2MWjm3yV8J5",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    },
+    {
+      "id": "mQL1uCJHaRluahTn",
+      "name": "Normal, Epic and Secret Notification",
+      "createdAt": "2026-08-05T18:40:32.151Z",
+      "updatedAt": "2026-08-05T18:40:32.151Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "Q6QaMIJNR2BCXcZ8",
+            "type": "choice",
+            "name": "",
+            "x": 333.1819152832031,
+            "y": 339.99993896484375,
+            "data": {
+              "prompt": "",
+              "choices": [
+                {
+                  "id": "eRV2I39G1wuEoj3W",
+                  "label": "Normal Notification"
+                },
+                {
+                  "id": "V1k2blxggncOkG7M",
+                  "label": "Epic Notifcation"
+                },
+                {
+                  "id": "ngEOAOFY1JXHu3ex",
+                  "label": "Secret Notification"
+                }
+              ],
+              "background": "carry",
+              "backdropPath": "",
+              "timeout": false,
+              "timeoutSeconds": 10
+            }
+          },
+          {
+            "id": "GXyFmagZim41mouv",
+            "type": "trigger.start",
+            "name": "",
+            "x": 55.6849365234375,
+            "y": 339.45538330078125,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "xSsnrkk3v63YE7qX",
+            "type": "notification",
+            "name": "",
+            "x": 647.4000244140625,
+            "y": 257.8000183105469,
+            "data": {
+              "style": "toast",
+              "text": "Normal",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "U30vHqz8cgLVKcLc",
+            "type": "notification",
+            "name": "",
+            "x": 653.800048828125,
+            "y": 352.9999694824219,
+            "data": {
+              "style": "epic",
+              "text": "Epic",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "pNmwnar8PrXUTS6K",
+            "type": "notification",
+            "name": "",
+            "x": 651.400146484375,
+            "y": 440.9999694824219,
+            "data": {
+              "style": "epic",
+              "text": "Secret",
+              "itemUuid": "",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "SOZQoXNXFA49Op2l",
+            "type": "comment",
+            "name": "",
+            "x": 2.199951171875,
+            "y": 132.99996948242188,
+            "data": {
+              "text": "# Notification types:\n- Normal\n- Epic\n- Secret\n\nPlace items in Epic and Secret and run this graph",
+              "bgColor": "#5f5326",
+              "w": 257,
+              "h": 154
+            }
+          },
+          {
+            "id": "hWvlVD2IrCZno3cP",
+            "type": "comment",
+            "name": "",
+            "x": 812.407958984375,
+            "y": 368.2158508300781,
+            "data": {
+              "text": "# Place items here",
+              "bgColor": "#3f7d0d",
+              "w": 183,
+              "h": 48
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_12",
+            "source": {
+              "node": "Q6QaMIJNR2BCXcZ8",
+              "pin": "choice_0"
+            },
+            "target": {
+              "node": "xSsnrkk3v63YE7qX",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_2",
+            "source": {
+              "node": "Q6QaMIJNR2BCXcZ8",
+              "pin": "choice_1"
+            },
+            "target": {
+              "node": "U30vHqz8cgLVKcLc",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "Q6QaMIJNR2BCXcZ8",
+              "pin": "choice_2"
+            },
+            "target": {
+              "node": "pNmwnar8PrXUTS6K",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_4",
+            "source": {
+              "node": "GXyFmagZim41mouv",
+              "pin": "out"
+            },
+            "target": {
+              "node": "Q6QaMIJNR2BCXcZ8",
+              "pin": "in"
+            }
+          }
+        ],
+        "groups": []
+      }
+    }
+  ],
+  "folders": []
+}

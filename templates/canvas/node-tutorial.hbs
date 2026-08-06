@@ -1,0 +1,444 @@
+<div class="storyflow-tutorial-shell">
+  <aside class="storyflow-tutorial-sidebar">
+    <div class="storyflow-tutorial-sidebar-search">
+      <div class="storyflow-tutorial-search-box">
+        <i class="fa-solid fa-fw fa-magnifying-glass"></i>
+        <input type="text" name="tutorialSearch" autocomplete="off"
+               placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.SearchNodes'}}" value="{{query}}" />
+      </div>
+    </div>
+    <div class="storyflow-tutorial-sidebar-list">
+      {{#if hasSidebarItems}}
+        {{#each groups}}
+          <div class="storyflow-tutorial-sidebar-group" style="--cat-color: {{this.color}};">
+            <div class="storyflow-tutorial-sidebar-group-head">
+              {{this.label}}
+            </div>
+            {{#each this.nodes}}
+              <button type="button"
+                      class="storyflow-tutorial-sidebar-node {{#if this.isActive}}is-active{{/if}}"
+                      data-action="pickType" data-type="{{this.type}}" style="--node-color: {{this.color}};"
+                      title="{{this.summary}}">
+                <i class="fa-solid fa-fw {{this.icon}}"></i>
+                <span>{{this.label}}</span>
+              </button>
+            {{/each}}
+          </div>
+        {{/each}}
+
+        {{#each customGroups}}
+          <div class="storyflow-tutorial-sidebar-group">
+            <div class="storyflow-tutorial-sidebar-group-head storyflow-tutorial-custom-head">
+              <span class="storyflow-tutorial-custom-label">{{this.label}}</span>
+              {{#if ../canEditGuides}}
+                <span class="storyflow-tutorial-custom-tools">
+                  <button type="button" class="storyflow-tutorial-custom-tool"
+                          data-action="renameCustomCategory" data-catid="{{this.id}}"
+                          title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.RenameCategory'}}">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                  <button type="button" class="storyflow-tutorial-custom-tool"
+                          data-action="removeCustomCategory" data-catid="{{this.id}}"
+                          title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.RemoveCategory'}}">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </span>
+              {{/if}}
+            </div>
+            {{#each this.pages}}
+              <div class="storyflow-tutorial-custom-page-row">
+                <button type="button"
+                        class="storyflow-tutorial-sidebar-node storyflow-tutorial-custom-page {{#if this.isActive}}is-active{{/if}}"
+                        data-action="pickCustomPage" data-catid="{{../this.id}}" data-pageid="{{this.id}}">
+                  <i class="fa-solid fa-fw fa-file-lines"></i>
+                  <span>{{this.title}}</span>
+                </button>
+                {{#if ../../canEditGuides}}
+                  <button type="button" class="storyflow-tutorial-custom-tool"
+                          data-action="removeCustomPage" data-catid="{{../this.id}}" data-pageid="{{this.id}}"
+                          title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.RemovePage'}}">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                {{/if}}
+              </div>
+            {{/each}}
+            {{#if ../canEditGuides}}
+              <button type="button" class="storyflow-tutorial-edit-add" data-action="addCustomPage"
+                      data-catid="{{this.id}}">
+                <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.AddPage"}}
+              </button>
+            {{/if}}
+          </div>
+        {{/each}}
+
+      {{/if}}
+
+      {{#unless hasSidebarItems}}
+        <p class="storyflow-tutorial-sidebar-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Canvas.NoMatch"}}</p>
+      {{/unless}}
+
+      {{#if canEditGuides}}
+        <button type="button" class="storyflow-tutorial-edit-add storyflow-tutorial-add-category"
+                data-action="addCustomCategory">
+          <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.AddCategory"}}
+        </button>
+      {{/if}}
+    </div>
+  </aside>
+
+  <div class="storyflow-tutorial-content">
+    {{#unless showingCustomPage}}
+      <nav class="storyflow-tutorial-crumbs">
+        {{#each crumbs}}
+          {{#if this.isLast}}
+            <span class="storyflow-tutorial-crumb is-current">{{this.label}}</span>
+          {{else}}
+            <button type="button" class="storyflow-tutorial-crumb" data-action="crumbTo" data-index="{{this.index}}">{{this.label}}</button>
+            <span class="storyflow-tutorial-crumb-sep">&rsaquo;</span>
+          {{/if}}
+        {{/each}}
+      </nav>
+    {{/unless}}
+
+    {{#unless showingCustomPage}}
+      <div class="storyflow-tutorial" style="--node-color: {{color}};">
+        <header class="storyflow-tutorial-head">
+          <i class="fa-solid {{icon}} storyflow-tutorial-icon"></i>
+          <div class="storyflow-tutorial-title">
+            <h2>{{label}}</h2>
+            <span class="storyflow-tutorial-group">{{groupLabel}}</span>
+          </div>
+          <div class="storyflow-tutorial-head-tools">
+            {{#unless editing}}
+              {{#if hasOverride}}
+                <span class="storyflow-tutorial-badge">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.EditedBadge"}}</span>
+              {{/if}}
+              {{#if canEditGuides}}
+                <button type="button" class="storyflow-tutorial-edit-btn" data-action="editGuide"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.Edit'}}">
+                  <i class="fa-solid fa-pencil"></i>
+                </button>
+              {{/if}}
+            {{/unless}}
+          </div>
+        </header>
+
+        {{#if editing}}
+          <form class="storyflow-tutorial-edit-form">
+            <label class="storyflow-tutorial-edit-field">
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.SummaryLabel"}}</span>
+              <textarea name="summary" rows="2">{{edit.summary}}</textarea>
+            </label>
+
+            <label class="storyflow-tutorial-edit-field">
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.UsageLabel"}}</span>
+              <div class="storyflow-tutorial-callout-tools">
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="tip" data-target="usage"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertTip'}}">
+                  <i class="fa-solid fa-lightbulb"></i>
+                </button>
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="warning" data-target="usage"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertWarning'}}">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </button>
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="info" data-target="usage"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertInfo'}}">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+              </div>
+              <textarea name="usage" rows="4">{{edit.usage}}</textarea>
+              <span class="storyflow-tutorial-callout-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.CalloutHint"}}</span>
+            </label>
+
+            <div class="storyflow-tutorial-edit-list">
+              <span class="storyflow-tutorial-edit-list-label">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.TipsLabel"}}</span>
+              {{#each edit.tips}}
+                <div class="storyflow-tutorial-edit-row">
+                  <input type="text" name="tip-{{this.index}}" value="{{this.value}}" />
+                  <button type="button" class="storyflow-tutorial-edit-remove" data-action="removeTip" data-index="{{this.index}}">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              {{/each}}
+              <button type="button" class="storyflow-tutorial-edit-add" data-action="addTip">
+                <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.AddTip"}}
+              </button>
+            </div>
+
+            <div class="storyflow-tutorial-edit-list">
+              <span class="storyflow-tutorial-edit-list-label">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.PairsLabel"}}</span>
+              {{#each edit.pairs}}
+                <div class="storyflow-tutorial-edit-row">
+                  <select name="pair-type-{{this.index}}">
+                    {{#each this.typeOptions}}
+                      <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                    {{/each}}
+                  </select>
+                  <input type="text" name="pair-why-{{this.index}}" value="{{this.why}}"
+                         placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.WhyPlaceholder'}}" />
+                  <button type="button" class="storyflow-tutorial-edit-remove" data-action="removePair" data-index="{{this.index}}">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              {{/each}}
+              <button type="button" class="storyflow-tutorial-edit-add" data-action="addPair">
+                <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.AddPair"}}
+              </button>
+            </div>
+
+            <div class="storyflow-tutorial-edit-list">
+              <span class="storyflow-tutorial-edit-list-label">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.SectionsLabel"}}</span>
+              {{#each edit.sections}}
+                <div class="storyflow-tutorial-edit-section">
+                  <div class="storyflow-tutorial-edit-row">
+                    <input type="text" name="section-title-{{this.index}}" value="{{this.title}}"
+                           placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.SectionTitlePlaceholder'}}" />
+                    <button type="button" class="storyflow-tutorial-edit-remove" data-action="removeSection" data-index="{{this.index}}">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  <div class="storyflow-tutorial-callout-tools">
+                    <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="tip" data-target="section-body-{{this.index}}"
+                            title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertTip'}}">
+                      <i class="fa-solid fa-lightbulb"></i>
+                    </button>
+                    <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="warning" data-target="section-body-{{this.index}}"
+                            title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertWarning'}}">
+                      <i class="fa-solid fa-triangle-exclamation"></i>
+                    </button>
+                    <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="info" data-target="section-body-{{this.index}}"
+                            title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertInfo'}}">
+                      <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                  </div>
+                  <textarea name="section-body-{{this.index}}" rows="4">{{this.body}}</textarea>
+                  <span class="storyflow-tutorial-callout-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.CalloutHint"}}</span>
+                </div>
+              {{/each}}
+              <button type="button" class="storyflow-tutorial-edit-add" data-action="addSection">
+                <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.AddSection"}}
+              </button>
+            </div>
+
+            <label class="storyflow-tutorial-edit-field">
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.DemoLabel"}}</span>
+              <select name="demoPageUuid">
+                {{#each edit.demoOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+            </label>
+
+            {{#if confirmingReset}}
+              <div class="storyflow-tutorial-edit-confirm">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.ResetConfirm"}}</span>
+                <button type="button" data-action="cancelResetGuide">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.ResetNo"}}</button>
+                <button type="button" class="storyflow-tutorial-edit-danger" data-action="confirmResetGuide">
+                  {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.ResetYes"}}
+                </button>
+              </div>
+            {{else}}
+              <div class="storyflow-tutorial-edit-actions">
+                <button type="button" class="storyflow-tutorial-edit-reset" data-action="resetGuide">
+                  {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.Reset"}}
+                </button>
+                <div class="storyflow-tutorial-edit-actions-right">
+                  <button type="button" data-action="cancelGuide">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.Cancel"}}</button>
+                  <button type="button" class="storyflow-tutorial-edit-save" data-action="saveGuide">
+                    {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.Save"}}
+                  </button>
+                </div>
+              </div>
+            {{/if}}
+          </form>
+        {{else}}
+          {{#if summary}}<p class="storyflow-tutorial-summary">{{summary}}</p>{{/if}}
+
+          <section class="storyflow-tutorial-pins">
+            <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.PinsHeading"}}</h3>
+            <div class="storyflow-tutorial-pin-cols">
+              <div>
+                <h4>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.PinsIn"}}</h4>
+                <ul>{{#each pins.inputs}}<li><code>{{this}}</code></li>{{else}}<li>-</li>{{/each}}</ul>
+              </div>
+              <div>
+                <h4>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.PinsOut"}}</h4>
+                {{#if pins.dynamicOut}}
+                  <p class="storyflow-tutorial-dynamic">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.PinsOutDynamic"}}</p>
+                {{else}}
+                  <ul>{{#each pins.outputs}}<li><code>{{this}}</code></li>{{else}}<li>-</li>{{/each}}</ul>
+                {{/if}}
+              </div>
+            </div>
+          </section>
+
+          {{#if filled}}
+            {{#if usageBlocks.length}}
+              <section>
+                <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.UsageHeading"}}</h3>
+                {{#each usageBlocks}}
+                  {{#if this.isText}}
+                    <p class="storyflow-tutorial-usage">{{this.text}}</p>
+                  {{else}}
+                    <div class="storyflow-callout storyflow-callout-{{this.kind}}">
+                      <i class="fa-solid {{this.icon}}"></i>
+                      <p>{{this.text}}</p>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </section>
+            {{/if}}
+            {{#if tipBlocks.length}}
+              <section>
+                <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.TipsHeading"}}</h3>
+                <ul class="storyflow-tutorial-tips">
+                  {{#each tipBlocks}}
+                    <li>
+                      {{#each this}}
+                        {{#if this.isText}}
+                          <span>{{this.text}}</span>
+                        {{else}}
+                          <div class="storyflow-callout storyflow-callout-{{this.kind}}">
+                            <i class="fa-solid {{this.icon}}"></i>
+                            <p>{{this.text}}</p>
+                          </div>
+                        {{/if}}
+                      {{/each}}
+                    </li>
+                  {{/each}}
+                </ul>
+              </section>
+            {{/if}}
+
+            {{#if sections.length}}
+              {{#each sections}}
+                <section class="storyflow-tutorial-section">
+                  {{#if this.title}}<h3>{{this.title}}</h3>{{/if}}
+                  {{#each this.bodyBlocks}}
+                    {{#if this.isText}}
+                      <p class="storyflow-tutorial-usage">{{this.text}}</p>
+                    {{else}}
+                      <div class="storyflow-callout storyflow-callout-{{this.kind}}">
+                        <i class="fa-solid {{this.icon}}"></i>
+                        <p>{{this.text}}</p>
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                </section>
+              {{/each}}
+            {{/if}}
+          {{else}}
+            <p class="storyflow-tutorial-soon">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.ComingSoon"}}</p>
+          {{/if}}
+
+          {{#if showRunSection}}
+            <section class="storyflow-tutorial-run">
+              {{#if hasDemo}}
+                <button type="button" class="storyflow-tutorial-run-primary" data-action="runDemo" {{#if running}}disabled{{/if}}>
+                  <i class="fa-solid fa-play"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.RunDemo"}}
+                </button>
+              {{/if}}
+              {{#if hasExample}}
+                <button type="button" class="storyflow-tutorial-run-secondary" data-action="showExample" {{#if running}}disabled{{/if}}>
+                  <i class="fa-solid fa-diagram-project"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.ShowExample"}}
+                </button>
+                <button type="button" class="storyflow-tutorial-run-secondary" data-action="copyExample">
+                  <i class="fa-solid fa-copy"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.CopyExample"}}
+                </button>
+              {{/if}}
+              <span class="storyflow-tutorial-run-hint">{{localize runHint}}</span>
+              <span class="storyflow-tutorial-run-hint sf-tut-inactive-note">{{localize inactiveNote}}</span>
+            </section>
+          {{/if}}
+
+          {{#if pairs.length}}
+            <section class="storyflow-tutorial-pairs">
+              <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.PairsHeading"}}</h3>
+              {{#each pairs}}
+                <button type="button" class="storyflow-tutorial-pair" data-action="showType" data-type="{{this.type}}"
+                        style="--pair-color: {{this.color}};">
+                  <i class="fa-solid {{this.icon}}"></i>
+                  <span class="storyflow-tutorial-pair-text">
+                    <span class="storyflow-tutorial-pair-label">{{this.label}}</span>
+                    {{#if this.why}}<span class="storyflow-tutorial-pair-why">{{this.why}}</span>{{/if}}
+                  </span>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              {{/each}}
+            </section>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{/unless}}
+
+    {{#if showingCustomPage}}
+      <div class="storyflow-tutorial storyflow-tutorial-custom">
+        <header class="storyflow-tutorial-head">
+          <i class="fa-solid fa-file-lines storyflow-tutorial-icon"></i>
+          <div class="storyflow-tutorial-title">
+            <span class="storyflow-tutorial-group">{{customCategoryLabel}}</span>
+            <h2>{{customPageTitle}}</h2>
+          </div>
+          <div class="storyflow-tutorial-head-tools">
+            {{#if canEditGuides}}
+              <button type="button" class="storyflow-tutorial-edit-btn" data-action="editCustomPage"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.EditPage'}}">
+                <i class="fa-solid fa-pencil"></i>
+              </button>
+            {{/if}}
+          </div>
+        </header>
+
+        {{#if customEditing}}
+          <form class="storyflow-tutorial-edit-form storyflow-tutorial-custom-edit-form">
+            <label class="storyflow-tutorial-edit-field">
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.TitleLabel"}}</span>
+              <input type="text" name="customTitle" value="{{customEdit.title}}" />
+            </label>
+
+            <label class="storyflow-tutorial-edit-field">
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.BodyLabel"}}</span>
+              <div class="storyflow-tutorial-callout-tools">
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="tip" data-target="customBody"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertTip'}}">
+                  <i class="fa-solid fa-lightbulb"></i>
+                </button>
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="warning" data-target="customBody"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertWarning'}}">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </button>
+                <button type="button" class="storyflow-tutorial-callout-tool" data-action="insertCallout" data-callout="info" data-target="customBody"
+                        title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.InsertInfo'}}">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+              </div>
+              <textarea name="customBody" rows="6">{{customEdit.text}}</textarea>
+              <span class="storyflow-tutorial-callout-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Edit.CalloutHint"}}</span>
+            </label>
+
+            <div class="storyflow-tutorial-edit-actions">
+              <button type="button" data-action="cancelCustomPage">{{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.Cancel"}}</button>
+              <button type="button" class="storyflow-tutorial-edit-save" data-action="saveCustomPage">
+                {{localize "STORYFLOW_DUNGEONS_LAB.Tutorial.Custom.Save"}}
+              </button>
+            </div>
+          </form>
+        {{else}}
+          <div class="storyflow-tutorial-custom-body">
+            {{#each customPageBlocks}}
+              {{#if this.isText}}
+                <p class="storyflow-tutorial-usage">{{this.text}}</p>
+              {{else}}
+                <div class="storyflow-callout storyflow-callout-{{this.kind}}">
+                  <i class="fa-solid {{this.icon}}"></i>
+                  <p>{{this.text}}</p>
+                </div>
+              {{/if}}
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>

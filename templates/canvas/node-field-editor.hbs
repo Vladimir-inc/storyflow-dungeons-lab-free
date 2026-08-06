@@ -1,0 +1,80 @@
+{{!-- Редактор диалогов: узлы Display/Text, сгруппированные по цепочкам, с фильтром и массовым поиском и заменой. --}}
+<div class="storyflow-field-editor">
+  <header class="storyflow-fe-toolbar">
+    <div class="storyflow-fe-find">
+      <input type="text" class="storyflow-fe-filter-input" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.Filter'}}" value="{{filter}}" />
+      <span class="storyflow-fe-sep"></span>
+      <input type="text" class="storyflow-fe-find-input" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.Find'}}" value="{{find}}" />
+      <input type="text" class="storyflow-fe-replace-input" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.Replace'}}" value="{{replace}}" />
+      <button type="button" data-action="replaceAll">
+        {{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.ReplaceAll"}}
+      </button>
+      <label class="storyflow-fe-case" title="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.CaseSensitive'}}">
+        <input type="checkbox" class="storyflow-fe-case-input" {{#if caseSensitive}}checked{{/if}} /> Aa
+      </label>
+      <span class="storyflow-fe-count">{{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Matches" count=matchCount}}</span>
+    </div>
+    <span class="storyflow-fe-spacer"></span>
+    <span class="storyflow-fe-stale">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Stale"}}
+    </span>
+    <button type="button" data-action="refreshFields"
+            title="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.RefreshHint'}}">
+      <i class="fa-solid fa-rotate"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Refresh"}}
+    </button>
+    <button type="button" class="storyflow-fe-apply" data-action="applyFields">
+      <i class="fa-solid fa-check"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Apply"}}
+    </button>
+  </header>
+
+  <div class="storyflow-fe-list">
+    {{#each chains}}
+      <section class="storyflow-fe-chain storyflow-fe-chain-{{this.colorIndex}}">
+        <header class="storyflow-fe-chain-head">
+          <i class="fa-solid fa-link"></i>
+          {{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Chain"}} {{this.index}}
+          <span class="storyflow-fe-chain-count">{{this.count}}</span>
+        </header>
+
+        {{#each this.nodes}}
+          <section class="storyflow-fe-node" data-search="{{this.search}}">
+            <h3 class="storyflow-fe-node-head" data-action="revealNode" data-node-id="{{this.id}}"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.RevealHint'}}">
+              <span class="storyflow-fe-node-name">{{#if this.name}}{{this.name}}{{else}}{{this.typeLabel}}{{/if}}</span>
+              <span class="storyflow-fe-node-meta">{{this.typeLabel}} · {{this.id}}</span>
+              <i class="fa-solid fa-location-crosshairs storyflow-fe-reveal"></i>
+            </h3>
+
+            <label class="storyflow-fe-field">
+              <span class="storyflow-fe-label">{{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.NodeName"}}</span>
+              <input type="text" autocomplete="off" data-node-id="{{this.id}}" data-node-name="1" value="{{this.name}}" />
+            </label>
+
+            <label class="storyflow-fe-field">
+              <span class="storyflow-fe-label">{{localize "STORYFLOW_DUNGEONS_LAB.Fields.speakerName"}}</span>
+              <input type="text" autocomplete="off" data-node-id="{{this.id}}" data-field="speakerName"
+                     data-kind="string" value="{{this.speakerName}}" />
+            </label>
+
+            <label class="storyflow-fe-field">
+              <span class="storyflow-fe-label">{{localize "STORYFLOW_DUNGEONS_LAB.Fields.portraitPath"}}</span>
+              <input type="text" autocomplete="off" data-node-id="{{this.id}}" data-field="portraitPath"
+                     data-kind="string" value="{{this.portraitPath}}" />
+            </label>
+
+            <label class="storyflow-fe-field">
+              <span class="storyflow-fe-label">{{localize "STORYFLOW_DUNGEONS_LAB.Fields.bodyHtml"}}</span>
+              <textarea rows="3" data-node-id="{{this.id}}" data-field="bodyHtml" data-kind="string">{{this.bodyHtml}}</textarea>
+            </label>
+          </section>
+        {{/each}}
+      </section>
+    {{else}}
+      <p class="storyflow-fe-empty">{{localize "STORYFLOW_DUNGEONS_LAB.FieldEditor.Empty"}}</p>
+    {{/each}}
+  </div>
+</div>

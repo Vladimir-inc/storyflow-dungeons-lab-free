@@ -1,0 +1,29 @@
+{{!-- Поповер поиска узлов: ищет узлы в графе и переводит камеру на найденный. Рендерится
+      ОТДЕЛЬНО через render({parts:["search"]}), чтобы никогда не задевать императивный PART холста. --}}
+<div class="storyflow-search-popover {{#unless searchOpen}}storyflow-hidden{{/unless}}">
+  {{#if searchOpen}}
+    <div class="storyflow-palette-head">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" class="storyflow-search-input" name="nodeSearch" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.FindNodePlaceholder'}}" value="{{searchQuery}}" />
+      <button type="button" class="storyflow-palette-close" data-action="closeSearch"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Close'}}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="storyflow-palette-list">
+      {{#each results}}
+        <button type="button" class="storyflow-palette-node" data-action="jumpToNode"
+                data-id="{{this.id}}" data-kind="{{this.kind}}" style="--cat-color: {{this.color}};">
+          <i class="fa-solid {{this.icon}} storyflow-palette-node-icon"></i>
+          <span class="storyflow-palette-node-text">
+            <span class="storyflow-palette-node-label">{{this.name}}</span>
+            {{#if this.sub}}<span class="storyflow-palette-node-sum">{{this.sub}}</span>{{/if}}
+          </span>
+        </button>
+      {{else}}
+        <p class="storyflow-palette-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Canvas.NoMatch"}}</p>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

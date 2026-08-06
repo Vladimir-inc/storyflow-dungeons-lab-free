@@ -1,0 +1,52 @@
+<div class="storyflow-picker-body">
+  <header class="storyflow-picker-top">
+    <input type="text" class="storyflow-picker-search" value="{{query}}"
+           placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.EffectPicker.SearchPlaceholder'}}" />
+    <nav class="storyflow-picker-tabs">
+      {{#each tabs}}
+        <button type="button" class="storyflow-picker-tab {{#if active}}is-active{{/if}}"
+                data-action="pickerTab" data-tab="{{id}}">{{localize label}}</button>
+      {{/each}}
+    </nav>
+  </header>
+
+  <div class="storyflow-picker-grid">
+    {{#if dbEmpty}}
+      <p class="storyflow-picker-hint">{{localize "STORYFLOW_DUNGEONS_LAB.EffectPicker.NoDatabase"}}</p>
+    {{else if hasTiles}}
+      {{#each tiles}}
+        <div class="storyflow-picker-tile">
+          <div class="storyflow-picker-tile-pick" data-action="pickerPick" data-path="{{path}}"
+               role="button" tabindex="0" title="{{path}}">
+            {{#if isVideo}}
+              <video class="storyflow-picker-tile-video" src="{{file}}" loop muted playsinline
+                     preload="metadata"></video>
+            {{else}}
+              <span class="storyflow-picker-tile-icon"><i class="fa-solid fa-film"></i></span>
+            {{/if}}
+            <span class="storyflow-picker-tile-label">{{label}}</span>
+          </div>
+          <button type="button" class="storyflow-picker-tile-fav {{#if favorite}}is-on{{/if}}"
+                  data-action="pickerFavorite" data-path="{{path}}"
+                  title="{{localize 'STORYFLOW_DUNGEONS_LAB.EffectPicker.Favorite'}}">
+            <i class="fa-{{#if favorite}}solid{{else}}regular{{/if}} fa-star"></i>
+          </button>
+        </div>
+      {{/each}}
+      {{#if truncated}}
+        <button type="button" class="storyflow-picker-more" data-action="pickerMore">
+          <i class="fa-solid fa-circle-plus"></i>
+          {{localize "STORYFLOW_DUNGEONS_LAB.EffectPicker.LoadMore"}} ({{truncated}})
+        </button>
+      {{/if}}
+    {{else}}
+      <p class="storyflow-picker-hint">{{localize emptyKey}}</p>
+    {{/if}}
+  </div>
+
+  <footer class="storyflow-picker-footer">
+    <button type="button" data-action="pickerCancel">
+      {{localize "STORYFLOW_DUNGEONS_LAB.EffectPicker.Cancel"}}
+    </button>
+  </footer>
+</div>

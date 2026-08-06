@@ -1,0 +1,461 @@
+{{!-- Окно Кодекса фракций. Слева: список фракций. Справа: досье / состав / связи / карточки. --}}
+<div class="fc-body">
+  <aside class="fc-sidebar">
+    <div class="fc-list-header">
+      <span class="fc-list-title">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Tab"}}</span>
+      {{#if isGM}}
+        <button type="button" class="fc-add" data-action="addFaction"
+                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.AddFaction'}}">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      {{/if}}
+    </div>
+
+    <ul class="fc-list">
+      {{#each factions}}
+        <li class="fc-row {{#if this.selected}}is-selected{{/if}}"
+            style="--tier-color: {{this.tierColor}}; --fc-color: {{this.color}};"
+            data-action="selectFaction" data-faction="{{this.id}}">
+          <span class="fc-row-crest">
+            {{#if this.img}}<img src="{{this.img}}" alt="" />{{else}}<i class="{{this.icon}}"></i>{{/if}}
+          </span>
+          <span class="fc-row-text">
+            <span class="fc-row-name">{{this.name}}</span>
+            <span class="fc-row-standing">
+              <span class="fc-dot"></span>
+              <span class="fc-row-tier">{{this.tierLabel}}</span>
+            </span>
+          </span>
+          {{#if this.restricted}}
+            <i class="fa-solid {{#if this.hidden}}fa-eye-slash{{else}}fa-user-lock{{/if}} fc-row-vis"
+               data-tooltip="{{#if this.hidden}}{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.Visibility.HiddenTip'}}{{else}}{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.Visibility.SomeTip'}}{{/if}}"></i>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+    {{#unless factions.length}}
+      <p class="qb-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.NoFactions"}}</p>
+    {{/unless}}
+  </aside>
+
+  <section class="fc-detail">
+    {{#if selected}}
+      <nav class="fc-tabs">
+        <button type="button" class="fc-tab {{#if isOverviewTab}}is-active{{/if}}"
+                data-action="codexSection" data-section="overview">
+          <span class="fc-tab-dot"></span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabOverview"}}
+        </button>
+        <button type="button" class="fc-tab {{#if isMembersTab}}is-active{{/if}}"
+                data-action="codexSection" data-section="members">
+          <span class="fc-tab-dot"></span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabMembers"}}
+        </button>
+        <button type="button" class="fc-tab {{#if isOthersTab}}is-active{{/if}}"
+                data-action="codexSection" data-section="others">
+          <span class="fc-tab-dot"></span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabOthers"}}
+        </button>
+        <button type="button" class="fc-tab {{#if isFactionsTab}}is-active{{/if}}"
+                data-action="codexSection" data-section="factions">
+          <span class="fc-tab-dot"></span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabFactions"}}
+        </button>
+        <button type="button" class="fc-tab {{#if isCardsTab}}is-active{{/if}}"
+                data-action="codexSection" data-section="cards">
+          <span class="fc-tab-dot"></span>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.SectionLabel"}}
+        </button>
+      </nav>
+    {{/if}}
+    {{#if isOverviewTab}}
+    {{#if selected}}
+      <div class="fc-dossier" style="--tier-color: {{selected.tier.color}}; --fc-color: {{selected.color}};">
+        <div class="fc-card-head">
+          <i class="fa-solid fa-grip-vertical fc-grip"></i>
+          <span class="fc-eyebrow">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.Dossier"}}</span>
+          <span class="fc-spacer"></span>
+          {{#if isGM}}
+            <select data-edit="visibility" class="fc-visibility"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.Visibility.Tooltip'}}">
+              {{#each visibilityOptions}}
+                <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          {{/if}}
+          {{#if isGM}}
+            <span class="fc-pill fc-domain-pill">
+              <input type="text" data-edit="domain" value="{{selected.domain}}"
+                     placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.DomainPlaceholder'}}" />
+            </span>
+          {{else if selected.domain}}
+            <span class="fc-pill fc-domain-pill">{{selected.domain}}</span>
+          {{/if}}
+        </div>
+
+        <div class="fc-dossier-main">
+          <div class="fc-dossier-crest-col">
+            <span class="fc-dossier-crest {{#if isGM}}is-editable{{/if}}"
+                  {{#if isGM}}data-action="pickLogo" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.PickLogo'}}"{{/if}}>
+              {{#if selected.img}}<img src="{{selected.img}}" alt="" />{{else}}<i class="{{selected.icon}}"></i>{{/if}}
+              {{#if isGM}}<span class="fc-crest-edit"><i class="fa-solid fa-camera"></i></span>{{/if}}
+            </span>
+            {{#if isGM}}
+              <input type="text" class="fc-icon-edit" data-edit="icon" value="{{selected.icon}}"
+                     placeholder="fa-solid fa-shield-halved"
+                     data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.Icon'}}" />
+            {{/if}}
+          </div>
+          <div class="fc-dossier-id">
+            {{#if isGM}}
+              <input type="text" class="fc-name" data-edit="name" value="{{selected.name}}" />
+            {{else}}
+              <div class="fc-name">{{selected.name}}</div>
+            {{/if}}
+            <div class="fc-location">
+              <i class="fa-solid fa-location-dot"></i>
+              {{#if isGM}}
+                <input type="text" data-edit="location" value="{{selected.location}}"
+                       placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.Location'}}" />
+              {{else}}
+                <span>{{selected.location}}</span>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-motto">
+          <i class="fa-solid fa-feather"></i>
+          {{#if isGM}}
+            <input type="text" data-edit="motto" value="{{selected.motto}}"
+                   placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.MottoPlaceholder'}}" />
+          {{else}}
+            <span>{{selected.motto}}</span>
+          {{/if}}
+        </div>
+
+        {{#if showStanding}}
+          <div class="fc-standing" style="--tier-color: {{subjectTierColor}};">
+            <span class="fc-standing-label">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.YourStanding"}}</span>
+            {{#if isGM}}
+              <button type="button" class="fc-step is-down" data-action="stepDown"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.DecreaseStanding'}}">−</button>
+            {{/if}}
+            <span class="fc-standing-value">{{subjectStanding}}</span>
+            {{#if isGM}}
+              <button type="button" class="fc-step is-up" data-action="stepUp"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.IncreaseStanding'}}">+</button>
+            {{/if}}
+            <span class="fc-tier-dot"></span>
+            <span class="fc-tier-label">{{subjectTierLabel}}</span>
+          </div>
+        {{/if}}
+
+        <div class="fc-dossier-foot">
+          <button type="button" class="fc-priv-btn" data-action="togglePrivileges"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.Privileges'}}">
+            <i class="fa-solid fa-scroll"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.Privileges"}}
+          </button>
+          {{#if isGM}}{{#unless selected.builtin}}
+            <button type="button" class="fc-icon-btn fc-delete" data-action="deleteFaction"
+                    data-faction="{{selected.id}}"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.Delete'}}">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          {{/unless}}{{/if}}
+        </div>
+      </div>
+
+      {{#if isGM}}{{#if visibilityIsSome}}
+        <div class="fc-visibility-actors">
+          <span class="fc-visibility-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.Visibility.AllowedPlayers"}}</span>
+          <div class="fc-visibility-chips">
+            {{#each visibilityUsers}}
+              <button type="button" class="fc-visibility-chip {{#if this.allowed}}is-on{{/if}}"
+                      data-action="toggleUser" data-user="{{this.id}}">
+                <i class="fa-solid {{#if this.allowed}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>{{this.name}}
+              </button>
+            {{/each}}
+          </div>
+          {{#unless visibilityUsers.length}}
+            <span class="fc-visibility-empty">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.Visibility.NoPlayers"}}</span>
+          {{/unless}}
+        </div>
+      {{/if}}{{/if}}
+
+      {{#if showPrivileges}}
+        <div class="fc-card fc-privileges" style="--tier-color: {{selected.tier.color}};">
+          <div class="fc-card-head">
+            <i class="fa-solid fa-grip-vertical fc-grip"></i>
+            <i class="fa-solid fa-scroll fc-head-icon"></i>
+            <h2>{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.Privileges"}}</h2>
+            <span class="fc-spacer"></span>
+            {{#if isGM}}
+              <button type="button" class="fc-icon-btn {{#if editingPrivileges}}is-active{{/if}}"
+                      data-action="editPrivileges"
+                      data-tooltip="{{#if editingPrivileges}}{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.SavePrivileges'}}{{else}}{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.EditPrivileges'}}{{/if}}">
+                <i class="fa-solid {{#if editingPrivileges}}fa-check{{else}}fa-feather-pointed{{/if}}"></i>
+              </button>
+            {{/if}}
+          </div>
+          <p class="fc-priv-subtitle">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.PrivilegesSubtitle"}}</p>
+          <div class="fc-track" style="background: {{trackGradient}};">
+            <span class="fc-track-marker" style="left: {{selected.markerPercent}}%;"></span>
+          </div>
+          <div class="fc-priv-rows">
+            {{#each privilegeRows}}
+              <div class="fc-priv-row {{#if this.isActive}}is-active{{/if}}" style="--tier-color: {{this.color}};">
+                <i class="fa-solid {{this.iconClass}} fc-priv-icon"></i>
+                <div class="fc-priv-body">
+                  <div class="fc-priv-title">{{this.label}}</div>
+                  {{#if ../editingPrivileges}}
+                    <input type="text" class="fc-priv-effect" data-edit="privilege" data-tier="{{this.tierId}}"
+                           value="{{this.effect}}"
+                           placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.EffectPlaceholder'}}" />
+                  {{else}}
+                    <div class="fc-priv-effect">{{#if this.effect}}{{this.effect}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.NoEffect"}}{{/if}}</div>
+                  {{/if}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="fc-card fc-about">
+        <div class="fc-card-head">
+          <i class="fa-solid fa-grip-vertical fc-grip"></i>
+          <i class="fa-solid fa-book-open fc-head-icon"></i>
+          <h2>{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.About"}}</h2>
+          <span class="fc-spacer"></span>
+          {{#if isGM}}
+            <button type="button" class="fc-icon-btn {{#if editingDescription}}is-active{{/if}}"
+                    data-action="editDescription"
+                    data-tooltip="{{#if editingDescription}}{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.SaveDescription'}}{{else}}{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Codex.EditDescription'}}{{/if}}">
+              <i class="fa-solid {{#if editingDescription}}fa-check{{else}}fa-feather{{/if}}"></i>
+            </button>
+          {{/if}}
+          <span class="fc-pill">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.Lore"}}</span>
+        </div>
+        <div class="fc-card-body">
+          {{#if editingDescription}}
+            <prose-mirror name="description" class="fc-desc fc-desc-pm" value="{{selected.description}}"></prose-mirror>
+          {{else}}
+            <div class="fc-desc">{{{selected.enrichedDescription}}}</div>
+          {{/if}}
+        </div>
+      </div>
+
+    {{/if}}
+    {{/if}}
+
+    {{#if isCardsTab}}
+      <div class="fc-cards">
+        {{#if isGM}}
+          <div class="fc-cards-toolbar">
+            <button type="button" class="fc-toggle" data-action="manageCardStore">
+              <i class="fa-solid fa-id-card"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.CardStore"}}
+            </button>
+          </div>
+        {{/if}}
+
+        <div class="fc-cards-hero">
+          <div class="cs-eyebrow">◆ {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.PropsEyebrow"}} ◆</div>
+          <h1 class="cs-title">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Title"}}</h1>
+          <p class="fc-cards-sub">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Subtitle"}}</p>
+        </div>
+
+        {{#if selected.cards.length}}
+          <div class="fc-cards-tools cs-tools">
+            <input type="search" name="codexCardSearch" class="cs-search" value="{{cardSearch}}"
+                   placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCards.SearchPlaceholder'}}" />
+            <select name="codexCardSort" class="cs-sort">
+              {{#each cardSortOptions}}
+                <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="fc-cards-grid">
+            {{#each selected.cards}}
+              <div class="dl-card readonly rep-{{this.tint.tier}}" data-card-id="{{this.id}}"
+                   style="--cat: {{this.color}}; background: {{this.tint.bg}}; border-color: {{this.tint.edge}};">
+                {{#if ../isGM}}
+                  <button type="button" class="fc-card-remove" data-action="removeCard" data-card="{{this.id}}"
+                          data-tooltip="{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.RemoveCard"}}">✕</button>
+                {{/if}}
+                {{#if this.img}}<img class="dl-card-art" src="{{this.img}}" alt="" />{{/if}}
+                <span class="dl-card-badge">{{#if this.category}}{{this.category}}{{else}}-{{/if}}</span>
+                <div class="dl-card-name">{{this.name}}</div>
+                <div class="dl-card-pips">◆ ◆ ◆</div>
+                {{#if this.description}}<p class="dl-card-desc">{{this.description}}</p>{{/if}}
+                <div class="dl-card-effects">
+                  {{#each this.plus}}<div class="dl-eff plus"><span class="dl-eff-icon">+</span><span class="dl-eff-text">{{this}}</span></div>{{/each}}
+                  {{#each this.minus}}<div class="dl-eff minus"><span class="dl-eff-icon">−</span><span class="dl-eff-text">{{this}}</span></div>{{/each}}
+                </div>
+                <div class="dl-card-rep-badge" style="background: {{this.tint.repBg}}; color: {{this.tint.repColor}}; border-color: {{this.tint.repBorder}};">
+                  {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Threshold"}} {{this.tint.repText}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{else}}
+          <p class="fc-cards-empty">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.NoCardsHint"}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if isRosterTab}}
+      <div class="fc-roster fc-panel">
+        <div class="fc-card-head">
+          <i class="fa-solid fa-grip-vertical fc-grip"></i>
+          <i class="fa-solid {{#if isMembersTab}}fa-user-group{{else}}fa-users{{/if}} fc-head-icon"></i>
+          <h2>{{#if isMembersTab}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabMembers"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabOthers"}}{{/if}}</h2>
+          <span class="fc-spacer"></span>
+          <span class="fc-pill">{{rosterRows.length}}</span>
+        </div>
+        {{#if isOthersTab}}
+          <div class="fc-others-filter">
+            {{#each othersChips}}
+              <button type="button" class="fc-others-chip {{#if this.active}}is-active{{/if}}"
+                      data-action="filterOthers" data-others-filter="{{this.id}}"
+                      {{#if this.color}}style="--chip-color: {{this.color}};"{{/if}}>
+                {{#if this.color}}<span class="fc-others-chip-dot"></span>{{/if}}
+                {{#if (eq this.id "all")}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.OthersFilterAll"}}
+                {{else if (eq this.id "neutrals")}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.OthersFilterNeutrals"}}
+                {{else}}{{this.name}}{{/if}}
+              </button>
+            {{/each}}
+          </div>
+        {{/if}}
+        <ul class="fc-roster-list fc-panel-list">
+          {{#each rosterRows}}
+            <li class="fc-roster-row {{#if this.isMember}}is-member{{/if}}{{#if ../isMembersTab}}{{#if this.effects.length}} is-expandable{{/if}}{{/if}}"
+                style="--tier-color: {{this.tier.color}}; {{#if this.isMember}}--member-color: {{../selected.color}};{{/if}}">
+              <span class="fc-roster-portrait-wrap" data-open-actor="{{this.id}}"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.OpenSheet'}}">
+                {{#if this.img}}
+                  <img class="fc-roster-portrait" src="{{this.img}}" alt="" />
+                {{else}}
+                  <span class="fc-roster-portrait fc-roster-portrait-blank"></span>
+                {{/if}}
+              </span>
+              <span class="fc-roster-type">
+                {{#if this.isCharacter}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.RosterPC"}}
+                {{else}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.RosterNPC"}}{{/if}}
+              </span>
+              <span class="fc-roster-name {{#if this.relationTone}}is-{{this.relationTone}}{{/if}} {{#if this.negative}}is-negative{{/if}}"
+                    data-open-actor="{{this.id}}"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.OpenSheet'}}">{{this.name}}</span>
+              {{#if ../isOthersTab}}<span class="fc-roster-faction">{{this.factionLabel}}</span>{{/if}}
+              <span class="fc-roster-tier">{{this.tier.label}}</span>
+              <span class="fc-roster-bar">
+                <span class="fc-roster-fill" style="width: {{this.percent}}%; background: {{this.barColor}};"></span>
+              </span>
+              <span class="fc-roster-dots">
+                {{#each this.memberDots}}
+                  <span class="fc-roster-dot" style="background: {{this.color}};"
+                        data-tooltip="{{this.name}}"></span>
+                {{/each}}
+              </span>
+              {{#if ../membersEditable}}
+                <button type="button" class="fc-rep-step" data-action="memberRepDown" data-actor="{{this.id}}" data-tooltip="−1">−</button>
+                <input type="number" step="1" class="fc-rep-input" data-roster-rep="{{this.id}}"
+                       value="{{this.value}}" style="color: {{#if this.negative}}#d75a45{{else}}{{this.barColor}}{{/if}};" />
+                <button type="button" class="fc-rep-step" data-action="memberRepUp" data-actor="{{this.id}}" data-tooltip="+1">+</button>
+              {{else}}
+                <span class="fc-roster-value" style="color: {{#if this.negative}}#d75a45{{else}}{{this.barColor}}{{/if}};">{{this.signed}}</span>
+              {{/if}}
+              {{#if ../rosterCanEdit}}
+                <button type="button" class="fc-roster-toggle {{#if this.isMember}}is-member{{/if}}"
+                        data-roster-member="{{this.id}}"
+                        data-tooltip="{{#if this.isMember}}{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.MemberToggleOn'}}{{else}}{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.MemberToggleOff'}}{{/if}}">
+                  <i class="fa-solid {{#if this.isMember}}fa-star{{else}}fa-star-half-stroke{{/if}}"></i>
+                </button>
+              {{/if}}
+              {{#if ../isMembersTab}}{{#if this.effects.length}}
+                <span class="fc-fx-caret" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.ShowEffects'}}">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </span>
+              {{/if}}{{/if}}
+              {{#if ../isMembersTab}}{{#if this.unlockedCards.length}}
+                <ul class="fc-member-cards">
+                  {{#each this.unlockedCards}}
+                    <li>
+                      <button type="button" class="fc-member-card" data-action="viewCard" data-card-id="{{this.id}}"
+                              data-sign="{{this.sign}}" style="--cat: {{this.color}};">
+                        <span class="fc-member-card-dot"></span>{{this.name}}
+                      </button>
+                    </li>
+                  {{/each}}
+                </ul>
+              {{/if}}{{/if}}
+              {{#if ../isMembersTab}}{{#if this.effects.length}}
+                <div class="fc-member-fx">
+                  <ul class="fc-member-fx-list">
+                    {{#each this.effects}}
+                      <li class="fc-fx {{this.kind}}"{{#if this.card}} data-tooltip="{{this.card}}"{{/if}}>
+                        <span class="fc-fx-mark">{{#if this.isPlus}}+{{else}}−{{/if}}</span>
+                        <span class="fc-fx-text">{{this.text}}</span>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/if}}{{/if}}
+            </li>
+          {{/each}}
+        </ul>
+        {{#unless rosterRows.length}}
+          <p class="qb-empty">
+            {{#if isMembersTab}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.NoMembers"}}
+            {{else}}{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.NoOthers"}}{{/if}}
+          </p>
+        {{/unless}}
+      </div>
+    {{/if}}
+
+    {{#if isFactionsTab}}
+      <div class="fc-relations fc-panel">
+        <div class="fc-card-head">
+          <i class="fa-solid fa-grip-vertical fc-grip"></i>
+          <i class="fa-solid fa-code-branch fc-head-icon"></i>
+          <h2>{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.TabFactions"}}</h2>
+          <span class="fc-spacer"></span>
+          <span class="fc-pill">{{relationRows.length}}</span>
+        </div>
+        <p class="fc-relations-hint">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.RelationsHint"}}</p>
+        <ul class="fc-relations-list fc-panel-list">
+          {{#each relationRows}}
+            <li class="fc-relation-row" style="--fc-color: {{this.color}};">
+              <span class="fc-relation-crest"><i class="{{this.icon}}"></i></span>
+              <span class="fc-relation-name fc-relation-open" data-action="selectFaction" data-faction="{{this.id}}"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.SelectFaction'}}">{{this.name}}</span>
+              {{#if ../isGM}}
+                <button type="button" class="fc-relation-step" data-action="relationStep"
+                        data-faction="{{this.id}}" data-delta="-5"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.RelationDown'}}">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+              {{/if}}
+              <span class="fc-relation-badge" {{#if this.badgeColor}}style="background: {{this.badgeColor}};"{{/if}}>
+                {{this.value}}
+              </span>
+              {{#if ../isGM}}
+                <button type="button" class="fc-relation-step" data-action="relationStep"
+                        data-faction="{{this.id}}" data-delta="5"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.RelationUp'}}">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <input type="number" class="fc-relation-input" data-relation="{{this.id}}"
+                       value="{{#if this.set}}{{this.value}}{{/if}}" min="-100" max="100" step="1"
+                       placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.FactionCodex.RelationNone'}}" />
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+        {{#unless relationRows.length}}
+          <p class="qb-empty">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCodex.NoRelations"}}</p>
+        {{/unless}}
+      </div>
+    {{/if}}
+
+    {{#unless selected}}
+      <p class="qb-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.NoFactionSelected"}}</p>
+    {{/unless}}
+  </section>
+</div>

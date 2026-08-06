@@ -1,0 +1,142 @@
+{{!-- Вкладка фракций: кодекс фракций. ГМ заполняет (логотип / название / цвет / описание);
+      игроки читают. Репутация живёт на листе актёра, а не здесь. --}}
+<section class="storyflow-qb-content qb-factions {{#if isActive}}active{{/if}}">
+  <div class="qb-body">
+    <aside class="qb-side">
+      <div class="qb-side-head">
+        <span class="qb-count">{{factionCountLabel}}</span>
+      </div>
+      <div class="qb-rows">
+        {{#each factions}}
+          <div class="qb-row {{#if this.selected}}is-selected{{/if}}"
+               data-action="selectFaction" data-faction="{{this.id}}">
+            {{#if this.img}}
+              <img class="qb-faction-logo" src="{{this.img}}" alt="" />
+            {{else}}
+              <span class="qb-faction-dot" style="--faction-color: {{this.color}};">{{this.initial}}</span>
+            {{/if}}
+            <div class="qb-row-main">
+              <div class="qb-row-name">{{this.name}}</div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </aside>
+
+    <div class="qb-detail" data-faction="{{selectedFaction.id}}">
+      {{#if selectedFaction}}
+        <div class="qb-faction-head">
+          {{#if selectedFaction.img}}
+            <img class="qb-faction-logo-lg" src="{{selectedFaction.img}}" alt="" />
+          {{else}}
+            <span class="qb-faction-initial-lg" style="--faction-color: {{selectedFaction.color}};">{{selectedFaction.initial}}</span>
+          {{/if}}
+          <div class="qb-faction-head-main">
+            {{#if factionsCanEdit}}
+              <input type="text" class="qb-name-input" data-edit="factionName" value="{{selectedFaction.name}}"
+                     placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Name'}}" />
+              <div class="qb-faction-controls">
+                <button type="button" class="qb-btn" data-action="pickFactionLogo" data-faction="{{selectedFaction.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.PickLogo'}}">
+                  <i class="fa-solid fa-image"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Factions.PickLogo"}}
+                </button>
+                <input type="color" data-edit="factionColor" value="{{selectedFaction.color}}"
+                       data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.Color'}}" />
+                <span class="qb-spacer"></span>
+                <button type="button" class="qb-btn-danger" data-action="deleteFaction" data-faction="{{selectedFaction.id}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.RemoveFaction'}}">
+                  <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Delete"}}
+                </button>
+              </div>
+            {{else}}
+              <div class="qb-title-row"><h2>{{selectedFaction.name}}</h2></div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="qb-rule"></div>
+        {{#if factionsCanEdit}}
+          <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Factions.Rivals"}}</p>
+          <div class="qb-rivals">
+            {{#each selectedFaction.rivalOptions}}
+              <label class="qb-rival-option">
+                <input type="checkbox" name="rivals" value="{{this.id}}" {{#if this.checked}}checked{{/if}} />
+                {{this.name}}
+              </label>
+            {{/each}}
+          </div>
+          <div class="qb-rule"></div>
+        {{/if}}
+        <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.Factions.Description"}}</p>
+        {{#if factionsCanEdit}}
+          <textarea class="qb-desc-edit" data-edit="factionDescription" rows="10"
+                    placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Factions.DescriptionPlaceholder'}}">{{selectedFaction.description}}</textarea>
+        {{else}}
+          <div class="qb-description">{{{selectedFaction.enrichedDescription}}}</div>
+        {{/if}}
+
+        <div class="qb-rule"></div>
+        <div class="qb-cards-head">
+          <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.SectionLabel"}}</p>
+          {{#if factionsCanEdit}}
+            <button type="button" class="qb-btn" data-action="manageCardStore">
+              <i class="fa-solid fa-id-card"></i> {{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.CardStore"}}
+            </button>
+          {{/if}}
+        </div>
+
+        {{#if selectedFaction.cards.length}}
+          <div class="cs-grid qb-cards-strip">
+            {{#each selectedFaction.cards}}
+              <div class="dl-card readonly" style="--cat: {{this.color}};">
+                <span class="dl-card-badge">{{#if this.category}}{{this.category}}{{else}}-{{/if}}</span>
+                <div class="dl-card-name">{{this.name}}</div>
+                {{#if this.description}}<p class="dl-card-desc">{{this.description}}</p>{{/if}}
+                <div class="dl-card-effects">
+                  {{#if this.plus}}<div class="dl-eff plus"><span class="dl-eff-icon">+</span><span class="dl-eff-text">{{this.plus}}</span></div>{{/if}}
+                  {{#if this.minus}}<div class="dl-eff minus"><span class="dl-eff-icon">−</span><span class="dl-eff-text">{{this.minus}}</span></div>{{/if}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{#if factionsCanEdit}}
+          <p class="qb-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.Assign"}}</p>
+          {{#if selectedFaction.cardOptions.length}}
+            <div class="qb-rivals">
+              {{#each selectedFaction.cardOptions}}
+                <label class="qb-rival-option">
+                  <input type="checkbox" name="cardIds" value="{{this.id}}" {{#if this.checked}}checked{{/if}} />
+                  <span class="dl-card-badge" style="--cat: {{this.color}};">{{#if this.category}}{{this.category}}{{else}}-{{/if}}</span>
+                  {{this.name}}
+                </label>
+              {{/each}}
+            </div>
+          {{else}}
+            <p class="qb-footer-note">{{localize "STORYFLOW_DUNGEONS_LAB.FactionCards.NoCardsHint"}}</p>
+          {{/if}}
+        {{/if}}
+      {{else}}
+        <div class="qb-empty-state">
+          <i class="fa-solid fa-handshake"></i>
+          <div class="qb-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyFactionsTitle"}}</div>
+          <div class="qb-empty-text">
+            {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyFactionsGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyFactionsPlayer"}}{{/if}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <footer class="qb-footer">
+    <span class="qb-footer-note">
+      <i class="fa-solid {{#if isGM}}fa-crown{{else}}fa-check-to-slot{{/if}}"></i>
+      {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterPlayer"}}{{/if}}
+    </span>
+    {{#if isGM}}
+      <button type="button" class="qb-primary-btn" data-action="addFaction">
+        <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Factions.AddFaction"}}
+      </button>
+    {{/if}}
+  </footer>
+</section>

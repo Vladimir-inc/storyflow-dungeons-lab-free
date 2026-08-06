@@ -1,0 +1,95 @@
+{{!-- Окно Voice Studio. Императивный DOM (canvas, транспорт, показания) подключается в _onRender. --}}
+<div class="storyflow-vs">
+  <section class="storyflow-vs-tele" data-region="teleprompter">
+    <header class="storyflow-vs-tele-bar">
+      <span class="storyflow-vs-tele-title"><i class="fa-solid fa-scroll"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Teleprompter"}}</span>
+      <label class="storyflow-vs-inline">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Speed"}}
+        <input type="range" name="wpm" min="60" max="220" step="5" value="120" />
+        <span class="storyflow-vs-val" data-readout="wpm">120 wpm</span>
+      </label>
+      <label class="storyflow-vs-inline">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.FontSize"}}
+        <input type="range" name="teleFont" min="14" max="40" step="1" value="22" />
+      </label>
+      <label class="storyflow-vs-check">
+        <input type="checkbox" name="autoScroll" checked /> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.AutoScroll"}}
+      </label>
+      <span class="storyflow-vs-tele-btns">
+        <button type="button" data-action="teleStart" title="{{localize 'STORYFLOW_DUNGEONS_LAB.VoiceStudio.TeleStart'}}"><i class="fa-solid fa-play"></i></button>
+        <button type="button" data-action="teleReset" title="{{localize 'STORYFLOW_DUNGEONS_LAB.VoiceStudio.TeleReset'}}"><i class="fa-solid fa-rotate-left"></i></button>
+        <button type="button" data-action="telePopout" title="{{localize 'STORYFLOW_DUNGEONS_LAB.VoiceStudio.PopOut'}}"><i class="fa-solid fa-up-right-from-square"></i></button>
+      </span>
+    </header>
+    <div class="storyflow-vs-tele-viewport" data-region="tele-viewport">
+      <div class="storyflow-vs-tele-text" data-region="tele-text" contenteditable="true">{{script}}</div>
+    </div>
+  </section>
+
+  <section class="storyflow-vs-main">
+    <div class="storyflow-vs-stage">
+      <canvas class="storyflow-vs-wave" data-region="waveform" width="640" height="120"></canvas>
+      <div class="storyflow-vs-hint" data-region="hint">
+        <i class="fa-solid fa-microphone-lines"></i>
+        <p>{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.EmptyHint"}}</p>
+      </div>
+    </div>
+    <div class="storyflow-vs-transport">
+      <button type="button" data-action="record" class="storyflow-vs-rec">
+        <i class="fa-solid fa-circle"></i> <span data-region="rec-label">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Record"}}</span>
+      </button>
+      <button type="button" data-action="stop" class="storyflow-vs-stop" disabled><i class="fa-solid fa-stop"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Stop"}}</button>
+      <button type="button" data-action="preview" class="storyflow-vs-preview" disabled><i class="fa-solid fa-play"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Preview"}}</button>
+      <span class="storyflow-vs-time" data-region="time">0:00 / 0:00</span>
+      <span class="storyflow-vs-status" data-region="status"></span>
+    </div>
+  </section>
+
+  <aside class="storyflow-vs-rack">
+    <fieldset class="storyflow-vs-edit">
+      <legend><i class="fa-solid fa-sliders"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Edit"}}</legend>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.TrimStart"}}<span class="storyflow-vs-val" data-readout="trimStart">0:00</span></span>
+        <input type="range" name="trimStart" min="0" max="1000" step="1" value="0" />
+      </label>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.TrimEnd"}}<span class="storyflow-vs-val" data-readout="trimEnd">0:00</span></span>
+        <input type="range" name="trimEnd" min="0" max="1000" step="1" value="1000" />
+      </label>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Speed"}}<span class="storyflow-vs-val" data-readout="speed">1.00×</span></span>
+        <input type="range" name="speed" min="0.5" max="2" step="0.05" value="1" />
+      </label>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Volume"}}<span class="storyflow-vs-val" data-readout="gain">100%</span></span>
+        <input type="range" name="gain" min="0" max="150" step="1" value="100" />
+      </label>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.FadeIn"}}<span class="storyflow-vs-val" data-readout="fadeIn">0.0s</span></span>
+        <input type="range" name="fadeIn" min="0" max="3" step="0.1" value="0" />
+      </label>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.FadeOut"}}<span class="storyflow-vs-val" data-readout="fadeOut">0.0s</span></span>
+        <input type="range" name="fadeOut" min="0" max="3" step="0.1" value="0" />
+      </label>
+      <label class="storyflow-vs-check"><input type="checkbox" name="normalize" /> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Normalize"}}</label>
+    </fieldset>
+    <fieldset class="storyflow-vs-fx">
+      <legend><i class="fa-solid fa-wand-magic-sparkles"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Effects"}}</legend>
+      <div class="storyflow-vs-fx-grid" data-region="fx-grid">
+        {{#each presets}}
+          <button type="button" class="storyflow-vs-fx-btn{{#if this.isDefault}} is-active{{/if}}" data-action="pickPreset" data-preset="{{this.id}}">{{this.label}}</button>
+        {{/each}}
+      </div>
+      <label class="storyflow-vs-slider">
+        <span class="storyflow-vs-slabel">{{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Intensity"}}<span class="storyflow-vs-val" data-readout="intensity">50%</span></span>
+        <input type="range" name="intensity" min="0" max="1" step="0.05" value="0.5" />
+      </label>
+    </fieldset>
+  </aside>
+
+  <footer class="storyflow-vs-foot">
+    <button type="button" data-action="reset"><i class="fa-solid fa-arrow-rotate-left"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.Reset"}}</button>
+    <button type="button" data-action="save" class="storyflow-vs-save" disabled>
+      <i class="fa-solid fa-floppy-disk"></i> {{localize "STORYFLOW_DUNGEONS_LAB.VoiceStudio.SaveInsert"}}
+    </button>
+  </footer>
+</div>

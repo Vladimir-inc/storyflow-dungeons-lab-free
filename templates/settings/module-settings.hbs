@@ -1,0 +1,318 @@
+{{!-- Окно настроек модуля: вкладки General/Calendar/Factions/Trader/Overlay, либо закрытый вид для тех, кто не ГМ и не ассистент ГМ. --}}
+<div class="storyflow-ms-root">
+  {{#if isGM}}
+    <nav class="storyflow-ms-tabs">
+      <a class="ms-tab {{#if isGeneralTab}}active{{/if}}" data-action="switchTab" data-tabid="general">
+        <i class="fa-solid fa-gear"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabGeneral"}}
+      </a>
+      <a class="ms-tab {{#if isCalendarTab}}active{{/if}}" data-action="switchTab" data-tabid="calendar">
+        <i class="fa-solid fa-calendar-days"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabCalendar"}}
+      </a>
+      <a class="ms-tab {{#if isFactionsTab}}active{{/if}}" data-action="switchTab" data-tabid="factions">
+        <i class="fa-solid fa-shield-halved"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabFactions"}}
+      </a>
+      <a class="ms-tab {{#if isTraderTab}}active{{/if}}" data-action="switchTab" data-tabid="trader">
+        <i class="fa-solid fa-coins"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabTrader"}}
+      </a>
+      <a class="ms-tab {{#if isOverlayTab}}active{{/if}}" data-action="switchTab" data-tabid="overlay">
+        <i class="fa-solid fa-masks-theater"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabOverlay"}}
+      </a>
+    </nav>
+
+    <div class="storyflow-ms-body">
+      {{#if isGeneralTab}}
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="moduleEnabled" {{#if moduleEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.ModuleEnabled"}}
+          </label>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmPermissionLevel"}}</label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmPermissionLevelHint"}}</p>
+          <select name="settingsAccessLevel">
+            <option value="gm" {{#if (eq settingsAccessLevel "gm")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmPermissionGmOnly"}}
+            </option>
+            <option value="assistant" {{#if (eq settingsAccessLevel "assistant")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmPermissionAssistant"}}
+            </option>
+          </select>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="compactMode" {{#if compactMode}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.CompactRows"}}
+          </label>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="debugLogging" {{#if debugLogging}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.DebugLogging"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.DebugLoggingHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="allowChoiceVoting" {{#if allowChoiceVoting}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.AllowChoiceVoting"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.AllowChoiceVotingHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="graphActorLinksEnabled" {{#if graphActorLinksEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.GraphActorLinksEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.GraphActorLinksEnabledHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="questBoardEnabled" {{#if questBoardEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.QuestBoardEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.QuestBoardEnabledHint"}}</p>
+        </div>
+      {{/if}}
+
+      {{#if isCalendarTab}}
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="calendarEnabled" {{#if calendarEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarEnabledHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="calendarWidget" {{#if calendarWidget}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarWidget"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarWidgetHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="calendarSceneWeather" {{#if calendarSceneWeather}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarSceneWeather"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.CalendarSceneWeatherHint"}}</p>
+        </div>
+
+        <div class="ms-scrub-head">
+          <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i>
+          <span>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubSection"}}</span>
+        </div>
+
+        <div class="ms-field">
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubHint"}}</p>
+          <div class="ms-range-row">
+            <label for="sf-scrub-sens">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubSensitivity"}}</label>
+            <input id="sf-scrub-sens" class="ms-range" type="range" name="scrubSensitivity"
+              min="{{scrubSensMin}}" max="{{scrubSensMax}}" step="0.25" value="{{scrubSensitivity}}" />
+            <span class="ms-range-val" data-scrub-readout>{{scrubSensText}}</span>
+          </div>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="scrubGrow" {{#if scrubGrow}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubGrow"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubGrowHint"}}</p>
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="scrubSnap" {{#if scrubSnap}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubSnap"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.ScrubSnapHint"}}</p>
+        </div>
+
+        <div class="ms-scrub-head">
+          <i class="fa-solid fa-forward" aria-hidden="true"></i>
+          <span>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TimeTraySection"}}</span>
+        </div>
+
+        <div class="ms-field">
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TimeTrayHint"}}</p>
+          {{#each timeStepRows}}
+            <div class="ms-step-row">
+              <label class="ms-step-enable" data-tooltip="{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TimeStepEnable"}}">
+                <input type="checkbox" name="stepEnabled.{{this.index}}" {{#if this.enabled}}checked{{/if}} />
+              </label>
+              <input type="number" class="ms-step-amount" min="1" step="1" name="stepAmount.{{this.index}}" value="{{this.amount}}" />
+              <select class="ms-step-unit" name="stepUnit.{{this.index}}">
+                {{#each this.units}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+                {{/each}}
+              </select>
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if isFactionsTab}}
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="factionsEnabled" {{#if factionsEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.FactionsEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.FactionsEnabledHint"}}</p>
+        </div>
+
+        <div class="ms-field-row">
+          <div class="ms-field">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepMin"}}</label>
+            <input type="number" name="repMin" value="{{repMin}}" step="1" />
+          </div>
+          <div class="ms-field">
+            <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepMax"}}</label>
+            <input type="number" name="repMax" value="{{repMax}}" step="1" />
+          </div>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepTiers"}}</label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepTiersHint"}}</p>
+          <table class="trc-table">
+            <thead>
+              <tr>
+                <th>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepTierName"}}</th>
+                <th>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.RepTierMin"}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each repTierRows}}
+                <tr>
+                  <td class="trc-tier"><span class="trc-dot" style="background: {{this.color}};"></span> {{this.label}}</td>
+                  <td><input type="number" name="tierMin.{{this.id}}" value="{{this.minValue}}" step="1" /></td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      {{/if}}
+
+      {{#if isTraderTab}}
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="traderEnabled" {{#if traderEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderEnabledHint"}}</p>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderBuybackPct"}}</label>
+          <input type="number" name="traderBuybackPct" value="{{traderBuybackPct}}" min="0" max="100" step="1" />
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderBuybackPctHint"}}</p>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRep"}}</label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRepHint"}}</p>
+          <table class="trc-table">
+            <thead>
+              <tr>
+                <th>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRepTier"}}</th>
+                <th>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRepMultiplier"}}</th>
+                <th>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRepRefuse"}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each traderRepRows}}
+                <tr>
+                  <td class="trc-tier"><span class="trc-dot" style="background: {{this.color}};"></span> {{this.label}}</td>
+                  <td><input type="number" name="mult.{{this.id}}" value="{{this.multiplier}}" step="0.05" min="0" /></td>
+                  <td><input type="checkbox" name="refuse.{{this.id}}" {{#if this.refuse}}checked{{/if}} /></td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      {{/if}}
+
+      {{#if isOverlayTab}}
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="overlayEnabled" {{#if overlayEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.OverlayEnabled"}}
+          </label>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.OverlayStyle"}}</label>
+          <select name="overlayStyle">
+            <option value="parchment" {{#if (eq overlayStyle "parchment")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.OverlayStyleParchment"}}
+            </option>
+            <option value="leather" disabled {{#if (eq overlayStyle "leather")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.OverlayStyleLeather"}}
+            </option>
+            <option value="minimal" disabled {{#if (eq overlayStyle "minimal")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.OverlayStyleMinimal"}}
+            </option>
+          </select>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.NotifDuration"}}</label>
+          <input type="number" name="notifDuration" value="{{notifDuration}}" min="1" max="60" />
+        </div>
+
+        <div class="ms-field ms-inline">
+          <label>
+            <input type="checkbox" name="secretRevealEnabled" {{#if secretRevealEnabled}}checked{{/if}} />
+            {{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretRevealEnabled"}}
+          </label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretRevealEnabledHint"}}</p>
+        </div>
+
+        <div class="ms-field">
+          <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretGlowStyle"}}</label>
+          <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretGlowStyleHint"}}</p>
+          <select name="secretGlowStyle">
+            <option value="halo" {{#if (eq secretGlowStyle "halo")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretGlowHalo"}}
+            </option>
+            <option value="radiant" {{#if (eq secretGlowStyle "radiant")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretGlowRadiant"}}
+            </option>
+            <option value="pulse" {{#if (eq secretGlowStyle "pulse")}}selected{{/if}}>
+              {{localize "STORYFLOW_DUNGEONS_LAB.Settings.SecretGlowPulse"}}
+            </option>
+          </select>
+        </div>
+      {{/if}}
+    </div>
+
+    <footer class="ms-footer">
+      <button type="button" data-action="resetDefaults">
+        <i class="fa-solid fa-rotate-left"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.ModuleSettingsReset"}}
+      </button>
+      <button type="button" data-action="save">
+        <i class="fa-solid fa-floppy-disk"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.ModuleSettingsSave"}}
+      </button>
+    </footer>
+  {{else}}
+    <div class="ms-locked">
+      <i class="fa-solid fa-lock"></i>
+      <p class="ms-locked-title">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmOnlyTitle"}}</p>
+      <p class="ms-locked-body">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.GmOnlyBody"}}</p>
+    </div>
+    <footer class="ms-footer ms-footer-end">
+      <button type="button" data-action="close">
+        {{localize "STORYFLOW_DUNGEONS_LAB.Settings.Close"}}
+      </button>
+    </footer>
+  {{/if}}
+</div>

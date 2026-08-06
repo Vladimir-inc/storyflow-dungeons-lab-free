@@ -1,0 +1,80 @@
+Copyright (c) 2026 Dungeons Lab. All rights reserved.
+
+This software ("StoryFlow Dungeons Lab Free", the "Module") is a module for Foundry
+Virtual Tabletop, distributed free of charge for use in tabletop role-playing games
+run on the Foundry Virtual Tabletop platform.
+
+## Permitted use
+
+You are granted a free, non-exclusive license to:
+  - Download, install, and use this Module, unmodified, in any number of
+    Foundry Virtual Tabletop worlds, for personal or commercial game-running
+    purposes (e.g. paid game-mastering services).
+  - Author, use, and share your own StoryFlow graphs, quests, traders, and other
+    content created with the Module. Content you author is yours.
+  - Report bugs, request features, and submit patches via the project's
+    issue tracker or the Dungeons Lab Discord.
+
+## Reserved rights
+
+Except as explicitly permitted above, all rights are reserved. Without prior
+written permission from Dungeons Lab, you may NOT:
+  - Copy, redistribute, mirror, or rehost the source code, compiled bundle,
+    or any part of this Module outside of the official distribution channels
+    (the official Patreon page, GitHub repository, and Foundry VTT package listing).
+  - Modify, decompile, or create derivative works based on this Module and
+    distribute them, whether under the same name or a different name.
+  - Sell, sublicense, rent, or otherwise commercialize this Module or any
+    derivative of it.
+  - Remove or alter any copyright, attribution, or branding notices
+    contained in the Module.
+
+## Artwork and media assets
+
+All files under `assets/images/` are original works created by Dungeons Lab and
+are protected by copyright. They are licensed to you **only** as an inseparable
+part of this Module, for use inside the Module itself. They are not free assets,
+not public domain, and not an asset pack.
+
+This applies in particular to:
+
+  - **The animated dragon** (`assets/images/guide/` - the `.webm` animation
+    frames and their accompanying stills). You may NOT extract, rip, export,
+    re-encode, re-upload, resell, sublicense, redistribute, or otherwise
+    separate this asset from the Module, whether on its own, as part of an
+    asset pack, in another module, module template, game, video, stream
+    overlay, NFT, dataset, or any other product - free or paid. Using it as
+    a source for, or as training data in, generative-AI models is likewise
+    prohibited. This restriction applies to the asset **individually**, even
+    where redistribution of the Module as a whole might otherwise be discussed.
+
+  - **The Dungeons Lab logo** (`assets/images/dungeons-lab-logo-256.png` and any
+    other Dungeons Lab logo, wordmark, or branding contained in the Module).
+    The logo was created by Dungeons Lab and is our copyrighted work and our
+    trademark. It may not be copied, modified, recolored, redrawn, or used to
+    identify, endorse, or brand any product, service, module, or community
+    other than Dungeons Lab's own, without prior written permission.
+
+Unmodified in-game use of these assets while running the Module is permitted.
+Screenshots and video of the Module in normal use (reviews, tutorials, actual
+plays, streams) are permitted and encouraged. Everything else requires prior
+written permission from Dungeons Lab.
+
+## No warranty
+
+This Module is provided "as is", without warranty of any kind, express or
+implied. In no event shall Dungeons Lab be liable for any claim, damages, or
+other liability arising from the use of this Module.
+
+## Foundry Virtual Tabletop
+
+This license governs Dungeons Lab's original source code only. It does not
+grant any rights to the Foundry Virtual Tabletop software itself, which
+remains subject to its own End User License Agreement
+(https://foundryvtt.com/article/license/). Use of this Module requires a
+valid, licensed installation of Foundry Virtual Tabletop.
+
+## Contact
+
+For permissions, licensing questions, or collaboration inquiries, reach out
+via the Dungeons Lab Discord: https://discord.gg/MUxsQCf587

@@ -1,0 +1,102 @@
+{{!-- Панель инструментов редактора холста: заголовок с идентичностью, палитра добавления узлов, сохранение и удаление. --}}
+<nav class="storyflow-toolbar">
+  <div class="storyflow-toolbar-head">
+    <div class="storyflow-toolbar-medallion"><i class="fa-solid fa-diagram-project"></i></div>
+    <div class="storyflow-toolbar-identity">
+      <button type="button" class="storyflow-toolbar-name" data-action="renamePage"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.RenamePage'}}">{{graphName}}</button>
+      <div class="storyflow-toolbar-meta">
+        <span class="storyflow-toolbar-count">{{localize "STORYFLOW_DUNGEONS_LAB.Canvas.NodeCount" count=nodeCount}}</span>
+        {{#if isTemplate}}
+          <span class="storyflow-toolbar-badge">{{localize "STORYFLOW_DUNGEONS_LAB.Canvas.TemplateBadge"}}</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="storyflow-toolbar-groups">
+    <div class="storyflow-toolbar-group">
+      <button type="button" class="storyflow-add-node-btn" data-action="openPalette">
+        <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Canvas.AddNode"}}
+      </button>
+      <button type="button" class="storyflow-add-group-btn" data-action="addGroup"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.AddGroup'}}">
+        <i class="fa-solid fa-object-group"></i>
+      </button>
+    </div>
+    <div class="storyflow-toolbar-group">
+      <button type="button" class="storyflow-find-node-btn" data-action="openSearch"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.FindNode'}}">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button type="button" class="storyflow-maximize-btn" data-action="toggleMaximize"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.FullScreen'}}">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+    <div class="storyflow-toolbar-group">
+      <button type="button" data-action="undo" disabled
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Undo'}}">
+        <i class="fa-solid fa-rotate-left"></i>
+      </button>
+      <button type="button" data-action="redo" disabled
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Redo'}}">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+    </div>
+    <div class="storyflow-toolbar-group">
+      <button type="button" data-action="createTemplate"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.CreateButton'}}">
+        <i class="fa-solid fa-shapes"></i>
+      </button>
+      <button type="button" data-action="openTemplateLibrary"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Templates.LibraryButton'}}">
+        <i class="fa-solid fa-layer-group"></i>
+      </button>
+      <button type="button" class="storyflow-guide-btn" data-action="openNodeGuide"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Tutorial.WindowTitle'}}">
+        <i class="fa-solid fa-graduation-cap"></i> {{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.GuideButton'}}
+      </button>
+    </div>
+    {{#unless isTemplate}}
+      <div class="storyflow-toolbar-group">
+        <select class="storyflow-graph-category-select"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.Editor.CategoryLabel'}}">
+          <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Editor.NoCategory"}}</option>
+          {{#each categoryOptions}}
+            <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+          <option value="__create__">{{localize "STORYFLOW_DUNGEONS_LAB.Editor.NewCategory"}}</option>
+        </select>
+      </div>
+      <div class="storyflow-toolbar-group">
+        <button type="button" data-action="importGraph"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Import'}}">
+          <i class="fa-solid fa-file-import"></i>
+        </button>
+        <button type="button" data-action="exportGraph"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Export'}}">
+          <i class="fa-solid fa-file-export"></i>
+        </button>
+      </div>
+    {{/unless}}
+    <div class="storyflow-toolbar-group">
+      {{#if fieldEditorEnabled}}
+        <button type="button" data-action="openFieldEditor"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.FieldEditor.Open'}}">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+      {{/if}}
+      <button type="button" data-action="duplicateSelected" title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Duplicate'}}">
+        <i class="fa-solid fa-clone"></i>
+      </button>
+      <button type="button" data-action="deleteSelected" title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.DeleteSelected'}}">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+    <div class="storyflow-toolbar-group is-commit">
+      <button type="button" data-action="saveGraph">
+        <i class="fa-solid fa-floppy-disk"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Canvas.Save"}}
+      </button>
+    </div>
+  </div>
+</nav>

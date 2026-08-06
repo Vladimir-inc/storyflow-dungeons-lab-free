@@ -1,0 +1,45 @@
+<form class="storyflow-day-event">
+  <p class="de-date">{{dateText}}</p>
+  <div class="de-row">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.EventTime"}}</label>
+    <input type="number" name="hour" value="{{hour}}" min="0" max="23" step="1"> :
+    <input type="number" name="minute" value="{{minute}}" min="0" max="59" step="1">
+  </div>
+  <div class="de-row">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.EventLabel"}}</label>
+    <input type="text" name="label" value="{{label}}" placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.EventLabelPh'}}">
+  </div>
+  <div class="de-kinds">
+    <label class="{{#if isNotification}}is-on{{/if}}"><input type="radio" name="kind" value="notification" {{#if isNotification}}checked{{/if}}><i class="fa-solid fa-bell" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.KindNotification"}}</label>
+    <label class="{{#if isGraph}}is-on{{/if}}"><input type="radio" name="kind" value="graph" {{#if isGraph}}checked{{/if}}><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.KindGraph"}}</label>
+  </div>
+  {{#if isNotification}}
+  <div class="de-section">
+    <textarea name="text" rows="3" placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.NotifTextPh'}}">{{text}}</textarea>
+    <div class="de-row">
+      <label>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Audience"}}</label>
+      <select name="audience">
+        <option value="gm" {{#if audienceGm}}selected{{/if}}>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.AudienceGm"}}</option>
+        <option value="all" {{#if audienceAll}}selected{{/if}}>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.AudienceAll"}}</option>
+      </select>
+    </div>
+  </div>
+  {{else}}
+  <div class="de-section">
+    <div class="de-graphmode">
+      <label class="{{#if createNew}}is-on{{/if}}"><input type="radio" name="graphMode" value="create" {{#if createNew}}checked{{/if}}>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.GraphCreate"}}</label>
+      <label class="{{#unless createNew}}is-on{{/unless}}"><input type="radio" name="graphMode" value="pick" {{#unless createNew}}checked{{/unless}}>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.GraphPick"}}</label>
+    </div>
+    {{#if createNew}}
+    <input type="text" name="graphName" value="{{graphName}}">
+    {{else}}
+    <select name="pageUuid">{{#each graphPages}}<option value="{{this.uuid}}" {{#if this.on}}selected{{/if}}>{{this.name}}</option>{{/each}}</select>
+    <button type="button" data-action="editGraph" class="de-edit-graph"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.EditGraph"}}</button>
+    {{/if}}
+  </div>
+  {{/if}}
+  <div class="de-actions">
+    <button type="button" data-action="save" class="cal-primary">{{saveLabel}}</button>
+    <button type="button" data-action="cancel">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Cancel"}}</button>
+  </div>
+</form>

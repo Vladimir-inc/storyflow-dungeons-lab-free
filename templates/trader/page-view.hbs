@@ -1,0 +1,50 @@
+{{!-- Просмотр страницы торговца - баровианская раскладка с упором на фракцию (спека от 2026-07-03).
+     Цвет фракции приходит как --trader-faction-color; чипы показывают таймеры пополнения,
+     вместимость (текущая / максимум) и блокировки по репутации для каждой строки. --}}
+<div class="storyflow-trader-view" {{#if faction}}style="--trader-faction-color: {{faction.color}}"{{/if}}>
+  <div class="tv-banner"></div>
+  <header class="tv-head">
+    <span class="tv-portrait">
+      {{#if portraitPath}}<img src="{{portraitPath}}" alt="" />{{else}}<i class="fa-solid fa-store" aria-hidden="true"></i>{{/if}}
+    </span>
+    <div class="tv-title">
+      <div class="tv-name-row">
+        <span class="tv-name">{{traderName}}</span>
+        {{#if faction}}
+          <span class="tv-chip">
+            {{#if faction.img}}<img class="tv-crest" src="{{faction.img}}" alt="" />{{/if}}{{faction.name}}
+          </span>
+        {{/if}}
+      </div>
+      <span class="tv-sub">{{#if faction.location}}{{faction.location}} · {{/if}}{{restockPolicy}}</span>
+    </div>
+    <button type="button" class="tv-open-shop" data-action="openShop">
+      <i class="fa-solid fa-store" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.OpenShop"}}
+    </button>
+  </header>
+
+  {{#if items.length}}
+    <ul class="tv-rows">
+      {{#each items}}
+        <li class="tv-row {{#if this.missing}}is-missing{{/if}} {{#unless this.effective}}is-empty{{/unless}}">
+          <span class="tv-icon">
+            {{#if this.img}}<img src="{{this.img}}" alt="" />{{else}}<i class="fa-solid fa-box" aria-hidden="true"></i>{{/if}}
+          </span>
+          <span class="tv-item-name">
+            {{#if this.missing}}{{localize "STORYFLOW_DUNGEONS_LAB.Trader.MissingItem"}}{{else}}{{this.name}}{{/if}}
+          </span>
+          {{#if this.lockLabel}}
+            <span class="tv-lock"><i class="fa-solid fa-lock" aria-hidden="true"></i>{{this.lockLabel}}</span>
+          {{/if}}
+          {{#if this.restockLabel}}
+            <span class="tv-restock"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>{{this.restockLabel}}</span>
+          {{/if}}
+          <span class="tv-price">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.PriceGp" price=this.price}}</span>
+          <span class="tv-cap {{#unless this.effective}}is-zero{{/unless}}">{{this.capacityLabel}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p class="tv-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Empty"}}</p>
+  {{/if}}
+</div>

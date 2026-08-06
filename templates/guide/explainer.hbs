@@ -1,0 +1,38 @@
+{{!-- Страницы пояснений тура (см. guide-explainer-app.mjs). --}}
+<div class="storyflow-guide-explainer-body">
+  <video
+    class="storyflow-guide-explainer-mascot {{mascotSide}} {{#if departing}}is-departing{{/if}}"
+    src="{{mascotSrc}}"
+    autoplay
+    muted
+    {{#unless departing}}loop{{/unless}}
+    playsinline
+    aria-hidden="true"
+  ></video>
+
+  <p class="storyflow-guide-explainer-kicker">{{kicker}}</p>
+  <h2 class="storyflow-guide-explainer-heading">{{title}}</h2>
+  <p class="storyflow-guide-explainer-text">{{body}}</p>
+  <p class="storyflow-guide-explainer-flavor">{{flavor}}</p>
+
+  <footer class="storyflow-guide-explainer-footer">
+    <div class="storyflow-guide-explainer-dots" aria-hidden="true">
+      {{#each dots}}
+        <span class="storyflow-guide-dot {{#if this}}is-reached{{/if}}"></span>
+      {{/each}}
+    </div>
+    {{#unless isFirst}}
+      <button type="button" class="storyflow-guide-btn-bare" data-action="prevPage">
+        {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Explainer.Back"}}
+      </button>
+    {{/unless}}
+    <button type="button" class="storyflow-guide-btn-primary" data-action="nextPage">
+      {{#if isLast}}
+        {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Explainer.Start"}}
+      {{else}}
+        {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Explainer.Next"}}
+      {{/if}}
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </button>
+  </footer>
+</div>

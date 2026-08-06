@@ -1,0 +1,56 @@
+<div class="gm-scene-dashboard-body">
+  {{#if hasScene}}
+  <header class="gsd-header">
+    <div class="gsd-scene" title="{{sceneName}}">{{sceneName}}</div>
+    <div class="gsd-counts">
+      <span class="gsd-count">{{total}} {{i18n.tokens}}</span>
+      {{#if hiddenCount}}
+      <span class="gsd-count gsd-hidden-count" title="{{i18n.toggleHidden}}">
+        <i class="fa-solid fa-eye-slash"></i> {{hiddenCount}}
+      </span>
+      {{/if}}
+    </div>
+  </header>
+
+  {{#if groups.length}}
+  <div class="gsd-groups">
+    {{#each groups}}
+    <section class="gsd-group" style="--gsd-accent: {{this.accent}};">
+      <h3 class="gsd-group-head">
+        <span class="gsd-group-name">{{this.label}}</span>
+        <span class="gsd-group-count">{{this.count}}</span>
+      </h3>
+      <ul class="gsd-token-list">
+        {{#each this.tokens}}
+        <li class="gsd-token {{#if this.controlled}}controlled{{/if}} {{#if this.hidden}}is-hidden{{/if}}"
+            data-token-id="{{this.id}}">
+          <button type="button" class="gsd-token-name" data-action="selectToken"
+                  title="{{../../i18n.select}}">
+            {{#if this.hidden}}<i class="fa-solid fa-eye-slash gsd-hidden-mark"></i>{{/if}}
+            <span class="gsd-name-text">{{this.name}}</span>
+          </button>
+          <span class="gsd-token-actions">
+            <button type="button" class="gsd-act" data-action="openSheet" title="{{../../i18n.openSheet}}">
+              <i class="fa-solid fa-address-card"></i>
+            </button>
+            <button type="button" class="gsd-act" data-action="pingToken" title="{{../../i18n.ping}}">
+              <i class="fa-solid fa-location-crosshairs"></i>
+            </button>
+            <button type="button" class="gsd-act" data-action="toggleHidden" title="{{../../i18n.toggleHidden}}">
+              <i class="fa-solid {{#if this.hidden}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+            </button>
+          </span>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/each}}
+  </div>
+  {{else}}
+  <p class="gsd-empty">{{i18n.empty}}</p>
+  {{/if}}
+
+  {{else}}
+  <p class="gsd-empty">{{i18n.noScene}}</p>
+  {{/if}}
+</div>

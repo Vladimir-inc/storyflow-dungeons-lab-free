@@ -1,0 +1,12 @@
+// __TYPE__ node package styles - ONLY this node's rules, scoped to its own DOM
+// surfaces (overlay body / inspector sections). Reference the shared tokens in
+// styles/_variables.less; never hardcode colors. The graph-node chrome is drawn by
+// LiteGraph in canvas2d and is NOT styleable from LESS - this file covers the DOM
+// surface only. Picked up by styles/_nodes.less (run: npm run nodes:gen).
+
+[data-sf-node="__TYPE__"] {
+  // Overlay body card - starts from the shared overlay tokens; override per node here.
+  background: @sf-overlay-card-bg;
+  border: 1px solid @sf-overlay-card-border;
+  color: @sf-overlay-text;
+}

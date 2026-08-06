@@ -1,0 +1,34 @@
+{{!-- Тело браузера графов. Рендерится единственным PART "body"; поиск перерисовывает именно его. --}}
+<div class="storyflow-graph-browser">
+  <input type="search" class="sf-gb-search" name="sfGbSearch"
+         placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.GraphBrowser.Search'}}" value="{{query}}" />
+
+  {{#if isEmpty}}
+    <p class="sf-gb-empty">{{localize 'STORYFLOW_DUNGEONS_LAB.GraphBrowser.Empty'}}</p>
+  {{/if}}
+
+  {{#each sections}}
+    {{#if this.rows.length}}
+      <section class="sf-gb-section">
+        <h3 class="sf-gb-section-title">{{localize this.titleKey}} <span class="sf-gb-count">{{this.rows.length}}</span></h3>
+        <ul class="sf-gb-list">
+          {{#each this.rows}}
+            <li class="sf-gb-row" data-action="openGraph" data-page-uuid="{{this.pageUuid}}" draggable="true">
+              {{#if this.isRunning}}
+                <span class="sf-gb-dot sf-gb-dot-running"></span>
+              {{else if this.isSleeping}}
+                <i class="fa-solid fa-moon sf-gb-icon-sleeping" data-tooltip="{{this.sleepLabel}}"></i>
+              {{else}}
+                <i class="fa-solid fa-diagram-project"></i>
+              {{/if}}
+              <span class="sf-gb-name">{{this.name}}</span>
+              {{#if this.label}}<span class="sf-gb-label">{{this.label}}</span>{{/if}}
+              {{#if this.isDisabled}}<i class="fa-solid fa-lock sf-gb-locked"></i>{{/if}}
+              <span class="sf-gb-nodes">{{localize 'STORYFLOW_DUNGEONS_LAB.GraphBrowser.Nodes' count=this.nodeCount}}</span>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{/if}}
+  {{/each}}
+</div>

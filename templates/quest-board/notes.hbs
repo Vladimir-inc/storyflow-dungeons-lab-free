@@ -1,0 +1,130 @@
+{{!-- Вкладка заметок: Личные (приватные для каждого; ГМ может прочесть любую) и Групповые (общие).
+      Боковая панель при свечах: подвкладки, строки заметок и закреплённая Новая заметка; деталь = страница блокнота. --}}
+<section class="storyflow-qb-content qb-notes {{#if isActive}}active{{/if}}">
+  <div class="qb-body">
+    <aside class="qb-side">
+      <div class="qb-subtabs">
+        <button type="button" class="qb-subtab {{#if (eq notesSubTab 'personal')}}active{{/if}}" data-action="notesSubTab" data-sub="personal">
+          <i class="fa-solid fa-lock"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Personal"}}
+        </button>
+        <button type="button" class="qb-subtab {{#if (eq notesSubTab 'party')}}active{{/if}}" data-action="notesSubTab" data-sub="party">
+          <i class="fa-solid fa-users"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Party"}}
+        </button>
+      </div>
+      {{#if isGM}}{{#if (eq notesSubTab 'personal')}}
+        <div class="qb-user-picker-wrap">
+          <select data-edit="personalUser" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.ViewNotebook'}}">
+            {{#each userOptions}}<option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>{{/each}}
+          </select>
+        </div>
+      {{/if}}{{/if}}
+
+      {{#if (eq notesSubTab 'personal')}}
+        <div class="qb-rows">
+          {{#each personalNotes}}
+            <div class="qb-row {{#if (eq this.uuid ../selectedPersonalNote.uuid)}}is-selected{{/if}}"
+                 data-action="selectNote" data-notekind="personal" data-uuid="{{this.uuid}}">
+              <i class="fa-solid fa-lock qb-row-icon"></i>
+              <div class="qb-row-main">
+                <div class="qb-row-name">{{this.name}}</div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        {{#if personalCanEdit}}
+          <div class="qb-note-new">
+            <button type="button" data-action="addNote" data-notekind="personal">
+              <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NewNote"}}
+            </button>
+          </div>
+        {{/if}}
+      {{else}}
+        <div class="qb-rows">
+          {{#each partyNotes}}
+            <div class="qb-row {{#if (eq this.uuid ../selectedPartyNote.uuid)}}is-selected{{/if}}"
+                 data-action="selectNote" data-notekind="party" data-uuid="{{this.uuid}}">
+              <i class="fa-solid fa-users qb-row-icon"></i>
+              <div class="qb-row-main">
+                <div class="qb-row-name">{{this.name}}</div>
+                {{#if this.lastBy}}<div class="qb-row-meta">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.LastEdited"}} {{this.lastBy}}</div>{{/if}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="qb-note-new">
+          <button type="button" data-action="addNote" data-notekind="party">
+            <i class="fa-solid fa-plus"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NewNote"}}
+          </button>
+        </div>
+      {{/if}}
+    </aside>
+
+    {{#if (eq notesSubTab 'personal')}}
+      <div class="qb-note-detail" data-noteuuid="{{selectedPersonalNote.uuid}}">
+        {{#if selectedPersonalNote}}
+          {{#if selectedPersonalNote.canEdit}}
+            <input type="text" class="qb-note-title-input" data-edit="noteName" value="{{selectedPersonalNote.name}}"
+                   placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.NoteTitle'}}" />
+            <div class="qb-note-meta">
+              <i class="fa-solid fa-lock"></i>
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NotePrivate"}}</span>
+            </div>
+            <textarea class="qb-desc-edit qb-note-body" data-edit="noteContent"
+                      placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.NotePlaceholder'}}">{{selectedPersonalNote.content}}</textarea>
+            <div class="qb-note-actions">
+              <button type="button" class="qb-btn-danger" data-action="deleteNote" data-uuid="{{selectedPersonalNote.uuid}}">
+                <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.DeleteNote"}}
+              </button>
+            </div>
+          {{else}}
+            <div class="qb-title-row"><h2>{{selectedPersonalNote.name}}</h2></div>
+            <div class="qb-note-meta">
+              <i class="fa-solid fa-eye"></i>
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NoteReadOnly" name=personalViewUserName}}</span>
+            </div>
+            <div class="qb-description">{{{selectedPersonalNote.enrichedContent}}}</div>
+          {{/if}}
+        {{else}}
+          <div class="qb-empty-state">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <div class="qb-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyNotesTitle"}}</div>
+            <div class="qb-empty-text">
+              {{#if personalCanEdit}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyNotesText"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyNotesOther" name=personalViewUserName}}{{/if}}
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    {{else}}
+      <div class="qb-note-detail" data-noteuuid="{{selectedPartyNote.uuid}}">
+        {{#if selectedPartyNote}}
+          <input type="text" class="qb-note-title-input" data-edit="noteName" value="{{selectedPartyNote.name}}"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.NoteTitle'}}" />
+          <div class="qb-note-meta">
+            <i class="fa-solid fa-users"></i>
+            <span>{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.NoteShared"}}{{#if selectedPartyNote.lastBy}} · {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.LastEdited"}} {{selectedPartyNote.lastBy}}{{/if}}</span>
+          </div>
+          <textarea class="qb-desc-edit qb-note-body" data-edit="noteContent"
+                    placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.QuestBoard.NotePlaceholder'}}">{{selectedPartyNote.content}}</textarea>
+          <div class="qb-note-actions">
+            <button type="button" class="qb-btn-danger" data-action="deleteNote" data-uuid="{{selectedPartyNote.uuid}}">
+              <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.DeleteNote"}}
+            </button>
+          </div>
+        {{else}}
+          <div class="qb-empty-state">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <div class="qb-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyNotesTitle"}}</div>
+            <div class="qb-empty-text">{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.EmptyNotesText"}}</div>
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  <footer class="qb-footer">
+    <span class="qb-footer-note">
+      <i class="fa-solid {{#if isGM}}fa-crown{{else}}fa-check-to-slot{{/if}}"></i>
+      {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.FooterPlayer"}}{{/if}}
+    </span>
+  </footer>
+</section>

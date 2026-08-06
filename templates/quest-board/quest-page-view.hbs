@@ -1,0 +1,15 @@
+{{!-- Просмотр страницы квеста только для чтения (рендерится встроенно просмотрщиком журнала). --}}
+<div class="storyflow-quest-page">
+  <p><span class="qb-badge status-{{status}}">{{statusLabel}}</span></p>
+  {{#if objectives.length}}
+    <ul class="qb-objectives">
+      {{#each objectives}}
+        <li class="qb-objective {{#if this.done}}is-done{{/if}} {{#if this.hidden}}is-hidden{{/if}}">
+          <i class="fa-{{#if this.done}}solid fa-square-check{{else}}regular fa-square{{/if}}"></i>
+          <span>{{this.text}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  <div class="qb-description">{{{enrichedDescription}}}</div>
+</div>

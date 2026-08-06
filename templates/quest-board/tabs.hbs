@@ -1,0 +1,17 @@
+{{!-- Навигация по вкладкам Доски квестов (дизайн Dungeons LAB при свечах). --}}
+<nav class="storyflow-qb-tabs">
+  <a class="qb-tab {{#if (eq activeTab 'quests')}}active{{/if}}" data-action="switchTab" data-tabid="quests">
+    <i class="fa-solid fa-scroll"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Quests"}}
+  </a>
+  <a class="qb-tab {{#if (eq activeTab 'lore')}}active{{/if}}" data-action="switchTab" data-tabid="lore">
+    <i class="fa-solid fa-book"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Lore"}}
+  </a>
+  <a class="qb-tab {{#if (eq activeTab 'notes')}}active{{/if}}" data-action="switchTab" data-tabid="notes">
+    <i class="fa-solid fa-pen"></i> {{localize "STORYFLOW_DUNGEONS_LAB.QuestBoard.Notes"}}
+  </a>
+  {{!-- Фракции живут в отдельном Кодексе фракций - вкладки на доске нет, только кнопка. --}}
+  <button type="button" class="qb-codex-btn" data-action="openFactionCodex">
+    <i class="fa-solid fa-shield-halved"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Factions.Codex.OpenButton"}}
+    <i class="fa-solid fa-arrow-up-right-from-square qb-ext"></i>
+  </button>
+</nav>

@@ -1,0 +1,48 @@
+{{!-- Генератор отчёта об ошибке для диагностики. --}}
+<div class="storyflow-troubleshoot-body">
+  <p class="storyflow-tr-intro">
+    {{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Intro"}}
+  </p>
+
+  <section class="storyflow-tr-health">
+    <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Health"}}</h3>
+    <ul>
+      {{#each findings}}
+        <li class="storyflow-tr-finding is-{{this.cls}}">
+          <i class="fa-solid {{this.icon}}"></i> <span>{{this.msg}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="storyflow-tr-timeline">
+    <details>
+      <summary>{{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Timeline"}} ({{crumbCount}})</summary>
+      <ol class="storyflow-tr-crumbs">
+        {{#each timeline}}
+          <li><code>{{this.cat}}</code> {{this.msg}}</li>
+        {{/each}}
+      </ol>
+    </details>
+  </section>
+
+  <section class="storyflow-tr-report">
+    <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Report"}}</h3>
+    <textarea class="storyflow-tr-text" readonly rows="18" wrap="off">{{report}}</textarea>
+  </section>
+
+  <footer class="storyflow-tr-actions">
+    <button type="button" data-action="copyReport">
+      <i class="fa-solid fa-copy"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Copy"}}
+    </button>
+    <button type="button" data-action="downloadReport">
+      <i class="fa-solid fa-download"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Download"}}
+    </button>
+    <button type="button" data-action="refreshReport">
+      <i class="fa-solid fa-rotate"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.Refresh"}}
+    </button>
+    <button type="button" data-action="clearErrors" {{#unless errorCount}}disabled{{/unless}}>
+      <i class="fa-solid fa-trash"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Troubleshoot.ClearErrors"}} ({{errorCount}})
+    </button>
+  </footer>
+</div>

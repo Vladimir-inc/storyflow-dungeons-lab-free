@@ -1,0 +1,142 @@
+{{!-- "Делёж добычи" - распределение награды за квест (Design/Quest Reward Distribution.dc.html).
+      Рендерит последнее разосланное состояние сессии; ГМ правит, игроки поднимают руки.
+      ВАЖНО: part в AppV2 ОБЯЗАН рендерить один корневой элемент - поэтому всё лежит внутри .sfr-root. --}}
+<div class="sfr-root">
+<div class="sfr-quest-strip">
+  <i class="fa-solid fa-scroll"></i>
+  <span class="sfr-quest-name">{{questName}}</span>
+  <span class="sfr-complete-pill">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.QuestComplete"}}</span>
+</div>
+
+<div class="sfr-body">
+  <div class="sfr-left">
+    {{#if hasParty}}
+      <div class="sfr-card">
+        <div class="sfr-card-head">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.PartyRewards"}}</div>
+        <div class="sfr-party-rows">
+          {{#if xp}}
+            <div class="sfr-party-row">
+              <i class="fa-solid fa-star"></i>
+              <span class="sfr-party-label">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Experience"}}</span>
+              <span class="sfr-party-value">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.XpEach" xp=xp}}</span>
+            </div>
+          {{/if}}
+          {{#if factionName}}
+            <div class="sfr-party-row">
+              <i class="fa-solid fa-feather"></i>
+              <span class="sfr-party-label">{{factionName}}</span>
+              <span class="sfr-party-value is-rep">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Renown" amount=repLabel}}</span>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if hasGold}}
+      <div class="sfr-card sfr-gold">
+        <div class="sfr-card-head">
+          <span>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.GoldPool" pool=poolLabel}}</span>
+          {{#if isGM}}{{#unless distributed}}
+            <button type="button" class="sfr-btn" data-action="splitGold"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.SplitHint'}}">
+              <i class="fa-solid fa-scale-balanced"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Rewards.SplitEqually"}}
+            </button>
+          {{/unless}}{{/if}}
+        </div>
+        <div class="sfr-gold-rows">
+          {{#each goldRows}}
+            <div class="sfr-gold-row {{#unless this.included}}is-out{{/unless}}" data-userid="{{this.userId}}">
+              {{#if ../isGM}}
+                <input type="checkbox" {{#if this.included}}checked{{/if}} {{#if ../distributed}}disabled{{/if}}
+                       data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.IncludeHint'}}" />
+              {{/if}}
+              <span class="sfr-initial">{{this.initial}}</span>
+              <div class="sfr-gold-main">
+                <div class="sfr-gold-name">{{this.name}}</div>
+                <div class="sfr-gold-cls">{{this.cls}}</div>
+              </div>
+              {{#if ../isGM}}
+                <input type="number" min="0" value="{{this.amount}}" {{#if this.disabled}}disabled{{/if}} />
+              {{else}}
+                <span class="sfr-gold-amount">{{this.amountLabel}}</span>
+              {{/if}}
+              <span class="sfr-gp">gp</span>
+            </div>
+          {{/each}}
+        </div>
+        <div class="sfr-gold-foot">
+          <i class="fa-solid fa-coins"></i>
+          <span class="sfr-gold-foot-label">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.UnallocatedLabel"}}</span>
+          <span class="sfr-remaining {{remainingClass}}">{{remainingLabel}}</span>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="sfr-right">
+    {{#if items.length}}
+      <div class="sfr-spoils-head">
+        <span>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Spoils" count=itemCount}}</span>
+        <span class="sfr-spoils-hint">
+          {{#if isGM}}{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.HintGM"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.HintPlayer"}}{{/if}}
+        </span>
+      </div>
+      {{#each items}}
+        <div class="sfr-item is-{{this.status}}">
+          <div class="sfr-item-head">
+            <span class="sfr-item-icon">{{#if this.img}}<img src="{{this.img}}" alt="" />{{else}}<i class="fa-solid fa-gem"></i>{{/if}}</span>
+            <div class="sfr-item-main">
+              <div class="sfr-item-name">{{this.name}} {{this.qtyLabel}}</div>
+              <div class="sfr-item-meta">{{this.meta}}</div>
+            </div>
+            <span class="sfr-status">{{this.statusLabel}}</span>
+          </div>
+          <div class="sfr-item-foot">
+            <span class="sfr-hands"><i class="fa-solid fa-hand"></i>{{this.handLabel}}</span>
+            {{#each this.claimants}}
+              {{#if ../../isGM}}
+                <button type="button" class="sfr-claimant {{#if this.assigned}}is-assigned{{/if}}"
+                        data-action="assignItem" data-idx="{{this.idx}}" data-userid="{{this.userId}}"
+                        data-tooltip="{{#if this.assigned}}{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.UnassignHint'}}{{else}}{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.AssignHint'}}{{/if}}">
+                  {{#if this.assigned}}<i class="fa-solid fa-check"></i>{{/if}}{{this.label}}
+                </button>
+              {{else}}
+                <span class="sfr-claimant {{#if this.assigned}}is-assigned{{/if}}">
+                  {{#if this.assigned}}<i class="fa-solid fa-check"></i>{{/if}}{{this.label}}
+                </span>
+              {{/if}}
+            {{/each}}
+            {{#if this.noHands}}<span class="sfr-no-hands">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.NoHands"}}</span>{{/if}}
+            <span class="sfr-spacer"></span>
+            {{#if this.showRollOff}}
+              <button type="button" class="sfr-rolloff-btn" data-action="rollOffItem" data-idx="{{this.idx}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Rewards.RollOffHint'}}">
+                <i class="fa-solid fa-dice-d20"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Rewards.RollOff"}}
+              </button>
+            {{/if}}
+            {{#if this.showRaiseHand}}
+              <button type="button" class="sfr-raise-btn {{#if this.mine}}is-raised{{/if}}"
+                      data-action="raiseHand" data-idx="{{this.idx}}">
+                <i class="fa-solid fa-hand"></i> {{this.raiseLabel}}
+              </button>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>
+
+<footer class="sfr-footer {{footerClass}}">
+  <span class="sfr-footer-note"><i class="{{footerIcon}}"></i>{{footerNote}}</span>
+  {{#if isGM}}
+    {{#unless distributed}}
+      <button type="button" class="sfr-btn" data-action="cancelDistribution">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Cancel"}}</button>
+    {{/unless}}
+    <button type="button" class="sfr-confirm-btn" data-action="confirmDistribution" {{#if distributed}}disabled{{/if}}>
+      <i class="fa-solid {{#if distributed}}fa-check{{else}}fa-gavel{{/if}}"></i>
+      {{#if distributed}}{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Distributed"}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Distribute"}}{{/if}}
+    </button>
+  {{/if}}
+</footer>
+</div>

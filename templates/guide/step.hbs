@@ -1,0 +1,111 @@
+{{!-- Карточка-подсказка шага тура и виджет со списком дел (см. guide-step-app.mjs).
+     ОДИН корневой элемент: HandlebarsApplicationMixin в v13 бросает
+     "Template part must render a single HTML element" на втором корне -
+     именно из-за этого окно оставалось невидимым четыре релиза подряд. --}}
+<div class="storyflow-guide-step-root">
+<section class="storyflow-guide-step" aria-live="polite">
+  <video
+    class="storyflow-guide-step-mascot"
+    src="modules/storyflow-dungeons-lab/assets/images/guide/ready.webm"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  ></video>
+
+  <div class="storyflow-guide-step-top">
+    <span class="storyflow-guide-step-kicker">{{kicker}}</span>
+    <span class="storyflow-guide-step-dots" aria-hidden="true">
+      {{#each dots}}
+        <span class="storyflow-guide-dot {{#if this}}is-done{{/if}}"></span>
+      {{/each}}
+    </span>
+    <button
+      type="button"
+      class="storyflow-guide-step-close"
+      data-action="closeCard"
+      title="{{localize "STORYFLOW_DUNGEONS_LAB.Guide.Step.CloseTooltip"}}"
+    >
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <h3 class="storyflow-guide-step-heading">{{title}}</h3>
+  <p class="storyflow-guide-step-text">{{body}}</p>
+
+  <div
+    class="storyflow-guide-step-hint {{#if waiting}}is-waiting{{/if}}"
+    {{#if waiting}}title="{{localize "STORYFLOW_DUNGEONS_LAB.Guide.Step.Waiting"}}"{{/if}}
+  >
+    <span class="storyflow-guide-step-hint-pending">
+      <i class="fa-solid fa-hand-pointer" aria-hidden="true"></i>
+      {{hint}}
+    </span>
+    <span class="storyflow-guide-step-hint-done">
+      <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Step.Completed"}}
+    </span>
+  </div>
+
+  <div class="storyflow-guide-step-actions">
+    <button type="button" class="storyflow-guide-btn-bare" data-action="skipTour">
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Step.Skip"}}
+    </button>
+    <button
+      type="button"
+      class="storyflow-guide-btn-ghost"
+      data-action="prevStep"
+      {{#unless canGoBack}}disabled{{/unless}}
+    >
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Step.Back"}}
+    </button>
+    <button type="button" class="storyflow-guide-btn-primary" data-action="nextStep">{{nextLabel}}</button>
+  </div>
+
+  <span class="storyflow-guide-step-pointer" aria-hidden="true"></span>
+</section>
+
+{{#if checklist}}
+  <aside class="storyflow-guide-todo">
+    <header class="storyflow-guide-todo-head">
+      <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+      <span class="storyflow-guide-todo-label">
+        {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Checklist.Title"}}
+      </span>
+      <span class="storyflow-guide-todo-count">{{checklist.counter}}</span>
+    </header>
+
+    <ul class="storyflow-guide-todo-rows">
+      {{#each checklist.rows}}
+        <li class="{{#if this.done}}is-done{{/if}} {{#if this.current}}is-current{{/if}}">
+          {{#if this.done}}
+            <i class="fa-solid fa-check" aria-hidden="true"></i>
+          {{else if this.current}}
+            <i class="fa-regular fa-circle-dot" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa-regular fa-circle" aria-hidden="true"></i>
+          {{/if}}
+          <span class="storyflow-guide-todo-text">{{this.label}}</span>
+          {{#if this.current}}
+            <span class="storyflow-guide-todo-pulse" aria-hidden="true"></span>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+
+    <div class="storyflow-guide-todo-bar">
+      <span style="width: {{checklist.progressPct}}%"></span>
+    </div>
+
+    <footer class="storyflow-guide-todo-foot">
+      <button type="button" class="storyflow-guide-btn-outline" data-action="skipTour">
+        <i class="fa-solid fa-circle-stop" aria-hidden="true"></i>
+        {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Checklist.Stop"}}
+      </button>
+    </footer>
+  </aside>
+{{/if}}
+
+</div>

@@ -1,0 +1,47 @@
+{{!-- Финальная карточка "поддержите авторов" (см. guide-support-app.mjs). ОДИН корневой элемент. --}}
+<div class="storyflow-guide-support-body">
+  <div class="storyflow-guide-support-stage">
+    <video
+      class="storyflow-guide-support-mascot"
+      src="{{mascotSrc}}"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+    <span class="storyflow-guide-heart h1" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M12 21s-7.5-4.9-10-9.2C.4 8.7 2 5 5.5 5c2 0 3.4 1.1 4.2 2.4h.1v-.1h.1v.1h.1v-.1h.1v.1h.1v-.1h.1C11.2 6.1 12.6 5 14.6 5 18 5 19.7 8.7 18 11.8 15.5 16.1 12 21 12 21z"/></svg>
+    </span>
+    <span class="storyflow-guide-heart h2" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 21s-7.5-4.9-10-9.2C.4 8.7 2 5 5.5 5c2 0 3.4 1.1 4.2 2.4h.1C11.2 6.1 12.6 5 14.6 5 18 5 19.7 8.7 18 11.8 15.5 16.1 12 21 12 21z"/></svg>
+    </span>
+    <span class="storyflow-guide-heart h3" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 21s-7.5-4.9-10-9.2C.4 8.7 2 5 5.5 5c2 0 3.4 1.1 4.2 2.4h.1C11.2 6.1 12.6 5 14.6 5 18 5 19.7 8.7 18 11.8 15.5 16.1 12 21 12 21z"/></svg>
+    </span>
+    <span class="storyflow-guide-heart h4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 21s-7.5-4.9-10-9.2C.4 8.7 2 5 5.5 5c2 0 3.4 1.1 4.2 2.4h.1C11.2 6.1 12.6 5 14.6 5 18 5 19.7 8.7 18 11.8 15.5 16.1 12 21 12 21z"/></svg>
+    </span>
+  </div>
+
+  <div class="storyflow-guide-support-kicker">
+    {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Support.Kicker"}}
+  </div>
+  <h2 class="storyflow-guide-support-heading">
+    {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Support.Heading"}}
+  </h2>
+  <p class="storyflow-guide-support-text">
+    {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Support.Body"}}
+  </p>
+
+  <div class="storyflow-guide-support-actions">
+    <button type="button" class="storyflow-guide-btn-bare" data-action="declineSupport">
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Support.Decline"}}
+    </button>
+    <button type="button" class="storyflow-guide-btn-primary" data-action="openKofi">
+      <i class="fa-solid fa-mug-hot" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Support.Kofi"}}
+    </button>
+  </div>
+</div>

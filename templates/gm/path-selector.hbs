@@ -1,0 +1,10 @@
+<div class="storyflow-path-selector-body">
+  {{#if prompt}}<p class="storyflow-path-prompt">{{prompt}}</p>{{/if}}
+  <div class="storyflow-path-list">
+    {{#each paths}}
+      <button type="button" class="storyflow-path-option" data-path-id="{{this.id}}">
+        {{#if this.label}}{{this.label}}{{else}}{{localize "STORYFLOW_DUNGEONS_LAB.PathSelector.Unnamed"}}{{/if}}
+      </button>
+    {{/each}}
+  </div>
+</div>

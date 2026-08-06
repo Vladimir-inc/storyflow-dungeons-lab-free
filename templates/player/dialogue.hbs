@@ -1,0 +1,202 @@
+{{!-- Кинематографичный оверлей: подложка, говорящий, реплика, управление. Чистый рендер
+      последнего кадра RENDER_STATE.
+      Основной текст состоит из двух слоёв: печатаемого (обычный текст, раскрываемый
+      печатной машинкой) и обогащённого (enriched HTML, показывается по завершении печати
+      через класс .typing-done) - JS никогда не собирает HTML-строки. --}}
+{{!-- Здесь нет класса появления: этот PART пересобирается на КАЖДОМ кадре RENDER_STATE, поэтому любая
+      анимация входа на нём проигрывалась бы каждый кадр (то есть чёрная вспышка между узлами).
+      Однократное на прогон проявление живёт на постоянном корне приложения в player-overlay.less. --}}
+<div class="storyflow-stage">
+  {{#if showCloseButton}}
+    <button type="button" class="storyflow-overlay-close"
+            aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Overlay.EndScene'}}"
+            data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Overlay.EndScene'}}">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  {{/if}}
+
+  {{#if backdropPath}}
+    <img class="storyflow-backdrop" src="{{backdropPath}}" alt="" />
+  {{/if}}
+
+  {{#if checkView}}
+    {{#if checkView.isResult}}{{#if checkView.dice}}
+      {{!-- Полноэкранные слои FX критов (на уровне сцены: transform панели проверки
+            сломал бы их position:fixed). Скрыты, пока драйвер FX-последовательности не раскроет
+            их на нужном шаге - JS только переключает `hidden`, но не строит HTML. --}}
+      <div class="storyflow-fx-screen storyflow-fx-screen-warn" data-fx="warn" hidden></div>
+      <div class="storyflow-fx-screen storyflow-fx-screen-explode" data-fx="explode" hidden></div>
+      <div class="storyflow-fx-screen storyflow-fx-screen-heaven" data-fx="succ-flash" hidden></div>
+      {{!-- Божественное свечение тоже живёт здесь: внутри панели проверки его ореол в 660px обрезается
+            в квадрат из-за overflow панели (артефакт "рама загораживает свет"). --}}
+      <div class="storyflow-fx-divine" data-fx="succ-glow" hidden><div></div></div>
+    {{/if}}{{/if}}
+    <div class="storyflow-check-panel is-{{checkView.phase}}">
+      <div class="storyflow-check-head">
+        <span class="storyflow-check-kind">{{localize checkView.kindLabel}}</span>
+        <span class="storyflow-check-key">{{checkView.key}}</span>
+        <span class="storyflow-check-dc">{{localize "STORYFLOW_DUNGEONS_LAB.Check.DC"}} {{checkView.dc}}</span>
+      </div>
+
+      {{#if checkView.isMulti}}
+        <div class="storyflow-check-progress">
+          {{localize "STORYFLOW_DUNGEONS_LAB.Check.StepOf" step=checkView.step count=checkView.count}}
+          · {{localize "STORYFLOW_DUNGEONS_LAB.Check.PassTally" pass=checkView.passSoFar}}
+        </div>
+      {{/if}}
+
+      {{#if checkView.isPrompt}}
+        {{#if checkView.showPicker}}
+          <div class="storyflow-check-pick">
+            <span class="storyflow-check-pick-label">{{localize "STORYFLOW_DUNGEONS_LAB.Check.WhoRolls"}}</span>
+            <div class="storyflow-check-candidates">
+              {{#each checkView.candidates}}
+                <button type="button"
+                        class="storyflow-check-candidate {{#if this.isSelected}}is-selected{{/if}}"
+                        data-actor-id="{{this.actorId}}"
+                        {{#unless ../checkView.canSelect}}disabled{{/unless}}>
+                  <img src="{{this.img}}" alt="{{this.name}}" />
+                  <span>{{this.name}}</span>
+                  {{#if this.modLabel}}
+                    <span class="storyflow-check-candidate-mod">{{this.modLabel}}</span>
+                  {{/if}}
+                </button>
+              {{/each}}
+            </div>
+          </div>
+        {{/if}}
+
+        <div class="storyflow-die-3d-mount" data-mount="die"></div>
+
+        {{#if checkView.bonuses.length}}
+          <div class="storyflow-check-bonuses">
+            {{#each checkView.bonuses}}
+              <span class="storyflow-check-bonus-chip" data-bonus-id="{{this.id}}">
+                {{#if this.icon}}<i class="fa-solid {{this.icon}}"></i>{{/if}} {{this.label}}
+              </span>
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <div class="storyflow-roll-mode-toggle" role="group" aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Check.RollMode'}}">
+          <button type="button" class="storyflow-roll-mode-btn {{#if checkView.rollModePickedIsDis}}is-active{{/if}}" data-roll-mode="dis" {{#if checkView.rollModeDisabled}}disabled{{/if}}>
+            <i class="fa-solid fa-angles-down"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Check.Disadvantage"}}
+          </button>
+          <button type="button" class="storyflow-roll-mode-btn {{#if checkView.rollModePickedIsNorm}}is-active{{/if}}" data-roll-mode="norm" {{#if checkView.rollModeDisabled}}disabled{{/if}}>
+            <i class="fa-solid fa-dice-d20"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Check.Normal"}}
+          </button>
+          <button type="button" class="storyflow-roll-mode-btn {{#if checkView.rollModePickedIsAdv}}is-active{{/if}}" data-roll-mode="adv" {{#if checkView.rollModeDisabled}}disabled{{/if}}>
+            <i class="fa-solid fa-angles-up"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Check.Advantage"}}
+          </button>
+        </div>
+
+        <button type="button" class="storyflow-roll" {{#unless checkView.canRoll}}disabled{{/unless}}>
+          <i class="fa-solid fa-dice-d20"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Check.RollTheCheck"}}
+        </button>
+
+        <div class="storyflow-check-subline">{{localize "STORYFLOW_DUNGEONS_LAB.Check.SubIdle"}}</div>
+
+        {{#if checkView.canGmRollForThem}}
+          <button type="button" class="storyflow-roll-for-them">
+            {{localize "STORYFLOW_DUNGEONS_LAB.Check.RollForThem"}}
+          </button>
+        {{/if}}
+      {{/if}}
+
+      {{#if checkView.isResult}}
+        <div class="storyflow-check-result {{#if checkView.result.isSuccess}}is-success{{else}}is-failure{{/if}}{{#if checkView.dice.isCrit}} is-crit{{/if}}{{#if checkView.dice.isFumble}} is-fumble{{/if}}">
+          {{#if checkView.dice}}
+            <div class="storyflow-die-3d-mount" data-mount="die">
+              {{!-- FX критов вокруг кубика (скрыты; включаются по шагам FX-последовательности). --}}
+              <div class="storyflow-fx-warn-ring {{#if checkView.dice.otherDie}}is-dual{{/if}}" data-fx="warn" hidden></div>
+              <div class="storyflow-fx-ring is-1" data-fx="explode" hidden></div>
+              <div class="storyflow-fx-ring is-2" data-fx="explode" hidden></div>
+              <div class="storyflow-fx-ring is-3" data-fx="explode" hidden></div>
+              <div class="storyflow-fx-slam storyflow-fx-title storyflow-fx-title-fail" data-fx="explode" hidden>{{localize "STORYFLOW_DUNGEONS_LAB.Check.CritFailure"}}</div>
+              <div class="storyflow-fx-succ-text" data-fx="succ-text" hidden>
+                <span class="storyflow-fx-succ-green">{{localize "STORYFLOW_DUNGEONS_LAB.Check.CritSuccess"}}</span>
+                <span class="storyflow-fx-succ-gold storyflow-fx-title storyflow-fx-title-hit">{{localize "STORYFLOW_DUNGEONS_LAB.Check.CritSuccess"}}</span>
+              </div>
+            </div>
+            <div class="storyflow-check-subline" data-fx="sub-doom" hidden>{{localize "STORYFLOW_DUNGEONS_LAB.Check.SubDoom"}}</div>
+            <div class="storyflow-check-subline" data-fx="sub-heavens" hidden>{{localize "STORYFLOW_DUNGEONS_LAB.Check.SubHeavens"}}</div>
+            <div class="storyflow-check-math">
+              <span class="storyflow-die-mod">{{checkView.dice.modSign}}</span>
+              <span class="storyflow-die-eq">= {{checkView.dice.total}}</span>
+              <span class="storyflow-die-dc">{{localize "STORYFLOW_DUNGEONS_LAB.Check.DC"}} {{checkView.dc}}</span>
+            </div>
+          {{else}}
+            <div class="storyflow-die is-landed">
+              <span class="storyflow-die-face">{{checkView.result.total}}</span>
+            </div>
+          {{/if}}
+          {{#if checkView.result.formula}}
+            <span class="storyflow-check-formula">{{checkView.result.formula}}</span>
+          {{/if}}
+          <span class="storyflow-check-verdict">
+            {{#if checkView.dice.isCrit}}
+              {{localize "STORYFLOW_DUNGEONS_LAB.Check.CritSuccess"}}
+            {{else if checkView.dice.isFumble}}
+              {{localize "STORYFLOW_DUNGEONS_LAB.Check.CritFailure"}}
+            {{else if checkView.result.isSuccess}}
+              {{localize "STORYFLOW_DUNGEONS_LAB.Check.Success"}}
+            {{else}}
+              {{localize "STORYFLOW_DUNGEONS_LAB.Check.Failure"}}
+            {{/if}}
+          </span>
+          {{#if checkView.canContinue}}
+            <button type="button" class="storyflow-continue storyflow-check-continue">
+              {{localize "STORYFLOW_DUNGEONS_LAB.Overlay.Continue"}} <i class="fa-solid fa-angles-right"></i>
+            </button>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{#unless imageOnly}}
+  {{#if hasDialogueBox}}
+  <div class="storyflow-dialogue-box">
+    <div class="storyflow-speaker-row">
+      {{#if portraitPath}}
+        <img class="storyflow-portrait" src="{{portraitPath}}" alt="{{speakerName}}" />
+      {{/if}}
+      {{#if speakerName}}
+        <span class="storyflow-speaker-name">{{speakerName}}</span>
+      {{/if}}
+    </div>
+
+    <div class="storyflow-body-text">
+      <div class="storyflow-body-typed"></div>
+      <div class="storyflow-body-rich">{{{bodyHtml}}}</div>
+    </div>
+
+    {{#if choiceTimeoutMs}}
+      <div class="storyflow-choice-timer" aria-hidden="true">
+        <div class="storyflow-choice-timer-fill"></div>
+      </div>
+    {{/if}}
+
+    {{#if choices.length}}
+      <div class="storyflow-choices-list {{#if canVote}}is-voting{{/if}}">
+        {{#each choices}}
+          <button type="button" class="storyflow-choice-btn {{#if this.mine}}is-voted{{/if}}"
+                  data-choice-id="{{this.id}}" {{#unless this.enabled}}disabled{{/unless}}>
+            <span class="storyflow-choice-label">{{this.label}}</span>
+            {{#if this.voteCount}}<span class="storyflow-vote-count" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Overlay.Votes'}}">{{this.voteCount}}</span>{{/if}}
+          </button>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if showContinue}}
+      <div class="storyflow-controls">
+        <button type="button" class="storyflow-continue" {{#unless canSelect}}disabled{{/unless}}>
+          {{localize "STORYFLOW_DUNGEONS_LAB.Overlay.Continue"}} <i class="fa-solid fa-angles-right"></i>
+        </button>
+      </div>
+    {{/if}}
+  </div>
+  {{/if}}
+  {{/unless}}
+</div>

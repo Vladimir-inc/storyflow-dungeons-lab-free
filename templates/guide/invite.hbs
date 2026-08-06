@@ -1,0 +1,67 @@
+{{! Тело окна приглашения в тур (см. guide-invite-app.mjs). }}
+<div class="storyflow-guide-invite-body">
+  <div class="storyflow-guide-invite-stage">
+    <video
+      class="storyflow-guide-invite-mascot"
+      src="modules/storyflow-dungeons-lab/assets/images/guide/flying.webm"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+    ></video>
+    <img
+      class="storyflow-guide-invite-logo"
+      src="modules/storyflow-dungeons-lab/assets/images/dungeons-lab-logo-256.png"
+      alt=""
+      aria-hidden="true"
+    />
+  </div>
+
+  <p class="storyflow-guide-invite-kicker">{{localize
+      "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Kicker"
+    }}</p>
+  <h2 class="storyflow-guide-invite-heading">{{localize
+      "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Heading"
+    }}</h2>
+  <p class="storyflow-guide-invite-text">{{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Body"}}</p>
+
+  <div class="storyflow-guide-invite-badges">
+    <span class="storyflow-guide-invite-badge">
+      <i class="fa-solid fa-list-ol" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.BadgeSteps" count=stepCount}}
+    </span>
+    <span class="storyflow-guide-invite-badge">
+      <i class="fa-regular fa-clock" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.BadgeTime" minutes=minutes}}
+    </span>
+    <span class="storyflow-guide-invite-badge">
+      <i class="fa-solid fa-hand" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.BadgeInterrupt"}}
+    </span>
+  </div>
+
+  <div class="storyflow-guide-invite-chapters">
+    {{#each chapters}}
+      <section class="storyflow-guide-invite-chapter">
+        <i class="{{this.icon}}" aria-hidden="true"></i>
+        <h3>{{this.title}}</h3>
+        <p>{{this.blurb}}</p>
+      </section>
+    {{/each}}
+  </div>
+
+  <footer class="storyflow-guide-invite-footer">
+    <label class="storyflow-guide-invite-suppress">
+      <input type="checkbox" class="storyflow-guide-suppress" />
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Suppress"}}
+    </label>
+    <button type="button" class="storyflow-guide-btn-ghost" data-action="dismiss">
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Dismiss"}}
+    </button>
+    <button type="button" class="storyflow-guide-btn-primary" data-action="startTour">
+      <i class="fa-solid fa-wand-sparkles" aria-hidden="true"></i>
+      {{localize "STORYFLOW_DUNGEONS_LAB.Guide.Invite.Start"}}
+    </button>
+  </footer>
+</div>

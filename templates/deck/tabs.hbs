@@ -1,0 +1,13 @@
+<nav class="sf-deck-tabs">
+  {{#each tabs}}
+    <div class="sf-deck-tab {{#if active}}active{{/if}}" data-action="activateTab" data-tab-id="{{id}}" draggable="true">
+      <span class="sf-deck-tab-name">{{name}}</span>
+      <a class="sf-deck-tab-close" data-action="closeTab" data-tab-id="{{id}}"
+         aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.CloseTab'}}">&times;</a>
+    </div>
+  {{/each}}
+  <button type="button" class="sf-deck-tab-add" data-action="addTab"
+          aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.NewTab'}}">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+</nav>

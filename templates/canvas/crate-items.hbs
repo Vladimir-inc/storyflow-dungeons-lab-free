@@ -1,0 +1,54 @@
+<div class="storyflow-crate-items-panel">
+  <div class="storyflow-crate-drop">
+    <i class="fa-solid fa-hand-pointer"></i>
+    {{localize "STORYFLOW_DUNGEONS_LAB.Crate.AddItem"}}: {{localize "STORYFLOW_DUNGEONS_LAB.Crate.DragHere"}}
+  </div>
+
+  {{#if empty}}
+    <p class="storyflow-crate-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Crate.NoItems"}}</p>
+  {{else}}
+    <table class="storyflow-crate-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-name">{{localize "STORYFLOW_DUNGEONS_LAB.Crate.ItemName"}}</th>
+          <th>{{localize "STORYFLOW_DUNGEONS_LAB.Crate.Weight"}}</th>
+          <th>{{localize "STORYFLOW_DUNGEONS_LAB.Crate.DropChance"}}</th>
+          <th>{{localize "STORYFLOW_DUNGEONS_LAB.Crate.GlowColor"}}</th>
+          <th>{{localize "STORYFLOW_DUNGEONS_LAB.Crate.GlowStyle"}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each rows}}
+          <tr class="storyflow-crate-item-row" data-index="{{this.index}}">
+            <td class="col-img">{{#if this.img}}<img src="{{this.img}}" alt="" />{{/if}}</td>
+            <td class="col-name">{{this.name}}</td>
+            <td><input type="number" name="weight.{{this.index}}" value="{{this.weight}}" min="0" step="1" /></td>
+            <td class="col-pct">{{this.pct}}%</td>
+            <td><input type="color" name="color.{{this.index}}" value="{{this.glowColor}}" /></td>
+            <td>
+              <select name="glow.{{this.index}}">
+                {{#each this.glowOptions}}
+                  <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.value}}</option>
+                {{/each}}
+              </select>
+            </td>
+            <td>
+              <button type="button" data-action="removeItem" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.RemoveChoice'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+
+  <footer class="storyflow-crate-footer">
+    <button type="button" data-action="equalize">
+      <i class="fa-solid fa-scale-balanced"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Crate.Equalize"}}
+    </button>
+  </footer>
+</div>

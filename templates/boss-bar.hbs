@@ -1,0 +1,62 @@
+{{!-- Полоса HP босса - статичный скелет варианта дизайна 2a. Всё динамическое состояние (ширины,
+     печать имени, FX-частицы, классы состояний) ведёт boss-bar-widget.mjs;
+     подзаголовок сцены из дизайна намеренно опущен. --}}
+<div class="sfbb-vignette"></div>
+<div class="sfbb-name-row">
+  <div class="sfbb-name-line">
+    <div class="sfbb-hairline"></div>
+    <span class="sfbb-diamond">&#9670;</span>
+    <span class="sfbb-name"><span class="sfbb-name-text"></span><span class="sfbb-caret"></span></span>
+    <span class="sfbb-diamond">&#9670;</span>
+    <div class="sfbb-hairline right"></div>
+  </div>
+</div>
+<div class="sfbb-frame-wrap">
+  <div class="sfbb-halo"></div>
+  <div class="sfbb-pulse"></div>
+  <div class="sfbb-death-blink"></div>
+  <div class="sfbb-fire">
+    <div class="sfbb-fire-glow"></div>
+    <div class="sfbb-fire-core"></div>
+    <div class="sfbb-flame f1"></div>
+    <div class="sfbb-flame f2"></div>
+    <div class="sfbb-flame f3"></div>
+    <div class="sfbb-flame f4"></div>
+  </div>
+  <div class="sfbb-shake">
+    <div class="sfbb-plate">
+      <div class="sfbb-track">
+        <div class="sfbb-ghost"></div>
+        <div class="sfbb-fill">
+          <div class="sfbb-wave">
+            <svg viewBox="0 0 1800 24" preserveAspectRatio="none"><path d="M0 9 Q37.5 4.5, 75 9 T150 9 T225 9 T300 9 T375 9 T450 9 T525 9 T600 9 T675 9 T750 9 T825 9 T900 9 T975 9 T1050 9 T1125 9 T1200 9 T1275 9 T1350 9 T1425 9 T1500 9 T1575 9 T1650 9 T1725 9 T1800 9 V24 H0 Z" fill="#8A1D10"></path></svg>
+          </div>
+          <div class="sfbb-wave front">
+            <svg viewBox="0 0 1800 24" preserveAspectRatio="none"><path d="M0 11 Q37.5 6, 75 11 T150 11 T225 11 T300 11 T375 11 T450 11 T525 11 T600 11 T675 11 T750 11 T825 11 T900 11 T975 11 T1050 11 T1125 11 T1200 11 T1275 11 T1350 11 T1425 11 T1500 11 T1575 11 T1650 11 T1725 11 T1800 11 V24 H0 Z" fill="#F0785C" opacity="0.65"></path><path d="M0 11 Q37.5 6, 75 11 T150 11 T225 11 T300 11 T375 11 T450 11 T525 11 T600 11 T675 11 T750 11 T825 11 T900 11 T975 11 T1050 11 T1125 11 T1200 11 T1275 11 T1350 11 T1425 11 T1500 11 T1575 11 T1650 11 T1725 11 T1800 11 V24 H0 Z" fill="#C43522" transform="translate(0 2.6)"></path></svg>
+          </div>
+          <div class="sfbb-depth"></div>
+          <div class="sfbb-bubbles"></div>
+          <div class="sfbb-sheen"></div>
+          <div class="sfbb-meniscus"></div>
+        </div>
+        <div class="sfbb-mark m66"></div>
+        <div class="sfbb-mark m33"></div>
+        <div class="sfbb-ticks"></div>
+        <div class="sfbb-flash"></div>
+        <div class="sfbb-healping"></div>
+      </div>
+      <div class="sfbb-gems">
+        <div class="sfbb-gem g66"></div>
+        <div class="sfbb-gem g33"></div>
+      </div>
+      <div class="sfbb-finial left"><div class="sfbb-finial-gem"></div></div>
+      <div class="sfbb-finial right"><div class="sfbb-finial-gem"></div></div>
+    </div>
+  </div>
+  <div class="sfbb-shield-row">
+    <div class="sfbb-shield-track"></div>
+    <div class="sfbb-shield-fill"><div class="sfbb-shield-cap"></div></div>
+  </div>
+  <div class="sfbb-fx"></div>
+</div>
+<div class="sfbb-victory"><div class="sfbb-victory-text">{{victoryText}}</div></div>

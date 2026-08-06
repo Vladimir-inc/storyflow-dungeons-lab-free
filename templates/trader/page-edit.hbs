@@ -1,0 +1,114 @@
+{{!-- Редактор страницы торговца: выбор портрета и таблица предметов с приёмом перетаскивания. --}}
+<div class="storyflow-trader-edit">
+  <div class="form-group storyflow-trader-name-field">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Name"}}</label>
+    <input type="text" class="storyflow-trader-rename" value="{{traderName}}" />
+  </div>
+
+  <div class="form-group storyflow-trader-portrait-field">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Portrait"}}</label>
+    <div class="storyflow-filepath">
+      <input type="text" name="system.portraitPath" value="{{portraitPath}}" />
+      <button type="button" data-action="pickPortrait" title="{{localize 'STORYFLOW_DUNGEONS_LAB.Inspector.Browse'}}">
+        <i class="fa-solid fa-file-import"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group storyflow-trader-faction-field">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Faction"}}</label>
+    <select name="system.factionId">
+      <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoFaction"}}</option>
+      {{#each factionOptions}}
+        <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+    <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.FactionHint"}}</p>
+  </div>
+
+  <div class="form-group storyflow-trader-npc-field">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NpcLink"}}</label>
+    <input type="text" name="system.npcActorUuid" value="{{npcActorUuid}}" placeholder="Actor.xxxxxxxxxxxxxxxx" />
+    <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NpcLinkHint"}}</p>
+  </div>
+
+  <div class="form-group storyflow-trader-restock-field">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.RestockDays"}}</label>
+    <input type="number" name="system.restockDays" value="{{restockDays}}" min="0" step="1" />
+    <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.RestockDaysHint"}}</p>
+    <button type="button" data-action="restockNow">
+      <i class="fa-solid fa-boxes-stacked"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Trader.RestockNow"}}
+    </button>
+  </div>
+
+  <div class="storyflow-trader-items">
+    {{#each items}}
+      <div class="storyflow-trader-row {{#if this.missing}}is-missing{{/if}}" data-index="{{this.index}}">
+        {{#if this.img}}<img src="{{this.img}}" alt="" />{{/if}}
+        <span class="storyflow-trader-name">
+          {{#if this.missing}}{{localize "STORYFLOW_DUNGEONS_LAB.Trader.MissingItem"}}{{else}}{{this.name}}{{/if}}
+        </span>
+        <label class="storyflow-trader-price-field">
+          {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Price"}}
+          <input type="number" name="price.{{this.index}}" value="{{this.price}}" min="0" step="1" />
+        </label>
+        <label class="storyflow-trader-stock-field">
+          {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Stock"}}
+          <input type="number" name="stock.{{this.index}}" value="{{this.stock}}" min="0" step="1" />
+        </label>
+        <label class="storyflow-trader-lock-field" {{#unless ../repLockEnabled}}data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.LockNeedsFaction'}}"{{/unless}}>
+          <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          <select name="repTier.{{this.index}}" {{#unless ../repLockEnabled}}disabled{{/unless}}>
+            <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.LockNone"}}</option>
+            {{#each ../tiers}}
+              <option value="{{this.id}}" {{#if (eq this.id ../repTier)}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </label>
+        <button type="button" data-action="removeItem" data-index="{{this.index}}"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.RemoveItem'}}">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    {{/each}}
+  </div>
+
+  <p class="storyflow-trader-drop">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.DropHint"}}</p>
+
+  <div class="storyflow-trader-sell-section">
+    <div class="form-group storyflow-trader-sellratio-field">
+      <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellRatio"}}</label>
+      <input type="number" name="system.sellRatio" value="{{sellRatio}}" min="0" max="1" step="0.05"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.SellRatioBlank'}}" />
+      <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellRatioHint"}}</p>
+    </div>
+
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellItems"}}</label>
+    <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellItemsHint"}}</p>
+
+    <div class="storyflow-trader-items storyflow-trader-sell-items">
+      {{#each sellItems}}
+        <div class="storyflow-trader-row {{#if this.missing}}is-missing{{/if}}" data-index="{{this.index}}">
+          {{#if this.img}}<img src="{{this.img}}" alt="" />{{/if}}
+          <span class="storyflow-trader-name">
+            {{#if this.missing}}{{localize "STORYFLOW_DUNGEONS_LAB.Trader.MissingItem"}}{{else}}{{this.name}}{{/if}}
+          </span>
+          <label class="storyflow-trader-price-field">
+            {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Price"}}
+            <input type="number" name="sellPrice.{{this.index}}" value="{{this.price}}" min="0" step="1" />
+          </label>
+          <label class="storyflow-trader-stock-field">
+            {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Stock"}}
+            <input type="number" name="sellStock.{{this.index}}" value="{{this.stock}}" min="0" step="1" />
+          </label>
+          <button type="button" data-action="removeSellItem" data-index="{{this.index}}"
+                  title="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.RemoveItem'}}">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      {{/each}}
+    </div>
+
+    <p class="storyflow-trader-drop">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellDropHint"}}</p>
+  </div>
+</div>

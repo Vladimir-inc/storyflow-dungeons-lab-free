@@ -1,0 +1,56 @@
+{{!-- Полноэкранный слой интерактивного реквизита (повторяет схему сцены и закрытия кинематографичного оверлея).
+      Фабрика рендереров монтирует сам виджет (кольца, диски, …) в .storyflow-prop-body
+      - этот шаблон вообще не знает, какой у реквизита propType. --}}
+<div class="storyflow-prop" data-phase="idle">
+  {{#if isGM}}
+    <button type="button" class="storyflow-prop-close"
+            aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Prop.AbortTitle'}}"
+            data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Prop.AbortTitle'}}">
+      &times;
+    </button>
+  {{/if}}
+
+  <div class="storyflow-prop-card">
+    {{#if image}}
+      <img class="storyflow-prop-image" src="{{image}}" alt="" />
+    {{/if}}
+
+    {{#if title}}
+      <h3 class="storyflow-prop-title">{{title}}</h3>
+    {{/if}}
+
+    {{#if text}}
+      <p class="storyflow-prop-text">{{text}}</p>
+    {{/if}}
+
+    {{#unless canDrive}}
+      <span class="storyflow-prop-spectator">{{localize "STORYFLOW_DUNGEONS_LAB.Prop.Spectator"}}</span>
+    {{/unless}}
+
+    <div class="storyflow-prop-body"></div>
+
+    <div class="storyflow-prop-result" aria-hidden="true">
+      <span class="storyflow-prop-result-tag"></span>
+    </div>
+
+    {{#if isSubmitMode}}
+      <div class="storyflow-prop-submit-row">
+        <span class="storyflow-prop-attempts">{{attemptsText}}</span>
+        <button type="button" class="storyflow-prop-try" {{#unless canDrive}}disabled{{/unless}}>
+          {{localize "STORYFLOW_DUNGEONS_LAB.Prop.Try"}}
+        </button>
+      </div>
+    {{/if}}
+
+    {{#if isGM}}
+      <div class="storyflow-prop-gm-row">
+        <button type="button" class="storyflow-prop-force-solve">
+          {{localize "STORYFLOW_DUNGEONS_LAB.Prop.ForceSolve"}}
+        </button>
+        <button type="button" class="storyflow-prop-force-fail">
+          {{localize "STORYFLOW_DUNGEONS_LAB.Prop.ForceFail"}}
+        </button>
+      </div>
+    {{/if}}
+  </div>
+</div>

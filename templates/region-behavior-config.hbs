@@ -1,0 +1,42 @@
+{{!-- Конфиг поведения региона-триггера StoryFlow: страница, стартовый узел (по метке) и once. --}}
+<div class="storyflow-region-behavior standard-form">
+  <div class="form-group">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.BehaviorName"}}</label>
+    <input type="text" class="sfrb-name" value="{{behaviorName}}" />
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.Page"}}</label>
+    <select class="sfrb-page">
+      <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.NoPage"}}</option>
+      {{#each pages}}
+        <option value="{{this.uuid}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.StartNode"}}</label>
+    <select class="sfrb-node" {{#unless hasPage}}disabled{{/unless}}>
+      <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.EntryDefault"}}</option>
+      {{#each nodes}}
+        <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+      {{/each}}
+    </select>
+    <p class="hint">{{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.StartNodeHint"}}</p>
+  </div>
+
+  <div class="form-group">
+    <label class="checkbox">
+      <input type="checkbox" class="sfrb-once" {{#if once}}checked{{/if}} />
+      {{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.Once"}}
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label class="checkbox">
+      <input type="checkbox" class="sfrb-disabled" {{#if disabled}}checked{{/if}} />
+      {{localize "STORYFLOW_DUNGEONS_LAB.RegionBehavior.Disabled"}}
+    </label>
+  </div>
+</div>

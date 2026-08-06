@@ -1,0 +1,346 @@
+{{!-- Окно магазина торговца - баровианское торговое окно (Design/Trade Window.dc.html).
+     Чистый рендер `shop` из кадра; корзина ("ledger") живёт только на клиенте до расчёта. --}}
+<div class="storyflow-shop">
+
+  {{!-- ============ Шапка окна ============ --}}
+  <header class="storyflow-shop-head">
+    <span class="storyflow-shop-portrait">
+      {{#if portraitPath}}<img src="{{portraitPath}}" alt="" />{{else}}<i class="fa-solid fa-store" aria-hidden="true"></i>{{/if}}
+    </span>
+    <div class="storyflow-shop-title">
+      <div class="storyflow-shop-title-row">
+        <span class="storyflow-shop-trader-name">{{traderName}}</span>
+        {{#if hasFaction}}
+          <span class="storyflow-shop-badge" style="background: {{factionBadgeColor}}; border-color: {{factionBadgeColor}}; color: #1a1410;">{{factionTier}}</span>
+        {{/if}}
+      </div>
+      {{#if hasFaction}}
+        <div class="storyflow-shop-faction-row">
+          <button type="button" class="storyflow-shop-faction-name" data-faction="{{factionId}}"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.OpenFactionOverview'}}">
+            <i class="fa-solid fa-flag" aria-hidden="true"></i>{{factionName}}
+          </button>
+          <button type="button" class="storyflow-shop-faction-rep" data-faction="{{factionId}}"
+                  data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.OpenFactionMembers'}}">
+            {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Reputation"}}: {{factionStanding}}
+          </button>
+        </div>
+      {{/if}}
+    </div>
+    {{#if isGM}}
+      <button type="button" class="storyflow-shop-edit" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.EditTraderHint'}}">
+        <i class="fa-solid fa-pen" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.EditTrader"}}
+      </button>
+    {{/if}}
+  </header>
+
+  {{!-- ============ Вкладки ============ --}}
+  <nav class="storyflow-shop-tabs">
+    <span class="storyflow-shop-tab {{#if tabBuy}}is-active{{/if}}" data-tab="buy">
+      <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>{{buyTabLabel}}
+    </span>
+    <span class="storyflow-shop-tab {{#if tabSell}}is-active{{/if}}" data-tab="sell">
+      <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>{{sellTabLabel}}
+    </span>
+    <span class="storyflow-shop-tabs-spacer"></span>
+    {{#if tabBuy}}<span class="storyflow-shop-warecount">{{wareCount}}</span>{{/if}}
+  </nav>
+
+  {{!-- ============ Панель инструментов ============ --}}
+  {{#if tabBuy}}
+  {{#unless refused}}
+    {{#if hasItems}}
+      <div class="storyflow-shop-toolbar">
+        <div class="storyflow-shop-search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="text" class="storyflow-shop-search-input" value="{{query}}"
+                 placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.SearchPlaceholder'}}" />
+        </div>
+        <select class="storyflow-shop-category">
+          <option value="all">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.AllWares"}}</option>
+          {{#each categories}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+        <button type="button" class="storyflow-shop-desc-toggle {{#if showDesc}}is-active{{/if}}"
+                data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.ToggleDescriptions'}}">
+          <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+        </button>
+      </div>
+    {{/if}}
+  {{/unless}}
+  {{/if}}
+
+  {{#if tabSell}}
+  {{#if hasSellItems}}
+    <div class="storyflow-shop-toolbar storyflow-shop-toolbar-sell">
+      <span class="storyflow-shop-toolbar-spacer"></span>
+      <button type="button" class="storyflow-shop-desc-toggle {{#if showDesc}}is-active{{/if}}"
+              data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.ToggleDescriptions'}}">
+        <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+      </button>
+    </div>
+  {{/if}}
+  {{/if}}
+
+  {{!-- ============ Тело: список и корзина ============ --}}
+  <div class="storyflow-shop-body">
+    {{#if tabBuy}}
+    <div class="storyflow-shop-list-pane">
+
+      {{#if refused}}
+        <div class="storyflow-shop-empty">
+          <i class="fa-solid fa-ban" aria-hidden="true"></i>
+          <div class="storyflow-shop-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Refused"}}</div>
+        </div>
+      {{else if hasItems}}
+        <ul class="storyflow-shop-items">
+          {{#each items}}
+            <li class="storyflow-shop-row {{#if this.soldOut}}is-soldout{{/if}} {{#if this.locked}}is-locked{{/if}}"
+                data-index="{{this.index}}" data-search="{{this.searchName}}" data-cat="{{this.category}}"
+                data-tip-name="{{this.name}}" data-tip-meta="{{this.tipMeta}}" data-tip-desc="{{this.desc}}"
+                data-tip-weight="{{this.weightLabel}}" data-tip-price="{{this.priceLabel}}">
+              <span class="storyflow-shop-item-icon">
+                {{#if this.img}}<img src="{{this.img}}" alt="" />{{else}}<i class="fa-solid fa-box" aria-hidden="true"></i>{{/if}}
+              </span>
+              <div class="storyflow-shop-item-info">
+                <div class="storyflow-shop-item-name-row">
+                  <span class="storyflow-shop-item-name">{{this.name}}</span>
+                  {{#if this.rare}}<span class="storyflow-shop-rarity">{{this.rarity}}</span>{{/if}}
+                </div>
+                <div class="storyflow-shop-item-meta">{{this.meta}}</div>
+              </div>
+              {{#if this.locked}}
+                <span class="storyflow-shop-lock"><i class="fa-solid fa-lock" aria-hidden="true"></i>{{this.lockLabel}}</span>
+              {{else}}
+                {{#if this.restockLabel}}<span class="storyflow-shop-restock">{{this.restockLabel}}</span>{{/if}}
+                <span class="storyflow-shop-stock">{{this.stockLabel}}</span>
+                <span class="storyflow-shop-price">
+                  {{#if this.priceModified}}<span class="storyflow-shop-price-was">{{this.wasPriceLabel}}</span>{{/if}}
+                  <span class="storyflow-shop-price-now {{#if this.priceModified}}{{#if this.priceDiscounted}}is-discount{{else}}is-markup{{/if}}{{/if}}">{{this.priceLabel}}</span>
+                  {{#if this.priceModified}}<span class="storyflow-shop-price-delta {{#if this.priceDiscounted}}is-discount{{else}}is-markup{{/if}}">{{this.priceDeltaLabel}}</span>{{/if}}
+                </span>
+                <button type="button" class="storyflow-shop-cart-add" data-index="{{this.index}}"
+                        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.AddToLedger'}}"
+                        {{#unless this.canBuy}}disabled{{/unless}}><i class="fa-solid fa-cart-plus" aria-hidden="true"></i></button>
+                <button type="button" class="storyflow-shop-buy" data-index="{{this.index}}"
+                        {{#unless this.canBuy}}disabled{{/unless}}>{{this.buyLabel}}</button>
+              {{/if}}
+            </li>
+            {{#if ../showDesc}}
+              {{#if this.desc}}
+                <li class="storyflow-shop-desc-card">{{this.desc}}</li>
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        </ul>
+        <div class="storyflow-shop-empty storyflow-shop-nomatch" hidden>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <div class="storyflow-shop-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoMatchTitle"}}</div>
+          <div class="storyflow-shop-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoMatchBody"}}</div>
+        </div>
+      {{else}}
+        <div class="storyflow-shop-empty">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+          <div class="storyflow-shop-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.ShelvesBareTitle"}}</div>
+          <div class="storyflow-shop-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.ShelvesBareBody"}}</div>
+        </div>
+      {{/if}}
+    </div>
+
+    {{!-- Панель корзины (ledger) --}}
+    {{#if cartOpen}}
+      <aside class="storyflow-shop-ledger">
+        <div class="storyflow-shop-ledger-head">
+          <i class="fa-solid fa-book" aria-hidden="true"></i>
+          <span class="storyflow-shop-ledger-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Ledger"}}</span>
+          <button type="button" class="storyflow-shop-ledger-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div class="storyflow-shop-ledger-lines">
+          {{#unless cartLines.length}}
+            <div class="storyflow-shop-ledger-empty">
+              <i class="fa-solid fa-feather" aria-hidden="true"></i><br />
+              {{localize "STORYFLOW_DUNGEONS_LAB.Trader.LedgerEmpty"}}
+            </div>
+          {{/unless}}
+          {{#each cartLines}}
+            <div class="storyflow-shop-ledger-line">
+              <div class="storyflow-shop-ledger-line-info">
+                <div class="storyflow-shop-ledger-line-name">{{this.name}}</div>
+                <div class="storyflow-shop-ledger-line-total">{{this.totalLabel}}</div>
+              </div>
+              <button type="button" class="storyflow-shop-ledger-dec" data-index="{{this.index}}"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+              <span class="storyflow-shop-ledger-qty">{{this.qty}}</span>
+              <button type="button" class="storyflow-shop-ledger-inc" data-index="{{this.index}}" {{#if this.maxed}}disabled{{/if}}><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            </div>
+          {{/each}}
+        </div>
+        <div class="storyflow-shop-ledger-foot">
+          <div class="storyflow-shop-ledger-total-row">
+            <span class="storyflow-shop-ledger-label">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Total"}}</span>
+            <span class="storyflow-shop-ledger-total">{{cartTotalLabel}}</span>
+          </div>
+          <div class="storyflow-shop-ledger-remain-row">
+            <span class="storyflow-shop-ledger-remain-label">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.PurseAfter"}}</span>
+            <span class="storyflow-shop-ledger-remain {{#if insufficient}}is-short{{/if}}">{{remainLabel}}</span>
+          </div>
+          {{#if insufficient}}
+            <div class="storyflow-shop-ledger-warning">
+              <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+              <span>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.InsufficientFunds"}}</span>
+            </div>
+          {{/if}}
+          <button type="button" class="storyflow-shop-checkout" {{#if checkoutDisabled}}disabled{{/if}}>
+            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.CompletePurchase"}}
+          </button>
+        </div>
+      </aside>
+    {{/if}}
+    {{/if}}
+
+    {{#if tabSell}}
+    <div class="storyflow-shop-list-pane is-sell">
+      {{#if hasSellItems}}
+        <ul class="storyflow-shop-items">
+          {{#each sellItems}}
+            <li class="storyflow-shop-row is-sell {{#if this.depleted}}is-soldout{{/if}} {{#if this.notOwned}}is-locked{{/if}}" data-item-id="{{this.itemId}}">
+              <span class="storyflow-shop-item-icon">
+                {{#if this.img}}<img src="{{this.img}}" alt="" />{{else}}<i class="fa-solid fa-box" aria-hidden="true"></i>{{/if}}
+              </span>
+              <div class="storyflow-shop-item-info">
+                <div class="storyflow-shop-item-name-row">
+                  <span class="storyflow-shop-item-name">{{this.name}}</span>
+                </div>
+                <div class="storyflow-shop-item-meta">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Qty"}}: {{this.qty}}</div>
+              </div>
+              {{#if this.depleted}}
+                <span class="storyflow-shop-nobuy"><i class="fa-solid fa-ban" aria-hidden="true"></i>{{this.nobuyLabel}}</span>
+              {{else if this.notOwned}}
+                <span class="storyflow-shop-notowned">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NotOwned"}}</span>
+              {{/if}}
+              {{#if this.stockLabel}}<span class="storyflow-shop-stock">{{this.stockLabel}}</span>{{/if}}
+              <span class="storyflow-shop-price">
+                <span class="storyflow-shop-price-now">{{this.sellPriceLabel}}</span>
+              </span>
+              <button type="button" class="storyflow-shop-sell-cart-add" data-index="{{this.index}}"
+                      data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.AddToSellLedger'}}"
+                      {{#unless this.canSell}}disabled{{/unless}}><i class="fa-solid fa-cart-plus" aria-hidden="true"></i></button>
+              <button type="button" class="storyflow-shop-sell-btn" data-item-id="{{this.itemId}}"
+                      {{#unless this.canSell}}disabled{{/unless}}>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Sell"}}</button>
+            </li>
+            {{#if ../showDesc}}
+              {{#if this.desc}}
+                <li class="storyflow-shop-desc-card">{{this.desc}}</li>
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        </ul>
+      {{else}}
+        <div class="storyflow-shop-empty">
+          <i class="fa-solid fa-sack-xmark" aria-hidden="true"></i>
+          <div class="storyflow-shop-empty-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NothingToSell"}}</div>
+          <div class="storyflow-shop-empty-body">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NothingToSellBody"}}</div>
+        </div>
+      {{/if}}
+    </div>
+
+    {{!-- Панель корзины продажи - двойник корзины покупки выше, только со стороны продажи. --}}
+    {{#if sellCartOpen}}
+      <aside class="storyflow-shop-ledger storyflow-shop-sell-ledger">
+        <div class="storyflow-shop-ledger-head">
+          <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
+          <span class="storyflow-shop-ledger-title">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellLedger"}}</span>
+          <button type="button" class="storyflow-shop-sell-ledger-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div class="storyflow-shop-ledger-lines">
+          {{#unless sellCartLines.length}}
+            <div class="storyflow-shop-ledger-empty">
+              <i class="fa-solid fa-feather" aria-hidden="true"></i><br />
+              {{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellLedgerEmpty"}}
+            </div>
+          {{/unless}}
+          {{#each sellCartLines}}
+            <div class="storyflow-shop-ledger-line">
+              <div class="storyflow-shop-ledger-line-info">
+                <div class="storyflow-shop-ledger-line-name">{{this.name}}</div>
+                <div class="storyflow-shop-ledger-line-total">{{this.totalLabel}}</div>
+              </div>
+              <button type="button" class="storyflow-shop-sell-ledger-dec" data-index="{{this.index}}"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+              <span class="storyflow-shop-ledger-qty">{{this.qty}}</span>
+              <button type="button" class="storyflow-shop-sell-ledger-inc" data-index="{{this.index}}" {{#if this.maxed}}disabled{{/if}}><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            </div>
+          {{/each}}
+        </div>
+        <div class="storyflow-shop-ledger-foot">
+          <div class="storyflow-shop-ledger-total-row">
+            <span class="storyflow-shop-ledger-label">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Total"}}</span>
+            <span class="storyflow-shop-ledger-total">{{sellCartTotalLabel}}</span>
+          </div>
+          <button type="button" class="storyflow-shop-sell-checkout" {{#if sellCheckoutDisabled}}disabled{{/if}}>
+            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.CompleteSale"}}
+          </button>
+        </div>
+      </aside>
+    {{/if}}
+    {{/if}}
+  </div>
+
+  {{!-- ============ Подвал: кошелёк, роль, переключатель корзины ============ --}}
+  <footer class="storyflow-shop-foot">
+    <span class="storyflow-shop-foot-label">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Purse"}}</span>
+    {{#if hasBuyer}}
+      <div class="storyflow-shop-purse">
+        {{#each purseChips}}
+          <span class="storyflow-shop-coin" data-tooltip="{{this.tip}}">
+            <span class="storyflow-shop-coin-dot storyflow-shop-coin-{{this.unit}}"></span>
+            <span class="storyflow-shop-coin-n">{{this.n}}</span>
+            <span class="storyflow-shop-coin-unit">{{this.unit}}</span>
+          </span>
+        {{/each}}
+      </div>
+    {{else}}
+      <span class="storyflow-shop-nochar">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoCharacter"}}</span>
+    {{/if}}
+    <span class="storyflow-shop-role">
+      {{#if isGM}}
+        <label class="storyflow-shop-buyas-row">
+          <i class="fa-solid fa-crown" aria-hidden="true"></i>
+          {{localize "STORYFLOW_DUNGEONS_LAB.Trader.BuyingAs"}}
+          <select class="storyflow-shop-buyas">
+            {{#each buyAsOptions}}
+              <option value="{{this.id}}" {{#if (eq this.id ../buyAsId)}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+          </select>
+        </label>
+      {{else}}
+        <i class="fa-solid fa-user" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.RolePlayer"}}
+      {{/if}}
+    </span>
+    {{#if tabBuy}}
+      {{#unless refused}}
+        <button type="button" class="storyflow-shop-ledger-toggle">
+          <i class="fa-solid fa-book" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.LedgerButton"}}{{cartCountLabel}}
+        </button>
+      {{/unless}}
+    {{/if}}
+    {{#if tabSell}}
+      <button type="button" class="storyflow-shop-sell-ledger-toggle">
+        <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.SellLedgerButton"}}{{sellCartCountLabel}}
+      </button>
+    {{/if}}
+    <button type="button" class="storyflow-shop-close" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.LeaveShop'}}">
+      <i class="fa-solid fa-door-open" aria-hidden="true"></i>
+    </button>
+  </footer>
+
+  {{!-- ============ Пергаментная подсказка при наведении (fixed) ============ --}}
+  <div class="storyflow-shop-tip" hidden>
+    <div class="storyflow-shop-tip-name"></div>
+    <div class="storyflow-shop-tip-meta"></div>
+    <div class="storyflow-shop-tip-desc"></div>
+    <div class="storyflow-shop-tip-foot">
+      <span class="storyflow-shop-tip-weight"><i class="fa-solid fa-weight-hanging" aria-hidden="true"></i><span></span></span>
+      <span class="storyflow-shop-tip-price"></span>
+    </div>
+  </div>
+</div>

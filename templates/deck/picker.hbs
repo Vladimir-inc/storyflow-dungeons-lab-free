@@ -1,0 +1,26 @@
+<div class="sf-deck-picker-dialog">
+  <input type="search" class="sf-deck-picker-search"
+         placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.Picker.Search'}}">
+  <div class="sf-deck-picker-list">
+    {{#each groups}}
+      <div class="sf-deck-picker-group">
+        {{#if this.name}}<div class="sf-deck-picker-folder">{{this.name}}</div>{{/if}}
+        {{#each this.rows}}
+          <div class="sf-deck-picker-row" data-uuid="{{this.uuid}}" data-search="{{this.search}}">
+            <i class="{{this.icon}} sf-deck-picker-icon"></i>
+            <span class="sf-deck-picker-name">{{this.name}}</span>
+            {{#if this.meta}}<span class="sf-deck-picker-meta">{{this.meta}}</span>{{/if}}
+            <button type="button" class="sf-deck-picker-add"
+                    aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.Picker.Add'}}"
+                    data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Deck.Picker.Add'}}">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+    {{#if empty}}
+      <p class="sf-deck-picker-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Deck.Picker.Empty"}}</p>
+    {{/if}}
+  </div>
+</div>

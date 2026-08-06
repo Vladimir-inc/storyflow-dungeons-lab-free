@@ -1,0 +1,36 @@
+{{!-- Палитра добавления узлов: поповер с категориями и поиском. Рендерится ОТДЕЛЬНО через
+      render({parts:["palette"]}), чтобы никогда не задевать императивный PART холста. --}}
+<div class="storyflow-palette-popover {{#unless paletteOpen}}storyflow-hidden{{/unless}}">
+  {{#if paletteOpen}}
+    <div class="storyflow-palette-head">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" class="storyflow-palette-search" name="paletteSearch" autocomplete="off"
+             placeholder="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.SearchNodes'}}" value="{{paletteQuery}}" />
+      <button type="button" class="storyflow-palette-close" data-action="closePalette"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.Canvas.Close'}}">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="storyflow-palette-list">
+      {{#each groups}}
+        <div class="storyflow-palette-group" style="--cat-color: {{this.color}};">
+          <div class="storyflow-palette-group-head">
+            <i class="fa-solid {{this.icon}}"></i> {{this.label}}
+          </div>
+          {{#each this.nodes}}
+            <button type="button" class="storyflow-palette-node" data-action="addNode"
+                    data-type="{{this.type}}" title="{{this.summary}}">
+              <i class="fa-solid {{this.icon}} storyflow-palette-node-icon"></i>
+              <span class="storyflow-palette-node-text">
+                <span class="storyflow-palette-node-label">{{this.label}}</span>
+                {{#if this.summary}}<span class="storyflow-palette-node-sum">{{this.summary}}</span>{{/if}}
+              </span>
+            </button>
+          {{/each}}
+        </div>
+      {{else}}
+        <p class="storyflow-palette-empty">{{localize "STORYFLOW_DUNGEONS_LAB.Canvas.NoMatch"}}</p>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

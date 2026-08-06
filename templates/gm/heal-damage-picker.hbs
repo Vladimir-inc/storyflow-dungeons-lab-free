@@ -1,0 +1,11 @@
+{{!-- Выбор цели во время прогона на стороне ГМ для узла Heal/Damage. Рендерится в
+      DialogV2 через renderTemplate, чтобы имена актёров экранировались Handlebars (модуль
+      никогда не собирает HTML-строки в JS). --}}
+<div class="storyflow-target-picker">
+  {{#each actors}}
+    <label class="storyflow-target-option">
+      <input type="checkbox" name="targetActorIds" value="{{this.id}}" />
+      <span>{{this.name}}</span>
+    </label>
+  {{/each}}
+</div>

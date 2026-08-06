@@ -1,0 +1,77 @@
+<form class="storyflow-season-config">
+  <div class="sc-grid">
+    {{#each seasons}}
+      <section class="sc-season">
+        <h3>{{this.label}}</h3>
+        <div class="sc-row"><label>{{localize
+              "STORYFLOW_DUNGEONS_LAB.Calendar.TempMin"
+            }}</label><input
+            type="number"
+            name="{{this.key}}.tempMin"
+            value="{{this.tempMin}}"
+            step="1"
+          /></div>
+        <div class="sc-row"><label>{{localize
+              "STORYFLOW_DUNGEONS_LAB.Calendar.TempMax"
+            }}</label><input
+            type="number"
+            name="{{this.key}}.tempMax"
+            value="{{this.tempMax}}"
+            step="1"
+          /></div>
+        <div class="sc-weights">
+          {{#each this.weights}}
+            <div class="sc-row"><label><i
+                  class="fa-solid {{this.icon}}"
+                  aria-hidden="true"
+                  style="color:{{this.color}};"
+                ></i>{{this.label}}</label><input
+                type="number"
+                name="{{this.name}}"
+                value="{{this.value}}"
+                min="0"
+                step="1"
+              /></div>
+          {{/each}}
+        </div>
+      </section>
+    {{/each}}
+  </div>
+  <div class="sc-months">
+    <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.MonthNames"}}</h3>
+    <div class="sc-months-grid">
+      {{#each months}}
+        <input
+          type="text"
+          name="{{this.name}}"
+          value="{{this.value}}"
+          placeholder="{{this.placeholder}}"
+        />
+      {{/each}}
+    </div>
+    <p class="sc-months-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.MonthNamesHint"}}</p>
+  </div>
+  <div class="sc-effects">
+    <h3>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.SceneEffects"}}</h3>
+    <p class="sc-effects-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.SceneEffectsHint"}}</p>
+    {{#each effectRows}}
+      <div class="sc-row"><label><i
+            class="fa-solid {{this.icon}}"
+            aria-hidden="true"
+            style="color:{{this.color}};"
+          ></i>{{this.label}}</label><select name="{{this.name}}">
+          {{#each this.options}}
+            <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select></div>
+    {{/each}}
+  </div>
+  <div class="sc-actions">
+    <button type="button" data-action="save" class="cal-primary">{{localize
+        "STORYFLOW_DUNGEONS_LAB.Calendar.SaveSeasons"
+      }}</button>
+    <button type="button" data-action="resetDefaults">{{localize
+        "STORYFLOW_DUNGEONS_LAB.Calendar.ResetSeasons"
+      }}</button>
+  </div>
+</form>

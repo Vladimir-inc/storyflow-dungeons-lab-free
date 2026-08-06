@@ -1,0 +1,45 @@
+{{!-- Режим редактирования страницы графа StoryFlow: выбор обложки и редактор описания.
+      Сам граф по-прежнему правится в отдельном редакторе-холсте. --}}
+<div class="storyflow-graph-page-summary">
+  <div class="storyflow-graph-banner {{#unless hasImg}}storyflow-graph-banner-fire{{/unless}}">
+    {{#if hasImg}}
+      <img src="{{img}}" alt="" />
+    {{/if}}
+    <div class="storyflow-graph-banner-scrim">
+      <i class="fa-solid fa-diagram-project storyflow-graph-icon"></i>
+      <h3>{{document.name}}</h3>
+    </div>
+    <div class="storyflow-graph-banner-tools">
+      <button type="button" class="storyflow-graph-cover-btn" data-action="pickCoverImage"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.GraphPage.Editor.SetCover'}}">
+        <i class="fa-solid fa-camera"></i>
+      </button>
+      {{#if hasImg}}
+        <button type="button" class="storyflow-graph-cover-btn" data-action="removeCoverImage"
+                title="{{localize 'STORYFLOW_DUNGEONS_LAB.GraphPage.Editor.RemoveCover'}}">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      {{/if}}
+      <button type="button" class="storyflow-graph-cover-btn" data-action="toggleEdit"
+              title="{{localize 'STORYFLOW_DUNGEONS_LAB.GraphPage.ExitEdit'}}">
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="storyflow-graph-pills">
+    <span class="storyflow-graph-pill">{{localize "STORYFLOW_DUNGEONS_LAB.GraphPage.NodeCount" count=nodeCount}}</span>
+    <span class="storyflow-graph-pill">{{localize "STORYFLOW_DUNGEONS_LAB.GraphPage.EdgeCount" count=edgeCount}}</span>
+  </div>
+
+  <p class="storyflow-graph-section-label">{{localize "STORYFLOW_DUNGEONS_LAB.GraphPage.Editor.DescriptionLabel"}}</p>
+  <div class="storyflow-desc-editor-mount"></div>
+
+  <div class="storyflow-graph-rule"></div>
+
+  <div class="storyflow-graph-actions">
+    <button type="button" class="storyflow-graph-btn-primary" data-action="openEditor">
+      <i class="fa-solid fa-pen-to-square"></i> {{localize "STORYFLOW_DUNGEONS_LAB.GraphPage.OpenEditor"}}
+    </button>
+  </div>
+</div>
