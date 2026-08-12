@@ -1,0 +1,152 @@
+<div class="ps-body">
+
+  {{#if readOnly}}
+    <div class="ps-locked">
+      <i class="fa-solid fa-lock" aria-hidden="true"></i>
+      <span>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneReadOnly"}}</span>
+    </div>
+  {{/if}}
+
+  {{! ── The dock: one tile per plane, each painted with the sky it will produce ────────── }}
+  <nav class="ps-dock" aria-label="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.PlaneDockLabel'}}">
+    {{#each dock}}
+      <button
+        type="button"
+        class="ps-tile{{#if this.active}} active{{/if}}"
+        data-action="selectPlane"
+        data-plane="{{this.id}}"
+        data-tooltip="{{this.plane}} · {{this.name}}"
+        {{#if ../readOnly}}disabled{{/if}}
+      >
+        <span class="ps-tile-sky" style="background:{{this.sky}};">
+          <span class="ps-tile-ridge" style="background:{{this.ridge}};"></span>
+        </span>
+        <i class="fa-solid {{this.icon}}" aria-hidden="true" style="color:{{this.iconColor}};"></i>
+      </button>
+    {{/each}}
+  </nav>
+
+  <div class="ps-headline">
+    <header class="ps-head">
+      <span class="ps-head-name">{{planeName}}</span>
+      <span class="ps-head-sub">{{styleName}}</span>
+    </header>
+    <p class="ps-note">
+      <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+      <span>{{weatherNote}}</span>
+    </p>
+  </div>
+
+  {{! ── Conditions: only on planes the weather system does not drive ───────────────────── }}
+  {{#if hasChips}}
+    <section class="ps-section">
+      <div class="ps-section-head">
+        <span>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneConditionSection"}}</span>
+        <button
+          type="button"
+          class="ps-roll"
+          data-action="rollCondition"
+          data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.PlaneRollTip'}}"
+          {{#if readOnly}}disabled{{/if}}
+        ><i class="fa-solid fa-dice-d20" aria-hidden="true"></i>{{localize
+            "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneRoll"
+          }}</button>
+      </div>
+      <div class="ps-chips">
+        {{#each chips}}
+          <button
+            type="button"
+            class="ps-chip{{#if this.active}} active{{/if}}"
+            data-action="setCondition"
+            data-cond="{{this.key}}"
+            data-tooltip="{{this.label}}"
+            {{#if ../readOnly}}disabled{{/if}}
+          >
+            <i class="fa-solid {{this.icon}}" aria-hidden="true" style="color:{{this.color}};"></i>
+            <span>{{this.label}}</span>
+          </button>
+        {{/each}}
+      </div>
+    </section>
+  {{/if}}
+
+  {{! ── The numbers this plane happens to care about ────────────────────────────────────── }}
+  {{#if hasParams}}
+    <section class="ps-section">
+      <div class="ps-section-head">
+        <span>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneParamSection"}}</span>
+      </div>
+      {{#each params}}
+        <div class="ps-param">
+          <label for="ps-param-{{this.key}}">{{this.label}}</label>
+          <input
+            id="ps-param-{{this.key}}"
+            type="range"
+            data-param="{{this.key}}"
+            data-unit="{{this.unit}}"
+            min="{{this.min}}"
+            max="{{this.max}}"
+            step="{{this.step}}"
+            value="{{this.value}}"
+            {{#if ../readOnly}}disabled{{/if}}
+          />
+          <span data-param-out>{{this.text}}</span>
+        </div>
+      {{/each}}
+    </section>
+  {{/if}}
+
+  {{! ── What the plane's state does to the scene. The rules themselves are still to come, so
+       this zone draws empty rather than showing rows that do nothing. ──────────────────── }}
+  {{#if showEffects}}
+    <section class="ps-section">
+      <div class="ps-section-head">
+        <span>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneEffectSection"}}</span>
+      </div>
+      {{#each effects}}
+        <div class="ps-effect">
+          <i
+            class="fa-solid ps-effect-state {{#if this.enabled}}fa-circle-dot on{{else}}fa-circle{{/if}}"
+            aria-hidden="true"
+          ></i>
+          <span>{{this.text}}</span>
+        </div>
+      {{/each}}
+      <button
+        type="button"
+        class="ps-effect-add"
+        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.PlaneEffectSoon'}}"
+        disabled
+      >
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>{{localize
+          "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneEffectAdd"
+        }}
+      </button>
+    </section>
+  {{/if}}
+
+  <footer class="ps-foot">
+    <label class="ps-perscene">
+      <input
+        type="checkbox"
+        data-action="togglePerScene"
+        {{#if perScene}}checked{{/if}}
+        {{#if readOnly}}disabled{{/if}}
+      />
+      {{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlanePerScene"}}
+    </label>
+    {{#if weatherPlane}}
+      {{! The icon panel sweeps across on hover (pure CSS) - same gesture as the design. }}
+      <button
+        type="button"
+        class="ps-seasons"
+        data-action="openSeasons"
+        data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.PlaneOpenSeasonsTip'}}"
+        {{#if readOnly}}disabled{{/if}}
+      >
+        <span>{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.PlaneOpenSeasons"}}</span>
+        <i class="fa-solid fa-cloud-sun" aria-hidden="true"></i>
+      </button>
+    {{/if}}
+  </footer>
+</div>

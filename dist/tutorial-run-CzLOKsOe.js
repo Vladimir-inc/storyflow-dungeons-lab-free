@@ -1,5 +1,5 @@
-import { M as MODULE_ID, L as humanizeType, ak as replaceNodesUpdate } from "./module-C_DMsB8l.js";
-import { e as exampleFor, t as tutorialFor } from "./node-tutorial-app-DSeWvu8j.js";
+import { M as MODULE_ID, N as humanizeType, ak as replaceNodesUpdate } from "./module-CGuPkFx8.js";
+import { e as exampleFor, t as tutorialFor } from "./node-tutorial-app-BXbJ3mZW.js";
 const GRAPH_PAGE_TYPE = `${MODULE_ID}.graph`;
 function buildTutorialPageData(type) {
   const { demo } = tutorialFor(type);
@@ -61,7 +61,7 @@ async function showTutorialExample(type) {
   } else {
     [page] = await entry.createEmbeddedDocuments("JournalEntryPage", [data]);
   }
-  const { BlueprintCanvasApp } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
   BlueprintCanvasApp.open(page);
 }
 function exampleClipboardSlice(type) {
@@ -72,7 +72,7 @@ function exampleClipboardSlice(type) {
 async function copyTutorialExample(type) {
   const slice = exampleClipboardSlice(type);
   if (!slice) return false;
-  const { setClipboardSlice } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+  const { setClipboardSlice } = await import("./module-CGuPkFx8.js").then((n) => n.au);
   return setClipboardSlice(slice.nodes, slice.edges);
 }
 export {

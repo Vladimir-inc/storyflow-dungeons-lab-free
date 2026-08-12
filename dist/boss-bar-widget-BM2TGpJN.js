@@ -15,7 +15,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
   }
 });
 var _root, _els, _view, _ghostPct, _deathPhase, _timers, _token, _BossBarWidget_static, config_fn, teardown_fn, addT_fn, kick_fn, build_fn, applySteady_fn, applyTransition_fn, dieSeq_fn, particle_fn, splash_fn, impact_fn, healMotes_fn, crumbleGrains_fn, onTokenHud_fn;
-import { a0 as sanitizeBossBarConfig, M as MODULE_ID, a1 as BOSS_BAR_SETTING, a2 as DEFAULT_BOSS_BAR, a3 as bossBarView, a4 as classifyTransition } from "./module-C_DMsB8l.js";
+import { a1 as sanitizeBossBarConfig, M as MODULE_ID, a2 as BOSS_BAR_SETTING, a3 as DEFAULT_BOSS_BAR, a4 as bossBarView, a5 as classifyTransition } from "./module-CGuPkFx8.js";
 const CLIP_FULL = "polygon(calc(0% - 26px) -26px, calc(100% + 26px) -26px, calc(100% + 26px) calc(100% + 26px), calc(0% - 26px) calc(100% + 26px))";
 const CLIP_GONE = "polygon(calc(0% - 26px) -26px, calc(0% - 26px) -26px, calc(0% - 26px) calc(100% + 26px), calc(0% - 26px) calc(100% + 26px))";
 const SAND_SHADES = ["#D65A43", "#B03426", "#8F2418", "#4A4046", "#6B5F66", "#2B2429"];

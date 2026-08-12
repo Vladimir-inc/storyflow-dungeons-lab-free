@@ -17,7 +17,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
     return __privateGet(obj, member, getter);
   }
 });
-var _timer, _index, _done, _Typewriter_instances, tick_fn, complete_fn, _graph, _broadcast, _executeAction, _hasItem, _checkVisible, _checkChoiceGate, _getCheckCandidates, _getCheckModifier, _isGmUser, _allowVoting, _loadTrader, _canBuyFor, _executePurchase, _executeSell, _computeSellPrice, _recordSale, _recordSellToTrader, _evaluateCondition, _executeJournalOp, _getReputation, _getAffinity, _getFactionCardFactor, _nodeBehavior, _services2, _traderRepConfig, _repConfig, _getCrateParticipants, _crateGold, _grantCrateSpin, _crateRng, _audioRng, _pathRng, _getPropDrivers, _getActiveUserIds, _resolvePreloadAssets, _notifyPreloadComplete, _confirmRunGraph, _recordError2, _recordBreadcrumb2, _audioCursors, _audioPlaybackIds, _audioSeq, _finished, _waitTimer, _ambience, _parked, _store, _GraphRunner_instances, crumb_fn, dispatchNode_fn, recordNodeError_fn, failNode_fn, advanceFrom_fn, resume_fn, runBehavior_fn, behaviorCtxFor_fn, park_fn, applyAmbience_fn, runParkedHook_fn, handleUnknownNode_fn, choiceVisible_fn, pending_fn, settle_fn, warnBlocked_fn, render_fn, blankFrame_fn, buildShopState_fn, clearWaitTimer_fn, end_fn, _report, _TroubleshootApp_static, onCopy_fn, onDownload_fn, onRefresh_fn, onClearErrors_fn, _activeTab, _ModuleSettingsApp_instances, readForm_fn, readTraderRep_fn, readRepConfig_fn, readScrub_fn, readTimeSteps_fn, _ModuleSettingsApp_static, onSwitchTab_fn, onSave_fn, onReset_fn, onClose_fn, _instance, _filter, _factionFilter, _folderFilter, _sort, _search, _selectMode, _selected, _fullscreen, _sideWidth, _sideListHeights, _pressedResizeEl, _sizeObserver, _onResizeRelease, _FactionCardStoreApp_instances, applySidebarSizes_fn, wireSidebarResizePersistence_fn, withCategoryHeaders_fn, categoryLabels_fn, save_fn, applySearch_fn, _FactionCardStoreApp_static, onCreate_fn, onEditCard_fn, onDuplicate_fn, openCardEditor_fn, onFilter_fn, onFilterFaction_fn, onAddCategory_fn, onDeleteCategory_fn, onFilterFolder_fn, saveFolders_fn, onCreateFolder_fn, onAddSubfolder_fn, doRenameFolder_fn, onExportFolder_fn, onImportFolder_fn, onDeleteFolder_fn, moveCardToFolder_fn, moveFolderTo_fn, onExportStore_fn, onImportStore_fn, applyImportedAssignments_fn, onDelete_fn, onAddToFaction_fn, openAssignDialog_fn, assignCard_fn, onToggleFullscreen_fn, mountFullscreenControl_fn, applyFullscreenIcon_fn, onToggleSelectMode_fn, onClearSelection_fn, onBulkAssign_fn, updateBulkBar_fn, openBulkAssignDialog_fn, bulkAssign_fn, onRemoveFromFaction_fn, _instance2, _selectedFactionId, _showPrivileges, _editingDescription, _editingPrivileges, _subjectActorId, _codexSection, _cardSort, _cardSearch, _othersFilter, _StoryFlowFactionCodex_static, onToggleCardReveal_fn, _StoryFlowFactionCodex_instances, playerCharacters_fn, playerUsers_fn, resolveSubject_fn, applyCardSearch_fn, onOpenActor_fn, onRelationChange_fn, onRosterMemberToggle_fn, moveMemberContent_fn, onEdit_fn, onRemoveCard_fn, onManageCardStore_fn, onToggleUser_fn, saveFaction_fn, onSelectFaction_fn, onEditPrivileges_fn, onEditDescription_fn, onAddFaction_fn, onDeleteFaction_fn, onRelationStep_fn, onCodexSection_fn, onFilterOthers_fn, onTogglePrivileges_fn, stepStanding_fn, onStepUp_fn, onStepDown_fn, onMemberRepUp_fn, onMemberRepDown_fn, stepMemberRep_fn, onMemberRepInput_fn, onViewCard_fn, onPickLogo_fn, _toastStack, _secretRoot, _secretTimer, _cardRevealRoot, _StoryFlowNotify_static, defaultSeconds_fn, onNotify_fn, showToast_fn, _qaStack, _QA_SECONDS, _QA_ICONS, showQuestAnnounce_fn, showRepToast_fn, showEpic_fn, hexRgba_fn, _cardRevealKey, _cardRevealTimer, _cardRevealTarget, buildRevealCard_fn, closeCardReveal_fn, clearCardReveal_fn, onSecret_fn, showSecret_fn, buildSecretDom_fn, buildMotes_fn, buildShards_fn, revealSecret_fn, fadeSecret_fn, clearSecret_fn, softGlow_fn, _items, _onChange, _wired, _CrateItemsApp_instances, onDrop_fn, onFieldChange_fn, commit_fn, _CrateItemsApp_static, onRemoveItem_fn, onEqualize_fn, _undo, _redo, _limit, _instance3, _onPick, _paths, _query, _tab, _limit2, _searchRestoreFocus, _listScrollTop, _AnimationPickerApp_static, databasePaths_fn, _AnimationPickerApp_instances, emptyKey_fn, tileFile_fn, captureScroll_fn, onTab_fn, onLoadMore_fn, onPickTile_fn, onFavorite_fn, onCancel_fn, _adapter, _resizeObserver, _resizeRaf, _resizeSettleTimer, _dirty, _history, _baseline, _undoBurstActive, _undoCoalesceTimer, _suspendCapture, _selectedNodeId, _fieldEditor, _paletteOpen, _paletteQuery, _paletteSpawn, _paletteOutsideHandler, _searchOpen, _searchQuery, _searchOutsideHandler, _ctxOpen, _ctxMode, _ctxX, _ctxY, _ctxGraphPt, _ctxNodeId, _ctxDismissHandler, _maximized, _restorePos, _onWindowResize, _onWorldTimeTick, _onKeyDown, _onFullscreenChange, _BlueprintCanvasApp_instances, itemRefField_fn, itemRefPreview_fn, dynamicOptionsFor_fn, weatherOptions_fn, statusEffectOptions_fn, monthOptions_fn, lightAnimationOptions_fn, factionOptions_fn, precedingNodeType_fn, graphNodeOptions_fn, checkKeyOptionsByKind_fn, checkKeyOptions_fn, buildRefOptions_fn, refSource_fn, questObjectiveOptions_fn, wireRefPickers_fn, wireNodePickers_fn, onInspectorDrop_fn, resolveRefDrop_fn, toggleMaximize_fn, applyMaximize_fn, fillViewport_fn, selectionSlice_fn, copySelection_fn, pasteClipboard_fn, openContextMenu_fn, closeContextMenu_fn, pasteClipboardAt_fn, duplicateSelection_fn, applyClones_fn, _placement, _placementListeners, endTemplatePlacement_fn, onCtrlT_fn, openTemplateLibrary_fn, createTemplateFromSelection_fn, addGroup_fn, editGroup_fn, openPalette_fn, closePalette_fn, wirePalette_fn, openSearch_fn, closeSearch_fn, wireSearch_fn, wireListNav_fn, markFirstActive_fn, jumpTo_fn, save_fn2, loadGraph_fn, markDirty_fn, recordChange_fn, flushUndoBurst_fn, undo_fn, redo_fn, refreshUndoButtons_fn, wireCategorySelect_fn, applyNodeName_fn, applyInspectorForm_fn, shouldRerenderInspector_fn, renderErrors_fn, _BlueprintCanvasApp_static, onAddNode_fn, onOpenPalette_fn, onClosePalette_fn, onOpenSearch_fn, onCloseSearch_fn, onJumpToNode_fn, onToggleMaximize_fn, onSaveGraph_fn, onUndo_fn, onRedo_fn, onExportGraph_fn, exportGraph_fn, onImportGraph_fn, importGraph_fn, applyImportFromPath_fn, onOpenFieldEditor_fn, onRenamePage_fn, renamePage_fn, syncTitle_fn, onDeleteSelected_fn, onDuplicateSelected_fn, onAddGroup_fn, onCtxRunFromHere_fn, onCtxTutorial_fn, onCtxDelete_fn, onCtxCopy_fn, onCtxDisconnect_fn, onCtxPaste_fn, onCtxCreate_fn, onCreateTemplate_fn, onOpenTemplateLibrary_fn, onOpenNodeGuide_fn, onCtxCreateTemplate_fn, onPickFile_fn, onMdFormat_fn, onAddChoice_fn, onOpenCrateItems_fn, onAddPath_fn, onRemovePath_fn, onAddRandomPath_fn, onRemoveRandomPath_fn, onEqualizeRandomPaths_fn, onGotoJumpTarget_fn, onGenerateMacro_fn, onReactivateTrigger_fn, onResetTriggerState_fn, onCaptureCamera_fn, onCaptureWalls_fn, onCaptureLights_fn, onOpenAnimationPicker_fn, onCaptureEffectPoint_fn, onPreviewEffect_fn, onCaptureEffectLine_fn, onMassPlaceTiles_fn, onEditTilePlacements_fn, enterTileEditMode_fn, onCaptureEffectTokens_fn, onRecordVoice_fn, onCaptureTokens_fn, onCaptureTokenDestination_fn, onCaptureDestinationTile_fn, onClearItem_fn, onRemoveChoice_fn, onAddCondition_fn, onRemoveCondition_fn, onAddCheck_fn, onRemoveCheck_fn, onAddRollRule_fn, onRemoveRollRule_fn, onRemoveSpellRow_fn, onRemoveActorRow_fn, onRemoveAudioTrack_fn, onAddChoiceRule_fn, onRemoveChoiceRule_fn, _root, _editable, _headingSelect, _onCommit, _selectionHandler, _blurHandler, _DescriptionEditor_instances, syncToolbarState_fn, _descriptionEditor, _mode, _BlueprintCanvasSheet_instances, redirectToInlineEdit_fn, wireDescriptionEditor_fn, _BlueprintCanvasSheet_static, onOpenEditor_fn, onStartFlow_fn, onPickCoverImage_fn, onRemoveCoverImage_fn, onToggleEdit_fn, _StoryFlowTriggerBehaviorType_static, onTokenMoveIn_fn, _instance4, _query2, _GraphBrowserApp_static, onOpenGraph_fn, _instance5, _activeTab2, _selected2, _notesSubTab, _personalViewUserId, _selectedNote, _selectedFaction, _QuestBoardApp_instances, prepareRewardsContext_fn, prepareNotesContext_fn, prepareFactionsContext_fn, resolveNote_fn, resolveSelected_fn, onDetailChange_fn, rewardItems_fn, onRewardDrop_fn, onNotesChange_fn, onFactionsChange_fn, cats_fn, saveCats_fn, facs_fn, saveFactions_fn, promptName_fn, _QuestBoardApp_static, onSwitchTab_fn2, onSelectEntry_fn, onAddQuest_fn, onAddLore_fn, onToggleReveal_fn, onAnnounceEntry_fn, onDeleteEntry_fn, onOpenRewards_fn, onRemoveRewardItem_fn, onAddObjective_fn, onRemoveObjective_fn, onMoveObjectiveUp_fn, onMoveObjectiveDown_fn, onToggleObjectiveHidden_fn, onAddCategory_fn2, onRenameCategory_fn, onRemoveCategory_fn, onMoveCategoryUp_fn, onMoveCategoryDown_fn, onAddFaction_fn2, onSelectFaction_fn2, onDeleteFaction_fn2, onPickFactionLogo_fn, onOpenFactionCodex_fn, onManageCardStore_fn2, onNotesSubTab_fn, onSelectNote_fn, onAddNote_fn, onDeleteNote_fn, _vm, _doneTimer, _GuideStepApp_static, onNext_fn, onBack_fn, onSkip_fn, onCloseCard_fn, _instance6, _suppress, _started, _payload, _GuideInviteApp_static, onStart_fn, onDismiss_fn, onReplay_fn, _instance7, _page, _departing, _finished2, _payload2, _GuideExplainerApp_instances, finish_fn, _GuideExplainerApp_static, reduceMotion_fn, onNext_fn2, onBack_fn2, _root2, _pointerHandler, _scrub, _scrubMoveHandler, _scrubUpHandler, _previewCond, _StoryFlowCalendarWidget_static, syncCombat_fn, renderAt_fn, context_fn, scrubLabels_fn, onScrubStart_fn, onScrubMove_fn, onScrubEnd_fn, trapNextClick_fn, onPointerDown_fn, onClick_fn, _dragDrop, _TraderPageSheet_static, onOpenShop_fn, onRestockNow_fn, _TraderPageSheet_instances, onDrop_fn2, onRemoveItem_fn2, onRemoveSellItem_fn, onPickPortrait_fn, _instance8, _frame, _runId, _actorId, _buyAsId, _query3, _category, _tab2, _showDesc, _cart, _cartOpen, _sellCart, _sellCartOpen, _sellRows, _itemDocs, _pageUuid, _rows, _buyerId, _hookIds, _tipEl, _TraderShopApp_static, onRenderState_fn, onEnd_fn, _TraderShopApp_instances, leaveStandalone_fn, resolveItemDocs_fn, stripHtml_fn, buildStandaloneShop_fn, applyFilter_fn, showTip_fn, hideTip_fn, dispatchBuy_fn, dispatchSell_fn, _instance9, _frame2, _interactiveUserId, _runId2, _actorId2, _typewriter, _ambientSound, _ambientPath, _voSound, _timeoutNodeId, _timeoutToken, _timeoutStartedAt, _localRollMode, _dieRenderer, _dieRenderNodeId, _mountingDieRenderer, _landKey, _fxTimers, _fxKey, _fxStep, _StoryFlowPlayerApp_static, onRenderState_fn2, autoRollQuiet_fn, _StoryFlowPlayerApp_instances, renderFrame_fn, patchCandidateSelection_fn, onEnd_fn2, doRoll_fn, syncDieRenderer_fn, resultKey_fn, clearFxTimers_fn, syncCheckFx_fn, applyFxStep_fn, syncTimeoutBar_fn, startTypewriter_fn, syncAudio_fn, stopAudio_fn, _loopSound, _onceSounds, _namedSounds, _runId3, _loopToken, _onceToken, _playbacks, _StoryFlowAudio_static, registerPlayback_fn, markPlaybackDone_fn, onAudio_fn, attachDone_fn, onStopAudio_fn, onEnd_fn3, _StoryFlowJournal_static, onOpen_fn, _StoryFlowMap_static, onShowOnMap_fn, _THREE, _renderer, _camera, _raf, _die1, _die2, _assigned, _faces, _mode2, _roll, _seq2, _seqTimers, _burstSys, _fairy, _shards, _die1BaseX, _die2BaseX, _camZTarget, _crackTex, _sparkTex, _reform, _coreLight, _boom, _ground, _envMap, _ThreeDieRenderer_instances, layout_fn, clearSeqTimers_fn, computeFaces_fn, faceQuaternion_fn, buildDie_fn, setDim_fn, sparkTexture_fn, buildParticles_fn, burst_fn, explodeDie1_fn, reformDie1_fn, tick_fn2, numberTexture_fn, envTexture_fn, crackTexture_fn, _root3, _itemIdx, _cards, _callbacks, _StoryFlowRewardContest_static, build_fn, update_fn, _latestContest, teardown_fn, _instance10, _state, _view, _StoryFlowRewardLedger_static, broadcast_fn, apply_fn, rollFor_fn, onMessage_fn, onState_fn, onClose_fn2, contestCallbacks_fn, onSplitGold_fn, onAssignItem_fn, onRollOff_fn, onRaiseHand_fn, onCancel_fn2, onDistribute_fn, grant_fn, _root4, _cfg, _mySpins, _busy, _tickRAF, _StoryFlowCrate_static, onCrate_fn, open_fn, buildDom_fn, poolCard_fn, reelCard_fn, tile_fn, onActivate_fn, onResult_fn, startSpin_fn, startTickLoop_fn, revealWinner_fn, onClose_fn3, teardown_fn2, canSpinNow_fn, myGold_fn, refreshActivate_fn, priceText_fn, buildMotes_fn2, buildShards_fn2, softGlow_fn2, i18n_fn, _instance11, _runId4, _nodeId, _propType, _config, _state2, _driverIds, _attemptsLeft, _mounted, _endTimer, _StoryflowProp_static, onProp_fn, open_fn2, onState_fn2, onAttempt_fn, onEnd_fn4, teardown_fn3, _StoryflowProp_instances, canDrive_fn, attemptsText_fn, reflectAttempts_fn, shake_fn, onSettle_fn, onTry_fn, forceResolve_fn, onAbort_fn, playEnd_fn, _heldCover, _StoryFlowTransition_static, onTransition_fn, cover_fn, reveal_fn, playReveal_fn, clearHeld_fn, build_fn2, _ScreenAnimAudioSync_static, attachAnalyser_fn, pulseTransform_fn, spawnFlash_fn, fadeFlashes_fn, _active, _StoryFlowScreenAnim_static, onRunEnd_fn, onMessage_fn2, runSync_fn, cancel_fn, boardEl_fn, runTransform_fn, runFlash_fn, _root5, _runId5, _nodeId2, _timers, _StoryFlowParchment_static, onParchment_fn, open_fn3, openLetter_fn, openBook_fn, onCloseClick_fn, fold_fn, _dialog, _runId6, _nodeId3, _resolved, _StoryFlowSelector_static, onSelect_fn, open_fn4, onPick_fn, onSkip_fn2, send_fn, close_fn;
+var _timer, _index, _done, _Typewriter_instances, tick_fn, complete_fn, _graph, _broadcast, _executeAction, _hasItem, _checkVisible, _checkChoiceGate, _getCheckCandidates, _getCheckModifier, _isGmUser, _allowVoting, _loadTrader, _canBuyFor, _executePurchase, _executeSell, _computeSellPrice, _recordSale, _recordSellToTrader, _evaluateCondition, _executeJournalOp, _getReputation, _getAffinity, _getFactionCardFactor, _nodeBehavior, _services2, _traderRepConfig, _repConfig, _getCrateParticipants, _crateGold, _grantCrateSpin, _crateRng, _audioRng, _pathRng, _getPropDrivers, _getActiveUserIds, _resolvePreloadAssets, _notifyPreloadComplete, _confirmRunGraph, _recordError2, _recordBreadcrumb2, _audioCursors, _audioPlaybackIds, _audioSeq, _finished, _endRequested, _endGraceSpent, _waitTimer, _ambience, _parked, _store, _GraphRunner_instances, crumb_fn, dispatchNode_fn, recordNodeError_fn, failNode_fn, advanceFrom_fn, resume_fn, runBehavior_fn, behaviorCtxFor_fn, park_fn, applyAmbience_fn, runParkedHook_fn, handleUnknownNode_fn, choiceVisible_fn, pending_fn, settle_fn, refuseNewWait_fn, requestEnd_fn, warnBlocked_fn, render_fn, blankFrame_fn, buildShopState_fn, clearWaitTimer_fn, end_fn, _report, _TroubleshootApp_static, onCopy_fn, onDownload_fn, onRefresh_fn, onClearErrors_fn, _activeTab, _ModuleSettingsApp_instances, readForm_fn, readTraderRep_fn, readRepConfig_fn, readScrub_fn, readTimeSteps_fn, _ModuleSettingsApp_static, onSwitchTab_fn, onSave_fn, onReset_fn, onClose_fn, _instance, _filter, _factionFilter, _folderFilter, _sort, _search, _selectMode, _selected, _fullscreen, _sideWidth, _sideListHeights, _pressedResizeEl, _sizeObserver, _onResizeRelease, _FactionCardStoreApp_instances, applySidebarSizes_fn, wireSidebarResizePersistence_fn, withCategoryHeaders_fn, categoryLabels_fn, save_fn, applySearch_fn, _FactionCardStoreApp_static, onCreate_fn, onEditCard_fn, onDuplicate_fn, openCardEditor_fn, onFilter_fn, onFilterFaction_fn, onAddCategory_fn, onDeleteCategory_fn, onFilterFolder_fn, saveFolders_fn, onCreateFolder_fn, onAddSubfolder_fn, doRenameFolder_fn, onExportFolder_fn, onImportFolder_fn, onDeleteFolder_fn, moveCardToFolder_fn, moveFolderTo_fn, onExportStore_fn, onImportStore_fn, applyImportedAssignments_fn, onDelete_fn, onAddToFaction_fn, openAssignDialog_fn, assignCard_fn, onToggleFullscreen_fn, mountFullscreenControl_fn, applyFullscreenIcon_fn, onToggleSelectMode_fn, onClearSelection_fn, onBulkAssign_fn, updateBulkBar_fn, openBulkAssignDialog_fn, bulkAssign_fn, onRemoveFromFaction_fn, _instance2, _selectedFactionId, _showPrivileges, _editingDescription, _editingPrivileges, _subjectActorId, _codexSection, _cardSort, _cardSearch, _othersFilter, _StoryFlowFactionCodex_static, onToggleCardReveal_fn, _StoryFlowFactionCodex_instances, playerCharacters_fn, playerUsers_fn, resolveSubject_fn, applyCardSearch_fn, onOpenActor_fn, onRelationChange_fn, onRosterMemberToggle_fn, moveMemberContent_fn, onEdit_fn, onRemoveCard_fn, onManageCardStore_fn, onToggleUser_fn, saveFaction_fn, onSelectFaction_fn, onEditPrivileges_fn, onEditDescription_fn, onAddFaction_fn, onDeleteFaction_fn, onRelationStep_fn, onCodexSection_fn, onFilterOthers_fn, onTogglePrivileges_fn, stepStanding_fn, onStepUp_fn, onStepDown_fn, onMemberRepUp_fn, onMemberRepDown_fn, stepMemberRep_fn, onMemberRepInput_fn, onViewCard_fn, onPickLogo_fn, _toastStack, _secretRoot, _secretTimer, _cardRevealRoot, _StoryFlowNotify_static, defaultSeconds_fn, onNotify_fn, showToast_fn, _qaStack, _QA_SECONDS, _QA_ICONS, showQuestAnnounce_fn, showRepToast_fn, showEpic_fn, hexRgba_fn, _cardRevealKey, _cardRevealTimer, _cardRevealTarget, buildRevealCard_fn, closeCardReveal_fn, clearCardReveal_fn, onSecret_fn, showSecret_fn, buildSecretDom_fn, buildMotes_fn, buildShards_fn, revealSecret_fn, fadeSecret_fn, clearSecret_fn, softGlow_fn, _items, _onChange, _wired, _CrateItemsApp_instances, onDrop_fn, onFieldChange_fn, commit_fn, _CrateItemsApp_static, onRemoveItem_fn, onEqualize_fn, _undo, _redo, _limit, _instance3, _onPick, _paths, _query, _tab, _limit2, _searchRestoreFocus, _listScrollTop, _AnimationPickerApp_static, databasePaths_fn, _AnimationPickerApp_instances, emptyKey_fn, tileFile_fn, captureScroll_fn, onTab_fn, onLoadMore_fn, onPickTile_fn, onFavorite_fn, onCancel_fn, _adapter, _resizeObserver, _resizeRaf, _resizeSettleTimer, _dirty, _history, _baseline, _undoBurstActive, _undoCoalesceTimer, _suspendCapture, _selectedNodeId, _fieldEditor, _paletteOpen, _paletteQuery, _paletteSpawn, _paletteOutsideHandler, _searchOpen, _searchQuery, _searchOutsideHandler, _ctxOpen, _ctxMode, _ctxX, _ctxY, _ctxGraphPt, _ctxNodeId, _ctxDismissHandler, _maximized, _restorePos, _onWindowResize, _onWorldTimeTick, _onKeyDown, _onFullscreenChange, _BlueprintCanvasApp_instances, itemRefField_fn, itemRefPreview_fn, dynamicOptionsFor_fn, weatherOptions_fn, statusEffectOptions_fn, monthOptions_fn, lightAnimationOptions_fn, factionOptions_fn, precedingNodeType_fn, graphNodeOptions_fn, checkKeyOptionsByKind_fn, checkKeyOptions_fn, buildRefOptions_fn, refSource_fn, questObjectiveOptions_fn, wireRefPickers_fn, wireNodePickers_fn, onInspectorDrop_fn, resolveRefDrop_fn, toggleMaximize_fn, applyMaximize_fn, fillViewport_fn, selectionSlice_fn, copySelection_fn, pasteClipboard_fn, openContextMenu_fn, closeContextMenu_fn, pasteClipboardAt_fn, duplicateSelection_fn, applyClones_fn, _placement, _placementListeners, endTemplatePlacement_fn, onCtrlT_fn, openTemplateLibrary_fn, createTemplateFromSelection_fn, addGroup_fn, editGroup_fn, openPalette_fn, closePalette_fn, wirePalette_fn, openSearch_fn, closeSearch_fn, wireSearch_fn, wireListNav_fn, markFirstActive_fn, jumpTo_fn, save_fn2, loadGraph_fn, markDirty_fn, recordChange_fn, flushUndoBurst_fn, undo_fn, redo_fn, refreshUndoButtons_fn, wireCategorySelect_fn, applyNodeName_fn, applyInspectorForm_fn, shouldRerenderInspector_fn, renderErrors_fn, _BlueprintCanvasApp_static, onAddNode_fn, onOpenPalette_fn, onClosePalette_fn, onOpenSearch_fn, onCloseSearch_fn, onJumpToNode_fn, onToggleMaximize_fn, onSaveGraph_fn, onUndo_fn, onRedo_fn, onExportGraph_fn, exportGraph_fn, onImportGraph_fn, importGraph_fn, applyImportFromPath_fn, onOpenFieldEditor_fn, onRenamePage_fn, renamePage_fn, syncTitle_fn, onDeleteSelected_fn, onDuplicateSelected_fn, onAddGroup_fn, onCtxRunFromHere_fn, onCtxTutorial_fn, onCtxDelete_fn, onCtxCopy_fn, onCtxDisconnect_fn, onCtxPaste_fn, onCtxCreate_fn, onCreateTemplate_fn, onOpenTemplateLibrary_fn, onOpenNodeGuide_fn, onCtxCreateTemplate_fn, onPickFile_fn, onMdFormat_fn, onAddChoice_fn, onOpenCrateItems_fn, onAddPath_fn, onRemovePath_fn, onAddRandomPath_fn, onRemoveRandomPath_fn, onEqualizeRandomPaths_fn, onGotoJumpTarget_fn, onGenerateMacro_fn, onReactivateTrigger_fn, onResetTriggerState_fn, onCaptureCamera_fn, onCaptureWalls_fn, onCaptureLights_fn, onOpenAnimationPicker_fn, onCaptureEffectPoint_fn, onPreviewEffect_fn, onCaptureEffectLine_fn, onMassPlaceTiles_fn, onEditTilePlacements_fn, enterTileEditMode_fn, onCaptureEffectTokens_fn, onRecordVoice_fn, onCaptureTokens_fn, onCaptureTokenDestination_fn, onCaptureDestinationTile_fn, onClearItem_fn, onRemoveChoice_fn, onAddCondition_fn, onRemoveCondition_fn, onAddCheck_fn, onRemoveCheck_fn, onAddRollRule_fn, onRemoveRollRule_fn, onRemoveSpellRow_fn, onRemoveActorRow_fn, onRemoveAudioTrack_fn, onAddChoiceRule_fn, onRemoveChoiceRule_fn, _root, _editable, _headingSelect, _onCommit, _selectionHandler, _blurHandler, _DescriptionEditor_instances, syncToolbarState_fn, _descriptionEditor, _mode, _BlueprintCanvasSheet_instances, redirectToInlineEdit_fn, wireDescriptionEditor_fn, _BlueprintCanvasSheet_static, onOpenEditor_fn, onStartFlow_fn, onPickCoverImage_fn, onRemoveCoverImage_fn, onToggleEdit_fn, _StoryFlowTriggerBehaviorType_static, onTokenMoveIn_fn, _instance4, _query2, _GraphBrowserApp_static, onOpenGraph_fn, _instance5, _activeTab2, _selected2, _notesSubTab, _personalViewUserId, _selectedNote, _selectedFaction, _QuestBoardApp_instances, prepareRewardsContext_fn, prepareNotesContext_fn, prepareFactionsContext_fn, resolveNote_fn, resolveSelected_fn, onDetailChange_fn, rewardItems_fn, onRewardDrop_fn, onNotesChange_fn, onFactionsChange_fn, cats_fn, saveCats_fn, facs_fn, saveFactions_fn, promptName_fn, _QuestBoardApp_static, onSwitchTab_fn2, onSelectEntry_fn, onAddQuest_fn, onAddLore_fn, onToggleReveal_fn, onAnnounceEntry_fn, onDeleteEntry_fn, onOpenRewards_fn, onRemoveRewardItem_fn, onAddObjective_fn, onRemoveObjective_fn, onMoveObjectiveUp_fn, onMoveObjectiveDown_fn, onToggleObjectiveHidden_fn, onAddCategory_fn2, onRenameCategory_fn, onRemoveCategory_fn, onMoveCategoryUp_fn, onMoveCategoryDown_fn, onAddFaction_fn2, onSelectFaction_fn2, onDeleteFaction_fn2, onPickFactionLogo_fn, onOpenFactionCodex_fn, onManageCardStore_fn2, onNotesSubTab_fn, onSelectNote_fn, onAddNote_fn, onDeleteNote_fn, _vm, _doneTimer, _GuideStepApp_static, onNext_fn, onBack_fn, onSkip_fn, onCloseCard_fn, _instance6, _suppress, _started, _payload, _GuideInviteApp_static, onStart_fn, onDismiss_fn, onReplay_fn, _instance7, _page, _departing, _finished2, _payload2, _GuideExplainerApp_instances, finish_fn, _GuideExplainerApp_static, reduceMotion_fn, onNext_fn2, onBack_fn2, _root2, _pointerHandler, _scrub, _scrubMoveHandler, _scrubUpHandler, _previewCond, _StoryFlowCalendarWidget_static, syncCombat_fn, renderAt_fn, context_fn, scrubLabels_fn, onScrubStart_fn, onScrubMove_fn, onScrubEnd_fn, trapNextClick_fn, onPointerDown_fn, onClick_fn, nudgePlaneParam_fn, _dragDrop, _TraderPageSheet_static, onOpenShop_fn, onRestockNow_fn, _TraderPageSheet_instances, onDrop_fn2, onRemoveItem_fn2, onRemoveSellItem_fn, onPickPortrait_fn, _instance8, _frame, _runId, _actorId, _buyAsId, _query3, _category, _tab2, _showDesc, _cart, _cartOpen, _sellCart, _sellCartOpen, _sellRows, _itemDocs, _pageUuid, _rows, _buyerId, _hookIds, _tipEl, _TraderShopApp_static, onRenderState_fn, onEnd_fn, _TraderShopApp_instances, leaveStandalone_fn, resolveItemDocs_fn, stripHtml_fn, buildStandaloneShop_fn, applyFilter_fn, showTip_fn, hideTip_fn, dispatchBuy_fn, dispatchSell_fn, _instance9, _quietGen, _frame2, _interactiveUserId, _runId2, _actorId2, _typewriter, _ambientSound, _ambientPath, _voSound, _timeoutNodeId, _timeoutToken, _timeoutStartedAt, _localRollMode, _dieRenderer, _dieRenderNodeId, _mountingDieRenderer, _landKey, _fxTimers, _fxKey, _fxStep, _StoryFlowPlayerApp_static, onRenderState_fn2, autoRollQuiet_fn, confirmQuietRetry_fn, _StoryFlowPlayerApp_instances, renderFrame_fn, patchCandidateSelection_fn, onEnd_fn2, doRoll_fn, syncDieRenderer_fn, resultKey_fn, clearFxTimers_fn, syncCheckFx_fn, applyFxStep_fn, syncTimeoutBar_fn, startTypewriter_fn, syncAudio_fn, stopAudio_fn, _loopSound, _onceSounds, _namedSounds, _runId3, _loopToken, _onceToken, _playbacks, _StoryFlowAudio_static, registerPlayback_fn, markPlaybackDone_fn, onAudio_fn, attachDone_fn, onStopAudio_fn, onEnd_fn3, _StoryFlowJournal_static, onOpen_fn, _StoryFlowMap_static, onShowOnMap_fn, _THREE, _renderer, _camera, _raf, _die1, _die2, _assigned, _faces, _mode2, _roll, _seq2, _seqTimers, _burstSys, _fairy, _shards, _die1BaseX, _die2BaseX, _camZTarget, _crackTex, _sparkTex, _reform, _coreLight, _boom, _ground, _envMap, _ThreeDieRenderer_instances, layout_fn, clearSeqTimers_fn, computeFaces_fn, faceQuaternion_fn, buildDie_fn, setDim_fn, sparkTexture_fn, buildParticles_fn, burst_fn, explodeDie1_fn, reformDie1_fn, tick_fn2, numberTexture_fn, envTexture_fn, crackTexture_fn, _root3, _itemIdx, _cards, _callbacks, _StoryFlowRewardContest_static, build_fn, update_fn, _latestContest, teardown_fn, _instance10, _state, _view, _StoryFlowRewardLedger_static, broadcast_fn, apply_fn, rollFor_fn, onMessage_fn, onState_fn, onClose_fn2, contestCallbacks_fn, onSplitGold_fn, onAssignItem_fn, onRollOff_fn, onRaiseHand_fn, onCancel_fn2, onDistribute_fn, grant_fn, _root4, _cfg, _mySpins, _busy, _tickRAF, _StoryFlowCrate_static, onCrate_fn, open_fn, buildDom_fn, poolCard_fn, reelCard_fn, tile_fn, onActivate_fn, onResult_fn, startSpin_fn, startTickLoop_fn, revealWinner_fn, onClose_fn3, teardown_fn2, canSpinNow_fn, myGold_fn, refreshActivate_fn, priceText_fn, buildMotes_fn2, buildShards_fn2, softGlow_fn2, i18n_fn, _instance11, _runId4, _nodeId, _propType, _config, _state2, _driverIds, _attemptsLeft, _mounted, _endTimer, _StoryflowProp_static, onProp_fn, open_fn2, onState_fn2, onAttempt_fn, onEnd_fn4, teardown_fn3, _StoryflowProp_instances, canDrive_fn, attemptsText_fn, reflectAttempts_fn, shake_fn, onSettle_fn, onTry_fn, forceResolve_fn, onAbort_fn, playEnd_fn, _heldCover, _StoryFlowTransition_static, onTransition_fn, cover_fn, reveal_fn, playReveal_fn, clearHeld_fn, build_fn2, _ScreenAnimAudioSync_static, attachAnalyser_fn, pulseTransform_fn, spawnFlash_fn, fadeFlashes_fn, _active, _StoryFlowScreenAnim_static, onRunEnd_fn, onMessage_fn2, runSync_fn, cancel_fn, boardEl_fn, runTransform_fn, runFlash_fn, _root5, _runId5, _nodeId2, _timers, _StoryFlowParchment_static, onParchment_fn, open_fn3, openLetter_fn, openBook_fn, onCloseClick_fn, fold_fn, _dialog, _runId6, _nodeId3, _resolved, _StoryFlowSelector_static, onSelect_fn, open_fn4, onPick_fn, onSkip_fn2, send_fn, close_fn;
 const MODULE_ID = "storyflow-dungeons-lab";
 const FLAGS = Object.freeze({
   /**
@@ -84,6 +84,19 @@ const SETTINGS = Object.freeze({
    * оверлея/уведомлений (доступность).
    */
   REDUCE_MOTION: "reduceMotion",
+  /** Настройка клиента (boolean): режим слабого ПК для календаря - без анимаций, без эффектов размытия/теней. */
+  CALENDAR_PERF_MODE: "calendarPerformanceMode",
+  /** Настройка клиента (number 0.6-1.6): пользовательский множитель масштаба интерфейса календаря (виджет + окно). */
+  CALENDAR_USER_SCALE: "calendarUserScale",
+  /** Настройка клиента (string): какой план изображает панель неба в HUD - id стиля неба, "classic" бесплатный. */
+  CALENDAR_SKY_STYLE: "calendarSkyStyle",
+  /**
+   * Настройка мира (object): принадлежащий ГМ тип мира - `{plane, conditions, params, perScene}`.
+   * Один объект, а не отдельная настройка на каждую ручку, поэтому новый план или новый
+   * параметр плана никогда не требует миграции настроек. Форма и валидация лежат
+   * в apps/calendar/sky/plane-model.mjs.
+   */
+  CALENDAR_WORLD: "calendarWorld",
   ACTIVE_WINDOW_FOCUS: "activeWindowFocus",
   /**
    * Настройка клиента (boolean): мгновенно показывать текст тела оверлея
@@ -431,7 +444,12 @@ const MSG = Object.freeze({
    * игроки отправляют `{action:"hand"|"rollReq"}`; `{action:"close"}` закрывает
    * у всех.
    */
-  REWARD: "REWARD"
+  REWARD: "REWARD",
+  /** Не-авторитетный клиент → авторитет активного ГМ: переслать КЛИЕНТ-ЛОКАЛЬНЫЙ хук
+   *  события-триггера (хук броска/активности/отдыха dnd5e, срабатывающий только на действующем
+   *  клиенте), чтобы его увидел и авторитет. `{hook, descriptor}` - не относится ни к какому
+   *  прогону; `runId` равен null (см. event-triggers.mjs). */
+  TRIGGER_EVENT: "TRIGGER_EVENT"
 });
 const INPUT_ACTION = Object.freeze({
   /** Перейти к следующему узлу отображения. */
@@ -999,7 +1017,8 @@ function cleanPayload(type, data = {}) {
   const src = data ?? {};
   const out = {};
   for (const [name, field] of Object.entries(spec)) {
-    out[name] = coerceField(field, src[name]);
+    const raw = src[name] ?? (field.from != null ? src[field.from] : void 0);
+    out[name] = coerceField(field, raw);
   }
   if (type === "quest") out.operation = normalizeQuestOp(out.targetType, out.operation);
   const h = _payloadHooks.get(type);
@@ -1994,6 +2013,23 @@ class GraphRunner {
     __privateAdd(this, _audioSeq, 0);
     /** @type {boolean} */
     __privateAdd(this, _finished, false);
+    /** @type {boolean} Исход `end` был обработан, пока что-то еще в этом fan-out оставалось
+     *  ожидающим (припаркованный узел / общий таймер ожидания) - F3: сворачивание откладывается
+     *  до собственного #settle() этого тика (никогда не сворачивается здесь синхронно), чтобы
+     *  соседняя цель fan-out - независимо от того, припарковалась ли она ДО этого `end` или еще
+     *  НЕ была запущена - всегда получила свой ход; #finished в обоих случаях не выставляется
+     *  раньше времени. Чисто документирующий/диагностический маркер - #settle() и так безусловно
+     *  завершает прогон, как только ничего не ожидает, с этим флагом или без. Сбрасывается
+     *  в #end(). */
+    __privateAdd(this, _endRequested, false);
+    /** @type {boolean} F3b: взводится в #settle() в тот момент, когда тик завершается с чем-то
+     *  все еще ожидающим, ПОКА #endRequested истинно - то есть сосед, который уже парковался
+     *  (или вот-вот был бы запущен) в ТОМ ЖЕ тике, что и запрос завершения, использовал свой
+     *  единственный льготный ход. Дальше #refuseNewWait() завершает прогон вместо того, чтобы
+     *  снова дать чему-либо припарковаться/заблокироваться - "запрошенное завершение срабатывает
+     *  на следующем ожидании прогона", а не на каждом будущем тике. Сбрасывается в #end()
+     *  (косметика - завершенный прогон никогда не переиспользуется). */
+    __privateAdd(this, _endGraceSpent, false);
     /** @type {ReturnType<typeof setTimeout>|null} Таймер задержки узла ожидания. */
     __privateAdd(this, _waitTimer, null);
     /**
@@ -2018,7 +2054,10 @@ class GraphRunner {
     this.pageUuid = pageUuid;
     this.actorId = actorId;
     this.targetTokenIds = targetTokenIds;
-    __privateSet(this, _broadcast, broadcast);
+    __privateSet(this, _broadcast, (type, payload2) => {
+      if (__privateGet(this, _finished) && type !== MSG.END) return;
+      broadcast(type, payload2);
+    });
     __privateSet(this, _executeAction, executeAction2);
     __privateSet(this, _hasItem, hasItem);
     __privateSet(this, _checkVisible, checkVisible);
@@ -2060,6 +2099,13 @@ class GraphRunner {
   /** @returns {boolean} Возвращает true, как только END разослан. */
   get finished() {
     return __privateGet(this, _finished);
+  }
+  /** @returns {boolean} True, как только исход `end` был обработан (F3) - прогон завершится
+   *  в тот миг, когда ничего не будет ожидать, даже если прямо сейчас он еще припаркован
+   *  на соседе. Только для диагностики (представление activeRun из graph-status.mjs может
+   *  показывать это так же, как currentNodeId). */
+  get endRequested() {
+    return __privateGet(this, _endRequested);
   }
   /**
    * @returns {string|null} id узла, ожидающего ввода, или null, если ничего не
@@ -2199,6 +2245,8 @@ _audioCursors = new WeakMap();
 _audioPlaybackIds = new WeakMap();
 _audioSeq = new WeakMap();
 _finished = new WeakMap();
+_endRequested = new WeakMap();
+_endGraceSpent = new WeakMap();
 _waitTimer = new WeakMap();
 _ambience = new WeakMap();
 _parked = new WeakMap();
@@ -2269,6 +2317,7 @@ resume_fn = async function(nodeId, pin) {
 };
 runBehavior_fn = async function(node, behavior2, visited) {
   if (behavior2.parks && __privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) return __privateMethod(this, _GraphRunner_instances, warnBlocked_fn).call(this, node);
+  if (behavior2.parks && __privateMethod(this, _GraphRunner_instances, refuseNewWait_fn).call(this)) return;
   let outcome;
   try {
     outcome = await behavior2.enter(node, __privateMethod(this, _GraphRunner_instances, behaviorCtxFor_fn).call(this, node, visited));
@@ -2277,17 +2326,20 @@ runBehavior_fn = async function(node, behavior2, visited) {
     console.error(`${MODULE_ID} | run ${this.runId}: behavior for ${node.type} threw:`, err);
     return __privateMethod(this, _GraphRunner_instances, advanceFrom_fn).call(this, node.id, "out", visited);
   }
+  if (__privateGet(this, _finished)) return;
   const o = interpretOutcome(outcome);
   if (o.kind === "settle") return;
-  if (o.kind === "end") return __privateMethod(this, _GraphRunner_instances, end_fn).call(this);
+  if (o.kind === "end") return __privateMethod(this, _GraphRunner_instances, requestEnd_fn).call(this, node);
   if (o.kind === "goto") return this.advance(o.nodeId, visited);
   if (o.kind === "await") {
     if (__privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) return __privateMethod(this, _GraphRunner_instances, warnBlocked_fn).call(this, node);
+    if (__privateMethod(this, _GraphRunner_instances, refuseNewWait_fn).call(this)) return;
     __privateMethod(this, _GraphRunner_instances, park_fn).call(this, node, behavior2, o);
     return;
   }
   if (o.kind === "block") {
     if (__privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) return __privateMethod(this, _GraphRunner_instances, warnBlocked_fn).call(this, node);
+    if (__privateMethod(this, _GraphRunner_instances, refuseNewWait_fn).call(this)) return;
     __privateSet(this, _waitTimer, setTimeout(() => {
       if (__privateGet(this, _finished)) return;
       __privateSet(this, _waitTimer, null);
@@ -2411,6 +2463,11 @@ behaviorCtxFor_fn = function(node, visited = /* @__PURE__ */ new Set()) {
       try {
         await __privateGet(this, _executeAction).call(this, actionNode, {
           actorId: this.actorId,
+          // Решающий кандидат последнего узла проверки ("check.actorId" из ctx.store,
+          // выставляется в nodes/check/behavior.mjs) - питает политику target:"checkActor".
+          // Сам this.actorId не трогается: condition target:"trigger" по-прежнему читает
+          // актера-триггер прогона.
+          checkActorId: __privateGet(this, _store).get("check.actorId") ?? null,
           pageUuid: this.pageUuid,
           targetTokenIds: this.targetTokenIds
         });
@@ -2459,6 +2516,13 @@ behaviorCtxFor_fn = function(node, visited = /* @__PURE__ */ new Set()) {
     pickWeightedPath: (paths) => pickWeightedItem(paths, __privateGet(this, _pathRng)),
     // Только для чтения состояние runner + решения авторитета, которые могут понадобиться enter()/хукам пакета.
     pending: () => __privateMethod(this, _GraphRunner_instances, pending_fn).call(this),
+    // Чистый запрос, повторяющий условие #refuseNewWait() БЕЗ завершения прогона и без
+    // изменения чего-либо - для динамически паркующегося поведения (без статического
+    // `parks: true`; охраняет свой побочный эффект через ctx.pending()), которому нужен тот же
+    // отказ F3b перед побочным эффектом, что статический узел с `parks` получает даром
+    // на предвходной страже (:474). Собственный #refuseNewWait() раннера (четыре места вызова
+    // парковки/блокировки) не затронут.
+    waitRefused: () => __privateGet(this, _endRequested) && __privateGet(this, _endGraceSpent),
     isSecretTap: (msg) => (msg == null ? void 0 : msg.action) === INPUT_ACTION.SECRET_TAP,
     isSelectPath: (msg) => (msg == null ? void 0 : msg.action) === INPUT_ACTION.SELECT_PATH,
     // Дискриминатор Continue узла display/text (неизменный gate
@@ -2613,6 +2677,7 @@ runParkedHook_fn = async function(name, args) {
     __privateMethod(this, _GraphRunner_instances, recordNodeError_fn).call(this, `behavior-hook ${name} ${node == null ? void 0 : node.id} (${node == null ? void 0 : node.type}) run ${this.runId}`, node, err);
     return;
   }
+  if (__privateGet(this, _finished)) return;
   const o = interpretOutcome(outcome, { hook: true });
   if (o.kind === "noop") return;
   if (o.kind === "render") return __privateMethod(this, _GraphRunner_instances, render_fn).call(this, { ...o.frame });
@@ -2620,8 +2685,12 @@ runParkedHook_fn = async function(name, args) {
   __privateSet(this, _parked, null);
   if (o.kind === "end") return __privateMethod(this, _GraphRunner_instances, end_fn).call(this);
   if (o.kind === "settle") return __privateMethod(this, _GraphRunner_instances, settle_fn).call(this);
-  if (o.kind === "await") return __privateMethod(this, _GraphRunner_instances, park_fn).call(this, node, parked.behavior, o);
+  if (o.kind === "await") {
+    if (__privateMethod(this, _GraphRunner_instances, refuseNewWait_fn).call(this)) return;
+    return __privateMethod(this, _GraphRunner_instances, park_fn).call(this, node, parked.behavior, o);
+  }
   if (o.kind === "block") {
+    if (__privateMethod(this, _GraphRunner_instances, refuseNewWait_fn).call(this)) return;
     __privateSet(this, _waitTimer, setTimeout(() => {
       if (__privateGet(this, _finished)) return;
       __privateSet(this, _waitTimer, null);
@@ -2667,11 +2736,63 @@ pending_fn = function() {
   return Boolean(__privateGet(this, _waitTimer)) || Boolean(__privateGet(this, _parked));
 };
 /**
- * Завершить прогон, когда тик не оставляет ничего ожидающим (End-узел не
- * нужен).
+ * Завершить прогон, когда тик не оставил ничего ожидающего (узел End не нужен). Тик, который
+ * завершается с чем-то все еще ожидающим, ПОКА завершение было запрошено (F3), только что дал
+ * этому уже летящему соседу его единственный льготный ход - взвести #endGraceSpent (F3b), чтобы
+ * самая следующая попытка открыть НОВОЕ ожидание получила отказ вместо очередной
+ * парковки/блокировки.
  */
 settle_fn = function() {
-  if (!__privateGet(this, _finished) && !__privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) __privateMethod(this, _GraphRunner_instances, end_fn).call(this);
+  if (__privateGet(this, _finished)) return;
+  if (__privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) {
+    if (__privateGet(this, _endRequested)) __privateSet(this, _endGraceSpent, true);
+    return;
+  }
+  __privateMethod(this, _GraphRunner_instances, end_fn).call(this);
+};
+/**
+ * F3b: общая точка соблюдения правила "запрошенное завершение срабатывает на следующем ожидании
+ * прогона" - все четыре места парковки/блокировки (ветки await/block, запускаемые из enter()
+ * в #runBehavior, и ветки повторной парковки/блокировки припаркованного хука в #runParkedHook)
+ * проходят через ЭТУ ОДНУ проверку, чтобы она не разъехалась. Отказ дается только после того,
+ * как льготный проход уже израсходован (#endGraceSpent, взводится в #settle() в тот момент,
+ * когда тик завершается с чем-то ожидающим при запрошенном завершении) - так что сосед, который
+ * паркуется (или еще не был запущен) в ТОМ ЖЕ тике, что и запрос завершения, все равно получает
+ * свой ход на парковку (ровно та регрессия F3, которую нельзя вернуть); отказывает только тик
+ * ПОСЛЕ этого льготного прохода.
+ * @returns {boolean} True, если прогон был завершен здесь - вызывающий НЕ должен парковаться или взводить таймер.
+ */
+refuseNewWait_fn = function() {
+  if (!__privateGet(this, _endRequested) || !__privateGet(this, _endGraceSpent)) return false;
+  __privateMethod(this, _GraphRunner_instances, end_fn).call(this);
+  return true;
+};
+/**
+ * Применить исход `end`, обработанный посреди тика (F3). Здесь НИКОГДА не сворачивается
+ * синхронно - любой вызов advance()/#advanceFrom, из которого сюда можно попасть, и так
+ * упирается в собственный завершающий #settle() ТОГО ЖЕ тика (проваливание
+ * start()/#resume()/#runParkedHook), который и так завершает прогон в тот миг, когда ничего
+ * не ожидает. Именно откладывание до него - а не вызов #end() по месту - и позволяет соседней
+ * цели fan-out все же получить свой ход, с какой бы стороны от этого `end` она ни была
+ * подключена: уже припаркованная цель держит #pending() истинным, поэтому settle() выжидает;
+ * еще не запущенная цель все равно отработает, потому что #finished здесь не выставляется
+ * (верхняя стража advance() больше не обрывает ее). Когда ничего не ожидает (или перестает
+ * ожидать), этот завершающий #settle() срабатывает в том же самом синхронном тике - та же
+ * рассылка, тот же порядок - так что обычный случай без fan-out наблюдаемо не меняется.
+ * Как "отложенное" логируется только тогда, когда что-то ДЕЙСТВИТЕЛЬНО ожидает в этот момент;
+ * обычный немедленный случай остается тихим (без лишнего шума в хлебных крошках).
+ * @param {object} node - Узел `end` (или любой исход поведения, запрашивающий `{end:true}`).
+ */
+requestEnd_fn = function(node) {
+  var _a;
+  __privateSet(this, _endRequested, true);
+  if (!__privateMethod(this, _GraphRunner_instances, pending_fn).call(this)) return;
+  const pendingNodeId = ((_a = __privateGet(this, _parked)) == null ? void 0 : _a.nodeId) ?? null;
+  __privateMethod(this, _GraphRunner_instances, crumb_fn).call(this, "run", `end ${node.id} deferred - ${pendingNodeId ?? "wait timer"} still pending`, {
+    runId: this.runId,
+    endNodeId: node.id,
+    pendingNodeId
+  });
 };
 /**
  * Предупредить, что fan-out достиг второго блокирующего узла (разрешен только
@@ -2775,56 +2896,11 @@ end_fn = function() {
   __privateSet(this, _parked, null);
   __privateGet(this, _store).clear();
   __privateSet(this, _finished, true);
+  __privateSet(this, _endRequested, false);
+  __privateSet(this, _endGraceSpent, false);
   __privateMethod(this, _GraphRunner_instances, crumb_fn).call(this, "run", "end", { runId: this.runId });
   __privateGet(this, _broadcast).call(this, MSG.END, {});
 };
-function resolveHealDamageTargets({
-  target: target2,
-  targetActorIds = [],
-  triggerActorId = null,
-  users = [],
-  characters = []
-}) {
-  if (target2 === "trigger") return triggerActorId ? [triggerActorId] : [];
-  if (target2 === "selected") return [...targetActorIds];
-  if (target2 === "all") {
-    const party = users.filter((u) => !u.isGM && u.characterId).map((u) => u.characterId);
-    if (party.length) return [...new Set(party)];
-    return [...characters];
-  }
-  return [];
-}
-function applyGold(mode, gp, amount) {
-  const have = Number.isFinite(Number(gp)) ? Number(gp) : 0;
-  const delta = Number(amount) || 0;
-  return mode === "take" ? Math.max(0, have - delta) : have + delta;
-}
-function matchesDroppedItem(owned, dropped) {
-  const du = dropped == null ? void 0 : dropped.uuid;
-  if (du && (owned.uuid === du || owned.id === du || owned.sourceId === du)) return true;
-  const dn = dropped == null ? void 0 : dropped.name;
-  if (dn != null && owned.name != null && String(owned.name).toLowerCase() === String(dn).toLowerCase()) {
-    return true;
-  }
-  return false;
-}
-function planItemRemoval(matched, count) {
-  let remaining = Math.max(0, Math.trunc(Number(count) || 0));
-  const deletes = [];
-  const updates = [];
-  for (const it of matched ?? []) {
-    if (remaining <= 0) break;
-    const qty = Number.isFinite(it.quantity) ? it.quantity : 1;
-    if (qty <= remaining) {
-      deletes.push(it.id);
-      remaining -= qty;
-    } else {
-      updates.push({ _id: it.id, quantity: qty - remaining });
-      remaining = 0;
-    }
-  }
-  return { deletes, updates };
-}
 const DOOR_TYPE = { WALL: 0, DOOR: 1, SECRET: 2 };
 const DOOR_STATE = { CLOSED: 0, OPEN: 1, LOCKED: 2 };
 const STATE_OPS = /* @__PURE__ */ new Set(["open", "close", "lock", "toggle"]);
@@ -2856,6 +2932,580 @@ function planWallUpdates(operation, walls) {
     const change = w && planWallUpdate(operation, w);
     return change ? { _id: w.id, ...change } : null;
   }).filter(Boolean);
+}
+const CORE_PROVIDER = "core";
+const KEY_SEP = ":";
+function parseEffectKey(key) {
+  const raw = typeof key === "string" ? key : "";
+  const at = raw.indexOf(KEY_SEP);
+  if (at <= 0) return { provider: CORE_PROVIDER, type: raw };
+  return { provider: raw.slice(0, at), type: raw.slice(at + 1) };
+}
+function makeEffectKey(provider, type) {
+  return provider === CORE_PROVIDER ? type : `${provider}${KEY_SEP}${type}`;
+}
+function diffActiveEffects(prev, next) {
+  const before = new Set(prev ?? []);
+  return [...new Set(next ?? [])].filter((t) => !before.has(t));
+}
+const DEFAULT_WEATHER_EFFECT_MAP = Object.freeze({
+  clear: "",
+  overcast: "",
+  fog: "fog",
+  rain: "rain",
+  storm: "rainStorm",
+  snow: "snow"
+});
+function normalizeWeatherEffectMap(raw) {
+  const src = raw && typeof raw === "object" ? raw : {};
+  const out = {};
+  for (const cond of Object.keys(DEFAULT_WEATHER_EFFECT_MAP)) {
+    const v = src[cond];
+    out[cond] = typeof v === "string" ? v : DEFAULT_WEATHER_EFFECT_MAP[cond];
+  }
+  return out;
+}
+function normalizeWeatherProvider(def) {
+  const id = typeof (def == null ? void 0 : def.id) === "string" ? def.id.trim() : "";
+  if (!id || id === CORE_PROVIDER || id.includes(KEY_SEP)) return null;
+  if (typeof def.list !== "function" || typeof def.apply !== "function") return null;
+  return {
+    id,
+    label: typeof def.label === "string" && def.label ? def.label : id,
+    icon: typeof def.icon === "string" && def.icon ? def.icon : "fa-wand-magic-sparkles",
+    available: typeof def.available === "function" ? def.available : () => true,
+    list: def.list,
+    activeTypes: typeof def.activeTypes === "function" ? def.activeTypes : () => [],
+    apply: def.apply,
+    stop: typeof def.stop === "function" ? def.stop : async () => {
+    }
+  };
+}
+const EPOCH_YEAR = 735;
+const MONTHS_PER_YEAR = 12;
+const DAYS_PER_MONTH = 28;
+const DAYS_PER_YEAR = MONTHS_PER_YEAR * DAYS_PER_MONTH;
+const SECONDS_PER_HOUR = 3600;
+const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
+function dateFromWorldTime(worldTime) {
+  const t = Number(worldTime) || 0;
+  const dayIndex = Math.floor(t / SECONDS_PER_DAY);
+  const secsIntoDay = t - dayIndex * SECONDS_PER_DAY;
+  const yearOffset = Math.floor(dayIndex / DAYS_PER_YEAR);
+  const dayOfYear = dayIndex - yearOffset * DAYS_PER_YEAR;
+  const month = Math.floor(dayOfYear / DAYS_PER_MONTH);
+  const day = dayOfYear % DAYS_PER_MONTH + 1;
+  const hour = Math.floor(secsIntoDay / SECONDS_PER_HOUR);
+  const minute = Math.floor(secsIntoDay % SECONDS_PER_HOUR / 60);
+  return { year: EPOCH_YEAR + yearOffset, month, day, hour, minute, dayIndex };
+}
+function worldTimeFor({ year, month, day }, hour = 0, minute = 0) {
+  const dayIndex = (year - EPOCH_YEAR) * DAYS_PER_YEAR + month * DAYS_PER_MONTH + (day - 1);
+  return dayIndex * SECONDS_PER_DAY + hour * SECONDS_PER_HOUR + minute * 60;
+}
+function weekdayOf(day) {
+  return (day - 1) % 7;
+}
+function seasonOf(month) {
+  if (month === 11 || month <= 1) return "winter";
+  if (month <= 4) return "spring";
+  if (month <= 7) return "summer";
+  return "autumn";
+}
+function dayKey({ year, month, day }) {
+  return `${year}-${month}-${day}`;
+}
+function moonPhase(month, day) {
+  const n = month * DAYS_PER_MONTH + day;
+  return (n % DAYS_PER_MONTH + DAYS_PER_MONTH) % DAYS_PER_MONTH / DAYS_PER_MONTH;
+}
+function moonName(t) {
+  if (t < 0.03 || t > 0.97) return "new";
+  if (t < 0.22) return "waxingCrescent";
+  if (t < 0.28) return "firstQuarter";
+  if (t < 0.47) return "waxingGibbous";
+  if (t < 0.53) return "full";
+  if (t < 0.72) return "waningGibbous";
+  if (t < 0.78) return "lastQuarter";
+  return "waningCrescent";
+}
+function moonPathD(t) {
+  const cx = 12, cy = 12, r = 10;
+  const k = Math.cos(2 * Math.PI * t);
+  const waxing = t < 0.5;
+  const outerSweep = waxing ? 1 : 0;
+  const rx = Math.max(Math.abs(k) * r, 0.01);
+  const innerSweep = k > 0 ? waxing ? 0 : 1 : waxing ? 1 : 0;
+  return `M ${cx} ${cy - r} A ${r} ${r} 0 0 ${outerSweep} ${cx} ${cy + r} A ${rx} ${r} 0 0 ${innerSweep} ${cx} ${cy - r}`;
+}
+function skyGradientFor(h) {
+  if (h < 5 || h >= 21) return "linear-gradient(180deg, #0A0912, #161326)";
+  if (h < 7) return "linear-gradient(180deg, #262234, #7A4A38)";
+  if (h < 9) return "linear-gradient(180deg, #3A4356, #6E5A50)";
+  if (h < 16) return "linear-gradient(180deg, #46536A, #6B7688)";
+  if (h < 19) return "linear-gradient(180deg, #332C3A, #8A4A2C)";
+  return "linear-gradient(180deg, #17131F, #3A2430)";
+}
+function celestialArc(hour) {
+  const isDay = hour >= 6 && hour < 18;
+  const t = isDay ? (hour - 6) / 12 : (hour - 18 + 24) % 24 / 12;
+  return { isDay, left: 10 + t * 80, top: 68 - Math.sin(Math.PI * t) * 50 };
+}
+function fractionalHour(worldTime) {
+  const secsIntoDay = ((Number(worldTime) || 0) % SECONDS_PER_DAY + SECONDS_PER_DAY) % SECONDS_PER_DAY;
+  return secsIntoDay / SECONDS_PER_HOUR;
+}
+function scrubCommitTime(baseWorldTime, rawMinutes, { snap = false, snapStep = 5 } = {}) {
+  let t = (Number(baseWorldTime) || 0) + Math.round(Number(rawMinutes) || 0) * 60;
+  if (snap) {
+    const grid = snapStep * 60;
+    t = Math.round(t / grid) * grid;
+  }
+  return t;
+}
+function nextTimeAt(now, hour) {
+  const d = dateFromWorldTime(now);
+  const todayAt = worldTimeFor(d, hour, 0);
+  return todayAt > now ? todayAt : todayAt + SECONDS_PER_DAY;
+}
+function nextDayAt(now, hour = 6) {
+  const d = dateFromWorldTime(now);
+  return worldTimeFor(d, hour, 0) + SECONDS_PER_DAY;
+}
+const CONDITIONS = Object.freeze({
+  clear: { icon: "fa-sun", color: "#D98F39" },
+  overcast: { icon: "fa-cloud", color: "#8A8077" },
+  fog: { icon: "fa-smog", color: "#A89C8E" },
+  rain: { icon: "fa-cloud-rain", color: "#7A8CA0" },
+  storm: { icon: "fa-cloud-bolt", color: "#B79AC4" },
+  snow: { icon: "fa-snowflake", color: "#C9D4DC" }
+});
+const WINDS = Object.freeze(["calm", "light", "strong", "howling"]);
+const DEFAULT_SEASONS = Object.freeze({
+  winter: {
+    tempMin: -12,
+    tempMax: 2,
+    weights: { clear: 5, overcast: 25, fog: 25, rain: 5, storm: 5, snow: 35 }
+  },
+  spring: {
+    tempMin: 2,
+    tempMax: 14,
+    weights: { clear: 10, overcast: 30, fog: 30, rain: 20, storm: 8, snow: 2 }
+  },
+  summer: {
+    tempMin: 10,
+    tempMax: 24,
+    weights: { clear: 15, overcast: 30, fog: 25, rain: 20, storm: 10, snow: 0 }
+  },
+  autumn: {
+    tempMin: 0,
+    tempMax: 12,
+    weights: { clear: 5, overcast: 30, fog: 35, rain: 20, storm: 8, snow: 2 }
+  }
+});
+function eventWorldTime(ev) {
+  return worldTimeFor(
+    { year: ev.year, month: ev.month, day: ev.day },
+    ev.hour ?? 0,
+    ev.minute ?? 0
+  );
+}
+function crossedEvents(events, oldTime, newTime) {
+  if (!(newTime > oldTime)) return [];
+  return Object.values(events ?? {}).filter((ev) => ev && !ev.fired).map((ev) => ({ ev, t: eventWorldTime(ev) })).filter(({ t }) => t > oldTime && t <= newTime).sort((a, b) => a.t - b.t).map(({ ev }) => ev);
+}
+const TIME_STEP_UNITS = Object.freeze({
+  minute: 60,
+  hour: SECONDS_PER_HOUR,
+  day: SECONDS_PER_DAY,
+  week: 7 * SECONDS_PER_DAY
+});
+const TIME_STEP_UNIT_SHORT = Object.freeze({ minute: "m", hour: "h", day: "d", week: "w" });
+const MAX_TIME_STEPS = 3;
+const DEFAULT_TIME_STEPS = Object.freeze([Object.freeze({ amount: 1, unit: "hour" })]);
+function normalizeTimeSteps(raw) {
+  if (!Array.isArray(raw)) return DEFAULT_TIME_STEPS.map((s) => ({ ...s }));
+  const out = [];
+  for (const s of raw) {
+    if (out.length >= MAX_TIME_STEPS) break;
+    const amount = Math.floor(Number(s == null ? void 0 : s.amount));
+    const unit = s == null ? void 0 : s.unit;
+    if (!Number.isFinite(amount) || amount < 1) continue;
+    if (!(unit in TIME_STEP_UNITS)) continue;
+    out.push({ amount, unit });
+  }
+  return out;
+}
+function timeStepSeconds(step2) {
+  const amount = Math.floor(Number(step2 == null ? void 0 : step2.amount));
+  if (!Number.isFinite(amount) || amount < 1) return 0;
+  return (TIME_STEP_UNITS[step2 == null ? void 0 : step2.unit] ?? 0) * amount;
+}
+function timeStepLabel(step2) {
+  const amount = Math.floor(Number(step2 == null ? void 0 : step2.amount)) || 0;
+  return `${amount}${TIME_STEP_UNIT_SHORT[step2 == null ? void 0 : step2.unit] ?? ""}`;
+}
+function sortTimeSteps(steps) {
+  return [...steps ?? []].sort((a, b) => timeStepSeconds(a) - timeStepSeconds(b));
+}
+const DEFAULT_SCRUB = Object.freeze({ sensitivity: 1, grow: true, snap: false });
+const SCRUB_SENS_MIN = 0.25;
+const SCRUB_SENS_MAX = 5;
+function normalizeScrub(raw) {
+  const s = raw ?? {};
+  let sensitivity = Number(s.sensitivity);
+  if (!Number.isFinite(sensitivity)) sensitivity = DEFAULT_SCRUB.sensitivity;
+  sensitivity = Math.min(SCRUB_SENS_MAX, Math.max(SCRUB_SENS_MIN, sensitivity));
+  return {
+    sensitivity,
+    grow: typeof s.grow === "boolean" ? s.grow : DEFAULT_SCRUB.grow,
+    snap: typeof s.snap === "boolean" ? s.snap : DEFAULT_SCRUB.snap
+  };
+}
+function normalizeSeasons(raw) {
+  var _a;
+  const out = {};
+  for (const key of Object.keys(DEFAULT_SEASONS)) {
+    const def = DEFAULT_SEASONS[key];
+    const s = (raw == null ? void 0 : raw[key]) ?? {};
+    const weights = {};
+    for (const c of Object.keys(CONDITIONS)) {
+      const w = Number((_a = s.weights) == null ? void 0 : _a[c]);
+      weights[c] = Number.isFinite(w) && w >= 0 ? w : def.weights[c];
+    }
+    const tempMin = Number.isFinite(Number(s.tempMin)) ? Number(s.tempMin) : def.tempMin;
+    const rawMax = Number.isFinite(Number(s.tempMax)) ? Number(s.tempMax) : def.tempMax;
+    out[key] = { tempMin, tempMax: Math.max(tempMin, rawMax), weights };
+  }
+  return out;
+}
+function pickWeather(seasonCfg, rng = Math.random) {
+  const weights = (seasonCfg == null ? void 0 : seasonCfg.weights) ?? {};
+  const entries = Object.keys(CONDITIONS).map((c) => [c, Math.max(0, Number(weights[c]) || 0)]);
+  const total = entries.reduce((sum, [, w]) => sum + w, 0);
+  let cond = "overcast";
+  if (total > 0) {
+    let roll = rng() * total;
+    for (const [c, w] of entries) {
+      roll -= w;
+      if (roll < 0) {
+        cond = c;
+        break;
+      }
+    }
+  }
+  const min = Number(seasonCfg == null ? void 0 : seasonCfg.tempMin) || 0;
+  const max = Math.max(min, Number(seasonCfg == null ? void 0 : seasonCfg.tempMax) || min);
+  const temp = Math.round(min + rng() * (max - min));
+  const wind = WINDS[Math.min(WINDS.length - 1, Math.floor(rng() * WINDS.length))];
+  return { cond, temp, wind };
+}
+function sceneWeatherFor(cond, mapping) {
+  const key = mapping == null ? void 0 : mapping[cond];
+  if (typeof key === "string") return key;
+  return DEFAULT_WEATHER_EFFECT_MAP[cond] ?? "";
+}
+function anyCombatStarted(combats) {
+  for (const c of combats ?? []) if (c == null ? void 0 : c.started) return true;
+  return false;
+}
+function isHudClickIntercepted({ rect, x, y, targetInRoot, hidden }) {
+  return !hidden && x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom && !targetInRoot;
+}
+function matchesDroppedItem(owned, dropped) {
+  const du = dropped == null ? void 0 : dropped.uuid;
+  if (du && (owned.uuid === du || owned.id === du || owned.sourceId === du)) return true;
+  const dn = dropped == null ? void 0 : dropped.name;
+  if (dn != null && owned.name != null && String(owned.name).toLowerCase() === String(dn).toLowerCase()) {
+    return true;
+  }
+  return false;
+}
+function planItemRemoval(matched, count) {
+  let remaining = Math.max(0, Math.trunc(Number(count) || 0));
+  const deletes = [];
+  const updates = [];
+  const report2 = [];
+  for (const it of matched ?? []) {
+    if (remaining <= 0) break;
+    const qty = Number.isFinite(it.quantity) ? it.quantity : 1;
+    if (qty <= remaining) {
+      deletes.push(it.id);
+      report2.push({ id: it.id, removed: qty, remaining: 0 });
+      remaining -= qty;
+    } else {
+      updates.push({ _id: it.id, quantity: qty - remaining });
+      report2.push({ id: it.id, removed: remaining, remaining: qty - remaining });
+      remaining = 0;
+    }
+  }
+  return { deletes, updates, report: report2 };
+}
+const EVENT_TRIGGER_TYPES = /* @__PURE__ */ new Set([
+  "trigger.weather",
+  "trigger.time",
+  "trigger.rest",
+  "trigger.door",
+  "trigger.timer",
+  "trigger.hp",
+  "trigger.spell",
+  "trigger.roll",
+  "trigger.combat",
+  "trigger.levelup"
+]);
+function firedKey(pageUuid, nodeId) {
+  return `${pageUuid}::${nodeId}`;
+}
+function phaseForHour(hour) {
+  const h = (Number(hour) % 24 + 24) % 24;
+  if (h >= 5 && h < 8) return "dawn";
+  if (h >= 8 && h < 17) return "day";
+  if (h >= 17 && h < 20) return "dusk";
+  return "night";
+}
+function matchTime(payload2, descriptor) {
+  const conditionMet = Boolean(payload2.phase) && descriptor.newPhase === payload2.phase && descriptor.newPhase !== descriptor.oldPhase;
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: null
+  };
+}
+function matchWeather(payload2, descriptor) {
+  const conditionMet = Boolean(payload2.weather) && payload2.weather === descriptor.weather;
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: null
+  };
+}
+const DS_FOR_STATE = { open: DOOR_STATE.OPEN, closed: DOOR_STATE.CLOSED, locked: DOOR_STATE.LOCKED };
+function matchDoor(payload2, descriptor) {
+  const target2 = DS_FOR_STATE[payload2.doorState];
+  const tagged = Boolean(payload2.tag) && (descriptor.tags ?? []).includes(payload2.tag);
+  const conditionMet = target2 !== void 0 && Number(descriptor.newDs) === target2 && tagged;
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: null
+  };
+}
+function whoMatches(payload2, { actorId, isPartyMember }) {
+  return payload2.whoTriggers === "any" || payload2.whoTriggers === "party" && Boolean(isPartyMember) || payload2.whoTriggers === "specific" && (payload2.specificActorIds ?? []).includes(actorId);
+}
+function refuseTriggerStart(node, { actorId, isPartyMember, fired } = {}) {
+  const type = node == null ? void 0 : node.type;
+  if (type !== "trigger.macro" && type !== "trigger.region") return "";
+  const payload2 = node.data ?? {};
+  if (type === "trigger.macro" && payload2.once && fired) return "once";
+  if (payload2.whoTriggers && !whoMatches(payload2, { actorId, isPartyMember })) return "who";
+  return "";
+}
+function matchRest(payload2, descriptor) {
+  const conditionMet = (payload2.restType === "any" || payload2.restType === descriptor.restType) && whoMatches(payload2, descriptor);
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: descriptor.actorId
+  };
+}
+const TIMER_UNIT_SECONDS = Object.freeze({
+  hours: SECONDS_PER_HOUR,
+  days: SECONDS_PER_DAY,
+  weeks: 7 * SECONDS_PER_DAY,
+  months: 28 * SECONDS_PER_DAY
+});
+function timerAnchor(payload2) {
+  return worldTimeFor(
+    {
+      year: Number(payload2.anchorYear) || EPOCH_YEAR,
+      month: Number(payload2.anchorMonth) || 0,
+      day: Number(payload2.anchorDay) || 1
+    },
+    Number(payload2.anchorHour) || 0
+  );
+}
+function timerIntervalSeconds(payload2) {
+  const every = Math.max(1, Math.floor(Number(payload2.every) || 1));
+  return every * (TIMER_UNIT_SECONDS[payload2.unit] ?? TIMER_UNIT_SECONDS.days);
+}
+function boundaryIndex(anchor, interval, t) {
+  return Math.floor((t - anchor) / interval);
+}
+function matchTimer(payload2, descriptor, state) {
+  const anchor = timerAnchor(payload2);
+  const interval = timerIntervalSeconds(payload2);
+  const now = Number(descriptor.now) || 0;
+  if (now <= anchor) return { fires: false, suppressed: false, actorId: null };
+  const last = Math.max(Number((state == null ? void 0 : state.lastHandledWorldTime) ?? anchor), anchor);
+  const crossed = boundaryIndex(anchor, interval, now) > boundaryIndex(anchor, interval, last);
+  if (!crossed) return { fires: false, suppressed: false, actorId: null };
+  return {
+    fires: payload2.enabled !== false,
+    suppressed: payload2.enabled === false,
+    actorId: null,
+    nextState: { lastHandledWorldTime: now }
+  };
+}
+function timerNextFire(payload2, now) {
+  const anchor = timerAnchor(payload2);
+  const interval = timerIntervalSeconds(payload2);
+  const ref = Math.max(anchor, Number(now) || 0);
+  return anchor + (boundaryIndex(anchor, interval, ref) + 1) * interval;
+}
+function timerStatus(payload2, now, monthNames2 = []) {
+  const nextAt = timerNextFire(payload2, now);
+  const remain = Math.max(0, nextAt - (Number(now) || 0));
+  const d = dateFromWorldTime(nextAt);
+  const days = Math.floor(remain / SECONDS_PER_DAY);
+  const hours = Math.floor(remain % SECONDS_PER_DAY / SECONDS_PER_HOUR);
+  const month = monthNames2[d.month] ?? String(d.month + 1);
+  const inTxt = days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h` : "<1h";
+  const hh = String(d.hour).padStart(2, "0");
+  const mm = String(d.minute).padStart(2, "0");
+  return { nextAt, remain, label: `${d.day} ${month} ${d.year} ${hh}:${mm} (in ${inTxt})` };
+}
+const BOSS_STAGE_THRESHOLDS = Object.freeze({ 2: 200 / 3, 3: 100 / 3 });
+function matchHp(payload2, descriptor, state) {
+  const oldHp = Number(descriptor.oldHp);
+  const newHp = Number(descriptor.newHp);
+  let crossed;
+  if (payload2.mode === "death") {
+    crossed = oldHp > 0 && newHp <= 0;
+  } else {
+    const stagePct = BOSS_STAGE_THRESHOLDS[payload2.stage] ?? BOSS_STAGE_THRESHOLDS[2];
+    const limit = payload2.mode === "stage" ? Number(descriptor.maxHp) * stagePct / 100 : payload2.mode === "value" ? Number(payload2.threshold) : Number(descriptor.maxHp) * Number(payload2.threshold) / 100;
+    crossed = oldHp > limit && newHp <= limit;
+  }
+  const count = Number((state == null ? void 0 : state.fireCount) ?? 0);
+  const capOk = Number(payload2.maxFires) === 0 || count < Number(payload2.maxFires);
+  const conditionMet = crossed && capOk && whoMatches(payload2, descriptor);
+  if (!conditionMet) return { fires: false, suppressed: false, actorId: null };
+  if (payload2.enabled === false) return { fires: false, suppressed: true, actorId: null };
+  return { fires: true, suppressed: false, actorId: descriptor.actorId, nextState: { fireCount: count + 1 } };
+}
+function matchSpell(payload2, descriptor) {
+  const rows = normalizeSpellRows(payload2.spells);
+  const spellOk = rows.length === 0 || rows.some((r) => matchesDroppedItem(descriptor.spell ?? {}, { uuid: r.itemRef, name: r.name }));
+  const conditionMet = spellOk && whoMatches(payload2, descriptor);
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: descriptor.actorId ?? null
+  };
+}
+function ruleMatchesDescriptor(rule, descriptor) {
+  if (rule.kind !== descriptor.kind) return false;
+  if (descriptor.kind === "effect") {
+    return !rule.detail || (descriptor.statuses ?? []).includes(rule.detail);
+  }
+  if (rule.detail && rule.detail !== descriptor.detail) return false;
+  switch (rule.outcome) {
+    case "success":
+      return descriptor.success === true;
+    case "failure":
+      return descriptor.success === false;
+    case "critical":
+      return Boolean(descriptor.isCritical);
+    case "fumble":
+      return Boolean(descriptor.isFumble);
+    default:
+      return true;
+  }
+}
+function matchRoll(payload2, descriptor) {
+  const rules = normalizeRollRules(payload2.rules);
+  const conditionMet = rules.some((r) => ruleMatchesDescriptor(r, descriptor)) && whoMatches(payload2, descriptor);
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: descriptor.actorId ?? null
+  };
+}
+function matchCombat(payload2, descriptor) {
+  const conditionMet = payload2.event === descriptor.kind && (descriptor.kind !== "roundChange" || !Number(payload2.round) || Number(payload2.round) === descriptor.round);
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: null
+  };
+}
+function matchLevelUp(payload2, descriptor) {
+  const conditionMet = (!Number(payload2.level) || Number(payload2.level) === descriptor.newLevel) && whoMatches(payload2, descriptor);
+  return {
+    fires: conditionMet && payload2.enabled !== false,
+    suppressed: conditionMet && payload2.enabled === false,
+    actorId: descriptor.actorId
+  };
+}
+function eventRoute({ isActiveGM, clientLocal }) {
+  if (isActiveGM) return "handle";
+  return clientLocal ? "relay" : "ignore";
+}
+function canUserActFor({ actorId, characterId, isOwner }) {
+  if (!actorId) return false;
+  return actorId === characterId || Boolean(isOwner);
+}
+function selectFiring(candidates, descriptor, match, firedSet, states = {}) {
+  const toFire = [];
+  const toMark = [];
+  const toSuppress = [];
+  const stateUpdates = [];
+  for (const c of candidates ?? []) {
+    const key = firedKey(c.pageUuid, c.nodeId);
+    const { fires, suppressed, actorId, nextState } = match(c.payload, descriptor, states[key]);
+    if (nextState !== void 0) stateUpdates.push({ key, state: nextState });
+    if (suppressed) toSuppress.push({ pageUuid: c.pageUuid, nodeId: c.nodeId });
+    if (!fires) continue;
+    if (c.payload.once && firedSet.has(key)) continue;
+    toFire.push({ pageUuid: c.pageUuid, nodeId: c.nodeId, actorId });
+    if (c.payload.once) toMark.push(key);
+  }
+  return { toFire, toMark, toSuppress, stateUpdates };
+}
+function loadFiredSet() {
+  const obj = game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {};
+  return new Set(Object.keys(obj));
+}
+async function markFired(keys) {
+  if (!(keys == null ? void 0 : keys.length)) return;
+  const obj = { ...game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {} };
+  for (const k of keys) obj[k] = true;
+  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, obj);
+}
+async function resetTrigger(pageUuid, nodeId) {
+  const obj = { ...game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {} };
+  delete obj[firedKey(pageUuid, nodeId)];
+  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, obj);
+}
+async function resetAllTriggers() {
+  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, {});
+}
+function resolveHealDamageTargets({
+  target: target2,
+  targetActorIds = [],
+  triggerActorId = null,
+  checkActorId = null,
+  users = [],
+  characters = []
+}) {
+  if (target2 === "trigger") return triggerActorId ? [triggerActorId] : [];
+  if (target2 === "selected") return [...targetActorIds];
+  if (target2 === "all") {
+    const party = users.filter((u) => !u.isGM && u.characterId).map((u) => u.characterId);
+    if (party.length) return [...new Set(party)];
+    return [...characters];
+  }
+  if (target2 === "checkActor") {
+    if (checkActorId) return [checkActorId];
+    return triggerActorId ? [triggerActorId] : [];
+  }
+  return [];
+}
+function applyGold(mode, gp, amount) {
+  const have = Number.isFinite(Number(gp)) ? Number(gp) : 0;
+  const delta = Number(amount) || 0;
+  return mode === "take" ? Math.max(0, have - delta) : have + delta;
 }
 const TOP_LEVEL = [
   "color",
@@ -3105,7 +3755,7 @@ async function preloadScene({ sceneId, allClients }) {
     console.warn(`${MODULE_ID} | preloadScene: preload of ${sceneId} failed:`, err);
   }
 }
-async function applyEffect({ effectId, mode, target: target2 }, { actorId }) {
+async function applyEffect({ effectId, mode, target: target2 }, { actorId, checkActorId = null }) {
   if (!effectId) {
     console.warn(`${MODULE_ID} | applyEffect: no effect selected - skipped`);
     return;
@@ -3122,6 +3772,7 @@ async function applyEffect({ effectId, mode, target: target2 }, { actorId }) {
     target: target2,
     targetActorIds: pickedIds,
     triggerActorId: actorId,
+    checkActorId,
     users: game.users.map((u) => {
       var _a;
       return {
@@ -3503,14 +4154,44 @@ async function changeScene({ sceneId, activate }) {
   if (activate) await scene.activate();
   else await scene.view();
 }
-async function giveItem({ mode, itemUuid, quantity }, { actorId }) {
-  const actor = game.actors.get(actorId);
-  if (!actor) {
-    console.warn(`${MODULE_ID} | giveItem: no actor ${actorId} - skipped`);
+async function giveItem({ mode, itemUuid, quantity, target: target2 }, { actorId, checkActorId = null }) {
+  let pickedIds = [];
+  if (target2 === "selected") {
+    pickedIds = await pickTargetsDialog();
+    if (!pickedIds.length) {
+      console.warn(`${MODULE_ID} | giveItem: GM picked no targets - skipped`);
+      return;
+    }
+  }
+  const targetIds = resolveHealDamageTargets({
+    target: target2,
+    targetActorIds: pickedIds,
+    triggerActorId: actorId,
+    checkActorId,
+    users: game.users.map((u) => {
+      var _a;
+      return {
+        id: u.id,
+        isGM: u.isGM,
+        characterId: ((_a = u.character) == null ? void 0 : _a.id) ?? null
+      };
+    }),
+    characters: game.actors.filter((a) => a.type === "character").map((a) => a.id)
+  });
+  const actors = [];
+  for (const id of targetIds) {
+    const actor = game.actors.get(id);
+    if (actor) actors.push(actor);
+    else console.warn(`${MODULE_ID} | giveItem: no actor ${id} - skipped`);
+  }
+  if (!actors.length) {
+    console.warn(`${MODULE_ID} | giveItem: no targets resolved - skipped`);
     return;
   }
   if (mode === "remove") {
-    await removeItem(actor, itemUuid, quantity);
+    const lines2 = [];
+    for (const actor of actors) lines2.push(...await removeItem(actor, itemUuid, quantity));
+    await whisperReceipt("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptHeader", lines2);
     return;
   }
   const item = await fromUuid(itemUuid).catch((err) => {
@@ -3523,7 +4204,28 @@ async function giveItem({ mode, itemUuid, quantity }, { actorId }) {
   }
   const data = item.toObject();
   foundry.utils.setProperty(data, "system.quantity", quantity);
-  await actor.createEmbeddedDocuments("Item", [data]);
+  const lines = [];
+  for (const actor of actors) {
+    await actor.createEmbeddedDocuments("Item", [data]);
+    lines.push(
+      game.i18n.format("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptGave", {
+        actor: actor.name,
+        item: item.name,
+        qty: quantity
+      })
+    );
+  }
+  await whisperReceipt("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptHeader", lines);
+}
+function escapeChat(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+}
+async function whisperReceipt(headerKey, lines) {
+  if (!lines.length) return;
+  await ChatMessage.create({
+    content: `<p><strong>${escapeChat(game.i18n.localize(headerKey))}</strong></p><p>${lines.map(escapeChat).join("<br>")}</p>`,
+    whisper: ChatMessage.getWhisperRecipients("GM")
+  });
 }
 async function removeItem(actor, itemUuid, quantity) {
   const dropped = await fromUuid(itemUuid).catch(() => null);
@@ -3546,7 +4248,7 @@ async function removeItem(actor, itemUuid, quantity) {
     console.warn(
       `${MODULE_ID} | removeItem: no item matching ${(dropped == null ? void 0 : dropped.name) ?? itemUuid} on ${actor.name} - skipped`
     );
-    return;
+    return [];
   }
   const plan = planItemRemoval(
     matched.map((i) => {
@@ -3564,8 +4266,28 @@ async function removeItem(actor, itemUuid, quantity) {
       plan.updates.map((u) => ({ _id: u._id, "system.quantity": u.quantity }))
     );
   }
+  return plan.report.map((r) => {
+    var _a, _b;
+    const item = matched.find((i) => i.id === r.id);
+    const container2 = ((_a = item == null ? void 0 : item.system) == null ? void 0 : _a.container) ? ((_b = actor.items.get(item.system.container)) == null ? void 0 : _b.name) ?? null : null;
+    let line = game.i18n.format("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptRemoved", {
+      actor: actor.name,
+      item: (item == null ? void 0 : item.name) ?? ref.name ?? itemUuid,
+      qty: r.removed,
+      left: r.remaining
+    });
+    if (container2) {
+      line += ` ${game.i18n.format("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptFrom", { container: container2 })}`;
+    }
+    if (matched.length > 1) {
+      line += ` ${game.i18n.format("STORYFLOW_DUNGEONS_LAB.GiveItem.ReceiptMatched", {
+        count: matched.length
+      })}`;
+    }
+    return line;
+  });
 }
-async function healDamage({ mode, formula, target: target2 }, { actorId }) {
+async function healDamage({ mode, formula, target: target2 }, { actorId, checkActorId = null }) {
   let pickedIds = [];
   if (target2 === "selected") {
     pickedIds = await pickTargetsDialog();
@@ -3578,6 +4300,7 @@ async function healDamage({ mode, formula, target: target2 }, { actorId }) {
     target: target2,
     targetActorIds: pickedIds,
     triggerActorId: actorId,
+    checkActorId,
     users: game.users.map((u) => {
       var _a;
       return {
@@ -3615,7 +4338,7 @@ async function healDamage({ mode, formula, target: target2 }, { actorId }) {
     flavor: game.i18n.format(key, { total, names: actors.map((a) => a.name).join(", ") })
   });
 }
-async function giveGold({ mode, formula, target: target2 }, { actorId }) {
+async function giveGold({ mode, formula, target: target2 }, { actorId, checkActorId = null }) {
   var _a, _b;
   let pickedIds = [];
   if (target2 === "selected") {
@@ -3629,6 +4352,7 @@ async function giveGold({ mode, formula, target: target2 }, { actorId }) {
     target: target2,
     targetActorIds: pickedIds,
     triggerActorId: actorId,
+    checkActorId,
     users: game.users.map((u) => {
       var _a2;
       return {
@@ -3658,13 +4382,21 @@ async function giveGold({ mode, formula, target: target2 }, { actorId }) {
     return;
   }
   const amount = Math.max(0, Math.trunc(roll.total));
+  const lines = [];
   for (const actor of actors) {
     const gp = ((_b = (_a = actor.system) == null ? void 0 : _a.currency) == null ? void 0 : _b.gp) ?? 0;
-    await actor.update({ "system.currency.gp": applyGold(mode, gp, amount) });
+    const left = applyGold(mode, gp, amount);
+    await actor.update({ "system.currency.gp": left });
+    lines.push(
+      game.i18n.format("STORYFLOW_DUNGEONS_LAB.GiveGold.ReceiptLine", { actor: actor.name, left })
+    );
   }
   const key = mode === "take" ? "STORYFLOW_DUNGEONS_LAB.GiveGold.TookChat" : "STORYFLOW_DUNGEONS_LAB.GiveGold.GaveChat";
   await roll.toMessage({
-    flavor: game.i18n.format(key, { amount, actor: actors.map((a) => a.name).join(", ") })
+    flavor: `<p><strong>${escapeChat(
+      game.i18n.format(key, { amount, actor: actors.map((a) => a.name).join(", ") })
+    )}</strong></p><p>${lines.map(escapeChat).join("<br>")}</p>`,
+    whisper: ChatMessage.getWhisperRecipients("GM")
   });
 }
 async function pickTargetsDialog() {
@@ -3980,7 +4712,7 @@ function registerNodeSlot(slot, type, impl) {
   if (!m) throw new Error(`registerNodeSlot: unknown slot "${slot}" (known: ${NODE_SLOTS.join(", ")})`);
   m.set(type, impl);
 }
-const L$e = "STORYFLOW_DUNGEONS_LAB";
+const L$f = "STORYFLOW_DUNGEONS_LAB";
 const REPUTATION_MIN = -100;
 const REPUTATION_MAX = 100;
 const REPUTATION_TIERS = Object.freeze([
@@ -4012,7 +4744,7 @@ function normalizeReputationConfig(raw) {
 const DEFAULT_REPUTATION_CONFIG = Object.freeze(normalizeReputationConfig({}));
 function tierLabel$1(id) {
   var _a, _b;
-  const key = `${L$e}.Reputation.Tier.${id}`;
+  const key = `${L$f}.Reputation.Tier.${id}`;
   if ((_b = (_a = game == null ? void 0 : game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, key)) return game.i18n.localize(key);
   return id.charAt(0).toUpperCase() + id.slice(1);
 }
@@ -4514,6 +5246,7 @@ function actorHasItem(actorId, itemRef) {
   );
 }
 async function onStart(msg) {
+  var _a, _b, _c;
   if (!game.user.isActiveGM) return;
   if (runnersForPage(msg.graphUuid)) {
     console.warn(`${MODULE_ID} | START ignored - a run is already active`);
@@ -4530,10 +5263,22 @@ async function onStart(msg) {
   }
   const graph = page.system.toObject ? page.system.toObject() : page.system;
   const startNodeId = resolveStartNode(graph, msg.startNodeId);
-  if (isTriggerDisabled(graph.nodes[startNodeId])) {
+  const startNode = graph.nodes[startNodeId];
+  if (isTriggerDisabled(startNode)) {
     log.debug(`START ${msg.runId} ignored - trigger node ${startNodeId} is disabled`);
     return;
   }
+  const key = firedKey(msg.graphUuid, startNodeId);
+  const refusal = refuseTriggerStart(startNode, {
+    actorId: msg.actorId,
+    isPartyMember: Boolean((_b = (_a = game.actors) == null ? void 0 : _a.get(msg.actorId)) == null ? void 0 : _b.hasPlayerOwner),
+    fired: loadFiredSet().has(key)
+  });
+  if (refusal) {
+    log.debug(`START ${msg.runId} ignored - trigger node ${startNodeId} refused (${refusal})`);
+    return;
+  }
+  if ((startNode == null ? void 0 : startNode.type) === "trigger.macro" && ((_c = startNode.data) == null ? void 0 : _c.once)) await markFired([key]);
   log.debug(`START run ${msg.runId} @ ${msg.graphUuid} node=${msg.startNodeId ?? "(auto)"} actor=${msg.actorId ?? "(none)"} by user=${msg.triggerUserId}`);
   const traderDeps = await (async () => {
     const {
@@ -4549,9 +5294,9 @@ async function onStart(msg) {
       // Эффективный запас (с учетом истощения restock) - общий с автономным магазином.
       loadTrader: (uuid) => loadTraderData2(uuid),
       canBuyFor: (userId, actorId) => {
-        var _a;
+        var _a2;
         const u = game.users.get(userId);
-        return !!u && (u.isGM || ((_a = u.character) == null ? void 0 : _a.id) === actorId);
+        return !!u && (u.isGM || ((_a2 = u.character) == null ? void 0 : _a2.id) === actorId);
       },
       executePurchase: (args) => purchaseItem2(args),
       executeSell: (args) => sellItem2(args),
@@ -4559,12 +5304,12 @@ async function onStart(msg) {
       recordSale: (traderUuid, itemUuid, qty) => recordTraderSale2(traderUuid, itemUuid, qty),
       recordSellToTrader: (traderUuid, itemUuid, qty) => recordTraderSell2(traderUuid, itemUuid, qty),
       getReputation: (actorId, factionId) => {
-        var _a;
-        return ((_a = getService(SERVICE_IDS.REPUTATION)) == null ? void 0 : _a.get(actorId, factionId)) ?? 0;
+        var _a2;
+        return ((_a2 = getService(SERVICE_IDS.REPUTATION)) == null ? void 0 : _a2.get(actorId, factionId)) ?? 0;
       },
       getAffinity: (uuid) => {
-        var _a, _b;
-        return ((_b = (_a = getService(SERVICE_IDS.REPUTATION)) == null ? void 0 : _a.getAffinity) == null ? void 0 : _b.call(_a, uuid)) ?? 0;
+        var _a2, _b2;
+        return ((_b2 = (_a2 = getService(SERVICE_IDS.REPUTATION)) == null ? void 0 : _a2.getAffinity) == null ? void 0 : _b2.call(_a2, uuid)) ?? 0;
       },
       // Множитель цены карты торговца для торговца, связанного с фракцией (только
       // полная редакция; buyDiscount/buyMarkup карт фракций питают ТОЛЬКО кейс trader).
@@ -4603,26 +5348,26 @@ async function onStart(msg) {
       characters: game.actors.filter((a) => a.type === "character" && a.hasPlayerOwner).map((a) => ({ id: a.id, name: a.name, img: a.img })),
       triggerUserId: msg.triggerUserId
     }),
-    getCheckModifier: (actorId, kind, key) => {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
-      const sys = (_a = game.actors.get(actorId)) == null ? void 0 : _a.system;
-      if (!sys || !key) return null;
+    getCheckModifier: (actorId, kind, key2) => {
+      var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k;
+      const sys = (_a2 = game.actors.get(actorId)) == null ? void 0 : _a2.system;
+      if (!sys || !key2) return null;
       switch (kind) {
         case "ability":
-          return ((_c = (_b = sys.abilities) == null ? void 0 : _b[key]) == null ? void 0 : _c.mod) ?? null;
+          return ((_c2 = (_b2 = sys.abilities) == null ? void 0 : _b2[key2]) == null ? void 0 : _c2.mod) ?? null;
         case "save":
-          return ((_e = (_d = sys.abilities) == null ? void 0 : _d[key]) == null ? void 0 : _e.save) ?? ((_g = (_f = sys.abilities) == null ? void 0 : _f[key]) == null ? void 0 : _g.mod) ?? null;
+          return ((_e = (_d = sys.abilities) == null ? void 0 : _d[key2]) == null ? void 0 : _e.save) ?? ((_g = (_f = sys.abilities) == null ? void 0 : _f[key2]) == null ? void 0 : _g.mod) ?? null;
         case "skill":
-          return ((_i = (_h = sys.skills) == null ? void 0 : _h[key]) == null ? void 0 : _i.total) ?? null;
+          return ((_i = (_h = sys.skills) == null ? void 0 : _h[key2]) == null ? void 0 : _i.total) ?? null;
         case "tool":
-          return ((_k = (_j = sys.tools) == null ? void 0 : _j[key]) == null ? void 0 : _k.total) ?? null;
+          return ((_k = (_j = sys.tools) == null ? void 0 : _j[key2]) == null ? void 0 : _k.total) ?? null;
         default:
           return null;
       }
     },
     isGmUser: (id) => {
-      var _a;
-      return ((_a = game.users.get(id)) == null ? void 0 : _a.isGM) ?? false;
+      var _a2;
+      return ((_a2 = game.users.get(id)) == null ? void 0 : _a2.isGM) ?? false;
     },
     allowVoting: () => game.settings.get(MODULE_ID, SETTINGS.ALLOW_CHOICE_VOTING),
     evaluateCondition: (data, actorId) => evaluateConditionNode(data, actorId),
@@ -4642,10 +5387,10 @@ async function onStart(msg) {
     // выполняется только на активном ГМ (см. защиту isActiveGM выше), поэтому game.user.id И есть ГМ.
     getPropDrivers: () => resolveDriverIds(msg.triggerUserId, game.user.id),
     crateGold: (userId) => {
-      var _a, _b, _c;
+      var _a2, _b2, _c2;
       const u = game.users.get(userId);
       if ((u == null ? void 0 : u.isGM) && !u.character) return Number.POSITIVE_INFINITY;
-      return Number(((_c = (_b = (_a = u == null ? void 0 : u.character) == null ? void 0 : _a.system) == null ? void 0 : _b.currency) == null ? void 0 : _c.gp) ?? 0);
+      return Number(((_c2 = (_b2 = (_a2 = u == null ? void 0 : u.character) == null ? void 0 : _a2.system) == null ? void 0 : _b2.currency) == null ? void 0 : _c2.gp) ?? 0);
     },
     grantCrateSpin: (args) => spendGoldAndGrant(args),
     getActiveUserIds: () => game.users.filter((u) => u.active).map((u) => u.id),
@@ -5133,284 +5878,34 @@ function hasSettingsAccess(userRole, level) {
   const threshold = level === "assistant" ? ROLE.ASSISTANT : ROLE.GAMEMASTER;
   return userRole >= threshold;
 }
-const CORE_PROVIDER = "core";
-const KEY_SEP = ":";
-function parseEffectKey(key) {
-  const raw = typeof key === "string" ? key : "";
-  const at = raw.indexOf(KEY_SEP);
-  if (at <= 0) return { provider: CORE_PROVIDER, type: raw };
-  return { provider: raw.slice(0, at), type: raw.slice(at + 1) };
+const CLASSIC_SKY_STYLE = "classic";
+const CLASSIC = {
+  id: CLASSIC_SKY_STYLE,
+  plane: "material",
+  label: "Classic",
+  weather: true,
+  icon: "fa-cloud-sun",
+  iconColor: "#8FA8C4",
+  preview: { sky: "linear-gradient(180deg, #2A3F72, #6B4A62)", ridge: "#080607" }
+};
+const REGISTRY = /* @__PURE__ */ new Map([[CLASSIC_SKY_STYLE, CLASSIC]]);
+function listSkyStyles() {
+  return [...REGISTRY.values()];
 }
-function makeEffectKey(provider, type) {
-  return provider === CORE_PROVIDER ? type : `${provider}${KEY_SEP}${type}`;
+function getSkyStyle(id) {
+  return REGISTRY.get(id) ?? null;
 }
-function diffActiveEffects(prev, next) {
-  const before = new Set(prev ?? []);
-  return [...new Set(next ?? [])].filter((t) => !before.has(t));
+function resolveSkyStyleId(id) {
+  return REGISTRY.has(id) ? id : CLASSIC_SKY_STYLE;
 }
-const DEFAULT_WEATHER_EFFECT_MAP = Object.freeze({
-  clear: "",
-  overcast: "",
-  fog: "fog",
-  rain: "rain",
-  storm: "rainStorm",
-  snow: "snow"
-});
-function normalizeWeatherEffectMap(raw) {
-  const src = raw && typeof raw === "object" ? raw : {};
+function skyStyleChoices(localize) {
   const out = {};
-  for (const cond of Object.keys(DEFAULT_WEATHER_EFFECT_MAP)) {
-    const v = src[cond];
-    out[cond] = typeof v === "string" ? v : DEFAULT_WEATHER_EFFECT_MAP[cond];
+  for (const s of REGISTRY.values()) {
+    const plane = localize(`Planes.${s.plane}`, s.plane);
+    const label = localize(`SkyStyles.${s.id}`, s.label);
+    out[s.id] = plane === label ? label : `${plane} · ${label}`;
   }
   return out;
-}
-function normalizeWeatherProvider(def) {
-  const id = typeof (def == null ? void 0 : def.id) === "string" ? def.id.trim() : "";
-  if (!id || id === CORE_PROVIDER || id.includes(KEY_SEP)) return null;
-  if (typeof def.list !== "function" || typeof def.apply !== "function") return null;
-  return {
-    id,
-    label: typeof def.label === "string" && def.label ? def.label : id,
-    icon: typeof def.icon === "string" && def.icon ? def.icon : "fa-wand-magic-sparkles",
-    available: typeof def.available === "function" ? def.available : () => true,
-    list: def.list,
-    activeTypes: typeof def.activeTypes === "function" ? def.activeTypes : () => [],
-    apply: def.apply,
-    stop: typeof def.stop === "function" ? def.stop : async () => {
-    }
-  };
-}
-const EPOCH_YEAR = 735;
-const MONTHS_PER_YEAR = 12;
-const DAYS_PER_MONTH = 28;
-const DAYS_PER_YEAR = MONTHS_PER_YEAR * DAYS_PER_MONTH;
-const SECONDS_PER_HOUR = 3600;
-const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
-function dateFromWorldTime(worldTime) {
-  const t = Number(worldTime) || 0;
-  const dayIndex = Math.floor(t / SECONDS_PER_DAY);
-  const secsIntoDay = t - dayIndex * SECONDS_PER_DAY;
-  const yearOffset = Math.floor(dayIndex / DAYS_PER_YEAR);
-  const dayOfYear = dayIndex - yearOffset * DAYS_PER_YEAR;
-  const month = Math.floor(dayOfYear / DAYS_PER_MONTH);
-  const day = dayOfYear % DAYS_PER_MONTH + 1;
-  const hour = Math.floor(secsIntoDay / SECONDS_PER_HOUR);
-  const minute = Math.floor(secsIntoDay % SECONDS_PER_HOUR / 60);
-  return { year: EPOCH_YEAR + yearOffset, month, day, hour, minute, dayIndex };
-}
-function worldTimeFor({ year, month, day }, hour = 0, minute = 0) {
-  const dayIndex = (year - EPOCH_YEAR) * DAYS_PER_YEAR + month * DAYS_PER_MONTH + (day - 1);
-  return dayIndex * SECONDS_PER_DAY + hour * SECONDS_PER_HOUR + minute * 60;
-}
-function weekdayOf(day) {
-  return (day - 1) % 7;
-}
-function seasonOf(month) {
-  if (month === 11 || month <= 1) return "winter";
-  if (month <= 4) return "spring";
-  if (month <= 7) return "summer";
-  return "autumn";
-}
-function dayKey({ year, month, day }) {
-  return `${year}-${month}-${day}`;
-}
-function moonPhase(month, day) {
-  const n = month * DAYS_PER_MONTH + day;
-  return (n % DAYS_PER_MONTH + DAYS_PER_MONTH) % DAYS_PER_MONTH / DAYS_PER_MONTH;
-}
-function moonName(t) {
-  if (t < 0.03 || t > 0.97) return "new";
-  if (t < 0.22) return "waxingCrescent";
-  if (t < 0.28) return "firstQuarter";
-  if (t < 0.47) return "waxingGibbous";
-  if (t < 0.53) return "full";
-  if (t < 0.72) return "waningGibbous";
-  if (t < 0.78) return "lastQuarter";
-  return "waningCrescent";
-}
-function moonPathD(t) {
-  const cx = 12, cy = 12, r = 10;
-  const k = Math.cos(2 * Math.PI * t);
-  const waxing = t < 0.5;
-  const outerSweep = waxing ? 1 : 0;
-  const rx = Math.max(Math.abs(k) * r, 0.01);
-  const innerSweep = k > 0 ? waxing ? 0 : 1 : waxing ? 1 : 0;
-  return `M ${cx} ${cy - r} A ${r} ${r} 0 0 ${outerSweep} ${cx} ${cy + r} A ${rx} ${r} 0 0 ${innerSweep} ${cx} ${cy - r}`;
-}
-function skyGradientFor(h) {
-  if (h < 5 || h >= 21) return "linear-gradient(180deg, #0A0912, #161326)";
-  if (h < 7) return "linear-gradient(180deg, #262234, #7A4A38)";
-  if (h < 9) return "linear-gradient(180deg, #3A4356, #6E5A50)";
-  if (h < 16) return "linear-gradient(180deg, #46536A, #6B7688)";
-  if (h < 19) return "linear-gradient(180deg, #332C3A, #8A4A2C)";
-  return "linear-gradient(180deg, #17131F, #3A2430)";
-}
-function celestialArc(hour) {
-  const isDay = hour >= 6 && hour < 18;
-  const t = isDay ? (hour - 6) / 12 : (hour - 18 + 24) % 24 / 12;
-  return { isDay, left: 10 + t * 80, top: 68 - Math.sin(Math.PI * t) * 50 };
-}
-function fractionalHour(worldTime) {
-  const secsIntoDay = ((Number(worldTime) || 0) % SECONDS_PER_DAY + SECONDS_PER_DAY) % SECONDS_PER_DAY;
-  return secsIntoDay / SECONDS_PER_HOUR;
-}
-function scrubCommitTime(baseWorldTime, rawMinutes, { snap = false, snapStep = 5 } = {}) {
-  let t = (Number(baseWorldTime) || 0) + Math.round(Number(rawMinutes) || 0) * 60;
-  if (snap) {
-    const grid = snapStep * 60;
-    t = Math.round(t / grid) * grid;
-  }
-  return t;
-}
-function nextTimeAt(now, hour) {
-  const d = dateFromWorldTime(now);
-  const todayAt = worldTimeFor(d, hour, 0);
-  return todayAt > now ? todayAt : todayAt + SECONDS_PER_DAY;
-}
-function nextDayAt(now, hour = 6) {
-  const d = dateFromWorldTime(now);
-  return worldTimeFor(d, hour, 0) + SECONDS_PER_DAY;
-}
-const CONDITIONS = Object.freeze({
-  clear: { icon: "fa-sun", color: "#D98F39" },
-  overcast: { icon: "fa-cloud", color: "#8A8077" },
-  fog: { icon: "fa-smog", color: "#A89C8E" },
-  rain: { icon: "fa-cloud-rain", color: "#7A8CA0" },
-  storm: { icon: "fa-cloud-bolt", color: "#B79AC4" },
-  snow: { icon: "fa-snowflake", color: "#C9D4DC" }
-});
-const WINDS = Object.freeze(["calm", "light", "strong", "howling"]);
-const DEFAULT_SEASONS = Object.freeze({
-  winter: {
-    tempMin: -12,
-    tempMax: 2,
-    weights: { clear: 5, overcast: 25, fog: 25, rain: 5, storm: 5, snow: 35 }
-  },
-  spring: {
-    tempMin: 2,
-    tempMax: 14,
-    weights: { clear: 10, overcast: 30, fog: 30, rain: 20, storm: 8, snow: 2 }
-  },
-  summer: {
-    tempMin: 10,
-    tempMax: 24,
-    weights: { clear: 15, overcast: 30, fog: 25, rain: 20, storm: 10, snow: 0 }
-  },
-  autumn: {
-    tempMin: 0,
-    tempMax: 12,
-    weights: { clear: 5, overcast: 30, fog: 35, rain: 20, storm: 8, snow: 2 }
-  }
-});
-function eventWorldTime(ev) {
-  return worldTimeFor(
-    { year: ev.year, month: ev.month, day: ev.day },
-    ev.hour ?? 0,
-    ev.minute ?? 0
-  );
-}
-function crossedEvents(events, oldTime, newTime) {
-  if (!(newTime > oldTime)) return [];
-  return Object.values(events ?? {}).filter((ev) => ev && !ev.fired).map((ev) => ({ ev, t: eventWorldTime(ev) })).filter(({ t }) => t > oldTime && t <= newTime).sort((a, b) => a.t - b.t).map(({ ev }) => ev);
-}
-const TIME_STEP_UNITS = Object.freeze({
-  minute: 60,
-  hour: SECONDS_PER_HOUR,
-  day: SECONDS_PER_DAY,
-  week: 7 * SECONDS_PER_DAY
-});
-const TIME_STEP_UNIT_SHORT = Object.freeze({ minute: "m", hour: "h", day: "d", week: "w" });
-const MAX_TIME_STEPS = 3;
-const DEFAULT_TIME_STEPS = Object.freeze([Object.freeze({ amount: 1, unit: "hour" })]);
-function normalizeTimeSteps(raw) {
-  if (!Array.isArray(raw)) return DEFAULT_TIME_STEPS.map((s) => ({ ...s }));
-  const out = [];
-  for (const s of raw) {
-    if (out.length >= MAX_TIME_STEPS) break;
-    const amount = Math.floor(Number(s == null ? void 0 : s.amount));
-    const unit = s == null ? void 0 : s.unit;
-    if (!Number.isFinite(amount) || amount < 1) continue;
-    if (!(unit in TIME_STEP_UNITS)) continue;
-    out.push({ amount, unit });
-  }
-  return out;
-}
-function timeStepSeconds(step2) {
-  const amount = Math.floor(Number(step2 == null ? void 0 : step2.amount));
-  if (!Number.isFinite(amount) || amount < 1) return 0;
-  return (TIME_STEP_UNITS[step2 == null ? void 0 : step2.unit] ?? 0) * amount;
-}
-function timeStepLabel(step2) {
-  const amount = Math.floor(Number(step2 == null ? void 0 : step2.amount)) || 0;
-  return `${amount}${TIME_STEP_UNIT_SHORT[step2 == null ? void 0 : step2.unit] ?? ""}`;
-}
-function sortTimeSteps(steps) {
-  return [...steps ?? []].sort((a, b) => timeStepSeconds(a) - timeStepSeconds(b));
-}
-const DEFAULT_SCRUB = Object.freeze({ sensitivity: 1, grow: true, snap: false });
-const SCRUB_SENS_MIN = 0.25;
-const SCRUB_SENS_MAX = 5;
-function normalizeScrub(raw) {
-  const s = raw ?? {};
-  let sensitivity = Number(s.sensitivity);
-  if (!Number.isFinite(sensitivity)) sensitivity = DEFAULT_SCRUB.sensitivity;
-  sensitivity = Math.min(SCRUB_SENS_MAX, Math.max(SCRUB_SENS_MIN, sensitivity));
-  return {
-    sensitivity,
-    grow: typeof s.grow === "boolean" ? s.grow : DEFAULT_SCRUB.grow,
-    snap: typeof s.snap === "boolean" ? s.snap : DEFAULT_SCRUB.snap
-  };
-}
-function normalizeSeasons(raw) {
-  var _a;
-  const out = {};
-  for (const key of Object.keys(DEFAULT_SEASONS)) {
-    const def = DEFAULT_SEASONS[key];
-    const s = (raw == null ? void 0 : raw[key]) ?? {};
-    const weights = {};
-    for (const c of Object.keys(CONDITIONS)) {
-      const w = Number((_a = s.weights) == null ? void 0 : _a[c]);
-      weights[c] = Number.isFinite(w) && w >= 0 ? w : def.weights[c];
-    }
-    const tempMin = Number.isFinite(Number(s.tempMin)) ? Number(s.tempMin) : def.tempMin;
-    const rawMax = Number.isFinite(Number(s.tempMax)) ? Number(s.tempMax) : def.tempMax;
-    out[key] = { tempMin, tempMax: Math.max(tempMin, rawMax), weights };
-  }
-  return out;
-}
-function pickWeather(seasonCfg, rng = Math.random) {
-  const weights = (seasonCfg == null ? void 0 : seasonCfg.weights) ?? {};
-  const entries = Object.keys(CONDITIONS).map((c) => [c, Math.max(0, Number(weights[c]) || 0)]);
-  const total = entries.reduce((sum, [, w]) => sum + w, 0);
-  let cond = "overcast";
-  if (total > 0) {
-    let roll = rng() * total;
-    for (const [c, w] of entries) {
-      roll -= w;
-      if (roll < 0) {
-        cond = c;
-        break;
-      }
-    }
-  }
-  const min = Number(seasonCfg == null ? void 0 : seasonCfg.tempMin) || 0;
-  const max = Math.max(min, Number(seasonCfg == null ? void 0 : seasonCfg.tempMax) || min);
-  const temp = Math.round(min + rng() * (max - min));
-  const wind = WINDS[Math.min(WINDS.length - 1, Math.floor(rng() * WINDS.length))];
-  return { cond, temp, wind };
-}
-function sceneWeatherFor(cond, mapping) {
-  const key = mapping == null ? void 0 : mapping[cond];
-  if (typeof key === "string") return key;
-  return DEFAULT_WEATHER_EFFECT_MAP[cond] ?? "";
-}
-function anyCombatStarted(combats) {
-  for (const c of combats ?? []) if (c == null ? void 0 : c.started) return true;
-  return false;
-}
-function isHudClickIntercepted({ rect, x, y, targetInRoot, hidden }) {
-  return !hidden && x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom && !targetInRoot;
 }
 const TIME_UNIT_LABEL_KEY = {
   minute: "TimeUnitMinute",
@@ -5419,9 +5914,14 @@ const TIME_UNIT_LABEL_KEY = {
   week: "TimeUnitWeek"
 };
 const { ApplicationV2: ApplicationV2$e, HandlebarsApplicationMixin: HandlebarsApplicationMixin$f } = foundry.applications.api;
-function L$d(key, fallback) {
+function L$e(key, fallback) {
   var _a, _b;
   const full = `STORYFLOW_DUNGEONS_LAB.Settings.${key}`;
+  return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
+}
+function LCal(key, fallback) {
+  var _a, _b;
+  const full = `STORYFLOW_DUNGEONS_LAB.Calendar.${key}`;
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
 }
 function tierLabel(id) {
@@ -5474,6 +5974,20 @@ const _ModuleSettingsApp = class _ModuleSettingsApp extends HandlebarsApplicatio
       calendarEnabled: game.settings.get(MODULE_ID, SETTINGS.CALENDAR_ENABLED),
       calendarWidget: game.settings.get(MODULE_ID, SETTINGS.CALENDAR_WIDGET),
       calendarSceneWeather: game.settings.get(MODULE_ID, SETTINGS.CALENDAR_SCENE_WEATHER),
+      // Стиль неба на каждого клиента. Список вариантов - тот, что поставила сборка:
+      // в бесплатной редакции есть только классическое небо, поэтому строка рисуется выпадающим
+      // списком с одним пунктом, а не враньем о контенте, которого нет.
+      calendarSkyStyles: (() => {
+        const current = resolveSkyStyleId(
+          game.settings.get(MODULE_ID, SETTINGS.CALENDAR_SKY_STYLE)
+        );
+        const labels = skyStyleChoices(LCal);
+        return Object.entries(labels).map(([value, label]) => ({
+          value,
+          label,
+          selected: value === current
+        }));
+      })(),
       scrubSensitivity: scrub.sensitivity,
       scrubSensMin: SCRUB_SENS_MIN,
       scrubSensMax: SCRUB_SENS_MAX,
@@ -5490,7 +6004,7 @@ const _ModuleSettingsApp = class _ModuleSettingsApp extends HandlebarsApplicatio
           amount: (step2 == null ? void 0 : step2.amount) ?? 1,
           units: unitKeys.map((u) => ({
             value: u,
-            label: L$d(TIME_UNIT_LABEL_KEY[u], u),
+            label: L$e(TIME_UNIT_LABEL_KEY[u], u),
             selected: u === unit
           }))
         };
@@ -5571,6 +6085,8 @@ readForm_fn = function() {
     calendarEnabled: bool2("calendarEnabled", SETTINGS.CALENDAR_ENABLED),
     calendarWidget: bool2("calendarWidget", SETTINGS.CALENDAR_WIDGET),
     calendarSceneWeather: bool2("calendarSceneWeather", SETTINGS.CALENDAR_SCENE_WEATHER),
+    // Область - клиент: эта строка меняет небо только у того, у кого открыто окно.
+    calendarSkyStyle: resolveSkyStyleId(str2("calendarSkyStyle", SETTINGS.CALENDAR_SKY_STYLE)),
     factionsEnabled: bool2("factionsEnabled", SETTINGS.FACTIONS_ENABLED),
     traderEnabled: bool2("traderEnabled", SETTINGS.TRADER_ENABLED),
     traderBuybackPct: (() => {
@@ -5687,6 +6203,7 @@ onSave_fn = async function() {
     SETTINGS.CALENDAR_SCENE_WEATHER,
     values.calendarSceneWeather
   );
+  await game.settings.set(MODULE_ID, SETTINGS.CALENDAR_SKY_STYLE, values.calendarSkyStyle);
   await game.settings.set(MODULE_ID, SETTINGS.CALENDAR_SCRUB, __privateMethod(this, _ModuleSettingsApp_instances, readScrub_fn).call(this));
   await game.settings.set(MODULE_ID, SETTINGS.CALENDAR_TIME_STEPS, __privateMethod(this, _ModuleSettingsApp_instances, readTimeSteps_fn).call(this));
   await game.settings.set(MODULE_ID, SETTINGS.FACTIONS_ENABLED, values.factionsEnabled);
@@ -5699,7 +6216,7 @@ onSave_fn = async function() {
   await game.settings.set(MODULE_ID, SETTINGS.OVERLAY_NOTIF_DURATION, values.notifDuration);
   await game.settings.set(MODULE_ID, SETTINGS.SECRET_REVEAL_ENABLED, values.secretRevealEnabled);
   await game.settings.set(MODULE_ID, SETTINGS.SECRET_GLOW_STYLE, values.secretGlowStyle);
-  ui.notifications.info(L$d("ModuleSettingsSaved", "StoryFlow settings saved."));
+  ui.notifications.info(L$e("ModuleSettingsSaved", "StoryFlow settings saved."));
   void this.render();
 };
 onReset_fn = async function() {
@@ -5755,229 +6272,30 @@ __publicField(_ModuleSettingsApp, "PARTS", {
   main: { template: "modules/storyflow-dungeons-lab/templates/settings/module-settings.hbs" }
 });
 let ModuleSettingsApp = _ModuleSettingsApp;
-const EVENT_TRIGGER_TYPES = /* @__PURE__ */ new Set([
-  "trigger.weather",
-  "trigger.time",
-  "trigger.rest",
-  "trigger.door",
-  "trigger.timer",
-  "trigger.hp",
-  "trigger.spell",
-  "trigger.roll",
-  "trigger.combat",
-  "trigger.levelup"
-]);
-function firedKey(pageUuid, nodeId) {
-  return `${pageUuid}::${nodeId}`;
-}
-function phaseForHour(hour) {
-  const h = (Number(hour) % 24 + 24) % 24;
-  if (h >= 5 && h < 8) return "dawn";
-  if (h >= 8 && h < 17) return "day";
-  if (h >= 17 && h < 20) return "dusk";
-  return "night";
-}
-function matchTime(payload2, descriptor) {
-  const conditionMet = Boolean(payload2.phase) && descriptor.newPhase === payload2.phase && descriptor.newPhase !== descriptor.oldPhase;
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: null
-  };
-}
-function matchWeather(payload2, descriptor) {
-  const conditionMet = Boolean(payload2.weather) && payload2.weather === descriptor.weather;
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: null
-  };
-}
-const DS_FOR_STATE = { open: DOOR_STATE.OPEN, closed: DOOR_STATE.CLOSED, locked: DOOR_STATE.LOCKED };
-function matchDoor(payload2, descriptor) {
-  const target2 = DS_FOR_STATE[payload2.doorState];
-  const tagged = Boolean(payload2.tag) && (descriptor.tags ?? []).includes(payload2.tag);
-  const conditionMet = target2 !== void 0 && Number(descriptor.newDs) === target2 && tagged;
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: null
-  };
-}
-function whoMatches(payload2, { actorId, isPartyMember }) {
-  return payload2.whoTriggers === "any" || payload2.whoTriggers === "party" && Boolean(isPartyMember) || payload2.whoTriggers === "specific" && (payload2.specificActorIds ?? []).includes(actorId);
-}
-function matchRest(payload2, descriptor) {
-  const conditionMet = (payload2.restType === "any" || payload2.restType === descriptor.restType) && whoMatches(payload2, descriptor);
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: descriptor.actorId
-  };
-}
-const TIMER_UNIT_SECONDS = Object.freeze({
-  hours: SECONDS_PER_HOUR,
-  days: SECONDS_PER_DAY,
-  weeks: 7 * SECONDS_PER_DAY,
-  months: 28 * SECONDS_PER_DAY
-});
-function timerAnchor(payload2) {
-  return worldTimeFor(
-    {
-      year: Number(payload2.anchorYear) || EPOCH_YEAR,
-      month: Number(payload2.anchorMonth) || 0,
-      day: Number(payload2.anchorDay) || 1
-    },
-    Number(payload2.anchorHour) || 0
-  );
-}
-function timerIntervalSeconds(payload2) {
-  const every = Math.max(1, Math.floor(Number(payload2.every) || 1));
-  return every * (TIMER_UNIT_SECONDS[payload2.unit] ?? TIMER_UNIT_SECONDS.days);
-}
-function boundaryIndex(anchor, interval, t) {
-  return Math.floor((t - anchor) / interval);
-}
-function matchTimer(payload2, descriptor, state) {
-  const anchor = timerAnchor(payload2);
-  const interval = timerIntervalSeconds(payload2);
-  const now = Number(descriptor.now) || 0;
-  if (now <= anchor) return { fires: false, suppressed: false, actorId: null };
-  const last = Math.max(Number((state == null ? void 0 : state.lastHandledWorldTime) ?? anchor), anchor);
-  const crossed = boundaryIndex(anchor, interval, now) > boundaryIndex(anchor, interval, last);
-  if (!crossed) return { fires: false, suppressed: false, actorId: null };
-  return {
-    fires: payload2.enabled !== false,
-    suppressed: payload2.enabled === false,
-    actorId: null,
-    nextState: { lastHandledWorldTime: now }
-  };
-}
-function timerNextFire(payload2, now) {
-  const anchor = timerAnchor(payload2);
-  const interval = timerIntervalSeconds(payload2);
-  const ref = Math.max(anchor, Number(now) || 0);
-  return anchor + (boundaryIndex(anchor, interval, ref) + 1) * interval;
-}
-function timerStatus(payload2, now, monthNames2 = []) {
-  const nextAt = timerNextFire(payload2, now);
-  const remain = Math.max(0, nextAt - (Number(now) || 0));
-  const d = dateFromWorldTime(nextAt);
-  const days = Math.floor(remain / SECONDS_PER_DAY);
-  const hours = Math.floor(remain % SECONDS_PER_DAY / SECONDS_PER_HOUR);
-  const month = monthNames2[d.month] ?? String(d.month + 1);
-  const inTxt = days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h` : "<1h";
-  const hh = String(d.hour).padStart(2, "0");
-  const mm = String(d.minute).padStart(2, "0");
-  return { nextAt, remain, label: `${d.day} ${month} ${d.year} ${hh}:${mm} (in ${inTxt})` };
-}
-const BOSS_STAGE_THRESHOLDS = Object.freeze({ 2: 200 / 3, 3: 100 / 3 });
-function matchHp(payload2, descriptor, state) {
-  const oldHp = Number(descriptor.oldHp);
-  const newHp = Number(descriptor.newHp);
-  let crossed;
-  if (payload2.mode === "death") {
-    crossed = oldHp > 0 && newHp <= 0;
-  } else {
-    const stagePct = BOSS_STAGE_THRESHOLDS[payload2.stage] ?? BOSS_STAGE_THRESHOLDS[2];
-    const limit = payload2.mode === "stage" ? Number(descriptor.maxHp) * stagePct / 100 : payload2.mode === "value" ? Number(payload2.threshold) : Number(descriptor.maxHp) * Number(payload2.threshold) / 100;
-    crossed = oldHp > limit && newHp <= limit;
-  }
-  const count = Number((state == null ? void 0 : state.fireCount) ?? 0);
-  const capOk = Number(payload2.maxFires) === 0 || count < Number(payload2.maxFires);
-  const conditionMet = crossed && capOk && whoMatches(payload2, descriptor);
-  if (!conditionMet) return { fires: false, suppressed: false, actorId: null };
-  if (payload2.enabled === false) return { fires: false, suppressed: true, actorId: null };
-  return { fires: true, suppressed: false, actorId: descriptor.actorId, nextState: { fireCount: count + 1 } };
-}
-function matchSpell(payload2, descriptor) {
-  const rows = normalizeSpellRows(payload2.spells);
-  const spellOk = rows.length === 0 || rows.some((r) => matchesDroppedItem(descriptor.spell ?? {}, { uuid: r.itemRef, name: r.name }));
-  const conditionMet = spellOk && whoMatches(payload2, descriptor);
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: descriptor.actorId ?? null
-  };
-}
-function ruleMatchesDescriptor(rule, descriptor) {
-  if (rule.kind !== descriptor.kind) return false;
-  if (descriptor.kind === "effect") {
-    return !rule.detail || (descriptor.statuses ?? []).includes(rule.detail);
-  }
-  if (rule.detail && rule.detail !== descriptor.detail) return false;
-  switch (rule.outcome) {
-    case "success":
-      return descriptor.success === true;
-    case "failure":
-      return descriptor.success === false;
-    case "critical":
-      return Boolean(descriptor.isCritical);
-    case "fumble":
-      return Boolean(descriptor.isFumble);
-    default:
-      return true;
+const BASE_W = 1920;
+const BASE_H = 1080;
+function userScale() {
+  try {
+    return Number(game.settings.get(MODULE_ID, SETTINGS.CALENDAR_USER_SCALE)) || 1;
+  } catch {
+    return 1;
   }
 }
-function matchRoll(payload2, descriptor) {
-  const rules = normalizeRollRules(payload2.rules);
-  const conditionMet = rules.some((r) => ruleMatchesDescriptor(r, descriptor)) && whoMatches(payload2, descriptor);
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: descriptor.actorId ?? null
-  };
+function computeCalendarScale(w, h, user) {
+  const s = Math.min(w / BASE_W, h / BASE_H);
+  return Math.min(2, Math.max(0.45, Math.min(1.5, Math.max(0.6, s)) * user));
 }
-function matchCombat(payload2, descriptor) {
-  const conditionMet = payload2.event === descriptor.kind && (descriptor.kind !== "roundChange" || !Number(payload2.round) || Number(payload2.round) === descriptor.round);
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: null
-  };
+function calendarScale() {
+  return computeCalendarScale(window.innerWidth, window.innerHeight, userScale());
 }
-function matchLevelUp(payload2, descriptor) {
-  const conditionMet = (!Number(payload2.level) || Number(payload2.level) === descriptor.newLevel) && whoMatches(payload2, descriptor);
-  return {
-    fires: conditionMet && payload2.enabled !== false,
-    suppressed: conditionMet && payload2.enabled === false,
-    actorId: descriptor.actorId
-  };
+function applyCalendarScale() {
+  var _a, _b;
+  (_b = (_a = globalThis.document) == null ? void 0 : _a.body) == null ? void 0 : _b.style.setProperty("--sf-cal-scale", calendarScale().toFixed(3));
 }
-function selectFiring(candidates, descriptor, match, firedSet, states = {}) {
-  const toFire = [];
-  const toMark = [];
-  const toSuppress = [];
-  const stateUpdates = [];
-  for (const c of candidates ?? []) {
-    const key = firedKey(c.pageUuid, c.nodeId);
-    const { fires, suppressed, actorId, nextState } = match(c.payload, descriptor, states[key]);
-    if (nextState !== void 0) stateUpdates.push({ key, state: nextState });
-    if (suppressed) toSuppress.push({ pageUuid: c.pageUuid, nodeId: c.nodeId });
-    if (!fires) continue;
-    if (c.payload.once && firedSet.has(key)) continue;
-    toFire.push({ pageUuid: c.pageUuid, nodeId: c.nodeId, actorId });
-    if (c.payload.once) toMark.push(key);
-  }
-  return { toFire, toMark, toSuppress, stateUpdates };
-}
-function loadFiredSet() {
-  const obj = game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {};
-  return new Set(Object.keys(obj));
-}
-async function markFired(keys) {
-  if (!(keys == null ? void 0 : keys.length)) return;
-  const obj = { ...game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {} };
-  for (const k of keys) obj[k] = true;
-  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, obj);
-}
-async function resetTrigger(pageUuid, nodeId) {
-  const obj = { ...game.settings.get(MODULE_ID, SETTINGS.FIRED_TRIGGERS) ?? {} };
-  delete obj[firedKey(pageUuid, nodeId)];
-  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, obj);
-}
-async function resetAllTriggers() {
-  await game.settings.set(MODULE_ID, SETTINGS.FIRED_TRIGGERS, {});
+function mountCalendarScale() {
+  if (!globalThis.window) return;
+  applyCalendarScale();
+  window.addEventListener("resize", foundry.utils.debounce(applyCalendarScale, 100));
 }
 class ResetTriggersMenu extends foundry.applications.api.ApplicationV2 {
   /** @override - ничего не рендерить; у этого меню нет содержимого окна. */
@@ -5997,17 +6315,17 @@ class ResetTriggersMenu extends foundry.applications.api.ApplicationV2 {
   async _onFirstRender(context, options) {
     await super._onFirstRender(context, options);
     const ok = await foundry.applications.api.DialogV2.confirm({
-      window: { title: L$c("ResetTriggersMenu", "Reset one-time triggers") },
-      content: `<p>${L$c("ResetTriggersConfirm", "Reactivate every one-time event trigger in this world?")}</p>`
+      window: { title: L$d("ResetTriggersMenu", "Reset one-time triggers") },
+      content: `<p>${L$d("ResetTriggersConfirm", "Reactivate every one-time event trigger in this world?")}</p>`
     });
     if (ok) {
       await resetAllTriggers();
-      ui.notifications.info(L$c("ResetTriggersDone", "All one-time triggers reactivated."));
+      ui.notifications.info(L$d("ResetTriggersDone", "All one-time triggers reactivated."));
     }
     await this.close();
   }
 }
-function L$c(key, fallback) {
+function L$d(key, fallback) {
   var _a, _b;
   const full = `STORYFLOW_DUNGEONS_LAB.Settings.${key}`;
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
@@ -6016,6 +6334,11 @@ function applyReduceMotion(value) {
   var _a;
   const on = value ?? Boolean(game.settings.get(MODULE_ID, SETTINGS.REDUCE_MOTION));
   (_a = document.body) == null ? void 0 : _a.classList.toggle("storyflow-reduce-motion", on);
+}
+function applyCalendarPerfMode(value) {
+  var _a;
+  const on = value ?? Boolean(game.settings.get(MODULE_ID, SETTINGS.CALENDAR_PERF_MODE));
+  (_a = document.body) == null ? void 0 : _a.classList.toggle("storyflow-calendar-perf", on);
 }
 function applyQuestBoardCompact(value) {
   var _a;
@@ -6149,8 +6472,8 @@ function registerSettings() {
     default: true
   });
   reg(SETTINGS.REDUCE_MOTION, {
-    name: L$c("ReduceMotion", "Reduce motion"),
-    hint: L$c(
+    name: L$d("ReduceMotion", "Reduce motion"),
+    hint: L$d(
       "ReduceMotionHint",
       "Disable the cinematic overlay and notification animations (sunbeams, countdown bar, transitions)."
     ),
@@ -6160,9 +6483,34 @@ function registerSettings() {
     default: false,
     onChange: applyReduceMotion
   });
+  reg(SETTINGS.CALENDAR_PERF_MODE, {
+    name: L$d("CalendarPerfMode", "Calendar: performance mode (weak PC)"),
+    hint: L$d(
+      "CalendarPerfModeHint",
+      "Disable the calendar's animations and expensive visual effects (blur, glows, shadows) on your client."
+    ),
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: false,
+    onChange: applyCalendarPerfMode
+  });
+  reg(SETTINGS.CALENDAR_USER_SCALE, {
+    name: L$d("CalendarUserScale", "Calendar: UI size"),
+    hint: L$d(
+      "CalendarUserScaleHint",
+      "Scale the calendar window and HUD widget on your client (also adjustable via the A−/A+ buttons in the calendar header)."
+    ),
+    scope: "client",
+    config: true,
+    type: Number,
+    range: { min: 0.6, max: 1.6, step: 0.05 },
+    default: 1,
+    onChange: applyCalendarScale
+  });
   reg(SETTINGS.ACTIVE_WINDOW_FOCUS, {
-    name: L$c("ActiveWindowFocus", "Active-window glow + scoped Escape"),
-    hint: L$c(
+    name: L$d("ActiveWindowFocus", "Active-window glow + scoped Escape"),
+    hint: L$d(
       "ActiveWindowFocusHint",
       "Highlight the active StoryFlow window with an ember glow; Escape closes only that window instead of all of them."
     ),
@@ -6177,8 +6525,8 @@ function registerSettings() {
     }
   });
   reg(SETTINGS.GM_CARD_REVEAL, {
-    name: L$c("GmCardReveal", "Show the card-reveal panel (GM)"),
-    hint: L$c(
+    name: L$d("GmCardReveal", "Show the card-reveal panel (GM)"),
+    hint: L$d(
       "GmCardRevealHint",
       "As GM, see the same full-screen card-reveal panel players get when an actor unlocks faction cards, instead of a small text toast."
     ),
@@ -6188,8 +6536,8 @@ function registerSettings() {
     default: false
   });
   reg(SETTINGS.SKIP_TYPEWRITER, {
-    name: L$c("SkipTypewriter", "Skip typewriter effect"),
-    hint: L$c(
+    name: L$d("SkipTypewriter", "Skip typewriter effect"),
+    hint: L$d(
       "SkipTypewriterHint",
       "Reveal dialogue text instantly instead of typing it out, on your client."
     ),
@@ -6199,8 +6547,8 @@ function registerSettings() {
     default: false
   });
   reg(SETTINGS.CAPTURE_ERRORS, {
-    name: L$c("CaptureErrors", "Capture errors for troubleshooting"),
-    hint: L$c(
+    name: L$d("CaptureErrors", "Capture errors for troubleshooting"),
+    hint: L$d(
       "CaptureErrorsHint",
       "Record StoryFlow errors this session so the troubleshooting report can include them."
     ),
@@ -6215,7 +6563,7 @@ function registerSettings() {
     type: Boolean,
     default: false,
     onChange: () => {
-      import("./template-library-app-A0Ra26Na.js").then((m) => {
+      import("./template-library-app-bnNc-XXO.js").then((m) => {
         var _a;
         return (_a = m.TemplateLibraryApp) == null ? void 0 : _a.refreshIfOpen();
       }).catch(() => {
@@ -6368,9 +6716,9 @@ function registerSettings() {
     default: 6
   });
   game.settings.registerMenu(MODULE_ID, SETTING_MENUS.TROUBLESHOOT, {
-    name: L$c("Troubleshoot", "Troubleshooting"),
-    label: L$c("TroubleshootLabel", "Open Troubleshooting"),
-    hint: L$c(
+    name: L$d("Troubleshoot", "Troubleshooting"),
+    label: L$d("TroubleshootLabel", "Open Troubleshooting"),
+    hint: L$d(
       "TroubleshootHint",
       "Health checks + a copy-pasteable diagnostic report for bug reports."
     ),
@@ -6379,9 +6727,9 @@ function registerSettings() {
     restricted: false
   });
   game.settings.registerMenu(MODULE_ID, SETTING_MENUS.RESET_TRIGGERS, {
-    name: L$c("ResetTriggersMenu", "Reset one-time triggers"),
-    label: L$c("ResetTriggersLabel", "Reactivate all one-time triggers"),
-    hint: L$c(
+    name: L$d("ResetTriggersMenu", "Reset one-time triggers"),
+    label: L$d("ResetTriggersLabel", "Reactivate all one-time triggers"),
+    hint: L$d(
       "ResetTriggersHint",
       "Clear the fired-state of every 'Fire Once' event trigger so they can fire again."
     ),
@@ -6390,9 +6738,9 @@ function registerSettings() {
     restricted: true
   });
   game.settings.registerMenu(MODULE_ID, SETTING_MENUS.MODULE_SETTINGS, {
-    name: L$c("ModuleSettingsMenu", "Module Settings"),
-    label: L$c("ModuleSettingsMenuLabel", "Open Module Settings"),
-    hint: L$c(
+    name: L$d("ModuleSettingsMenu", "Module Settings"),
+    label: L$d("ModuleSettingsMenuLabel", "Open Module Settings"),
+    hint: L$d(
       "ModuleSettingsMenuHint",
       "General, Calendar, Factions, Trader, and Overlay controls for StoryFlow Dungeons Lab."
     ),
@@ -8596,15 +8944,6 @@ function pickControllingUser({ actorId = null, users = [], fallbackUserId = null
   const owner = players.find((u) => u.isOwner);
   return owner ? owner.id : fallbackUserId;
 }
-function selectedActorIds(controlled) {
-  var _a;
-  const ids = [];
-  for (const t of controlled ?? []) {
-    const id = (_a = t == null ? void 0 : t.actor) == null ? void 0 : _a.id;
-    if (id && !ids.includes(id)) ids.push(id);
-  }
-  return ids;
-}
 const LEAVE_MS = 600;
 const SECRET_FADE_MS = 1e3;
 const _StoryFlowNotify = class _StoryFlowNotify {
@@ -9370,10 +9709,10 @@ __privateAdd(_StoryFlowNotify, _cardRevealTimer, null);
  */
 __privateAdd(_StoryFlowNotify, _cardRevealTarget, {});
 let StoryFlowNotify = _StoryFlowNotify;
-const AUTHORABLE_NODE_TYPES = /* @__PURE__ */ new Set(["trigger.region", "trigger.start", "display", "text", "choice", "jump", "action.giveItem", "action.changeScene", "action.healDamage", "action.giveGold", "action.preloadScene", "action.token", "showOnMap", "wait", "showImage", "end", "quest", "check", "condition", "action.applyEffect", "notification", "comment", "authorable-node:trigger.region", "authorable-node:trigger.start", "authorable-node:display", "authorable-node:text", "authorable-node:choice", "authorable-node:jump", "authorable-node:action.giveItem", "authorable-node:action.changeScene", "authorable-node:action.healDamage", "authorable-node:action.giveGold", "authorable-node:action.preloadScene", "authorable-node:action.token", "authorable-node:showOnMap", "authorable-node:wait", "authorable-node:showImage", "authorable-node:end", "authorable-node:quest", "authorable-node:check", "authorable-node:condition", "authorable-node:action.applyEffect", "authorable-node:notification", "authorable-node:comment"]);
+const AUTHORABLE_NODE_TYPES = /* @__PURE__ */ new Set(["trigger.region", "trigger.start", "display", "text", "choice", "jump", "action.giveItem", "action.changeScene", "action.healDamage", "action.giveGold", "action.preloadScene", "action.token", "showOnMap", "wait", "showImage", "end", "quest", "check", "condition", "action.applyEffect", "notification", "audio", "comment", "stopAudio", "authorable-node:trigger.region", "authorable-node:trigger.start", "authorable-node:display", "authorable-node:text", "authorable-node:choice", "authorable-node:jump", "authorable-node:action.giveItem", "authorable-node:action.changeScene", "authorable-node:action.healDamage", "authorable-node:action.giveGold", "authorable-node:action.preloadScene", "authorable-node:action.token", "authorable-node:showOnMap", "authorable-node:wait", "authorable-node:showImage", "authorable-node:end", "authorable-node:quest", "authorable-node:check", "authorable-node:condition", "authorable-node:action.applyEffect", "authorable-node:notification", "authorable-node:audio", "authorable-node:comment", "authorable-node:stopAudio"]);
 const TRACKED_NODE_TYPE_IDS = /* @__PURE__ */ new Set(["quest", "action.modifyReputation", "action.modifyAffinity", "action.bossBar", "trigger.macro", "trigger.weather", "trigger.time", "trigger.rest", "trigger.door", "trigger.timer", "trigger.hp", "trigger.spell", "trigger.roll", "trigger.combat", "trigger.levelup", "check", "condition", "branch", "random", "action.applyEffect", "action.macro", "action.door", "action.light", "action.effect", "action.endEffect", "action.tiles", "trader", "journal", "parchment", "notification", "audio", "transition", "screenAnimation", "prop.cryptex", "crate", "preload", "comment", "stopAudio"]);
 const AUTHORABLE_FEATURE_IDS = /* @__PURE__ */ new Set(["app.quest-board", "app.guide", "app.calendar", "app.factions-ui", "app.trader-ui", "app.overlay"]);
-const TRACKED_FEATURE_IDS = /* @__PURE__ */ new Set(["app.command-deck", "app.gm-panel", "app.quest-board", "app.extras", "app.actor-create-graph-menu", "app.guide", "app.calendar", "app.factions-ui", "app.trader-ui", "app.overlay"]);
+const TRACKED_FEATURE_IDS = /* @__PURE__ */ new Set(["app.command-deck", "app.gm-panel", "app.quest-board", "app.extras", "app.actor-create-graph-menu", "app.guide", "app.calendar-sky.clouds", "app.calendar-sky.planar", "app.calendar-sky.depth", "app.calendar-sky.cave", "app.calendar-sky.gilded", "app.calendar", "app.factions-ui", "app.trader-ui", "app.overlay"]);
 function isAuthorable(id) {
   if (TRACKED_NODE_TYPE_IDS.has(id)) return AUTHORABLE_NODE_TYPES.has(id);
   if (TRACKED_FEATURE_IDS.has(id)) return AUTHORABLE_FEATURE_IDS.has(id);
@@ -9389,7 +9728,7 @@ function isAuthorableNodeType(type) {
 function authorableNodeTypeIds() {
   return nodeTypeIds().filter(isAuthorableNodeType);
 }
-const L$b = "STORYFLOW_DUNGEONS_LAB";
+const L$c = "STORYFLOW_DUNGEONS_LAB";
 const CATEGORIES = {
   trigger: { id: "trigger", icon: "fa-bolt", color: "#7a4f9e", order: 10 },
   dialogue: { id: "dialogue", icon: "fa-comment", color: "#2f6f9f", order: 20 },
@@ -9425,14 +9764,14 @@ function nodePresentation(type) {
     group: p.group,
     icon: p.icon,
     keywords: p.keywords ?? [],
-    label: localizeOr(`${L$b}.NodeType.${type}`, humanizeType(type)),
-    summary: localizeOr(`${L$b}.NodeDesc.${type}`, ""),
+    label: localizeOr(`${L$c}.NodeType.${type}`, humanizeType(type)),
+    summary: localizeOr(`${L$c}.NodeDesc.${type}`, ""),
     color: cat.color
   };
 }
 function categoryPresentation(id) {
   const cat = CATEGORIES[id] ?? CATEGORIES.control;
-  return { ...cat, label: localizeOr(`${L$b}.NodeCategory.${id}`, humanizeType(id)) };
+  return { ...cat, label: localizeOr(`${L$c}.NodeCategory.${id}`, humanizeType(id)) };
 }
 function nodeColor(type) {
   var _a;
@@ -9616,6 +9955,167 @@ function ownedFlagKey(providerId) {
 function ownedFlagScope() {
   return MODULE_ID;
 }
+const DEFAULT_MODEL = {
+  weather: true,
+  conditions: {},
+  params: []
+};
+function getPlane(id) {
+  const style = getSkyStyle(id);
+  if (!style) return null;
+  return {
+    ...DEFAULT_MODEL,
+    ...style,
+    id: style.id,
+    weather: style.weather ?? DEFAULT_MODEL.weather,
+    conditions: style.conditions ?? DEFAULT_MODEL.conditions,
+    params: style.params ?? DEFAULT_MODEL.params
+  };
+}
+function listPlanes() {
+  return listSkyStyles().map((s) => getPlane(s.id));
+}
+function planeHasWeather(id) {
+  var _a;
+  return ((_a = getPlane(id)) == null ? void 0 : _a.weather) ?? true;
+}
+function planeConditionKeys(id) {
+  var _a;
+  return Object.keys(((_a = getPlane(id)) == null ? void 0 : _a.conditions) ?? {});
+}
+function defaultCondition(id) {
+  return planeConditionKeys(id)[0] ?? null;
+}
+function clampParam(param, value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return param.default;
+  const clamped = Math.min(param.max, Math.max(param.min, n));
+  if (!param.step || clamped === param.min || clamped === param.max) return clamped;
+  const snapped = param.min + Math.round((clamped - param.min) / param.step) * param.step;
+  const bounded = Math.min(param.max, Math.max(param.min, snapped));
+  return Number(bounded.toFixed(6));
+}
+function defaultParams(id) {
+  var _a;
+  const out = {};
+  for (const p of ((_a = getPlane(id)) == null ? void 0 : _a.params) ?? []) out[p.key] = p.default;
+  return out;
+}
+function normalizeWorldState(raw) {
+  var _a, _b, _c;
+  const src = raw && typeof raw === "object" ? raw : {};
+  const plane = getPlane(src.plane) ? src.plane : CLASSIC_SKY_STYLE;
+  const conditions = {};
+  const params = {};
+  for (const p of listPlanes()) {
+    const keys = Object.keys(p.conditions);
+    const stored = (_a = src.conditions) == null ? void 0 : _a[p.id];
+    if (keys.length) conditions[p.id] = keys.includes(stored) ? stored : keys[0];
+    if (p.params.length) {
+      const bag = {};
+      for (const param of p.params)
+        bag[param.key] = clampParam(param, (_c = (_b = src.params) == null ? void 0 : _b[p.id]) == null ? void 0 : _c[param.key]);
+      params[p.id] = bag;
+    }
+  }
+  return { plane, conditions, params, perScene: src.perScene !== false };
+}
+function activeCondition(state) {
+  var _a;
+  return ((_a = state.conditions) == null ? void 0 : _a[state.plane]) ?? defaultCondition(state.plane);
+}
+function activeParams(state) {
+  var _a;
+  return ((_a = state.params) == null ? void 0 : _a[state.plane]) ?? defaultParams(state.plane);
+}
+function applyWorldPatch(state, patch = {}) {
+  var _a;
+  const next = normalizeWorldState(state);
+  if (patch.plane !== void 0 && getPlane(patch.plane)) next.plane = patch.plane;
+  if (patch.condition !== void 0) {
+    const keys = planeConditionKeys(next.plane);
+    if (keys.includes(patch.condition)) {
+      next.conditions = { ...next.conditions, [next.plane]: patch.condition };
+    }
+  }
+  if (patch.params) {
+    const declared = ((_a = getPlane(next.plane)) == null ? void 0 : _a.params) ?? [];
+    const bag = { ...next.params[next.plane] ?? defaultParams(next.plane) };
+    for (const param of declared) {
+      if (patch.params[param.key] !== void 0)
+        bag[param.key] = clampParam(param, patch.params[param.key]);
+    }
+    next.params = { ...next.params, [next.plane]: bag };
+  }
+  if (patch.perScene !== void 0) next.perScene = Boolean(patch.perScene);
+  return next;
+}
+const WORLD_CHANGED_HOOK = `${MODULE_ID}.calendarWorldChanged`;
+const SCENE_PLANE_FLAG = "calendarPlane";
+function readSetting() {
+  var _a, _b, _c;
+  const key = `${MODULE_ID}.${SETTINGS.CALENDAR_WORLD}`;
+  if (!((_c = (_b = (_a = game.settings) == null ? void 0 : _a.settings) == null ? void 0 : _b.has) == null ? void 0 : _c.call(_b, key))) return {};
+  return game.settings.get(MODULE_ID, SETTINGS.CALENDAR_WORLD) ?? {};
+}
+let pendingState = null;
+let inFlight = 0;
+let writeChain = Promise.resolve();
+function getWorldState() {
+  var _a, _b, _c;
+  if (pendingState) return normalizeWorldState(pendingState);
+  const state = normalizeWorldState(readSetting());
+  if (!state.perScene) return state;
+  const scenePlane = (_c = (_b = (_a = game.scenes) == null ? void 0 : _a.active) == null ? void 0 : _b.getFlag) == null ? void 0 : _c.call(_b, MODULE_ID, SCENE_PLANE_FLAG);
+  if (scenePlane && getPlane(scenePlane)) state.plane = scenePlane;
+  return state;
+}
+async function patchWorldState(patch) {
+  var _a;
+  const current = getWorldState();
+  if (!((_a = game.user) == null ? void 0 : _a.isGM)) return current;
+  const next = applyWorldPatch(current, patch);
+  pendingState = next;
+  inFlight += 1;
+  const write = writeChain.then(async () => {
+    var _a2, _b, _c;
+    await game.settings.set(MODULE_ID, SETTINGS.CALENDAR_WORLD, next);
+    if (next.perScene && patch.plane !== void 0) {
+      await ((_c = (_b = (_a2 = game.scenes) == null ? void 0 : _a2.active) == null ? void 0 : _b.setFlag) == null ? void 0 : _c.call(_b, MODULE_ID, SCENE_PLANE_FLAG, next.plane));
+    }
+  });
+  writeChain = write.catch(() => {
+  });
+  try {
+    await write;
+  } finally {
+    inFlight -= 1;
+    if (inFlight === 0) {
+      const intent = pendingState;
+      pendingState = null;
+      reportDrift(intent);
+    }
+  }
+  return next;
+}
+function reportDrift(intent) {
+  var _a;
+  if (!intent) return [];
+  const stored = normalizeWorldState(readSetting());
+  const drift = [];
+  if (stored.plane !== intent.plane) drift.push(`plane: wrote ${intent.plane}, read ${stored.plane}`);
+  for (const [planeId, condition] of Object.entries(intent.conditions ?? {})) {
+    const got = (_a = stored.conditions) == null ? void 0 : _a[planeId];
+    if (got !== condition) drift.push(`condition[${planeId}]: wrote ${condition}, read ${got}`);
+  }
+  if (drift.length) {
+    console.error(`${MODULE_ID} | calendar world state did not stick - ${drift.join(" · ")}`);
+  }
+  return drift;
+}
+function announceWorldChanged() {
+  Hooks.callAll(WORLD_CHANGED_HOOK, getWorldState());
+}
 const API_VERSION = 1;
 function createPublicApi() {
   return {
@@ -9627,7 +10127,33 @@ function createPublicApi() {
     // Научить StoryFlow ещё одному реестру погоды: его эффекты затем появятся в выпадающем списке
     // trigger.weather и в сопоставлении condition→effect календаря, а запуск одного из них
     // активирует trigger.weather. Смотри runtime/weather-providers.mjs на предмет структуры данных.
-    registerWeatherProvider: (def) => registerWeatherProvider(def)
+    registerWeatherProvider: (def) => registerWeatherProvider(def),
+    // ── Тип мира календаря ────────────────────────────────────────────────────
+    // Поверхность, которой будут управлять узлы графа: узел, погружающий партию на 600 футов
+    // или переносящий ее в Cinderwaste, вызывает именно их. Каждая запись проходит через
+    // patchWorldState, поэтому узел может испортить тип мира не больше, чем собственный
+    // интерфейс ГМ - неизвестный план, необъявленное условие или число вне диапазона
+    // отбрасываются, а не сохраняются, а клиент игрока игнорируется вовсе. Чтение безопасно
+    // для любого.
+    calendar: {
+      /** Планы, которые поставила эта сборка, простыми данными (id, флаг погоды, условия, параметры). */
+      listPlanes: () => listPlanes().map((p) => ({
+        id: p.id,
+        plane: p.plane,
+        label: p.label,
+        weather: p.weather,
+        conditions: Object.keys(p.conditions),
+        params: p.params.map((x) => ({ ...x }))
+      })),
+      /** Текущий тип мира: `{plane, conditions, params, perScene}`. */
+      getWorld: () => getWorldState(),
+      /** @param {string} id */
+      setPlane: (id) => patchWorldState({ plane: id }),
+      /** @param {string} key - условие, объявленное АКТИВНЫМ планом. */
+      setCondition: (key) => patchWorldState({ condition: key }),
+      /** @param {Record<string, number>} values - параметры, объявленные АКТИВНЫМ планом. */
+      setParams: (values) => patchWorldState({ params: values })
+    }
   };
 }
 function _registerNode(def) {
@@ -9639,7 +10165,10 @@ function _registerNode(def) {
     }
     registerNodeType(def.type, {
       category: def.category,
-      pins: { in: [...def.pins.in], out: def.pins.out === "dynamic" ? "dynamic" : [...def.pins.out] }
+      pins: {
+        in: [...def.pins.in],
+        out: def.pins.out === "dynamic" ? "dynamic" : [...def.pins.out]
+      }
     });
     const { validate, clean: clean2, ...fields } = def.payload ?? {};
     registerPayloadSpec(def.type, fields, { validate, clean: clean2 });
@@ -9672,8 +10201,10 @@ function _registerWidget(def) {
 function validateNodeDefinition(def) {
   if (!def || typeof def !== "object") return "definition must be an object";
   if (typeof def.type !== "string" || !def.type) return "type must be a non-empty string";
-  if (typeof def.apiVersion !== "number" || !Number.isFinite(def.apiVersion)) return `${def.type}: apiVersion (number) is required`;
-  if (def.apiVersion > API_VERSION) return `${def.type}: apiVersion ${def.apiVersion} exceeds core ${API_VERSION}`;
+  if (typeof def.apiVersion !== "number" || !Number.isFinite(def.apiVersion))
+    return `${def.type}: apiVersion (number) is required`;
+  if (def.apiVersion > API_VERSION)
+    return `${def.type}: apiVersion ${def.apiVersion} exceeds core ${API_VERSION}`;
   if (NODE_TYPES[def.type]) return `${def.type}: already registered (first registration wins)`;
   if (typeof def.category !== "string" || !def.category) return `${def.type}: category is required`;
   if (!def.pins || !Array.isArray(def.pins.in)) return `${def.type}: pins.in/out arrays required`;
@@ -9683,9 +10214,12 @@ function validateNodeDefinition(def) {
     }
   } else if (!Array.isArray(def.pins.out)) return `${def.type}: pins.in/out arrays required`;
   if (!def.payload || typeof def.payload !== "object") return `${def.type}: payload spec required`;
-  if (!def.catalog || typeof def.catalog !== "object" || !def.catalog.group) return `${def.type}: catalog.group required`;
-  if (!def.behavior || typeof def.behavior.enter !== "function") return `${def.type}: behavior.enter function required`;
-  if (def.services !== void 0 && !Array.isArray(def.services)) return `${def.type}: services must be an array when present`;
+  if (!def.catalog || typeof def.catalog !== "object" || !def.catalog.group)
+    return `${def.type}: catalog.group required`;
+  if (!def.behavior || typeof def.behavior.enter !== "function")
+    return `${def.type}: behavior.enter function required`;
+  if (def.services !== void 0 && !Array.isArray(def.services))
+    return `${def.type}: services must be an array when present`;
   return null;
 }
 async function startFlow(pageUuid, { nodeId, actorId, targetTokenIds } = {}) {
@@ -9726,14 +10260,6 @@ async function startFlow(pageUuid, { nodeId, actorId, targetTokenIds } = {}) {
   });
   return runId;
 }
-async function startFlowForSelection(pageUuid, { nodeId } = {}) {
-  var _a;
-  const actorIds = selectedActorIds((_a = canvas == null ? void 0 : canvas.tokens) == null ? void 0 : _a.controlled);
-  if (!actorIds.length) return [await startFlow(pageUuid, { nodeId })];
-  const runIds = [];
-  for (const actorId of actorIds) runIds.push(await startFlow(pageUuid, { nodeId, actorId }));
-  return runIds;
-}
 function stopFlow(runId) {
   dispatch({ t: MSG.STOP_RUN, runId });
 }
@@ -9762,7 +10288,7 @@ function registerModuleApi() {
        */
       openCommandDeck: () => null,
       /** Открыть (или сфокусировать) окно Календаря. */
-      openCalendar: async () => (await import("./calendar-app-CgAmgKkx.js")).StoryFlowCalendarApp.open(),
+      openCalendar: async () => (await import("./calendar-app-oKQc07WL.js")).StoryFlowCalendarApp.open(),
       /**
        * Открыть приглашение onboarding-тура. Универсальный пакет (как
        * openCalendar), так что прямой импорт безопасен в каждой редакции - слот
@@ -9848,7 +10374,6 @@ const triggers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   registerModuleApi,
   setQuestBoardOpener,
   startFlow,
-  startFlowForSelection,
   stopFlow
 }, Symbol.toStringTag, { value: "Module" }));
 function newId$2() {
@@ -10602,7 +11127,7 @@ function classifyTransition(prev, next) {
   return { kind: "none" };
 }
 async function registerBossBarPlugin(api) {
-  const { BossBarWidget } = await import("./boss-bar-widget-CS1tf4K3.js");
+  const { BossBarWidget } = await import("./boss-bar-widget-BM2TGpJN.js");
   game.settings.register(MODULE_ID, BOSS_BAR_SETTING, {
     scope: "world",
     config: false,
@@ -10794,7 +11319,7 @@ const payload$H = {
   scale: { kind: "number", initial: 1, min: 0.05, max: 5, system: true },
   // Время панорамирования (секунды); также как долго карта остается видимой перед тем, как сработает Out.
   duration: { kind: "number", initial: 2, min: 0, max: 60 },
-  audience: { kind: "string", initial: "all", choices: ["all", "players"] },
+  audience: { kind: "string", initial: "all", choices: ["all", "players"], group: "audience", hideLabel: true },
   /**
    * Межполевая валидация (особый случай showOnMap из удаленного collectErrors,
    * дословно): положение камеры должно быть подтверждено, прежде чем узел можно будет
@@ -10895,7 +11420,7 @@ const payload$G = {
     integer: true,
     showIf: { field: "style", in: ["toast", "epic", "secret"] }
   },
-  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"] }
+  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"], group: "audience", hideLabel: true }
 };
 const SECRET_SETTLE_MS = 4e3;
 function str$d(f, v) {
@@ -10938,6 +11463,7 @@ const behavior$H = {
     const p = clean$e(node.data);
     if (p.style === "secret") {
       if (ctx.pending()) return skipBlocked$1(node, ctx);
+      if (ctx.waitRefused()) return { settle: true };
       ctx.notify({
         style: "secret",
         phase: "conceal",
@@ -10952,6 +11478,7 @@ const behavior$H = {
     }
     const isEpic = p.style === "epic";
     if (isEpic && ctx.pending()) return skipBlocked$1(node, ctx);
+    if (isEpic && ctx.waitRefused()) return { settle: true };
     ctx.notify({
       style: p.style,
       text: p.text,
@@ -10982,6 +11509,7 @@ const behavior$H = {
       );
       return void 0;
     }
+    if (ctx.waitRefused()) return { settle: true };
     const seconds = ((_b = ctx.state) == null ? void 0 : _b.seconds) ?? 0;
     const settleMs = seconds > 0 ? seconds * 1e3 : SECRET_SETTLE_MS;
     ctx.notify({ style: "secret", phase: "reveal", nodeId: msg == null ? void 0 : msg.nodeId, seconds: settleMs / 1e3 });
@@ -11028,7 +11556,7 @@ function registerEndNode(registerBuiltinNode2) {
 const payload$F = {
   mode: { kind: "string", initial: "give", choices: ["give", "take"] },
   formula: { kind: "string", initial: "10", required: true },
-  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all"] }
+  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all", "checkActor"] }
 };
 const behavior$F = {
   /**
@@ -11060,7 +11588,7 @@ function registerActionGiveGoldNode(registerBuiltinNode2) {
 const payload$E = {
   mode: { kind: "string", initial: "damage", choices: ["damage", "heal"] },
   formula: { kind: "string", initial: "1d6", required: true },
-  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all"] }
+  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all", "checkActor"] }
 };
 const behavior$E = {
   /**
@@ -11125,7 +11653,9 @@ const payload$C = {
   // у actor (совпадающий по source/name с перетащенным item). Item перетаскивается.
   mode: { kind: "string", initial: "give", choices: ["give", "remove"] },
   itemUuid: { kind: "string", initial: "", required: true, ref: "Item" },
-  quantity: { kind: "number", initial: 1, min: 1, integer: true }
+  quantity: { kind: "number", initial: 1, min: 1, integer: true },
+  // Та же политика выбора целей, что у action.healDamage/giveGold/applyEffect (resolveHealDamageTargets).
+  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all", "checkActor"] }
 };
 const behavior$C = {
   /**
@@ -11318,7 +11848,7 @@ const payload$z = {
   // effectId = id CONFIG.statusEffects (например, "blinded"), выбираемое из выпадающего списка во время выполнения.
   effectId: { kind: "string", initial: "", required: true, dynamicOptions: "statusEffect" },
   mode: { kind: "string", initial: "apply", choices: ["apply", "remove"] },
-  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all"] }
+  target: { kind: "string", initial: "trigger", choices: ["trigger", "selected", "all", "checkActor"] }
 };
 const behavior$z = {
   /**
@@ -11932,14 +12462,23 @@ function registerActionTilesNode(registerBuiltinNode2) {
 }
 const payload$s = {
   label: { kind: "string", initial: "" },
-  once: { kind: "boolean", initial: false },
+  // F6: здесь нет `once`. Fire Once региона живет на самом документе RegionBehavior
+  // (data/region-behavior.mjs) - именно он реально отключает поведение; копия на уровне узла
+  // никогда не читалась и показывала ГМ второй, мертвый флажок.
   enabled: { kind: "boolean", initial: true },
   whoTriggers: {
     kind: "string",
     initial: "any",
-    choices: ["any", "party", "specific"]
+    choices: ["any", "party", "specific"],
+    group: "whoTriggers",
+    hideLabel: true
   },
-  specificActorIds: { kind: "array", initial: [] }
+  // Редактируется через отдельный список drag-drop актеров (actorListCtx из node-inspector.mjs),
+  // не через общее текстовое поле с запятыми - system:true исключает его из этого цикла и чтения
+  // формы и направляет его в секцию WHO TRIGGERS, где он показывается только пока
+  // whoTriggers === "specific". Эти два узла были последними, кто рисовал его всегда видимым
+  // текстовым полем.
+  specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$s = {
   /**
@@ -11994,9 +12533,16 @@ const payload$q = {
   whoTriggers: {
     kind: "string",
     initial: "any",
-    choices: ["any", "party", "specific"]
+    choices: ["any", "party", "specific"],
+    group: "whoTriggers",
+    hideLabel: true
   },
-  specificActorIds: { kind: "array", initial: [] }
+  // Редактируется через отдельный список drag-drop актеров (actorListCtx из node-inspector.mjs),
+  // не через общее текстовое поле с запятыми - system:true исключает его из этого цикла и чтения
+  // формы и направляет его в секцию WHO TRIGGERS, где он показывается только пока
+  // whoTriggers === "specific". Эти два узла были последними, кто рисовал его всегда видимым
+  // текстовым полем.
+  specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$q = {
   /**
@@ -12078,7 +12624,7 @@ const payload$n = {
   once: { kind: "boolean", initial: false },
   enabled: { kind: "boolean", initial: true },
   restType: { kind: "string", initial: "any", choices: ["any", "short", "long"] },
-  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"] },
+  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"], group: "whoTriggers", hideLabel: true },
   // Редактируется через специальный список actor с drag-drop (actorListCtx из node-inspector.mjs), а не
   // через общее текстовое поле с запятыми - system:true исключает его из этого цикла + чтения формы.
   specificActorIds: { kind: "array", initial: [], system: true }
@@ -12146,7 +12692,7 @@ const payload$l = {
 };
 const behavior$l = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12184,14 +12730,14 @@ const payload$k = {
     showIf: { field: "mode", eq: "stage" }
   },
   maxFires: { kind: "number", initial: 0, min: 0, integer: true },
-  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"] },
-  // Редактируется через отдельный список drag-drop актеров (actorListCtx из node-inspector.mjs), не
-  // через общее текстовое поле с запятыми - system:true исключает его из этого цикла и чтения формы.
+  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"], group: "whoTriggers", hideLabel: true },
+  // Редактируется через специальный список actor с drag-drop (actorListCtx из node-inspector.mjs), а не
+  // через общее текстовое поле с запятыми - system:true исключает его из этого цикла + чтения формы.
   specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$k = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12215,12 +12761,12 @@ const payload$j = {
   once: { kind: "boolean", initial: false },
   enabled: { kind: "boolean", initial: true },
   spells: { kind: "array", initial: [], system: true },
-  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"] },
+  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"], group: "whoTriggers", hideLabel: true },
   specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$j = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12244,12 +12790,12 @@ const payload$i = {
   once: { kind: "boolean", initial: false },
   enabled: { kind: "boolean", initial: true },
   rules: { kind: "array", initial: [], system: true },
-  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"] },
+  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"], group: "whoTriggers", hideLabel: true },
   specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$i = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12283,7 +12829,7 @@ const payload$h = {
 };
 const behavior$h = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12307,14 +12853,14 @@ const payload$g = {
   once: { kind: "boolean", initial: false },
   enabled: { kind: "boolean", initial: true },
   level: { kind: "number", initial: 0, min: 0, integer: true },
-  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"] },
-  // Редактируется через отдельный список drag-drop актеров (actorListCtx из node-inspector.mjs), не
-  // через общее текстовое поле с запятыми - system:true исключает его из этого цикла и чтения формы.
+  whoTriggers: { kind: "string", initial: "any", choices: ["any", "party", "specific"], group: "whoTriggers", hideLabel: true },
+  // Редактируется через специальный список actor с drag-drop (actorListCtx из node-inspector.mjs), а не
+  // через общее текстовое поле с запятыми - system:true исключает его из этого цикла + чтения формы.
   specificActorIds: { kind: "array", initial: [], system: true }
 };
 const behavior$g = {
   /**
-   * @returns {{advance: string}} Распространить с пина "out" внутри тика.
+   * @returns {{advance: string}} Разветвиться от пина "out" в пределах тика.
    */
   enter: () => ({ advance: "out" })
 };
@@ -12341,8 +12887,8 @@ const payload$f = {
 };
 const behavior$f = {
   /**
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {Promise<{advance: string}>} Пин "true" когда оценщик проходит, иначе "false".
    */
   enter: async (node, ctx) => ({ advance: await ctx.evaluateCondition(node.data) ? "true" : "false" })
@@ -12378,7 +12924,11 @@ function validatePaths(paths) {
 }
 const payload$e = {
   prompt: { kind: "string", initial: "" },
-  decider: { kind: "string", initial: "gm", choices: ["gm", "trigger"] },
+  // Поле формы аудитории под другим именем: оно выбирает, кого просят решить. Сгруппировано
+  // с остальными секциями AUDIENCE (Правило 8), но СОХРАНЯЕТ подпись своей строки - "Decider"
+  // не синоним заголовка секции так, как `audience`, а hideLabel задается на поле ровно для
+  // этого случая.
+  decider: { kind: "string", initial: "gm", choices: ["gm", "trigger"], group: "audience" },
   paths: { kind: "array", initial: [] },
   /**
    * Выведенный из употребления частный случай collectErrors `if (type ===
@@ -12408,8 +12958,8 @@ const behavior$e = {
    */
   parks: true,
   /**
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{settle: true}|{await: {state: object}}} Нет путей → предупреждение +
    * завершение; иначе парковка.
    */
@@ -12435,7 +12985,7 @@ const behavior$e = {
    * корректно завершает прогон. В любом случае сначала закрыть любые другие открытые окна -
    * точный порядок выведенной входной ветви (закрыть broadcast перед вердиктом).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{advance: string}|{settle: true}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -12478,8 +13028,8 @@ const payload$d = {
 };
 const behavior$d = {
   /**
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{settle: true}|{advance: string}} Нет путей → предупреждение + завершение;
    * иначе `rand_<idx>`.
    */
@@ -12558,8 +13108,8 @@ const behavior$c = {
   // движок применяет ту же защиту (предупреждение + пропуск) для статического `parks: true`.
   parks: true,
   /**
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}|{block: number, then: string}} Парковка для Continue (с
    * таймером, когда включен autoAdvance; 0мс суммарно использует следующее
    * macrotask-возобновление результата блока).
@@ -12578,7 +13128,7 @@ const behavior$c = {
    * отправитель - это noop (выведенный универсальный auth-вентиль + NEXT-дискриминатор,
    * дословно).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{advance: string}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -12662,8 +13212,8 @@ const behavior$b = {
   // движок применяет ту же защиту (предупреждение + пропуск) для статического `parks: true`.
   parks: true,
   /**
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}|{block: number, then: string}} Парковка для Continue (с
    * таймером, когда включен autoAdvance; 0мс суммарно использует следующее
    * macrotask-возобновление результата блока).
@@ -12696,7 +13246,7 @@ const behavior$b = {
    * отправитель - это noop (выведенный универсальный auth-вентиль + NEXT-дискриминатор,
    * дословно).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{advance: string}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -12737,7 +13287,7 @@ const payload$a = {
   text: { kind: "string", initial: "", html: true, showIf: { field: "pageUuid", eq: "" } },
   title: { kind: "string", initial: "" },
   subtitle: { kind: "string", initial: "" },
-  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"] }
+  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"], group: "audience", hideLabel: true }
 };
 function str$9(f, v) {
   if (v == null) return f.initial ?? "";
@@ -12828,7 +13378,7 @@ const payload$9 = {
     choices: ["left", "right", "up", "down"],
     showIf: { field: "style", in: ["wipe", "blinds", "curtain"] }
   },
-  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"] }
+  audience: { kind: "string", initial: "all", choices: ["all", "players", "trigger"], group: "audience", hideLabel: true }
 };
 function str$8(f, v) {
   if (v == null) return f.initial ?? "";
@@ -12968,7 +13518,7 @@ const payload$8 = {
   },
   // Shared
   duration: { kind: "number", initial: 400, min: 50, max: 3e3, integer: true, hint: true },
-  audience: { kind: "string", initial: "all", choices: ["all", "trigger"] },
+  audience: { kind: "string", initial: "all", choices: ["all", "trigger"], group: "audience", hideLabel: true },
   waitForCompletion: { kind: "boolean", initial: true, hint: true },
   // Синхронизация аудио - оба поля показываются ТОЛЬКО когда узел, непосредственно предшествующий этому (его
   // единственное ребро `in`-пина), является Audio-узлом (connGate: "precedingAudio", принудительно задается
@@ -13039,6 +13589,7 @@ const behavior$8 = {
   enter: (node, ctx) => {
     const p = clean$8(node.data);
     if (p.waitForCompletion && ctx.pending()) return skipBlocked(node, ctx);
+    if (p.waitForCompletion && ctx.waitRefused()) return { settle: true };
     ctx.screenAnim({
       animationType: p.animationType,
       duration: p.duration,
@@ -13318,8 +13869,8 @@ const behavior$7 = {
    * разрешается по id, так что сокрытие никогда не сдвигает пины), сбросить подсчет
    * голосов, увеличить токен взведения, отрендерить фрейм и запарковать - с таймером,
    * когда таймаут payload включен.
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}}
    */
   enter: (node, ctx) => {
@@ -13344,7 +13895,7 @@ const behavior$7 = {
    * списка (requiresItem → "disabled", visibleIf/gate → "hidden", оба отклоняются без
    * продвижения) - затем продвигает ПОЗИЦИОННЫЙ пин `choice_<idx>`.
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{render: object}|{advance: string}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -13492,7 +14043,7 @@ function resultFrame(ctx, st, result) {
   });
 }
 function advanceAfter(ctx, st) {
-  var _a, _b;
+  var _a, _b, _c;
   const checks = ctx.effectiveChecks(st.p);
   const results = ((_a = st.pending) == null ? void 0 : _a.results) ?? [];
   const nextIndex = (((_b = st.progress) == null ? void 0 : _b.index) ?? 0) + 1;
@@ -13505,6 +14056,7 @@ function advanceAfter(ctx, st) {
     };
     return { await: { state: next, frame: promptFrame(ctx, next) } };
   }
+  ctx.store.set("check.actorId", ((_c = st.selection) == null ? void 0 : _c.selectedActorId) ?? null);
   const outcome = ctx.aggregate(results, st.p.logicOperator) ? "success" : "failure";
   return { advance: outcome };
 }
@@ -13538,8 +14090,8 @@ const behavior$6 = {
    * Взвести PROMPT: вычислить начальный выбор (актер прогона, когда он кандидат, иначе
    * первый кандидат, иначе устаревший fallback - игрок-триггер бросает актера прогона),
    * запустить прогресс последовательности и запарковать на фрейме prompt.
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}}
    */
   enter: (node, ctx) => {
@@ -13571,7 +14123,7 @@ const behavior$6 = {
    * универсальный auth-вентиль; NEXT в фазе результата продвигает (следующая проверка /
    * агрегат + ветвь).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{render: object}|{await: object}|{advance: string}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -13676,8 +14228,8 @@ const behavior$5 = {
    * Открыть магазин: построить view-model на стороне авторитета (отсутствующий/пустой
    * торговец предупреждает и пропускает к "out", точно как выведенный случай), разрешить
    * фон (carry/scene/ image, повторяя узел выбора), отрендерить и запарковать.
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {Promise<{await: object}|{advance: string}>}
    */
   enter: async (node, ctx) => {
@@ -13709,11 +14261,11 @@ const behavior$5 = {
    * пополняют каталог Buy), обновить и повторно отрендерить - без продвижения. CLOSE (только
    * ГМ): продвинуть "out".
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {Promise<{render: object}|{advance: string}|undefined>}
    */
   onInput: async (msg, ctx) => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
     const st = ctx.state;
     const sender = msg == null ? void 0 : msg.senderId;
     if (ctx.isShopBuy(msg)) {
@@ -13730,23 +14282,39 @@ const behavior$5 = {
         return void 0;
       }
       const qty = Math.min(Math.max(1, Math.floor(Number(msg == null ? void 0 : msg.qty) || 1)), row.remaining);
+      st.shop = {
+        ...st.shop,
+        items: items.map((it, i) => i === idx ? { ...it, remaining: it.remaining - qty } : it)
+      };
       let bought = 0;
       for (let n = 0; n < qty; n++) {
-        const res = await ctx.executePurchase({
-          actorId: msg.actorId,
-          itemUuid: row.itemUuid,
-          price: row.price
-        });
+        let res;
+        try {
+          res = await ctx.executePurchase({
+            actorId: msg.actorId,
+            itemUuid: row.itemUuid,
+            price: row.price
+          });
+        } catch (err) {
+          console.warn(
+            `${MODULE_ID} | run ${ctx.runId}: executePurchase threw for ${row.itemUuid} - treating as refused:`,
+            err
+          );
+          break;
+        }
         if (!(res == null ? void 0 : res.ok)) break;
         bought++;
       }
+      const unbought = qty - bought;
+      if (unbought > 0) {
+        const cur = ((_b = st.shop) == null ? void 0 : _b.items) ?? [];
+        st.shop = {
+          ...st.shop,
+          items: cur.map((it, i) => i === idx ? { ...it, remaining: it.remaining + unbought } : it)
+        };
+      }
       if (!bought) return void 0;
-      await ctx.recordSale((_b = st.shop) == null ? void 0 : _b.traderUuid, row.itemUuid, bought);
-      const cur = ((_c = st.shop) == null ? void 0 : _c.items) ?? [];
-      st.shop = {
-        ...st.shop,
-        items: cur.map((it, i) => i === idx ? { ...it, remaining: Math.max(0, it.remaining - bought) } : it)
-      };
+      await ctx.recordSale((_c = st.shop) == null ? void 0 : _c.traderUuid, row.itemUuid, bought);
       return { render: shopFrame(ctx, st) };
     }
     if (ctx.isShopSell(msg)) {
@@ -13778,7 +14346,14 @@ const behavior$5 = {
         if (row) await ctx.recordSellToTrader((_i = st.shop) == null ? void 0 : _i.traderUuid, row.itemUuid, res.sold.qty);
       }
       const refreshed = await ctx.buildShopState((_j = st.shop) == null ? void 0 : _j.traderUuid);
-      if (refreshed) st.shop = refreshed;
+      if (refreshed) {
+        const curByUuid = new Map((((_k = st.shop) == null ? void 0 : _k.items) ?? []).map((it) => [it.itemUuid, it]));
+        const items = refreshed.items.map((it) => {
+          const cur = curByUuid.get(it.itemUuid);
+          return cur ? { ...it, remaining: cur.remaining } : it;
+        });
+        st.shop = { ...refreshed, items };
+      }
       return { render: shopFrame(ctx, st) };
     }
     if (ctx.isShopClose(msg)) {
@@ -13830,8 +14405,12 @@ const payload$4 = {
   maxSpins: { kind: "number", initial: 0, min: 0, integer: true },
   // [{ itemRef, name, img, weight, glowColor, glowStyle }] - редактируется через редактор строк предметов.
   items: { kind: "array", initial: [] },
-  // Зарезервировано; v1 participant set = онлайн-игроки, владеющие персонажем.
-  audience: { kind: "string", initial: "participants", choices: ["participants"] },
+  // F22: поля `audience` нет. Набор участников определяется во ВРЕМЯ ВЫПОЛНЕНИЯ через
+  // ctx.crateParticipants() (онлайн-игроки не-ГМ, владеющие персонажем, с откатом на соло-ГМ) -
+  // это никогда не было авторским выбором. Поле существовало с единственным допустимым
+  // значением, копировалось в припаркованное состояние и никогда не читалось; сужение ящика
+  // ниже "все присутствующие" - дело механизма области видимости на уровне прогона,
+  // а не переопределения на узле.
   /**
    * Выведенный из употребления частный случай collectErrors `if (type ===
    * "crate")`, дословно.
@@ -13860,8 +14439,7 @@ function clean$3(data = {}) {
     text: str$2(payload$4.text, data == null ? void 0 : data.text),
     costGold: num$2(payload$4.costGold, data == null ? void 0 : data.costGold),
     maxSpins: num$2(payload$4.maxSpins, data == null ? void 0 : data.maxSpins),
-    items: Array.isArray(data == null ? void 0 : data.items) ? data.items : [],
-    audience: str$2(payload$4.audience, data == null ? void 0 : data.audience)
+    items: Array.isArray(data == null ? void 0 : data.items) ? data.items : []
   };
 }
 function maybeRelease$1(ctx, st) {
@@ -13883,8 +14461,8 @@ const behavior$4 = {
    * передается вместе, чтобы барабан мог показывать больше копий предметов с большим
    * весом - авторитет все еще выбирает реального победителя) и запарковать на барьере.
    * Патологически пустой participant set тривиально завершен → продвинуться сразу.
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}|{advance: string}}
    */
   enter: (node, ctx) => {
@@ -13929,7 +14507,7 @@ const behavior$4 = {
    * участник завершает только себя. Любое другое действие на узле - тихий noop (выведенная
    * ветвь проглатывала его раньше универсального вентиля).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {Promise<{advance: string}|undefined>}
    */
   onInput: async (msg, ctx) => {
@@ -13949,13 +14527,16 @@ const behavior$4 = {
       }
       const index2 = ctx.cratePickIndex(st.items);
       if (index2 < 0) return void 0;
+      st.spins.set(sender, spinsUsed + 1);
       const granted = await ctx.grantCrateSpin({
         userId: sender,
         itemRef: st.items[index2].itemRef,
         costGold: st.costGold
       });
-      if (!granted) return void 0;
-      st.spins.set(sender, spinsUsed + 1);
+      if (!granted) {
+        st.spins.set(sender, Math.max(0, (st.spins.get(sender) ?? 0) - 1));
+        return void 0;
+      }
       ctx.crate({ phase: "result", nodeId: st.nodeId, userId: sender, itemIndex: index2 });
       return void 0;
     }
@@ -13974,7 +14555,7 @@ const behavior$4 = {
    * Участник отключился посреди crate (выведенный releaseCrateParticipant): пометить его
    * завершенным, чтобы барьер мог освободиться, а не зависнуть. No-op для постороннего.
    * @param {string} userId
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{advance: string}|undefined}
    */
   onParticipantLeft: (userId, ctx) => {
@@ -14095,8 +14676,8 @@ const behavior$3 = {
    * случая, без broadcast); иначе сделать снимок начального состояния + driver set +
    * бюджета попыток, транслировать замороженную открытую форму (конфиг рендера вырезает
    * решение на стороне авторитета) и запарковать.
-   * @param {object} node - The graph node ({id, type, data}).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} node - Графовый узел ({id, type, data}).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{await: object}|{advance: string}}
    */
   enter: (node, ctx) => {
@@ -14138,7 +14719,7 @@ const behavior$3 = {
    * в момент совпадения; режим submit только по Try, неверный Try уменьшает бюджет попыток
    * (broadcast попытки, или провал при исчерпании).
    * @param {object} msg - The routed input message (already runId/nodeId-gated by the engine).
-   * @param {object} ctx - BehaviorCtx (spec §4.1).
+   * @param {object} ctx - BehaviorCtx (спецификация §4.1).
    * @returns {{advance: string}|{end: true}|undefined}
    */
   onInput: (msg, ctx) => {
@@ -14238,11 +14819,19 @@ const payload$2 = {
     ref: "Folder",
     showIf: { field: "operation", eq: "createEntry" }
   },
-  target: {
+  // Переименовано из `target` (F23). Везде в реестре `target` называет СУБЪЕКТ, над которым
+  // действует узел (`action.*`, `condition`); это поле всегда называло только АУДИТОРИЮ,
+  // которая видит открытие страницы. Одно имя на две оси и было расхождением. `from` сохраняет
+  // работоспособность всех графов, созданных до переименования - ключ провода OPEN_JOURNAL
+  // намеренно остался `target`.
+  audience: {
     kind: "string",
     initial: "trigger",
     choices: ["trigger", "all", "gm"],
-    showIf: { field: "operation", eq: "open" }
+    showIf: { field: "operation", eq: "open" },
+    from: "target",
+    group: "audience",
+    hideLabel: true
   },
   writeMode: {
     kind: "string",
@@ -14287,7 +14876,11 @@ function clean$1(data = {}) {
     pageUuid: str(payload$2.pageUuid, data == null ? void 0 : data.pageUuid),
     entryUuid: str(payload$2.entryUuid, data == null ? void 0 : data.entryUuid),
     folderId: str(payload$2.folderId, data == null ? void 0 : data.folderId),
-    target: str(payload$2.target, data == null ? void 0 : data.target),
+    // `?? data?.target` повторяет `from: "target"` из спецификации (совместимость с
+    // переименованием F23). Ограда 2 держит cleanPayload вне пакетов узлов, поэтому эта копия
+    // обязана воспроизвести и алиас - расхождение копии инспектора и копии рантайма и есть
+    // весь режим отказа.
+    audience: str(payload$2.audience, (data == null ? void 0 : data.audience) ?? (data == null ? void 0 : data.target)),
     writeMode: str(payload$2.writeMode, data == null ? void 0 : data.writeMode),
     newName: str(payload$2.newName, data == null ? void 0 : data.newName),
     content: str(payload$2.content, data == null ? void 0 : data.content),
@@ -14307,7 +14900,9 @@ const behavior$2 = {
       if (p.pageUuid) {
         ctx.openJournal({
           pageUuid: p.pageUuid,
-          target: p.target,
+          // Ключ провода OPEN_JOURNAL остается `target` - F23 переименовал АВТОРСКОЕ поле,
+          // а не форму сокета (`shouldOpenJournal`/`storyflow-journal.mjs` читают `msg.target`).
+          target: p.audience,
           triggerUserId: ctx.triggerUserId
         });
       }
@@ -14365,9 +14960,9 @@ async function maybeRelease(ctx, st, force = false) {
 }
 const behavior$1 = {
   /**
-   * Блокирующий узел: устаревший случай защищал #pending() ДО любого побочного
+   * Блокирующий узел: выведенный случай защищал #pending() ДО любого побочного
    * эффекта; движок применяет ту же защиту (предупреждение + пропуск, ветвь
-   * завершается) для статичного `parks: true`.
+   * завершается) для статического `parks: true`.
    */
   parks: true,
   /**
@@ -14582,7 +15177,7 @@ async function incrementSuppressed(pageUuid, nodeId) {
   obj[key] = { ...current, suppressedCount: Number(current.suppressedCount ?? 0) + 1 };
   await game.settings.set(MODULE_ID, SETTINGS.TRIGGER_STATE, obj);
 }
-function L$a(key, fallback) {
+function L$b(key, fallback) {
   var _a, _b;
   const full = `STORYFLOW_DUNGEONS_LAB.Weather.${key}`;
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
@@ -14667,7 +15262,7 @@ async function applyWeatherEffect(key, scene = ((_a) => (_a = game.scenes) == nu
   await stopOwned(scene);
   if (!provider) {
     (_c = ui.notifications) == null ? void 0 : _c.warn(
-      ((_b = (_a2 = game.i18n) == null ? void 0 : _a2.format) == null ? void 0 : _b.call(_a2, "STORYFLOW_DUNGEONS_LAB.Weather.ProviderMissing", { provider: providerId })) ?? L$a("ProviderMissing", `The module providing this weather effect (${providerId}) is not active.`)
+      ((_b = (_a2 = game.i18n) == null ? void 0 : _a2.format) == null ? void 0 : _b.call(_a2, "STORYFLOW_DUNGEONS_LAB.Weather.ProviderMissing", { provider: providerId })) ?? L$b("ProviderMissing", `The module providing this weather effect (${providerId}) is not active.`)
     );
     if (scene.weather) await scene.update({ weather: "" });
     return;
@@ -14684,6 +15279,7 @@ async function applyWeatherEffect(key, scene = ((_a) => (_a = game.scenes) == nu
     report(`apply ${providerId}`, err);
   }
 }
+const NO_RUN = null;
 const GRAPH_PAGE_TYPE$1 = `${MODULE_ID}.graph`;
 const DND5E_HOOKS = Object.freeze({
   useActivity: "dnd5e.postUseActivity",
@@ -14793,6 +15389,9 @@ const EVENT_TRIGGERS = [
   {
     nodeType: "trigger.rest",
     hook: "dnd5e.restCompleted",
+    // Срабатывает только на собственном клиенте отдыхающего актера (dnd5e Hooks.callAll внутри
+    // Actor#longRest/#shortRest) - переслать авторитету, когда отдыхает игрок. См. F2.
+    clientLocal: true,
     match: matchRest,
     // dnd5e 5.x: (actor, result). result различает long vs short - VERIFY shape live.
     extract: (actor, result) => {
@@ -14806,9 +15405,10 @@ const EVENT_TRIGGERS = [
     hook: "updateWall",
     match: matchDoor,
     extract: (wall, changed) => {
-      var _a;
+      var _a, _b;
+      if (!((_a = wall == null ? void 0 : wall.parent) == null ? void 0 : _a.active)) return null;
       if (!changed || !("ds" in changed)) return null;
-      const tags = globalThis.Tagger && ((_a = game.modules.get("tagger")) == null ? void 0 : _a.active) ? globalThis.Tagger.getTags(wall) : [];
+      const tags = globalThis.Tagger && ((_b = game.modules.get("tagger")) == null ? void 0 : _b.active) ? globalThis.Tagger.getTags(wall) : [];
       return { newDs: changed.ds, tags };
     }
   },
@@ -14849,6 +15449,9 @@ const EVENT_TRIGGERS = [
   {
     nodeType: "trigger.spell",
     hook: DND5E_HOOKS.useActivity,
+    // Срабатывает только на собственном клиенте применяющего актера (dnd5e Hooks.callAll внутри
+    // собственного метода use() у Activity) - переслать авторитету, когда колдует игрок. См. F2.
+    clientLocal: true,
     match: matchSpell,
     // dnd5e 5.x activity usage: (activity, usageConfig, results). VERIFY LIVE, что он срабатывает
     // один раз за cast. matchesDroppedItem проверяет uuid/id/sourceId против ref строки.
@@ -14870,28 +15473,37 @@ const EVENT_TRIGGERS = [
   {
     nodeType: "trigger.roll",
     hook: DND5E_HOOKS.save,
+    // Срабатывает только на собственном клиенте бросающего актера (dnd5e Hooks.callAll внутри
+    // Actor#rollSavingThrow) - переслать авторитету, когда бросает игрок. См. F2.
+    clientLocal: true,
     match: matchRoll,
     extract: (rolls, data) => rollDescriptor("save", data == null ? void 0 : data.ability, rolls, data)
   },
   {
     nodeType: "trigger.roll",
     hook: DND5E_HOOKS.abilityCheck,
+    clientLocal: true,
     match: matchRoll,
     extract: (rolls, data) => rollDescriptor("ability", data == null ? void 0 : data.ability, rolls, data)
   },
   {
     nodeType: "trigger.roll",
     hook: DND5E_HOOKS.skill,
+    clientLocal: true,
     match: matchRoll,
     extract: (rolls, data) => rollDescriptor("skill", data == null ? void 0 : data.skill, rolls, data)
   },
   {
     nodeType: "trigger.roll",
     hook: DND5E_HOOKS.attack,
+    clientLocal: true,
     match: matchRoll,
     extract: (rolls, data) => rollDescriptor("attack", attackKindOf(data == null ? void 0 : data.subject), rolls, data)
   },
   {
+    // Реплицируемый CRUD документа (createActiveEffect) - его видит каждый клиент, включая
+    // клиент активного ГМ. НЕ клиент-локальный; этот не помечать (в отличие от четырех хуков
+    // бросков выше, которые срабатывают только на бросающем клиенте).
     nodeType: "trigger.roll",
     hook: "createActiveEffect",
     match: matchRoll,
@@ -14993,14 +15605,25 @@ async function runDescriptor(entry, descriptor, candidates) {
   }
   if (toMark.length) await markFired(toMark);
 }
+function relayTriggerEvent(entry, descriptor) {
+  dispatch({ t: MSG.TRIGGER_EVENT, runId: NO_RUN, hook: entry.hook, descriptor });
+}
 async function handleEvent(entry, ...hookArgs) {
   var _a;
   try {
-    if (!((_a = game.user) == null ? void 0 : _a.isActiveGM)) return;
+    const route2 = eventRoute({
+      isActiveGM: Boolean((_a = game.user) == null ? void 0 : _a.isActiveGM),
+      clientLocal: Boolean(entry.clientLocal)
+    });
+    if (route2 === "ignore") return;
     const extracted = entry.extract(...hookArgs);
     if (!extracted) return;
     const descriptors = (Array.isArray(extracted) ? extracted : [extracted]).filter(Boolean);
     if (!descriptors.length) return;
+    if (route2 === "relay") {
+      for (const descriptor of descriptors) relayTriggerEvent(entry, descriptor);
+      return;
+    }
     const candidates = discoverTriggerNodes(entry.nodeType);
     if (!candidates.length) return;
     for (const descriptor of descriptors) await runDescriptor(entry, descriptor, candidates);
@@ -15008,7 +15631,39 @@ async function handleEvent(entry, ...hookArgs) {
     reportTriggerError(entry, err);
   }
 }
+function relayIsPlausible(msg) {
+  var _a, _b, _c, _d, _e;
+  const sender = (_a = game.users) == null ? void 0 : _a.get(msg.senderId);
+  const actor = (_c = game.actors) == null ? void 0 : _c.get((_b = msg.descriptor) == null ? void 0 : _b.actorId);
+  if (!sender || !actor) return false;
+  return canUserActFor({
+    actorId: (_d = msg.descriptor) == null ? void 0 : _d.actorId,
+    characterId: ((_e = sender.character) == null ? void 0 : _e.id) ?? null,
+    isOwner: actor.testUserPermission(sender, "OWNER")
+  });
+}
+async function onTriggerEventRelay(msg) {
+  var _a;
+  if (!((_a = game.user) == null ? void 0 : _a.isActiveGM)) return;
+  const entry = EVENT_TRIGGERS.find((e) => e.clientLocal && e.hook === msg.hook);
+  if (!entry) return;
+  if (!relayIsPlausible(msg)) {
+    console.warn(
+      `${MODULE_ID} | rejected implausible TRIGGER_EVENT relay from ${msg.senderId}:`,
+      msg.descriptor
+    );
+    return;
+  }
+  try {
+    const candidates = discoverTriggerNodes(entry.nodeType);
+    if (!candidates.length) return;
+    await runDescriptor(entry, msg.descriptor, candidates);
+  } catch (err) {
+    reportTriggerError(entry, err);
+  }
+}
 function registerEventTriggers() {
+  onMessage(MSG.TRIGGER_EVENT, onTriggerEventRelay);
   lastPhase = phaseForHour(hourOfDay());
   Hooks.on("preUpdateActor", (actor, changed, options) => {
     var _a, _b, _c;
@@ -15140,6 +15795,7 @@ function onReady() {
     ui.notifications.info(game.i18n.format("STORYFLOW_DUNGEONS_LAB.Ready", { version }));
   }
   applyReduceMotion();
+  applyCalendarPerfMode();
   applyDlTheme();
   applyQuestBoardCompact();
   registerModuleApi();
@@ -15548,6 +16204,10 @@ function buildInspectorContext(type, data, {
       name,
       label: fieldLabel(name),
       group: fs.group ?? "",
+      // Секция с единственным полем напечатала бы подпись своей строки прямо под заголовком
+      // группы, где уже написано то же слово ("Audience" под AUDIENCE). Отказ задается на поле,
+      // а не на группу: секция, которая позже получит второе поле, оставит его подписанным.
+      hideLabel: Boolean(fs.hideLabel),
       fieldErrors: errorsByField[name] ?? [],
       value: fs.kind === "array" ? (payload2[name] ?? []).join(", ") : payload2[name],
       hint: fs.hint ? fieldHint(name) : "",
@@ -15654,6 +16314,9 @@ function buildInspectorContext(type, data, {
     }
     fieldGroups[groupIndex.get(f.group)].fields.push(f);
   }
+  const listBelongsToWhoTriggers = actorListField === "specificActorIds";
+  const whoTriggersGroup = listBelongsToWhoTriggers ? fieldGroups.find((g) => g.id === "whoTriggers") : null;
+  if (whoTriggersGroup) Object.assign(whoTriggersGroup, actorListCtx);
   const visibleNames = new Set(fields.map((f) => f.name));
   const summaryErrors = [];
   for (const [field, msgs] of Object.entries(errorsByField)) {
@@ -15689,7 +16352,10 @@ function buildInspectorContext(type, data, {
     ...tokenCtx,
     ...rollTriggerCtx,
     ...spellTriggerCtx,
+    // Подавляется в корне, когда список уже прикреплен к секции WHO TRIGGERS выше, чтобы он
+    // никогда не рисовался дважды; action.token (у которого такой секции нет) получает его здесь.
     ...actorListCtx,
+    isActorList: actorListCtx.isActorList && !whoTriggersGroup,
     ...audioTracksCtx,
     errors: summaryErrors
   };
@@ -18233,7 +18899,7 @@ const _BlueprintCanvasApp = class _BlueprintCanvasApp extends HandlebarsApplicat
     await super._onFirstRender(context, options);
     const host = this.element.querySelector(".storyflow-graph-host");
     if (!host) return;
-    const { LiteGraphAdapter } = await import("./litegraph-adapter-DPhUZS8V.js");
+    const { LiteGraphAdapter } = await import("./litegraph-adapter-eNpWgjAa.js");
     __privateSet(this, _adapter, new LiteGraphAdapter());
     __privateGet(this, _adapter).init(host);
     __privateGet(this, _adapter).onChange((event) => {
@@ -19238,7 +19904,7 @@ onCtrlT_fn = function() {
   else void __privateMethod(this, _BlueprintCanvasApp_instances, openTemplateLibrary_fn).call(this);
 };
 openTemplateLibrary_fn = async function() {
-  const { TemplateLibraryApp } = await import("./template-library-app-A0Ra26Na.js");
+  const { TemplateLibraryApp } = await import("./template-library-app-bnNc-XXO.js");
   TemplateLibraryApp == null ? void 0 : TemplateLibraryApp.open(this);
 };
 createTemplateFromSelection_fn = async function() {
@@ -19299,7 +19965,7 @@ createTemplateFromSelection_fn = async function() {
     return;
   }
   ui.notifications.info(game.i18n.format("STORYFLOW_DUNGEONS_LAB.Templates.Created", { name: finalName }));
-  const { TemplateLibraryApp } = await import("./template-library-app-A0Ra26Na.js");
+  const { TemplateLibraryApp } = await import("./template-library-app-bnNc-XXO.js");
   TemplateLibraryApp == null ? void 0 : TemplateLibraryApp.refreshIfOpen();
 };
 // -- группы узлов ----------------------------------------------------------------
@@ -19412,7 +20078,7 @@ wirePalette_fn = function() {
     btn.addEventListener("contextmenu", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      void import("./node-tutorial-app-DSeWvu8j.js").then((n) => n.n).then(({ NodeTutorialApp }) => NodeTutorialApp.open(btn.dataset.type));
+      void import("./node-tutorial-app-BXbJ3mZW.js").then((n) => n.n).then(({ NodeTutorialApp }) => NodeTutorialApp.open(btn.dataset.type));
     });
   }
 };
@@ -19556,7 +20222,7 @@ save_fn2 = async function() {
     }
     __privateSet(this, _dirty, false);
     ui.notifications.info(game.i18n.localize("STORYFLOW_DUNGEONS_LAB.Templates.Saved"));
-    const { TemplateLibraryApp } = await import("./template-library-app-A0Ra26Na.js");
+    const { TemplateLibraryApp } = await import("./template-library-app-bnNc-XXO.js");
     TemplateLibraryApp == null ? void 0 : TemplateLibraryApp.refreshIfOpen();
     return;
   }
@@ -19933,7 +20599,7 @@ applyImportFromPath_fn = async function(path) {
   ui.notifications.info(game.i18n.localize("STORYFLOW_DUNGEONS_LAB.GraphIO.ImportLoaded"));
 };
 onOpenFieldEditor_fn = async function() {
-  const { NodeFieldEditorApp } = await import("./node-field-editor-app-BjvtBhsl.js");
+  const { NodeFieldEditorApp } = await import("./node-field-editor-app-BIafCdFH.js");
   NodeFieldEditorApp.open(this);
 };
 onRenamePage_fn = function() {
@@ -19975,7 +20641,7 @@ renamePage_fn = async function() {
     if (this.isPresetTemplate) await writePresetStore(next);
     else await writeTemplateStore(next);
     this.options.template.name = trimmed;
-    const { TemplateLibraryApp } = await import("./template-library-app-A0Ra26Na.js");
+    const { TemplateLibraryApp } = await import("./template-library-app-bnNc-XXO.js");
     TemplateLibraryApp == null ? void 0 : TemplateLibraryApp.refreshIfOpen();
   } else {
     await this.page.update({ name: trimmed });
@@ -20010,7 +20676,7 @@ onCtxRunFromHere_fn = async function() {
   if (this.isTemplateMode) return;
   if (!nodeId) return;
   await __privateMethod(this, _BlueprintCanvasApp_instances, save_fn2).call(this);
-  await startFlowForSelection(this.page.uuid, { nodeId });
+  await game.modules.get(MODULE_ID).api.startFlow(this.page.uuid, { nodeId });
 };
 onCtxTutorial_fn = async function() {
   var _a, _b;
@@ -20018,7 +20684,7 @@ onCtxTutorial_fn = async function() {
   __privateMethod(this, _BlueprintCanvasApp_instances, closeContextMenu_fn).call(this);
   const type = nodeId ? (_b = (_a = __privateGet(this, _adapter)) == null ? void 0 : _a.getNode(nodeId)) == null ? void 0 : _b.type : null;
   if (!type) return;
-  const { NodeTutorialApp } = await import("./node-tutorial-app-DSeWvu8j.js").then((n) => n.n);
+  const { NodeTutorialApp } = await import("./node-tutorial-app-BXbJ3mZW.js").then((n) => n.n);
   NodeTutorialApp.open(type);
 };
 onCtxDelete_fn = function() {
@@ -20058,7 +20724,7 @@ onOpenTemplateLibrary_fn = function() {
   void __privateMethod(this, _BlueprintCanvasApp_instances, openTemplateLibrary_fn).call(this);
 };
 onOpenNodeGuide_fn = async function() {
-  const { NodeTutorialApp } = await import("./node-tutorial-app-DSeWvu8j.js").then((n) => n.n);
+  const { NodeTutorialApp } = await import("./node-tutorial-app-BXbJ3mZW.js").then((n) => n.n);
   NodeTutorialApp.open();
 };
 onCtxCreateTemplate_fn = function() {
@@ -20897,20 +21563,20 @@ function sanitizeDescriptionHtml(html) {
   });
   return out.trim();
 }
-const L$9 = "STORYFLOW_DUNGEONS_LAB.GraphPage.Editor";
+const L$a = "STORYFLOW_DUNGEONS_LAB.GraphPage.Editor";
 const TOOLBAR_COMMANDS = [
-  { cmd: "bold", icon: "fa-bold", labelKey: `${L$9}.Bold` },
-  { cmd: "italic", icon: "fa-italic", labelKey: `${L$9}.Italic` },
-  { cmd: "underline", icon: "fa-underline", labelKey: `${L$9}.Underline` },
-  { cmd: "strikeThrough", icon: "fa-strikethrough", labelKey: `${L$9}.Strikethrough` },
-  { cmd: "insertUnorderedList", icon: "fa-list-ul", labelKey: `${L$9}.BulletList` },
-  { cmd: "insertOrderedList", icon: "fa-list-ol", labelKey: `${L$9}.NumberedList` }
+  { cmd: "bold", icon: "fa-bold", labelKey: `${L$a}.Bold` },
+  { cmd: "italic", icon: "fa-italic", labelKey: `${L$a}.Italic` },
+  { cmd: "underline", icon: "fa-underline", labelKey: `${L$a}.Underline` },
+  { cmd: "strikeThrough", icon: "fa-strikethrough", labelKey: `${L$a}.Strikethrough` },
+  { cmd: "insertUnorderedList", icon: "fa-list-ul", labelKey: `${L$a}.BulletList` },
+  { cmd: "insertOrderedList", icon: "fa-list-ol", labelKey: `${L$a}.NumberedList` }
 ];
 const HEADING_OPTIONS = [
-  { value: "P", labelKey: `${L$9}.Paragraph` },
-  { value: "H1", labelKey: `${L$9}.Heading1` },
-  { value: "H2", labelKey: `${L$9}.Heading2` },
-  { value: "H3", labelKey: `${L$9}.Heading3` }
+  { value: "P", labelKey: `${L$a}.Paragraph` },
+  { value: "H1", labelKey: `${L$a}.Heading1` },
+  { value: "H2", labelKey: `${L$a}.Heading2` },
+  { value: "H3", labelKey: `${L$a}.Heading3` }
 ];
 class DescriptionEditor {
   /**
@@ -21122,7 +21788,7 @@ onOpenEditor_fn = function() {
   BlueprintCanvasApp.open(this.document);
 };
 onStartFlow_fn = function() {
-  void startFlowForSelection(this.document.uuid);
+  void startFlow(this.document.uuid);
 };
 onPickCoverImage_fn = function() {
   const current = this.document.system.img ?? "";
@@ -21671,7 +22337,7 @@ function itemTint(item) {
   const [h, s, l] = typeColorHsl(type);
   return { bg: `hsla(${h}, ${s}%, ${l}%, ${TINT_ALPHA})`, owned: false };
 }
-function L$8(key, fallback) {
+function L$9(key, fallback) {
   var _a, _b;
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, key)) ? game.i18n.localize(key) : fallback;
 }
@@ -21737,7 +22403,7 @@ function registerMoveMenu(cfg) {
 }
 function moveOption(cfg) {
   return {
-    name: L$8("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolder", "Move to folder…"),
+    name: L$9("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolder", "Move to folder…"),
     icon: '<i class="fa-solid fa-folder-tree"></i>',
     condition: () => {
       var _a;
@@ -21771,12 +22437,12 @@ async function onMove$1(li, cfg) {
   chip.append(typeSpan);
   wrap.append(chip);
   const label = document.createElement("label");
-  label.textContent = L$8(cfg.promptKey, cfg.promptFallback);
+  label.textContent = L$9(cfg.promptKey, cfg.promptFallback);
   const select = document.createElement("select");
   select.name = "folder";
   const root = document.createElement("option");
   root.value = "";
-  root.textContent = L$8("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderRoot", "- Root (no folder) -");
+  root.textContent = L$9("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderRoot", "- Root (no folder) -");
   select.append(root);
   for (const c of choices) {
     const opt = document.createElement("option");
@@ -21788,7 +22454,7 @@ async function onMove$1(li, cfg) {
   wrap.append(label);
   await MoveFolderDialog.open({
     window: {
-      title: `${L$8("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderTitle", "Move to Folder")} - ${doc.name}`,
+      title: `${L$9("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderTitle", "Move to Folder")} - ${doc.name}`,
       icon: "fa-solid fa-folder-tree"
     },
     // Класс на окне диалога, чтобы тема Dungeons LAB могла нацеливаться на его рамку.
@@ -21797,7 +22463,7 @@ async function onMove$1(li, cfg) {
     buttons: [
       {
         action: "move",
-        label: L$8("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderConfirm", "Move"),
+        label: L$9("STORYFLOW_DUNGEONS_LAB.Extras.MoveToFolderConfirm", "Move"),
         icon: "fa-solid fa-check",
         default: true,
         callback: async (_ev, _btn, dlg) => {
@@ -21810,7 +22476,7 @@ async function onMove$1(li, cfg) {
           }
         }
       },
-      { action: "cancel", label: L$8("STORYFLOW_DUNGEONS_LAB.Cancel", "Cancel"), icon: "fa-solid fa-xmark" }
+      { action: "cancel", label: L$9("STORYFLOW_DUNGEONS_LAB.Cancel", "Cancel"), icon: "fa-solid fa-xmark" }
     ]
   });
 }
@@ -23040,13 +23706,13 @@ function hideMascotOverlay() {
   home = null;
   document.body.classList.remove("storyflow-guide-mascot-away");
 }
-const L$7 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.Chapters.QuestBoard.RewardsSetup.${key}`);
+const L$8 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.Chapters.QuestBoard.RewardsSetup.${key}`);
 const DEMO_GOLD = 50;
 const sleep$2 = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function stockQuestReward() {
   var _a, _b;
   const uuid = ((_a = document.querySelector('#storyflow-quest-board [data-action="announceEntry"]')) == null ? void 0 : _a.dataset.uuid) ?? ((_b = document.querySelector('#storyflow-quest-board [data-action="openRewards"]')) == null ? void 0 : _b.dataset.uuid) ?? null;
-  mascotSay(L$7("Say"), 4e3);
+  mascotSay(L$8("Say"), 4e3);
   await sleep$2(1800);
   const drop = document.querySelector("#storyflow-quest-board .qb-rewards-drop") ?? document.querySelector("#storyflow-quest-board .qb-rewards");
   if (drop) await flyMascotTo(drop, { loops: 0 });
@@ -23553,7 +24219,7 @@ __publicField(_GuideStepApp, "PARTS", {
 let GuideStepApp = _GuideStepApp;
 const COMPLETE_FLASH_MS = 700;
 let session = null;
-const L$6 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.${key}`);
+const L$7 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.${key}`);
 const F = (key, data) => game.i18n.format(`STORYFLOW_DUNGEONS_LAB.Guide.${key}`, data);
 function guarded(fn, what, fallback = void 0) {
   if (typeof fn !== "function") return fallback;
@@ -23592,7 +24258,7 @@ async function startTour({ resume = true } = {}) {
   if (session) return;
   const plan = buildPlan(availableChapters());
   if (!plan.total) {
-    (_a = ui.notifications) == null ? void 0 : _a.warn(L$6("Finished.Body"));
+    (_a = ui.notifications) == null ? void 0 : _a.warn(L$7("Finished.Body"));
     return;
   }
   const saved = resume ? loadGuideState() : {};
@@ -23771,7 +24437,7 @@ async function present(entry) {
       stepIndex: state.index,
       stepCount: total,
       dots: chapterDots(state, plan),
-      nextLabel: state.index >= total - 1 ? L$6("Step.Done") : L$6("Step.Next"),
+      nextLabel: state.index >= total - 1 ? L$7("Step.Done") : L$7("Step.Next"),
       canGoBack: state.index > 0,
       waiting: typeof entry.step.watch === "function",
       // Сознательно ограничено главой (живая обратная связь): виджет показывает
@@ -23811,9 +24477,9 @@ async function finishTour() {
   const state = session == null ? void 0 : session.state;
   await stopTour();
   if (state) await saveGuideState({ ...toProgress(state), finished: true });
-  (_a = ui.notifications) == null ? void 0 : _a.info(L$6("Finished.Notify"));
+  (_a = ui.notifications) == null ? void 0 : _a.info(L$7("Finished.Notify"));
   try {
-    const { GuideSupportApp } = await import("./guide-support-app-CHpQXXvd.js");
+    const { GuideSupportApp } = await import("./guide-support-app-CfO0tBkg.js");
     GuideSupportApp.show();
   } catch (err) {
     console.warn("StoryFlow | guide: support card failed to open", err);
@@ -24096,13 +24762,13 @@ const guideExplainerApp = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.d
   GuideExplainerApp
 }, Symbol.toStringTag, { value: "Module" }));
 const TOUR_MINUTES = 5;
-const L$5 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.Explainer.${key}`);
+const L$6 = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Guide.Explainer.${key}`);
 function explainerPages() {
   return [1, 2, 3, 4].map((n) => ({
-    kicker: L$5(`Page${n}.Kicker`),
-    title: L$5(`Page${n}.Title`),
-    body: L$5(`Page${n}.Body`),
-    flavor: L$5(`Page${n}.Flavor`)
+    kicker: L$6(`Page${n}.Kicker`),
+    title: L$6(`Page${n}.Title`),
+    body: L$6(`Page${n}.Body`),
+    flavor: L$6(`Page${n}.Flavor`)
   }));
 }
 function openGuideInvite() {
@@ -24216,7 +24882,7 @@ async function handleTimeChange(oldTime, newTime) {
   }
   const oldDate = dateFromWorldTime(oldTime);
   const newDate = dateFromWorldTime(newTime);
-  if (oldDate.dayIndex !== newDate.dayIndex) {
+  if (oldDate.dayIndex !== newDate.dayIndex && planeHasWeather(getWorldState().plane)) {
     const key = dayKey(newDate);
     let entry = getWeatherMap()[key];
     if (!entry) {
@@ -24256,6 +24922,7 @@ async function fireEvent(ev) {
 async function applySceneWeather(entry) {
   var _a;
   if (!game.settings.get(MODULE_ID, SETTINGS.CALENDAR_SCENE_WEATHER)) return;
+  if (!planeHasWeather(getWorldState().plane)) return;
   const scene = (_a = game.scenes) == null ? void 0 : _a.active;
   if (!scene) return;
   await applyWeatherEffect(sceneWeatherFor(entry == null ? void 0 : entry.cond, getWeatherEffectMap()), scene);
@@ -24373,6 +25040,145 @@ function buildDayPanel({ selected, today, weatherMap, eventsByDay, isGM }) {
     events
   };
 }
+let active$1 = null;
+function syncSkyScene(slot, ctx) {
+  var _a, _b;
+  const id = (ctx == null ? void 0 : ctx.skyStyle) ?? CLASSIC_SKY_STYLE;
+  if (active$1 && active$1.id !== id) destroySkyScene();
+  if (!slot || id === CLASSIC_SKY_STYLE) return;
+  const style = getSkyStyle(id);
+  if (!(style == null ? void 0 : style.mount)) return;
+  if (!active$1) {
+    const host = document.createElement("div");
+    host.className = "cw-scene-host";
+    host.dataset.skyStyle = id;
+    let handle;
+    try {
+      handle = style.mount(host, ctx) ?? {};
+    } catch (err) {
+      console.error(`storyflow-dungeons-lab | sky style "${id}" failed to mount`, err);
+      return;
+    }
+    active$1 = { id, host, handle };
+  }
+  active$1.host.classList.toggle("cw-still", Boolean(ctx.reduceMotion));
+  slot.appendChild(active$1.host);
+  (_b = (_a = active$1.handle).update) == null ? void 0 : _b.call(_a, ctx);
+}
+function destroySkyScene() {
+  var _a, _b;
+  if (!active$1) return;
+  try {
+    (_b = (_a = active$1.handle).destroy) == null ? void 0 : _b.call(_a);
+  } catch (err) {
+    console.error(`storyflow-dungeons-lab | sky style "${active$1.id}" failed to destroy`, err);
+  }
+  active$1.host.remove();
+  active$1 = null;
+}
+function gaugePathD(t) {
+  const cx = 12;
+  const cy = 12;
+  const r = 10.5;
+  const k = Math.cos(Math.PI * (1 - Math.min(1, Math.max(0, t))));
+  const rx = Math.max(Math.abs(k) * r, 0.01);
+  const inner = k > 0 ? 0 : 1;
+  return `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} A ${rx} ${r} 0 0 ${inner} ${cx} ${cy - r}`;
+}
+function bandName(bands, t, L2) {
+  if (!(bands == null ? void 0 : bands.length)) return "";
+  const hit = bands.find(([max]) => t < max) ?? bands[bands.length - 1];
+  return L2(`PlaneHud.Bands.${hit[1]}`, hit[2] ?? hit[1]);
+}
+function buildDial(plane, decl, params, cond, L2) {
+  const param = (plane.params ?? []).find((p) => p.key === decl.key);
+  if (!param) return null;
+  const value = clampParam(param, params[decl.key]);
+  const span = param.max - param.min || 1;
+  const t = Math.min(1, Math.max(0, (value - param.min) / span));
+  const text = `${param.step && param.step < 1 ? value.toFixed(1) : value}${param.unit ?? ""}`;
+  const label = L2(`PlaneParams.${decl.key}`, param.label ?? decl.key);
+  const accent = (cond == null ? void 0 : cond.color) ?? plane.iconColor ?? "var(--storyflow-ember)";
+  const band = bandName(decl.bands, t, L2);
+  return {
+    key: decl.key,
+    label,
+    text,
+    band,
+    d: gaugePathD(t),
+    // Циферблат читается с одного взгляда по заливке; глубина держит один цвет, чтобы ныряльщик
+    // отличал глубину от условия, а разлом берет собственный цвет условия, потому что он И ЕСТЬ
+    // условие.
+    fill: decl.fill ?? accent,
+    ring: accent,
+    bg: decl.bg ?? "#0C0912",
+    halo: `radial-gradient(circle, ${accent}, transparent 70%)`,
+    tooltip: [label, band && `${band} (${text})`].filter(Boolean).join(" · ") || `${label} · ${text}`
+  };
+}
+function buildMeter(meter, plane, params, condKey, L2) {
+  var _a, _b;
+  const label = L2(`PlaneHud.${meter.id}`, meter.label ?? meter.id);
+  const segments = (_a = meter.segments) == null ? void 0 : _a.call(meter, params, condKey);
+  if (segments == null ? void 0 : segments.length) {
+    return {
+      id: meter.id,
+      label,
+      segments: segments.map((s) => ({
+        pct: Math.max(0, Number(s.pct) || 0),
+        color: s.color ?? "var(--storyflow-text-faint)",
+        glow: s.glow ?? "transparent",
+        label: s.label ?? ""
+      })),
+      // У сегментированной полосы нет единого числа; вместо этого ее части называют себя сами.
+      text: segments.filter((s) => Number(s.pct) > 0).map((s) => s.label).filter(Boolean).join(" · ")
+    };
+  }
+  const pct = Math.min(100, Math.max(0, Math.round(Number((_b = meter.value) == null ? void 0 : _b.call(meter, params, condKey)) || 0)));
+  return {
+    id: meter.id,
+    label,
+    pct,
+    text: `${pct}${meter.unit ?? ""}`,
+    color: meter.color ?? plane.iconColor ?? "var(--storyflow-ember)",
+    glow: meter.glow ?? "transparent"
+  };
+}
+function buildPlaneHud({ plane, params = {}, condKey = null, localize }) {
+  var _a, _b, _c;
+  const hud = plane == null ? void 0 : plane.hud;
+  if (!hud) return null;
+  const L2 = localize ?? ((_key, fallback) => fallback);
+  const cond = condKey ? ((_a = plane.conditions) == null ? void 0 : _a[condKey]) ?? null : null;
+  const dial = hud.dial ? buildDial(plane, hud.dial, params, cond, L2) : null;
+  const meters = (hud.meters ?? []).map((m) => buildMeter(m, plane, params, condKey, L2));
+  const tray = (hud.tray ?? []).map((t) => ({
+    id: t.id,
+    icon: t.icon ?? "fa-circle",
+    param: t.param,
+    delta: t.delta,
+    label: L2(`PlaneHud.${t.id}`, t.label ?? t.id)
+  }));
+  const clockDecl = hud.clock ?? {};
+  const clock = {
+    dawnLabel: clockDecl.dawn ? L2(`PlaneHud.${clockDecl.dawn.id}`, clockDecl.dawn.label) : null,
+    dawnIcon: ((_b = clockDecl.dawn) == null ? void 0 : _b.icon) ?? null,
+    duskLabel: clockDecl.dusk ? L2(`PlaneHud.${clockDecl.dusk.id}`, clockDecl.dusk.label) : null,
+    duskIcon: ((_c = clockDecl.dusk) == null ? void 0 : _c.icon) ?? null,
+    showDay: clockDecl.day !== false
+  };
+  const readings = meters.map((m) => `${m.label} ${m.text}`).join(" · ");
+  const note = hud.metersNote ? L2(`PlaneHud.Notes.${plane.id}`, hud.metersNote) : "";
+  return {
+    dial,
+    meters,
+    hasMeters: meters.length > 0,
+    metersTip: [readings, note].filter(Boolean).join(" - "),
+    tray,
+    hasTray: tray.length > 0,
+    clock
+  };
+}
 const STARS = [
   { left: 10, top: 18, size: 2, delay: "0s" },
   { left: 24, top: 40, size: 1.5, delay: "0.7s" },
@@ -24414,7 +25220,7 @@ const CLOUDS = [
   { left: 64, top: 8, w: 56, h: 13, alpha: 0.38, dur: 14 }
 ];
 const CELESTIAL_OPACITY = { clear: 1, overcast: 0.3, fog: 0.2, rain: 0.28, storm: 0.15, snow: 0.4 };
-function L$4(key, fallback) {
+function L$5(key, fallback) {
   var _a, _b;
   const full = `STORYFLOW_DUNGEONS_LAB.Calendar.${key}`;
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
@@ -24427,6 +25233,7 @@ const _StoryFlowCalendarWidget = class _StoryFlowCalendarWidget {
   static mount() {
     Hooks.on("updateWorldTime", () => _StoryFlowCalendarWidget.refresh());
     Hooks.on(`${MODULE_ID}.calendarChanged`, () => _StoryFlowCalendarWidget.refresh());
+    Hooks.on("canvasReady", () => _StoryFlowCalendarWidget.refresh());
     Hooks.on("updateCombat", () => {
       var _a;
       return __privateMethod(_a = _StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static, syncCombat_fn).call(_a);
@@ -24448,6 +25255,7 @@ const _StoryFlowCalendarWidget = class _StoryFlowCalendarWidget {
     var _a, _b, _c;
     const enabled2 = game.settings.get(MODULE_ID, SETTINGS.CALENDAR_WIDGET);
     if (!enabled2) {
+      destroySkyScene();
       (_a = __privateGet(_StoryFlowCalendarWidget, _root2)) == null ? void 0 : _a.remove();
       __privateSet(_StoryFlowCalendarWidget, _root2, null);
       return;
@@ -24500,36 +25308,67 @@ syncCombat_fn = function() {
 renderAt_fn = async function(worldTime) {
   var _a;
   if (!__privateGet(_StoryFlowCalendarWidget, _root2)) return;
+  const ctx = __privateMethod(_a = _StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static, context_fn).call(_a, worldTime);
   const html = await foundry.applications.handlebars.renderTemplate(
     `modules/${MODULE_ID}/templates/calendar/widget.hbs`,
-    __privateMethod(_a = _StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static, context_fn).call(_a, worldTime)
+    ctx
   );
-  if (__privateGet(_StoryFlowCalendarWidget, _root2)) __privateGet(_StoryFlowCalendarWidget, _root2).innerHTML = html;
+  if (!__privateGet(_StoryFlowCalendarWidget, _root2)) return;
+  __privateGet(_StoryFlowCalendarWidget, _root2).innerHTML = html;
+  syncSkyScene(__privateGet(_StoryFlowCalendarWidget, _root2).querySelector(".cw-scene"), ctx.scene);
 };
 context_fn = function(worldTime = game.time.worldTime) {
+  var _a, _b, _c, _d, _e, _f;
   const d = dateFromWorldTime(worldTime);
   const arc = celestialArc(fractionalHour(worldTime));
   const isDay = arc.isDay;
   const phase = moonPhase(d.month, d.day);
-  const w = getWeatherMap()[dayKey(d)] ?? null;
-  const condKey = __privateGet(_StoryFlowCalendarWidget, _previewCond) ?? (w == null ? void 0 : w.cond) ?? null;
+  const world = getWorldState();
+  const plane = getPlane(world.plane);
+  const hasWeather = (plane == null ? void 0 : plane.weather) !== false;
+  const w = hasWeather ? getWeatherMap()[dayKey(d)] ?? null : null;
+  const condKey = __privateGet(_StoryFlowCalendarWidget, _previewCond) ?? (hasWeather ? (w == null ? void 0 : w.cond) ?? null : activeCondition(world));
   const cond = condKey ? CONDITIONS[condKey] ?? null : null;
+  const planeCond = condKey ? ((_a = plane == null ? void 0 : plane.conditions) == null ? void 0 : _a[condKey]) ?? null : null;
   const months = monthNames();
-  const weekdays = Array.fromRange(7).map((i) => L$4(`WeekdaysFull.${i}`, `Day ${i + 1}`));
+  const weekdays = Array.fromRange(7).map((i) => L$5(`WeekdaysFull.${i}`, `Day ${i + 1}`));
   const sortedTraySteps = sortTimeSteps(getTimeSteps()).map((step2) => {
     const sec = timeStepSeconds(step2);
     return { label: timeStepLabel(step2), minusSeconds: -sec, plusSeconds: sec };
   });
+  const skyStyle = world.plane;
+  const hud = buildPlaneHud({ plane, params: activeParams(world), condKey, localize: L$5 });
   return {
     isGM: game.user.isGM,
     isNight: !isDay,
+    // Какой план изображает панель. `classicSky` сохраняет исходные CSS-слои в шаблоне;
+    // любой другой стиль рисует пустой слот `.cw-scene`, который заполняет sky-mount.
+    skyStyle,
+    classicSky: skyStyle === CLASSIC_SKY_STYLE,
+    // Все, что нужно смонтированной сцене. Шаблоном не читается - это вытаскивает #renderAt.
+    scene: {
+      skyStyle,
+      hour: fractionalHour(worldTime),
+      isDay,
+      isNight: !isDay,
+      cond: condKey ?? "clear",
+      moonPhase: phase,
+      celestialLeft: arc.left,
+      celestialTop: arc.top,
+      temp: (w == null ? void 0 : w.temp) ?? null,
+      // Собственные числа плана (глубина, шкала разлома, облачность …). Сцена читает только те,
+      // что объявила, поэтому добавление параметра позже не требует правок здесь.
+      planeParams: activeParams(world),
+      // Режим слабого ПК и переключатель доступности оба означают "держать неподвижный кадр".
+      reduceMotion: Boolean(game.settings.get(MODULE_ID, SETTINGS.REDUCE_MOTION)) || Boolean(game.settings.get(MODULE_ID, SETTINGS.CALENDAR_PERF_MODE))
+    },
     stars: STARS,
     skyGradient: skyGradientFor(d.hour),
     celestialLeft: arc.left.toFixed(1),
     celestialTop: arc.top.toFixed(1),
     // Слои Animation Lab - какие поля частиц включает состояние дня.
     cond: condKey ?? "clear",
-    condLabel: condKey ? L$4(`Conditions.${condKey}`, condKey) : "",
+    condLabel: condKey ? L$5(`Conditions.${condKey}`, condKey) : "",
     celestialOpacity: condKey ? CELESTIAL_OPACITY[condKey] ?? 1 : 1,
     showStars: !isDay && (!condKey || condKey === "clear"),
     showRays: isDay && (!condKey || condKey === "clear"),
@@ -24543,20 +25382,35 @@ context_fn = function(worldTime = game.time.worldTime) {
     flakes: FLAKES,
     timeText: `${String(d.hour).padStart(2, "0")}:${String(d.minute).padStart(2, "0")}`,
     dateLine: `${d.day} ${months[d.month]}, ${d.year}`,
-    dateSubline: `${weekdays[weekdayOf(d.day)]} · ${L$4(`Seasons.${seasonOf(d.month)}`, seasonOf(d.month))}`,
+    dateSubline: `${weekdays[weekdayOf(d.day)]} · ${L$5(`Seasons.${seasonOf(d.month)}`, seasonOf(d.month))}`,
     moonD: moonPathD(phase),
-    moonLabel: L$4(`Moon.${moonName(phase)}`, moonName(phase)),
-    weatherIcon: (cond == null ? void 0 : cond.icon) ?? "fa-cloud",
-    weatherColor: (cond == null ? void 0 : cond.color) ?? "var(--storyflow-text-disabled)",
-    weatherTemp: w ? `${w.temp}°C` : "-",
-    weatherTip: w && condKey === w.cond ? `${L$4(`Conditions.${w.cond}`, w.cond)} · ${L$4(`Winds.${w.wind}`, w.wind)}` : cond ? L$4(`Conditions.${condKey}`, condKey) : L$4("NoWeatherToday", "No weather charted for today"),
-    tooltip: L$4("OpenTip", "Open the Calendar"),
-    trayDawn: L$4("Dawn", "Dawn"),
-    trayDawnTip: L$4("DawnTip", "Jump to dawn (06:00)"),
-    trayDusk: L$4("Dusk", "Dusk"),
-    trayDuskTip: L$4("DuskTip", "Jump to nightfall (18:00)"),
-    trayDay: L$4("PlusDay", "+1 Day"),
-    trayDayTip: L$4("PlusDayTip", "Advance one day"),
+    moonLabel: L$5(`Moon.${moonName(phase)}`, moonName(phase)),
+    // План может заменить лунный циферблат и добавить свои измерители (глубина + давление,
+    // разлом + настройка …). null на Материальном плане, который сохраняет луну и прогноз.
+    hud,
+    // Вторая строка дизайна в ячейке условия: во что это состояние обходится партии. Две строки
+    // получают только планы, которые ее объявили; везде еще ячейка остается прежней.
+    weatherHazard: !hasWeather && (planeCond == null ? void 0 : planeCond.hazard) ? L$5(`PlaneHazards.${world.plane}.${condKey}`, planeCond.hazard) : "",
+    // Вне Материального плана ячейка перестает быть сводкой погоды: на 600 саженях нет
+    // температуры, поэтому вместо нее показывается собственное состояние плана ("Abyssal Dark",
+    // "Emberfall").
+    weatherIcon: (hasWeather ? cond == null ? void 0 : cond.icon : planeCond == null ? void 0 : planeCond.icon) ?? "fa-cloud",
+    weatherColor: (hasWeather ? cond == null ? void 0 : cond.color : planeCond == null ? void 0 : planeCond.color) ?? "var(--storyflow-text-disabled)",
+    weatherTemp: hasWeather ? w ? `${w.temp}°C` : "-" : L$5(`PlaneConditions.${world.plane}.${condKey}`, (planeCond == null ? void 0 : planeCond.label) ?? "-"),
+    weatherTip: !hasWeather ? `${L$5(`Planes.${(plane == null ? void 0 : plane.plane) ?? world.plane}`, (plane == null ? void 0 : plane.plane) ?? world.plane)} · ${L$5(`PlaneConditions.${world.plane}.${condKey}`, (planeCond == null ? void 0 : planeCond.label) ?? "")}` : w && condKey === w.cond ? `${L$5(`Conditions.${w.cond}`, w.cond)} · ${L$5(`Winds.${w.wind}`, w.wind)}` : cond ? L$5(`Conditions.${condKey}`, condKey) : L$5("NoWeatherToday", "No weather charted for today"),
+    tooltip: L$5("OpenTip", "Open the Calendar"),
+    // План может переименовать кнопки часов по тому, что на самом деле происходит в эти часы,
+    // и убрать "+1 Day" там, где в его мире нет дня, который можно промотать. Откатывается
+    // к классическим подписям.
+    trayDawn: ((_b = hud == null ? void 0 : hud.clock) == null ? void 0 : _b.dawnLabel) ?? L$5("Dawn", "Dawn"),
+    trayDawnIcon: ((_c = hud == null ? void 0 : hud.clock) == null ? void 0 : _c.dawnIcon) ?? "fa-mountain-sun",
+    trayDawnTip: L$5("DawnTip", "Jump to dawn (06:00)"),
+    trayDusk: ((_d = hud == null ? void 0 : hud.clock) == null ? void 0 : _d.duskLabel) ?? L$5("Dusk", "Dusk"),
+    trayDuskIcon: ((_e = hud == null ? void 0 : hud.clock) == null ? void 0 : _e.duskIcon) ?? "fa-moon",
+    trayDuskTip: L$5("DuskTip", "Jump to nightfall (18:00)"),
+    trayDay: L$5("PlusDay", "+1 Day"),
+    trayDayTip: L$5("PlusDayTip", "Advance one day"),
+    trayShowDay: ((_f = hud == null ? void 0 : hud.clock) == null ? void 0 : _f.showDay) !== false,
     // Настраиваемые шаги лотка ± (управляемые ГМ), упорядоченные по реальной продолжительности независимо
     // от единицы. `traySteps` возрастает (для группы +: +5m +5d +1w); `trayStepsDesc` - обратный порядок,
     // для группы −, потому что на числовой прямой −2w < −5m, поэтому там первым идет наибольший шаг.
@@ -24571,10 +25425,10 @@ context_fn = function(worldTime = game.time.worldTime) {
 };
 scrubLabels_fn = function() {
   const seasonNames = {};
-  for (const k of ["winter", "spring", "summer", "autumn"]) seasonNames[k] = L$4(`Seasons.${k}`, k);
+  for (const k of ["winter", "spring", "summer", "autumn"]) seasonNames[k] = L$5(`Seasons.${k}`, k);
   return {
     monthNames: monthNames(),
-    weekdayNames: Array.fromRange(7).map((i) => L$4(`WeekdaysFull.${i}`, `Day ${i + 1}`)),
+    weekdayNames: Array.fromRange(7).map((i) => L$5(`WeekdaysFull.${i}`, `Day ${i + 1}`)),
     seasonNames
   };
 };
@@ -24700,12 +25554,13 @@ onPointerDown_fn = function(ev) {
   if (actionEl) __privateMethod(_a = _StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static, onClick_fn).call(_a, { target: actionEl });
 };
 onClick_fn = function(ev) {
+  var _a;
   const el = ev.target.closest("[data-action]");
   if (!el) return;
   const now = game.time.worldTime;
   switch (el.dataset.action) {
     case "openCalendar":
-      void import("./calendar-app-CgAmgKkx.js").then(
+      void import("./calendar-app-oKQc07WL.js").then(
         ({ StoryFlowCalendarApp }) => StoryFlowCalendarApp.open()
       );
       break;
@@ -24721,7 +25576,19 @@ onClick_fn = function(ev) {
     case "advanceDay":
       void game.time.advance(nextDayAt(now, 6) - now);
       break;
+    case "planeParam":
+      __privateMethod(_a = _StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static, nudgePlaneParam_fn).call(_a, el.dataset.param, Number(el.dataset.delta));
+      break;
   }
+};
+nudgePlaneParam_fn = function(key, delta) {
+  var _a, _b;
+  if (!key || !Number.isFinite(delta)) return;
+  const world = getWorldState();
+  const decl = (_b = (_a = getPlane(world.plane)) == null ? void 0 : _a.params) == null ? void 0 : _b.find((p) => p.key === key);
+  if (!decl) return;
+  const next = clampParam(decl, (activeParams(world)[key] ?? decl.default) + delta);
+  void patchWorldState({ params: { [key]: next } });
 };
 __privateAdd(_StoryFlowCalendarWidget, _StoryFlowCalendarWidget_static);
 /** @type {HTMLElement|null} */
@@ -24758,14 +25625,14 @@ function sayAtDragon(text, ms) {
   if (el) speakAt(el, text, ms);
 }
 const K$2 = "STORYFLOW_DUNGEONS_LAB.Guide.Chapters.Calendar.WeatherShow";
-const L$3 = (key) => game.i18n.localize(`${K$2}.${key}`);
+const L$4 = (key) => game.i18n.localize(`${K$2}.${key}`);
 const CONDITION_MS = 5e3;
 const sleep$1 = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function runWeatherShow() {
   const widget = document.querySelector(".storyflow-calendar-bar");
   if (!widget) return;
   await flyMascotTo(widget, { loops: 0 });
-  sayAtDragon(L$3("Say"), 2400);
+  sayAtDragon(L$4("Say"), 2400);
   await sleep$1(2600);
   try {
     await previewConditions(widget);
@@ -24878,8 +25745,8 @@ const calendarChapter = {
       }
     }),
     step$1("CloseCalendar", {
-      // Точно [data-action="close"]: заголовки v13 имеют ДВЕ кнопки .header-control, а "⋮"
-      // controls-toggle идет первым в DOM - простой .header-control зацепит именно ее.
+      // Именно [data-action="close"]: заголовки v13 имеют ДВЕ кнопки .header-control,
+      // а "⋮" controls-toggle идет первым в DOM - голый .header-control выберет ее.
       anchor: () => document.querySelector('#storyflow-calendar button[data-action="close"]'),
       watch: (done) => {
         const offHook = onceHook("closeStoryFlowCalendarApp", () => true, done);
@@ -24892,9 +25759,44 @@ const calendarChapter = {
     })
   ]
 };
+function L$3(key, fallback) {
+  var _a, _b;
+  const full = `STORYFLOW_DUNGEONS_LAB.Calendar.${key}`;
+  return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
+}
+function registerWorldSetting() {
+  game.settings.register(MODULE_ID, SETTINGS.CALENDAR_WORLD, {
+    scope: "world",
+    config: false,
+    type: Object,
+    default: {},
+    onChange: () => {
+      announceWorldChanged();
+      void StoryFlowCalendarWidget.refresh();
+    }
+  });
+}
+function registerPlaneMirrorSetting() {
+  game.settings.register(MODULE_ID, SETTINGS.CALENDAR_SKY_STYLE, {
+    name: L$3("SkyStyle", "Calendar: world type (plane)"),
+    hint: L$3(
+      "SkyStyleHint",
+      "Which plane of existence the calendar depicts. Set by the GM from the calendar's gear."
+    ),
+    scope: "world",
+    config: true,
+    type: String,
+    choices: skyStyleChoices(L$3),
+    default: CLASSIC_SKY_STYLE,
+    onChange: (value) => void patchWorldState({ plane: value })
+  });
+}
 function registerCalendarApp(ctx) {
   registerGuideChapter(calendarChapter);
+  registerWorldSetting();
+  registerPlaneMirrorSetting();
   ctx.onReady(() => {
+    mountCalendarScale();
     if (!game.settings.get(MODULE_ID, SETTINGS.CALENDAR_ENABLED)) return;
     registerCalendarHost();
     StoryFlowCalendarWidget.mount();
@@ -27064,7 +27966,7 @@ buildStandaloneShop_fn = async function(buyer) {
         img: i.img,
         price: Math.max(0, Math.round(i.price * multiplier)),
         basePrice: i.price,
-        // цена каталога до модификаторов rep/card (отображение до→после)
+        // Цена каталога до модификаторов репутации/карты (отображение before→after)
         remaining: i.stock,
         max: i.max,
         restockAt: i.restockAt,
@@ -27363,8 +28265,8 @@ const traderChapter = {
       watch: (done) => onClickSelector('.storyflow-shop-tab[data-tab="sell"]', done)
     }),
     step("CloseShop", {
-      // Точно [data-action="close"]: заголовки v13 имеют ДВЕ кнопки .header-control, а "⋮"
-      // controls-toggle идет первым в DOM - простой .header-control зацепит именно ее.
+      // Именно [data-action="close"]: заголовки v13 имеют ДВЕ кнопки .header-control,
+      // а "⋮" controls-toggle идет первым в DOM - голый .header-control выберет ее.
       anchor: () => document.querySelector('#storyflow-shop button[data-action="close"]'),
       watch: (done) => {
         const offHook = onceHook("closeTraderShopApp", () => true, done);
@@ -27830,6 +28732,7 @@ const _StoryFlowPlayerApp = class _StoryFlowPlayerApp extends HandlebarsApplicat
   }
 };
 _instance9 = new WeakMap();
+_quietGen = new WeakMap();
 _frame2 = new WeakMap();
 _interactiveUserId = new WeakMap();
 _runId2 = new WeakMap();
@@ -27854,6 +28757,7 @@ onRenderState_fn2 = function(msg) {
   var _a, _b, _c, _d, _e, _f;
   if (!game.settings.get(MODULE_ID, SETTINGS.OVERLAY_ENABLED)) return;
   if ((_b = (_a = msg.frame) == null ? void 0 : _a.check) == null ? void 0 : _b.quiet) {
+    __privateWrapper(_StoryFlowPlayerApp, _quietGen)._++;
     void __privateMethod(_c = _StoryFlowPlayerApp, _StoryFlowPlayerApp_static, autoRollQuiet_fn).call(_c, msg);
     return;
   }
@@ -27880,7 +28784,9 @@ onRenderState_fn2 = function(msg) {
   void __privateMethod(_f = app, _StoryFlowPlayerApp_instances, renderFrame_fn).call(_f, prevFrame, msg.frame);
 };
 autoRollQuiet_fn = async function(msg) {
-  var _a;
+  var _a, _b;
+  const gen2 = __privateGet(_StoryFlowPlayerApp, _quietGen);
+  const superseded = () => gen2 !== __privateGet(_StoryFlowPlayerApp, _quietGen);
   const check = (_a = msg.frame) == null ? void 0 : _a.check;
   if (!check) return;
   const rollUserId = check.rollUserId;
@@ -27891,35 +28797,57 @@ autoRollQuiet_fn = async function(msg) {
     return;
   }
   const rollMode = check.rollMode === "advantage" ? "advantage" : check.rollMode === "disadvantage" ? "disadvantage" : "normal";
-  const { rollCheck } = await import("./check-executor-CfKzsJug.js");
-  let result;
-  try {
-    result = await rollCheck({ ...check, rollMode }, actor);
-  } catch (err) {
-    console.error(
-      `${MODULE_ID} | quiet check roll failed (run ${msg.runId}, node ${msg.frame.nodeId}):`,
-      err
-    );
-    return;
-  }
-  if (result == null) {
+  const { rollCheck } = await import("./check-executor-DZlJyTOW.js");
+  if (superseded()) return;
+  for (; ; ) {
+    let result = null;
+    try {
+      result = await rollCheck({ ...check, rollMode }, actor);
+    } catch (err) {
+      console.error(
+        `${MODULE_ID} | quiet check roll failed (run ${msg.runId}, node ${msg.frame.nodeId}):`,
+        err
+      );
+    }
+    if (superseded()) return;
+    if (result != null) {
+      dispatch({
+        t: MSG.CHOICE_SELECTED,
+        runId: msg.runId,
+        nodeId: msg.frame.nodeId,
+        action: INPUT_ACTION.ROLL_RESULT,
+        total: result.total,
+        die: result.die,
+        otherDie: result.otherDie,
+        mod: result.mod,
+        rollModeUsed: rollMode === "advantage" ? "adv" : rollMode === "disadvantage" ? "dis" : "norm",
+        formula: check.hideBreakdown === false ? result.formula : void 0
+      });
+      return;
+    }
     console.warn(
-      `${MODULE_ID} | quiet check roll returned null (run ${msg.runId}, node ${msg.frame.nodeId}) - graph will not advance`
+      `${MODULE_ID} | quiet check roll returned null (run ${msg.runId}, node ${msg.frame.nodeId}) - offering a retry`
     );
-    return;
+    if (!await __privateMethod(_b = _StoryFlowPlayerApp, _StoryFlowPlayerApp_static, confirmQuietRetry_fn).call(_b)) return;
+    if (superseded()) return;
   }
-  dispatch({
-    t: MSG.CHOICE_SELECTED,
-    runId: msg.runId,
-    nodeId: msg.frame.nodeId,
-    action: INPUT_ACTION.ROLL_RESULT,
-    total: result.total,
-    die: result.die,
-    otherDie: result.otherDie,
-    mod: result.mod,
-    rollModeUsed: rollMode === "advantage" ? "adv" : rollMode === "disadvantage" ? "dis" : "norm",
-    formula: check.hideBreakdown === false ? result.formula : void 0
-  });
+};
+confirmQuietRetry_fn = async function() {
+  var _a, _b;
+  const DialogV22 = (_b = (_a = foundry.applications) == null ? void 0 : _a.api) == null ? void 0 : _b.DialogV2;
+  if (!DialogV22) return false;
+  const L2 = (k) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.QuietCheck.${k}`);
+  const choice = await DialogV22.wait({
+    classes: [MODULE_ID],
+    window: { title: L2("RetryTitle") },
+    content: `<p>${L2("RetryBody")}</p>`,
+    buttons: [
+      { action: "retry", label: L2("Retry"), icon: "fa-solid fa-dice-d20", default: true },
+      { action: "cancel", label: L2("GiveUp"), icon: "fa-solid fa-xmark" }
+    ],
+    rejectClose: false
+  }).catch(() => "cancel");
+  return choice === "retry";
 };
 _StoryFlowPlayerApp_instances = new WeakSet();
 renderFrame_fn = async function(prevFrame, frame) {
@@ -27976,7 +28904,7 @@ doRoll_fn = async function(btn, { asGm = false } = {}) {
   const locked = check.rollMode;
   const effectiveMode = asGm ? locked === "advantage" ? "adv" : locked === "disadvantage" ? "dis" : "norm" : locked === "advantage" ? "adv" : locked === "disadvantage" ? "dis" : __privateGet(this, _localRollMode);
   const effectiveRollMode = effectiveMode === "adv" ? "advantage" : effectiveMode === "dis" ? "disadvantage" : "normal";
-  const { rollCheck } = await import("./check-executor-CfKzsJug.js");
+  const { rollCheck } = await import("./check-executor-DZlJyTOW.js");
   let result;
   try {
     result = await rollCheck({ ...check, rollMode: effectiveRollMode }, actor);
@@ -28249,6 +29177,19 @@ stopAudio_fn = function() {
 __privateAdd(_StoryFlowPlayerApp, _StoryFlowPlayerApp_static);
 /** @type {StoryFlowPlayerApp|null} */
 __privateAdd(_StoryFlowPlayerApp, _instance9, null);
+/**
+ * F25: тихая проверка не монтирует оверлей, поэтому, в отличие от кинематографичного пути, нет
+ * экземпляра с областью runId, замена которого обесценивала бы обработчик в полете. Этот
+ * счетчик и есть такое обесценивание: каждый тихий кадр увеличивает его, а `#autoRollQuiet`
+ * бросает сам себя после любого await, как только перестает держать новейшее поколение. Без
+ * него диалог повтора, оставленный открытым на подпроверке N, может быть отвечен после того,
+ * как авторитет перевзвел подпроверку N+1 на ТОМ ЖЕ id узла - а ROLL_RESULT не несет индекса,
+ * так что устаревший бросок тихо разрешил бы не ту проверку. Достижимо всякий раз, когда одна
+ * учетная запись игрока держит два подключенных клиента (две вкладки, два устройства), что
+ * Foundry допускает.
+ * @type {number}
+ */
+__privateAdd(_StoryFlowPlayerApp, _quietGen, 0);
 __publicField(_StoryFlowPlayerApp, "DEFAULT_OPTIONS", {
   id: "storyflow-player-overlay",
   classes: [MODULE_ID, "storyflow-overlay"],
@@ -32022,57 +32963,66 @@ Hooks.once("init", () => {
 });
 registerReadyHook();
 export {
-  findReplaceNodes as $,
-  seasonOf as A,
-  dayKey as B,
+  countMatchesNodes as $,
+  dayKey as A,
+  pickWeather as B,
   CONDITIONS as C,
-  pickWeather as D,
-  getSeasons as E,
-  setDayWeather as F,
-  applySceneWeather as G,
-  clearDayWeather as H,
-  deleteEvent as I,
-  MONTHS_PER_YEAR as J,
-  pinsForType as K,
-  humanizeType as L,
+  getSeasons as D,
+  setDayWeather as E,
+  applySceneWeather as F,
+  clearDayWeather as G,
+  deleteEvent as H,
+  MONTHS_PER_YEAR as I,
+  moonName as J,
+  moonPhase as K,
+  pinsForType as L,
   MODULE_ID as M,
-  isKnownNodeType as N,
-  NODE_TYPES as O,
-  registerCommentNode as P,
-  nodeColor as Q,
-  cleanPayload as R,
+  humanizeType as N,
+  isKnownNodeType as O,
+  NODE_TYPES as P,
+  registerCommentNode as Q,
+  nodeColor as R,
   SETTINGS as S,
   TEMPLATE_DIR as T,
-  categoryPresentation as U,
-  buildPalette as V,
+  cleanPayload as U,
+  categoryPresentation as V,
   WINDS as W,
-  nodeTypeIds as X,
-  orderDialogueChains as Y,
-  DIALOGUE_TYPES as Z,
-  countMatchesNodes as _,
+  buildPalette as X,
+  nodeTypeIds as Y,
+  orderDialogueChains as Z,
+  DIALOGUE_TYPES as _,
   readPresetStore as a,
-  sanitizeBossBarConfig as a0,
-  BOSS_BAR_SETTING as a1,
-  DEFAULT_BOSS_BAR as a2,
-  bossBarView as a3,
-  classifyTransition as a4,
-  setClip as a5,
-  hideVideoUntilDecoded as a6,
-  activeFace as a7,
-  discardedFace as a8,
-  GRAPH_PAGE_TYPE$2 as a9,
-  saveEvent as aa,
-  DEFAULT_SEASONS as ab,
-  getMonthNameOverrides as ac,
-  getWeatherEffectMap as ad,
-  listWeatherEffects as ae,
-  CORE_PROVIDER as af,
-  saveSeasons as ag,
-  normalizeSeasons as ah,
-  saveMonthNames as ai,
-  saveWeatherEffectMap as aj,
+  findReplaceNodes as a0,
+  sanitizeBossBarConfig as a1,
+  BOSS_BAR_SETTING as a2,
+  DEFAULT_BOSS_BAR as a3,
+  bossBarView as a4,
+  classifyTransition as a5,
+  setClip as a6,
+  hideVideoUntilDecoded as a7,
+  activeFace as a8,
+  discardedFace as a9,
+  GRAPH_PAGE_TYPE$2 as aa,
+  saveEvent as ab,
+  activeCondition as ac,
+  activeParams as ad,
+  clampParam as ae,
+  listPlanes as af,
+  getWorldState as ag,
+  WORLD_CHANGED_HOOK as ah,
+  patchWorldState as ai,
+  planeConditionKeys as aj,
   replaceNodesUpdate as ak,
-  blueprintCanvasApp as al,
+  DEFAULT_SEASONS as al,
+  getMonthNameOverrides as am,
+  getWeatherEffectMap as an,
+  listWeatherEffects as ao,
+  CORE_PROVIDER as ap,
+  saveSeasons as aq,
+  normalizeSeasons as ar,
+  saveMonthNames as as,
+  saveWeatherEffectMap as at,
+  blueprintCanvasApp as au,
   renameTemplate as b,
   buildTemplateExport as c,
   deleteTemplate as d,
@@ -32081,21 +33031,21 @@ export {
   renameFolder as g,
   deleteFolder as h,
   writeTemplateStore as i,
-  dateFromWorldTime as j,
-  getWeatherMap as k,
-  groupEventsByDay as l,
+  calendarScale as j,
+  dateFromWorldTime as k,
+  getWeatherMap as l,
   moveTemplate as m,
   nodePresentation as n,
-  getEvents as o,
+  groupEventsByDay as o,
   parseTemplateImport as p,
-  monthNames as q,
+  getEvents as q,
   readTemplateStore as r,
   slugifyName as s,
-  buildDayPanel as t,
+  monthNames as t,
   upsertTemplate as u,
-  compareDate as v,
+  buildDayPanel as v,
   writePresetStore as w,
-  moonName as x,
-  moonPhase as y,
-  buildMonthGrid as z
+  compareDate as x,
+  buildMonthGrid as y,
+  seasonOf as z
 };

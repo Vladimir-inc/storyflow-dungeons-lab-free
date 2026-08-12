@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _GuideSupportApp_instances, mascot_fn, play_fn, _GuideSupportApp_static, onKofi_fn, onDecline_fn;
-import { M as MODULE_ID, a5 as setClip, a6 as hideVideoUntilDecoded } from "./module-C_DMsB8l.js";
+import { M as MODULE_ID, a6 as setClip, a7 as hideVideoUntilDecoded } from "./module-CGuPkFx8.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const KOFI_URL = "https://ko-fi.com/dungeonslab";
 const ASSETS = "modules/storyflow-dungeons-lab/assets/images/guide";

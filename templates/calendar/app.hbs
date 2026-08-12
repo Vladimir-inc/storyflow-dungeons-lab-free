@@ -3,6 +3,9 @@
     <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
     <span class="cal-title">{{localize "STORYFLOW_DUNGEONS_LAB.Calendar.Title"}}</span>
     <span class="cal-summary">{{headerSummary}}</span>
+    <button type="button" data-action="scaleDown" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.ScaleDownTip'}}"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+    <button type="button" data-action="scaleUp" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.ScaleUpTip'}}"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+    <button type="button" data-action="openHelp" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.HelpTip'}}"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button>
     {{#if isGM}}<button type="button" data-action="openSeasons" data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Calendar.SeasonsTip'}}"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>{{/if}}
   </header>
   <div class="cal-body">

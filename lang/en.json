@@ -369,6 +369,10 @@
       "AllowChoiceVotingHint": "Let non-controlling players cast advisory (BG3-style) votes on choices. The controlling player / GM still decides.",
       "ReduceMotion": "Reduce motion",
       "ReduceMotionHint": "Disable the cinematic overlay and notification animations (sunbeams, countdown bar, transitions).",
+      "CalendarPerfMode": "Calendar: performance mode (weak PC)",
+      "CalendarPerfModeHint": "Disable the calendar's animations and expensive visual effects (blur, glows, shadows) on your client.",
+      "CalendarUserScale": "Calendar: UI size",
+      "CalendarUserScaleHint": "Scale the calendar window and HUD widget on your client (also adjustable via the magnifier − / + buttons in the calendar header).",
       "SkipTypewriter": "Skip typewriter effect",
       "SkipTypewriterHint": "Reveal dialogue text instantly instead of typing it out, on your client.",
       "GmCardReveal": "Show the card-reveal panel (GM)",
@@ -1080,7 +1084,21 @@
     },
     "GiveGold": {
       "GaveChat": "{actor} received {amount} gp.",
-      "TookChat": "{actor} lost {amount} gp."
+      "TookChat": "{actor} lost {amount} gp.",
+      "ReceiptLine": "{actor} - {left} gp left"
+    },
+    "GiveItem": {
+      "ReceiptHeader": "StoryFlow - Give / Remove Item",
+      "ReceiptRemoved": "{actor} - {item} ×{qty} removed - {left} left",
+      "ReceiptGave": "{actor} - {item} ×{qty} added",
+      "ReceiptFrom": "(from {container})",
+      "ReceiptMatched": "· matched {count} stacks with this name"
+    },
+    "QuietCheck": {
+      "RetryTitle": "Roll not completed",
+      "RetryBody": "The check could not be rolled, so the scene is waiting. Roll again, or give up and let the GM sort it out.",
+      "Retry": "Roll again",
+      "GiveUp": "Give up"
     },
     "Errors": {
       "NoGraphPage": "StoryFlow: graph page not found.",
@@ -2365,6 +2383,12 @@
         "2": "Stage II (below 2/3 HP)",
         "3": "Stage III (below 1/3 HP)"
       },
+      "audience": {
+        "all": "All",
+        "players": "Players",
+        "trigger": "Trigger",
+        "gm": "GM"
+      },
       "target": {
         "gm": "GM",
         "trigger": "Trigger Actor's Token",
@@ -2372,7 +2396,8 @@
         "tokens": "Specific Tokens",
         "screen": "Screen (Cinematic)",
         "line": "Line (Source → Target)",
-        "triggerTargets": "Trigger's Targets (beams)"
+        "triggerTargets": "Trigger's Targets (beams)",
+        "checkActor": "The actor who took the check"
       },
       "background": {
         "carry": "Keep previous",
@@ -2444,7 +2469,9 @@
       "advanced": "Advanced",
       "appearance": "Appearance",
       "timing": "Timing",
-      "persistence": "Persistence"
+      "persistence": "Persistence",
+      "whoTriggers": "Who Triggers",
+      "audience": "Audience"
     },
     "FieldHint": {
       "persistAfterEnd": "Keeps this sound playing after the story ends, instead of cutting it off. It won't stop on its own - use a Stop Audio node targeting this sound's Name below (or set to stop \"All\") to end it later.",
@@ -2724,6 +2751,106 @@
         "summer": "Summer",
         "autumn": "Autumn"
       },
+      "SkyStyle": "Calendar: sky style (plane)",
+      "SkyStyleHint": "Which plane of existence the calendar's sky panel depicts on your client. Extra planes ship with the paid editions.",
+      "Planes": {
+        "material": "Material Plane",
+        "elemental": "Elemental Planes",
+        "sunken": "Sunken Realm",
+        "caverns": "Gemstone Caverns",
+        "gilded": "Gilded Realm"
+      },
+      "PlaneSettingsTitle": "World Type",
+      "PlaneReadOnly": "Only the Dungeon Master may change the world type. Shown read-only.",
+      "PlaneDockLabel": "Choose a plane",
+      "PlaneConditionSection": "Plane state",
+      "PlaneParamSection": "Plane parameters",
+      "PlaneRoll": "Roll",
+      "PlaneRollTip": "Roll a random state for this plane",
+      "PlanePerScene": "Remember the world type per scene",
+      "PlaneParams": {
+        "depth": "Depth",
+        "murk": "Murk",
+        "dread": "Dread",
+        "rift": "Rift gauge",
+        "coverage": "Cloud cover",
+        "drift": "Drift speed",
+        "seam": "Seam depth",
+        "suspension": "Suspension",
+        "druse": "Druse glow",
+        "grace": "Grace",
+        "pollen": "Pollen"
+      },
+      "PlaneHud": {
+        "vis": "Vis",
+        "psi": "Psi",
+        "attune": "Attune",
+        "haze": "Haze",
+        "glow": "Glow",
+        "pollen": "Pollen",
+        "ascend": "Ascend",
+        "descend": "Descend",
+        "emberdawn": "Emberdawn",
+        "umbralTide": "Umbral Tide",
+        "Bands": {
+          "shallows": "Shallows",
+          "twilight": "Twilight Zone",
+          "midnight": "Midnight Zone",
+          "abyss": "Abyss",
+          "sealed": "Sealed",
+          "fraying": "Fraying",
+          "breached": "Breached",
+          "wideOpen": "Wide Open",
+          "conjunction": "Conjunction",
+          "upperGalleries": "Upper Galleries",
+          "deepSeams": "Deep Seams",
+          "rootWorks": "Root Works",
+          "underdark": "Underdark",
+          "forsaken": "Forsaken",
+          "tarnished": "Tarnished",
+          "favoured": "Favoured",
+          "resplendent": "Resplendent"
+        },
+        "Notes": {
+          "depth": "below 60% visibility ranged attacks are at disadvantage",
+          "planar": "spell components and summons drawn from the dominant element are empowered",
+          "cave": "druse light is the only light down here - below 30% glow, bring your own",
+          "gilded": "thick pollen dulls scent and hearing - tracking is at disadvantage above 70%"
+        }
+      },
+      "PlaneHazards": {
+        "depth": {
+          "clear": "no penalty",
+          "overcast": "disadv. Perception",
+          "rain": "DC 14 STR (Athletics)",
+          "storm": "2d6 fire, DC 13 DEX",
+          "snow": "advantage on Stealth",
+          "fog": "DC 15 WIS save · fear"
+        },
+        "planar": {
+          "clear": "1d6 fire / hour",
+          "overcast": "2d10 fire, DC 15 DEX",
+          "storm": "3d8 lightning, DC 14 DEX",
+          "rain": "difficult terrain · DC 12 STR",
+          "snow": "1d4 piercing per shard",
+          "fog": "wild magic · roll 1d100"
+        }
+      },
+      "PlaneEffectSection": "Plane effects",
+      "PlaneEffectAdd": "Add rule",
+      "PlaneEffectSoon": "Effect rules are not available yet - the plane's state has no scene effects wired to it.",
+      "PlaneOpenSeasons": "Seasons & weather…",
+      "PlaneOpenSeasonsTip": "Seasonal tables and daily weather",
+      "PlaneWeatherOn": "The calendar rolls daily weather on this plane and mirrors it onto the scene.",
+      "PlaneWeatherOff": "This plane has no weather: the calendar rolls none and pushes none onto the scene. You set its state here.",
+      "SkyStyles": {
+        "classic": "Classic",
+        "clouds": "Living Sky",
+        "planar": "Planar Sky",
+        "depth": "Depth Column",
+        "cave": "Slime Luminary",
+        "gilded": "Gilded Ephemeris"
+      },
       "Moon": {
         "new": "New Moon",
         "waxingCrescent": "Waxing Crescent",
@@ -2768,6 +2895,41 @@
       "NoEvents": "No events marked for this day.",
       "AddEvent": "Add Event",
       "SeasonsTip": "Configure seasonal weather generation & month names",
+      "ScaleDownTip": "Shrink the calendar (your client only)",
+      "ScaleUpTip": "Enlarge the calendar (your client only)",
+      "HelpTip": "About the calendar & help",
+      "HelpTitle": "Calendar - Help",
+      "HelpClose": "Got it",
+      "Help": {
+        "Nav": {
+          "Title": "Navigation",
+          "Body": "Browse months with the arrows, jump back with Today, click a day to open its panel."
+        },
+        "Weather": {
+          "Title": "Weather",
+          "Body": "The GM charts weather per day (pick a condition, temperature and wind, or roll on the season table). Players see a day's weather once its day dawns; future days stay veiled."
+        },
+        "Events": {
+          "Title": "Events",
+          "Body": "The GM can mark events on any day (double-click a day or press Add Event). Story-graph events fire automatically when their day arrives."
+        },
+        "Seasons": {
+          "Title": "Seasons",
+          "Body": "The gear button (GM only) configures month names, seasonal weather tables and scene weather effects."
+        },
+        "Widget": {
+          "Title": "HUD widget",
+          "Body": "The small calendar bar on screen shows today's date and weather; the GM can drag its sky to move world time."
+        },
+        "Scale": {
+          "Title": "Calendar size",
+          "Body": "Use the magnifier − / + buttons in this window's header to shrink or enlarge the whole calendar (window and HUD widget) on your client only. The same value lives in module settings as \"Calendar: UI size\"."
+        },
+        "PerfMode": {
+          "Title": "Weak PC? Performance mode",
+          "Body": "If the calendar feels slow on your machine, open Game Settings → Configure Settings → StoryFlow Dungeons Lab and enable \"Calendar: performance mode (weak PC)\". It turns off the calendar's animations, blur and glow effects - on your client only."
+        }
+      },
       "VeiledTip": "The mists conceal what is to come",
       "VeiledTitle": "The mists conceal what is to come",
       "VeiledBody": "Weather for the days ahead is known only to the Dungeon Master.",

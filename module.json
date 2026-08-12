@@ -2,7 +2,7 @@
   "id": "storyflow-dungeons-lab",
   "title": "StoryFlow Dungeons Lab",
   "description": "A production-ready Foundry VTT module targeting v13 and v14, built with ApplicationV2 and modern DataModels.",
-  "version": "0.1.477",
+  "version": "0.1.503",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

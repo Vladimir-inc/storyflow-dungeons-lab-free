@@ -1,63 +1,73 @@
 <div class="storyflow-calendar-bar" data-action="openCalendar" data-tooltip="{{tooltip}}">
-  <div class="cw-sky" data-cond="{{cond}}" style="background:{{skyGradient}};">
-    {{#if showStars}}
-      <div class="cw-stars">
-        {{#each stars}}<span
-            style="left:{{this.left}}%; top:{{this.top}}%; width:{{this.size}}px; height:{{this.size}}px; animation-delay:{{this.delay}};"
-          ></span>{{/each}}
-      </div>
-    {{/if}}
-    {{#if isNight}}
-      <div
-        class="cw-cel"
-        style="left:{{celestialLeft}}%; top:{{celestialTop}}%; opacity:{{celestialOpacity}};"
-      >
-        <div class="cw-moon">
-          <svg width="18" height="18" viewBox="0 0 24 24"><circle
-              cx="12"
-              cy="12"
-              r="10"
-              fill="#211D2B"
-            ></circle><path d="{{moonD}}" fill="#D9D2C0"></path></svg>
+  <div
+    class="cw-sky"
+    data-cond="{{cond}}"
+    data-sky-style="{{skyStyle}}"
+    style="background:{{skyGradient}};"
+  >
+    {{! A non-classic plane replaces every layer below with its own scene, mounted imperatively
+        into this slot by sky-mount.mjs (it survives the widget's innerHTML re-render). }}
+    {{#unless classicSky}}<div class="cw-scene"></div>{{/unless}}
+    {{#if classicSky}}
+      {{#if showStars}}
+        <div class="cw-stars">
+          {{#each stars}}<span
+              style="left:{{this.left}}%; top:{{this.top}}%; width:{{this.size}}px; height:{{this.size}}px; animation-delay:{{this.delay}};"
+            ></span>{{/each}}
         </div>
-      </div>
-    {{else}}
-      <div
-        class="cw-cel"
-        style="left:{{celestialLeft}}%; top:{{celestialTop}}%; opacity:{{celestialOpacity}};"
-      >
-        {{#if showRays}}<div class="cw-rays"></div>{{/if}}
-        <div class="cw-sun"></div>
-      </div>
+      {{/if}}
+      {{#if isNight}}
+        <div
+          class="cw-cel"
+          style="left:{{celestialLeft}}%; top:{{celestialTop}}%; opacity:{{celestialOpacity}};"
+        >
+          <div class="cw-moon">
+            <svg width="18" height="18" viewBox="0 0 24 24"><circle
+                cx="12"
+                cy="12"
+                r="10"
+                fill="#211D2B"
+              ></circle><path d="{{moonD}}" fill="#D9D2C0"></path></svg>
+          </div>
+        </div>
+      {{else}}
+        <div
+          class="cw-cel"
+          style="left:{{celestialLeft}}%; top:{{celestialTop}}%; opacity:{{celestialOpacity}};"
+        >
+          {{#if showRays}}<div class="cw-rays"></div>{{/if}}
+          <div class="cw-sun"></div>
+        </div>
+      {{/if}}
+      <div class="cw-tint"></div>
+      {{#if showClouds}}
+        <div class="cw-clouds">
+          {{#each clouds}}<span
+              style="left:{{this.left}}%; top:{{this.top}}%; width:{{this.w}}px; height:{{this.h}}px; opacity:{{this.alpha}}; animation-duration:{{this.dur}}s;"
+            ></span>{{/each}}
+        </div>
+      {{/if}}
+      {{#if showFog}}
+        <div class="cw-fog"><span></span><span></span><span></span></div>
+      {{/if}}
+      {{#if showRain}}
+        <div class="cw-rain">
+          {{#each drops}}<span
+              style="left:{{this.left}}%; height:{{this.len}}px; opacity:{{this.op}}; animation-duration:{{this.dur}}s; animation-delay:{{this.delay}}s;"
+            ></span>{{/each}}
+        </div>
+      {{/if}}
+      {{#if showSnow}}
+        <div class="cw-snow">
+          {{#each flakes}}<span
+              style="left:{{this.left}}%; width:{{this.size}}px; height:{{this.size}}px; opacity:{{this.op}}; animation-duration:{{this.dur}}s; animation-delay:{{this.delay}}s;"
+            ></span>{{/each}}
+        </div>
+      {{/if}}
+      {{#if showFlash}}<div class="cw-flash"></div>{{/if}}
+      <div class="cw-ridge"></div>
+      <div class="cw-ridge-glow"></div>
     {{/if}}
-    <div class="cw-tint"></div>
-    {{#if showClouds}}
-      <div class="cw-clouds">
-        {{#each clouds}}<span
-            style="left:{{this.left}}%; top:{{this.top}}%; width:{{this.w}}px; height:{{this.h}}px; opacity:{{this.alpha}}; animation-duration:{{this.dur}}s;"
-          ></span>{{/each}}
-      </div>
-    {{/if}}
-    {{#if showFog}}
-      <div class="cw-fog"><span></span><span></span><span></span></div>
-    {{/if}}
-    {{#if showRain}}
-      <div class="cw-rain">
-        {{#each drops}}<span
-            style="left:{{this.left}}%; height:{{this.len}}px; opacity:{{this.op}}; animation-duration:{{this.dur}}s; animation-delay:{{this.delay}}s;"
-          ></span>{{/each}}
-      </div>
-    {{/if}}
-    {{#if showSnow}}
-      <div class="cw-snow">
-        {{#each flakes}}<span
-            style="left:{{this.left}}%; width:{{this.size}}px; height:{{this.size}}px; opacity:{{this.op}}; animation-duration:{{this.dur}}s; animation-delay:{{this.delay}}s;"
-          ></span>{{/each}}
-      </div>
-    {{/if}}
-    {{#if showFlash}}<div class="cw-flash"></div>{{/if}}
-    <div class="cw-ridge"></div>
-    <div class="cw-ridge-glow"></div>
     <span class="cw-time">{{timeText}}</span>
     <span class="cw-cond">{{condLabel}}</span>
     {{! Показания перемотки неба - скрыты, пока ГМ не тянет небо (на корне появляется .scrubbing). Текст
@@ -74,26 +84,99 @@
     <span class="cw-date-line">{{dateLine}}</span>
     <span class="cw-date-sub">{{dateSubline}}</span>
   </div>
-  <div class="cw-moonphase" data-tooltip="{{moonLabel}}">
-    <svg width="26" height="26" viewBox="0 0 24 24"><circle
-        cx="12"
-        cy="12"
-        r="10"
-        fill="#1A1722"
-        stroke="var(--storyflow-border-strong)"
-        stroke-width="1"
-      ></circle><path d="{{moonD}}" fill="#D9D2C0"></path></svg>
-  </div>
+  {{! Off the Material Plane the moon dial becomes the plane's own gauge - depth, rift width,
+      grace - wound around the same ring. The plane declares which parameter it follows. }}
+  {{#if hud.dial}}
+    <div class="cw-dial" data-tooltip="{{hud.dial.tooltip}}">
+      <span class="cw-dial-halo" style="background:{{hud.dial.halo}};" aria-hidden="true"></span>
+      <svg width="30" height="30" viewBox="0 0 24 24"><circle
+          cx="12"
+          cy="12"
+          r="10.5"
+          fill="{{hud.dial.bg}}"
+          stroke="var(--storyflow-border-strong)"
+          stroke-width="1"
+        ></circle><path
+          d="{{hud.dial.d}}"
+          fill="{{hud.dial.fill}}"
+          opacity="0.9"
+        ></path><circle
+          cx="12"
+          cy="12"
+          r="10.5"
+          fill="none"
+          stroke="{{hud.dial.ring}}"
+          stroke-width="1"
+        ></circle></svg>
+    </div>
+  {{else}}
+    <div class="cw-moonphase" data-tooltip="{{moonLabel}}">
+      <svg width="26" height="26" viewBox="0 0 24 24"><circle
+          cx="12"
+          cy="12"
+          r="10"
+          fill="#1A1722"
+          stroke="var(--storyflow-border-strong)"
+          stroke-width="1"
+        ></circle><path d="{{moonD}}" fill="#D9D2C0"></path></svg>
+    </div>
+  {{/if}}
   <div class="cw-weather" data-tooltip="{{weatherTip}}">
-    <i class="fa-solid {{weatherIcon}}" aria-hidden="true" style="color:{{weatherColor}};"></i>
-    <span>{{weatherTemp}}</span>
+    <i
+      class="fa-solid {{weatherIcon}}"
+      aria-hidden="true"
+      style="color:{{weatherColor}}; filter:drop-shadow(0 0 7px {{weatherColor}});"
+    ></i>
+    {{#if weatherHazard}}
+      <span class="cw-weather-stack">
+        <span class="cw-weather-label">{{weatherTemp}}</span>
+        <span class="cw-weather-hazard">{{weatherHazard}}</span>
+      </span>
+    {{else}}
+      <span>{{weatherTemp}}</span>
+    {{/if}}
   </div>
+  {{! The numbers this plane lives by. One or two bars; the readings live in the tooltip, as in
+      the design - a HUD cell this small is read as a level, not as a number. }}
+  {{#if hud.hasMeters}}
+    <div class="cw-meters" data-tooltip="{{hud.metersTip}}">
+      {{#each hud.meters}}
+        <div class="cw-meter">
+          <span class="cw-meter-label">{{this.label}}</span>
+          <span class="cw-meter-track">
+            {{#if this.segments}}
+              {{#each this.segments}}<span
+                  class="cw-meter-seg"
+                  style="flex:{{this.pct}}; background:{{this.color}}; box-shadow:0 0 6px {{this.glow}};"
+                  data-tooltip="{{this.label}}"
+                ></span>{{/each}}
+            {{else}}
+              <span
+                class="cw-meter-fill"
+                style="width:{{this.pct}}%; background:{{this.color}}; box-shadow:0 0 6px {{this.glow}};"
+              ></span>
+            {{/if}}
+          </span>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
   <i class="fa-solid fa-chevron-down cw-chevron" aria-hidden="true"></i>
 </div>
 {{#if isGM}}
   <div class="storyflow-calendar-tray">
+    {{! Plane shortcuts first - they move the plane's own parameter, not the clock. }}
+    {{#each hud.tray}}
+      <button
+        type="button"
+        class="cw-tray-plane"
+        data-action="planeParam"
+        data-param="{{this.param}}"
+        data-delta="{{this.delta}}"
+      ><i class="fa-solid {{this.icon}}" aria-hidden="true"></i>{{this.label}}</button>
+    {{/each}}
     <button type="button" data-action="jumpDawn" data-tooltip="{{trayDawnTip}}"><i
-        class="fa-solid fa-mountain-sun"
+        class="fa-solid {{trayDawnIcon}}"
         aria-hidden="true"
       ></i>{{trayDawn}}</button>
     {{! Сначала шаги − (от большего к меньшему, так как −2w < −5m), затем шаги + (от меньшего к большему). }}
@@ -112,12 +195,14 @@
       >+{{this.label}}</button>
     {{/each}}
     <button type="button" data-action="jumpDusk" data-tooltip="{{trayDuskTip}}"><i
-        class="fa-solid fa-moon"
+        class="fa-solid {{trayDuskIcon}}"
         aria-hidden="true"
       ></i>{{trayDusk}}</button>
-    <button type="button" data-action="advanceDay" data-tooltip="{{trayDayTip}}"><i
-        class="fa-solid fa-calendar-plus"
-        aria-hidden="true"
-      ></i>{{trayDay}}</button>
+    {{#if trayShowDay}}
+      <button type="button" data-action="advanceDay" data-tooltip="{{trayDayTip}}"><i
+          class="fa-solid fa-calendar-plus"
+          aria-hidden="true"
+        ></i>{{trayDay}}</button>
+    {{/if}}
   </div>
 {{/if}}

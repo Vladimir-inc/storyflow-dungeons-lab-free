@@ -24,9 +24,39 @@
         <input type="text" name="sfNodeName" value="{{nodeName}}" placeholder="{{nodeLabel}}" />
       </div>
       {{!-- Одна строка поля, используется и в сгруппированных, и в несгруппированных секциях. --}}
+      {{!-- Список актеров с drag-drop. Рисуется из двух мест в двух контекстах - группа WHO
+            TRIGGERS (где `actorRows` принадлежит группе) и отдельный fieldset у action.token
+            (где он корневой) - поэтому читает `actorRows` без префикса и дает связаться
+            контексту вызывающего. --}}
+      {{#*inline "actorListRows"}}
+        <fieldset class="storyflow-spell-rows">
+          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Legend"}}</legend>
+          <div class="storyflow-spell-drop">
+            <i class="fa-solid fa-user-plus"></i>
+            {{localize "STORYFLOW_DUNGEONS_LAB.ActorList.DropHint"}}
+          </div>
+          {{#each actorRows}}
+            <div class="storyflow-spell-row" data-index="{{this.index}}">
+              {{#if this.img}}<img src="{{this.img}}" width="24" height="24" alt="" />{{/if}}
+              <span>{{this.name}}</span>
+              <button type="button" data-action="removeActorRow" data-index="{{this.index}}"
+                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.ActorList.Remove'}}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          {{/each}}
+          {{#unless actorRows.length}}
+            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Empty"}}</p>
+          {{/unless}}
+        </fieldset>
+      {{/inline}}
+
       {{#*inline "fieldRow"}}
         <div class="form-group storyflow-insp-field{{#if this.hiddenRow}} storyflow-field-hidden{{/if}}" data-field="{{this.name}}">
-          <label>{{this.label}}</label>
+          {{!-- Секция с единственным полем (WHO TRIGGERS / AUDIENCE) уже произносит это слово
+                в своей сводке; hideLabel убирает дублирующую подпись строки, не оставляя
+                пустой. --}}
+          {{#unless this.hideLabel}}<label>{{this.label}}</label>{{/unless}}
           {{#if this.isCheckbox}}
             <label class="storyflow-toggle">
               <input type="checkbox" name="{{this.name}}" {{#if this.value}}checked{{/if}} />
@@ -257,6 +287,9 @@
           <details class="storyflow-insp-group" open>
             <summary>{{this.label}}</summary>
             {{#each this.fields}}{{> fieldRow}}{{/each}}
+            {{!-- WHO TRIGGERS владеет своим списком актеров: он имеет смысл только пока секция
+                  говорит "specific", поэтому ему место внутри блока, а не соседом ниже. --}}
+            {{#if this.isActorList}}{{> actorListRows}}{{/if}}
           </details>
         {{else}}
           {{#each this.fields}}{{> fieldRow}}{{/each}}
@@ -540,28 +573,10 @@
         </fieldset>
       {{/if}}
 
-      {{#if isActorList}}
-        <fieldset class="storyflow-spell-rows">
-          <legend>{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Legend"}}</legend>
-          <div class="storyflow-spell-drop">
-            <i class="fa-solid fa-user-plus"></i>
-            {{localize "STORYFLOW_DUNGEONS_LAB.ActorList.DropHint"}}
-          </div>
-          {{#each actorRows}}
-            <div class="storyflow-spell-row" data-index="{{this.index}}">
-              {{#if this.img}}<img src="{{this.img}}" width="24" height="24" alt="" />{{/if}}
-              <span>{{this.name}}</span>
-              <button type="button" data-action="removeActorRow" data-index="{{this.index}}"
-                      title="{{localize 'STORYFLOW_DUNGEONS_LAB.ActorList.Remove'}}">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          {{/each}}
-          {{#unless actorRows.length}}
-            <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Empty"}}</p>
-          {{/unless}}
-        </fieldset>
-      {{/if}}
+      {{!-- `actorIds` у action.token переиспользует этот список для несвязанной цели и держит
+            собственный отдельный fieldset. А `specificActorIds` узла-триггера рисуется ВНУТРИ
+            секции WHO TRIGGERS (в этом случае контекст подавляет isActorList здесь). --}}
+      {{#if isActorList}}{{> actorListRows}}{{/if}}
 
       {{#if isAudio}}
         <fieldset class="storyflow-spell-rows">

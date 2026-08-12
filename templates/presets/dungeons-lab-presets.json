@@ -5,11 +5,26 @@
   "templates": [
     {
       "id": "9sS6liB3LKkxh2Ey",
-      "name": "Long Rest - Consume Rations",
+      "name": "AUTOMATION. Long Rest - Consume Rations",
       "createdAt": "2026-07-23T21:01:44.195Z",
-      "updatedAt": "2026-08-05T17:40:38.932Z",
+      "updatedAt": "2026-07-23T21:01:44.195Z",
       "graph": {
         "nodes": [
+          {
+            "id": "j2LAMxL8Jwcgpzn1",
+            "type": "trigger.rest",
+            "name": "",
+            "x": 403.774169921875,
+            "y": 483.79205322265625,
+            "data": {
+              "label": "Long Rest = Rations Consumption",
+              "once": false,
+              "enabled": true,
+              "restType": "long",
+              "whoTriggers": "any",
+              "specificActorIds": []
+            }
+          },
           {
             "id": "vuxQ17vVI1HBCdQ0",
             "type": "notification",
@@ -79,6 +94,19 @@
             }
           },
           {
+            "id": "sPHj5186n1Z5sAs7",
+            "type": "comment",
+            "name": "",
+            "x": 399,
+            "y": 301.79998779296875,
+            "data": {
+              "text": "Automation: When Long Rest => Consume 1 rations from the players inventory. \n\nDoesn't Work for Group! Only one character",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          },
+          {
             "id": "bbbJT55CCmC9aYp0",
             "type": "check",
             "name": "",
@@ -100,32 +128,20 @@
               "dc": 10,
               "rollMode": "ask"
             }
-          },
-          {
-            "id": "sPHj5186n1Z5sAs7",
-            "type": "comment",
-            "name": "",
-            "x": 372.5999755859375,
-            "y": 300.199951171875,
-            "data": {
-              "text": "Consume 1 rations from the players inventory. \n\nDoesn't Work for Group! Only one character",
-              "bgColor": "#5f5326",
-              "w": 220,
-              "h": 120
-            }
-          },
-          {
-            "id": "8SWEcwfsguCWTISt",
-            "type": "trigger.start",
-            "name": "",
-            "x": 394.4000244140625,
-            "y": 482.199951171875,
-            "data": {
-              "label": ""
-            }
           }
         ],
         "edges": [
+          {
+            "id": "UsIXq303wZdQ6Y4v",
+            "source": {
+              "node": "j2LAMxL8Jwcgpzn1",
+              "pin": "out"
+            },
+            "target": {
+              "node": "2sU2T21KprPktt6h",
+              "pin": "in"
+            }
+          },
           {
             "id": "NJIR0sd2u52m483E",
             "source": {
@@ -180,20 +196,309 @@
               "node": "gnKYLzPza5V50ySG",
               "pin": "in"
             }
+          }
+        ]
+      }
+    },
+    {
+      "id": "y3dl6MQpNV9xnBpR",
+      "name": "AUTOMATION. Level Up Random Present for Players",
+      "createdAt": "2026-07-23T21:01:48.211Z",
+      "updatedAt": "2026-07-23T21:01:48.211Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "11YWsv4KALepXAx0",
+            "type": "trigger.levelup",
+            "name": "",
+            "x": 97.23197174072266,
+            "y": 241.77598571777344,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "level": 0,
+              "whoTriggers": "any",
+              "specificActorIds": []
+            }
           },
           {
-            "id": "link_7",
-            "source": {
-              "node": "8SWEcwfsguCWTISt",
-              "pin": "out"
-            },
-            "target": {
-              "node": "2sU2T21KprPktt6h",
-              "pin": "in"
+            "id": "G6SY4mxhio7B88y2",
+            "type": "action.giveGold",
+            "name": "",
+            "x": 624.7272338867188,
+            "y": 508.36376953125,
+            "data": {
+              "mode": "give",
+              "formula": "2d10+5",
+              "target": "trigger"
+            }
+          },
+          {
+            "id": "E8e3soIdPlFDXM8C",
+            "type": "notification",
+            "name": "",
+            "x": 612.8181762695312,
+            "y": 137.272705078125,
+            "data": {
+              "style": "secret",
+              "text": "Present for Level UP! ",
+              "itemUuid": "Item.eTNc8XPtvZNe3yQs",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "ALWtjDJVjhZfPjlQ",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 879.4071655273438,
+            "y": 130.99630737304688,
+            "data": {
+              "mode": "give",
+              "itemUuid": "Item.eTNc8XPtvZNe3yQs",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "QNTr7Yk5d7rJWvXS",
+            "type": "notification",
+            "name": "",
+            "x": 612.091064453125,
+            "y": 219.45445251464844,
+            "data": {
+              "style": "secret",
+              "text": "Present for Level UP! ",
+              "itemUuid": "Item.ytlsBjYsZ7OBSEBs",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "gPkG1GIWdzoDLZDl",
+            "type": "notification",
+            "name": "",
+            "x": 616.454833984375,
+            "y": 303.8180236816406,
+            "data": {
+              "style": "secret",
+              "text": "Present for Level UP! ",
+              "itemUuid": "Item.x7LfMrLafLKfemGH",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "6gqrhSFOaIIsfTcp",
+            "type": "random",
+            "name": "",
+            "x": 371.1980285644531,
+            "y": 237.23635864257812,
+            "data": {
+              "paths": [
+                {
+                  "id": "eCvxp0qaHEJqtdlZ",
+                  "weight": 5
+                },
+                {
+                  "id": "ZwvwUymFN2k8ARQv",
+                  "weight": 5
+                },
+                {
+                  "id": "ajCRV6tdSnCuQnzl",
+                  "weight": 5
+                },
+                {
+                  "id": "BjBqjK2cvJuIsLsN",
+                  "weight": 5
+                },
+                {
+                  "id": "hwoYdMii8zt0m2pV",
+                  "weight": 80
+                }
+              ]
+            }
+          },
+          {
+            "id": "2KIf4WZyj732Qea5",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 869.8801879882812,
+            "y": 216.6980743408203,
+            "data": {
+              "mode": "give",
+              "itemUuid": "Item.ytlsBjYsZ7OBSEBs",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "MB2GYIILg5A7ywSO",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 864.5639038085938,
+            "y": 301.0616149902344,
+            "data": {
+              "mode": "give",
+              "itemUuid": "Item.x7LfMrLafLKfemGH",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "bZK66Piv18GSyfNh",
+            "type": "notification",
+            "name": "",
+            "x": 633.909423828125,
+            "y": 396.1817626953125,
+            "data": {
+              "style": "secret",
+              "text": "Present for Level UP! ",
+              "itemUuid": "Item.KKWBLKQIWHtcpymp",
+              "glowColor": "#ffcf57",
+              "seconds": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "knZmwLuxcHH2AjhK",
+            "type": "action.giveItem",
+            "name": "",
+            "x": 868.8184814453125,
+            "y": 392.5453796386719,
+            "data": {
+              "mode": "give",
+              "itemUuid": "Item.KKWBLKQIWHtcpymp",
+              "quantity": 1
+            }
+          },
+          {
+            "id": "cFu9jluGGkaPpT9J",
+            "type": "comment",
+            "name": "",
+            "x": 54.4000244140625,
+            "y": 43.12001419067383,
+            "data": {
+              "text": "When any player levels UP Gives Him a Random Present! \n\nSelect which item you want to give to players ",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
             }
           }
         ],
-        "groups": []
+        "edges": [
+          {
+            "id": "link_1",
+            "source": {
+              "node": "11YWsv4KALepXAx0",
+              "pin": "out"
+            },
+            "target": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_2",
+            "source": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "rand_0"
+            },
+            "target": {
+              "node": "E8e3soIdPlFDXM8C",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "E8e3soIdPlFDXM8C",
+              "pin": "out"
+            },
+            "target": {
+              "node": "ALWtjDJVjhZfPjlQ",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_4",
+            "source": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "rand_4"
+            },
+            "target": {
+              "node": "G6SY4mxhio7B88y2",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "eM9JGa7BaLLfn4mP",
+            "source": {
+              "node": "QNTr7Yk5d7rJWvXS",
+              "pin": "out"
+            },
+            "target": {
+              "node": "2KIf4WZyj732Qea5",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_6",
+            "source": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "rand_1"
+            },
+            "target": {
+              "node": "QNTr7Yk5d7rJWvXS",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "yfPOIxGm7DwlxSSv",
+            "source": {
+              "node": "gPkG1GIWdzoDLZDl",
+              "pin": "out"
+            },
+            "target": {
+              "node": "MB2GYIILg5A7ywSO",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_8",
+            "source": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "rand_2"
+            },
+            "target": {
+              "node": "gPkG1GIWdzoDLZDl",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "kw7UszFTAByMo57f",
+            "source": {
+              "node": "bZK66Piv18GSyfNh",
+              "pin": "out"
+            },
+            "target": {
+              "node": "knZmwLuxcHH2AjhK",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_10",
+            "source": {
+              "node": "6gqrhSFOaIIsfTcp",
+              "pin": "rand_3"
+            },
+            "target": {
+              "node": "bZK66Piv18GSyfNh",
+              "pin": "in"
+            }
+          }
+        ]
       }
     },
     {
@@ -638,18 +943,43 @@
       }
     },
     {
-      "id": "UGTvYtiOdpykRuDG",
-      "name": "Trap. 1d6 dmg + DC15 dex save",
-      "createdAt": "2026-08-05T17:39:43.630Z",
-      "updatedAt": "2026-08-05T17:39:43.630Z",
+      "id": "andbOJ6eG3AfrXaU",
+      "name": "Macro for a Trader",
+      "createdAt": "2026-07-23T21:01:56.142Z",
+      "updatedAt": "2026-07-23T21:01:56.142Z",
       "graph": {
         "nodes": [
           {
-            "id": "HRMygb90OnWMpZVK",
-            "type": "trigger.region",
-            "name": "TRAP",
-            "x": 443.2810974121094,
-            "y": 526.6389770507812,
+            "id": "H80rfteGTMOlWW8W",
+            "type": "trader",
+            "name": "",
+            "x": 333.636474609375,
+            "y": 276.0000305175781,
+            "data": {
+              "traderUuid": "",
+              "background": "scene",
+              "backdropPath": ""
+            }
+          },
+          {
+            "id": "DLXt24jhcaaGrWOe",
+            "type": "comment",
+            "name": "",
+            "x": -37.181819915771484,
+            "y": 41.454566955566406,
+            "data": {
+              "text": "# ****This is a macro to open selected Trader for your group****\n\nYou can place this macro inside Tile, so when a player step or click on selected AREA = Opens a Shop",
+              "bgColor": "#5f5326",
+              "w": 245,
+              "h": 179
+            }
+          },
+          {
+            "id": "d5qzGmmrgqrrk0ql",
+            "type": "trigger.macro",
+            "name": "Macro",
+            "x": 3.818131446838379,
+            "y": 274.81829833984375,
             "data": {
               "label": "",
               "once": false,
@@ -659,388 +989,648 @@
             }
           },
           {
-            "id": "MKRgeGdxogHbb9s0",
-            "type": "check",
-            "name": "",
-            "x": 654.9906005859375,
-            "y": 527.1009521484375,
-            "data": {
-              "logicOperator": "AND",
-              "hideBreakdown": true,
-              "quietRoll": false,
-              "checks": [
-                {
-                  "kind": "save",
-                  "key": "dex",
-                  "dc": 15,
-                  "rollMode": "normal"
-                }
-              ],
-              "kind": "skill",
-              "key": "",
-              "dc": 10,
-              "rollMode": "ask"
-            }
-          },
-          {
-            "id": "1YhUfr9oL7TJ9jCD",
-            "type": "end",
-            "name": "",
-            "x": 920.4813842773438,
-            "y": 452.6725769042969,
-            "data": {}
-          },
-          {
-            "id": "lcF60fvQN00DgGKU",
-            "type": "action.healDamage",
-            "name": "",
-            "x": 935.1578979492188,
-            "y": 608.0104370117188,
-            "data": {
-              "mode": "damage",
-              "formula": "1d6",
-              "target": "trigger"
-            }
-          },
-          {
-            "id": "0Yaoau68ogOGEhzQ",
-            "type": "action.applyEffect",
-            "name": "",
-            "x": 1145.727294921875,
-            "y": 608.9998779296875,
-            "data": {
-              "effectId": "bleeding",
-              "mode": "apply",
-              "target": "trigger"
-            }
-          },
-          {
-            "id": "EDUY7UvPfIjphaPX",
+            "id": "kifB6jjmIxt5UIOy",
             "type": "comment",
             "name": "",
-            "x": 411.3699951171875,
-            "y": 341.3200378417969,
+            "x": -34.272666931152344,
+            "y": 330.181640625,
             "data": {
-              "text": "Trap\nWhen a player step in the area => DC 15 dex save.\nFAIL: Apply damage and bleeding effect\nSUCCESS: Nothing",
-              "bgColor": "#5f5326",
-              "w": 220,
-              "h": 120
+              "text": "# How use Macro Node\n- Open \"Macro\" node\n- Click on Button \"Generate a Macro\"\n- Paste a Macro where you want (use ctrl + v)",
+              "bgColor": "#25600b",
+              "w": 265,
+              "h": 116
+            }
+          },
+          {
+            "id": "iDT5LdzN3YZyGCc2",
+            "type": "comment",
+            "name": "",
+            "x": 306.8185119628906,
+            "y": 331.635986328125,
+            "data": {
+              "text": "# How use a trader\n- Create a new Journal Page \"Storyflow Trader\"\n- Put some Items for buy and sell\n- Open this node \"Trader\" and select a trader, that you created\n",
+              "bgColor": "#0c287e",
+              "w": 269,
+              "h": 141
             }
           }
         ],
         "edges": [
           {
-            "id": "link_7",
+            "id": "link_14",
             "source": {
-              "node": "HRMygb90OnWMpZVK",
+              "node": "d5qzGmmrgqrrk0ql",
               "pin": "out"
             },
             "target": {
-              "node": "MKRgeGdxogHbb9s0",
+              "node": "H80rfteGTMOlWW8W",
+              "pin": "in"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "LykKofnrlxGUfv29",
+      "name": "AUTOMATION. Wheater effect - RAIN",
+      "createdAt": "2026-07-23T21:01:59.308Z",
+      "updatedAt": "2026-07-23T21:01:59.308Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "7UZ4ZP5J4iCtK2uZ",
+            "type": "end",
+            "name": "",
+            "x": 450.5454406738281,
+            "y": 79.27269744873047,
+            "data": {}
+          },
+          {
+            "id": "pvHO2zc43EQRUtcB",
+            "type": "trigger.weather",
+            "name": "",
+            "x": -65.73291015625,
+            "y": 191.2003631591797,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "weather": "rain"
+            }
+          },
+          {
+            "id": "wOkRX7qMyHSVnXv4",
+            "type": "condition",
+            "name": "",
+            "x": 193.88888549804688,
+            "y": 191.22769165039062,
+            "data": {
+              "logicOperator": "AND",
+              "target": "trigger",
+              "targetActorId": "",
+              "conditions": [
+                {
+                  "sourceType": "item",
+                  "key": "Traveler's Clothes",
+                  "operator": "EQUALS",
+                  "equipped": true,
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "eju77uqMOdY9Jbjq",
+            "type": "action.applyEffect",
+            "name": "",
+            "x": 866.27490234375,
+            "y": 186.270751953125,
+            "data": {
+              "effectId": "diseased",
+              "mode": "apply",
+              "target": "selected"
+            }
+          },
+          {
+            "id": "hwXVQzJpHcg4UAwr",
+            "type": "action.healDamage",
+            "name": "",
+            "x": 874.7025756835938,
+            "y": 272.37200927734375,
+            "data": {
+              "mode": "damage",
+              "formula": "1d6",
+              "target": "selected"
+            }
+          },
+          {
+            "id": "Qs2vqaBcIi7NeLpy",
+            "type": "branch",
+            "name": "",
+            "x": 633.3199462890625,
+            "y": 248.72012329101562,
+            "data": {
+              "prompt": "Rain! And a player doesnt have a good clothing! ",
+              "decider": "gm",
+              "paths": [
+                {
+                  "id": "S9ePKlXixl0rey5Z",
+                  "label": "He will be sick!"
+                },
+                {
+                  "id": "a0cLFQOVcyk9GaMz",
+                  "label": "He will get some damage! "
+                },
+                {
+                  "id": "bjxhqEElrH8LB4h5",
+                  "label": "Nothing, just ignore this "
+                }
+              ]
+            }
+          },
+          {
+            "id": "K33Gcr129xco9zix",
+            "type": "end",
+            "name": "",
+            "x": 874.6000366210938,
+            "y": 397.5999755859375,
+            "data": {}
+          },
+          {
+            "id": "co4bX7PprJGhwjkh",
+            "type": "random",
+            "name": "",
+            "x": 383.6544189453125,
+            "y": 300.9090881347656,
+            "data": {
+              "paths": [
+                {
+                  "id": "jKhqOSHl1OWGUUvO",
+                  "weight": 10
+                },
+                {
+                  "id": "uYhkyMDggTa0ydDn",
+                  "weight": 90
+                }
+              ]
+            }
+          },
+          {
+            "id": "GJVeqDGxxNOXLaIu",
+            "type": "end",
+            "name": "",
+            "x": 629.0000610351562,
+            "y": 468.79998779296875,
+            "data": {}
+          },
+          {
+            "id": "oxwlZhvwGTdN0Jm1",
+            "type": "comment",
+            "name": "",
+            "x": -102.67549133300781,
+            "y": 9.834670066833496,
+            "data": {
+              "text": "# Weather Trigger - when its RAIN, then RUN this graph",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          },
+          {
+            "id": "lMlQZTMiNrOtW2nF",
+            "type": "comment",
+            "name": "",
+            "x": -112.21749114990234,
+            "y": 267.8501892089844,
+            "data": {
+              "text": "# What this Graph do:\n- Check if a player HAVE Traveler's Clothes\n- If he HAVE = Nothing\n- If he DONT HAVE = HE have 10% probability to: Take some damage, Get Sick or 90% = nothing. \n- When 10% - DM see a small window, that ASK DM what to do",
+              "bgColor": "#1a6510",
+              "w": 264,
+              "h": 192
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_2",
+            "source": {
+              "node": "pvHO2zc43EQRUtcB",
+              "pin": "out"
+            },
+            "target": {
+              "node": "wOkRX7qMyHSVnXv4",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_3",
+            "source": {
+              "node": "wOkRX7qMyHSVnXv4",
+              "pin": "true"
+            },
+            "target": {
+              "node": "7UZ4ZP5J4iCtK2uZ",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_5",
+            "source": {
+              "node": "wOkRX7qMyHSVnXv4",
+              "pin": "false"
+            },
+            "target": {
+              "node": "co4bX7PprJGhwjkh",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_6",
+            "source": {
+              "node": "co4bX7PprJGhwjkh",
+              "pin": "rand_0"
+            },
+            "target": {
+              "node": "Qs2vqaBcIi7NeLpy",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_7",
+            "source": {
+              "node": "Qs2vqaBcIi7NeLpy",
+              "pin": "path_0"
+            },
+            "target": {
+              "node": "eju77uqMOdY9Jbjq",
               "pin": "in"
             }
           },
           {
             "id": "link_8",
             "source": {
-              "node": "MKRgeGdxogHbb9s0",
-              "pin": "success"
+              "node": "Qs2vqaBcIi7NeLpy",
+              "pin": "path_1"
             },
             "target": {
-              "node": "1YhUfr9oL7TJ9jCD",
+              "node": "hwXVQzJpHcg4UAwr",
               "pin": "in"
             }
           },
           {
             "id": "link_9",
             "source": {
-              "node": "MKRgeGdxogHbb9s0",
-              "pin": "failure"
+              "node": "Qs2vqaBcIi7NeLpy",
+              "pin": "path_2"
             },
             "target": {
-              "node": "lcF60fvQN00DgGKU",
+              "node": "K33Gcr129xco9zix",
               "pin": "in"
             }
           },
           {
-            "id": "link_10",
+            "id": "link_8",
             "source": {
-              "node": "lcF60fvQN00DgGKU",
-              "pin": "out"
+              "node": "co4bX7PprJGhwjkh",
+              "pin": "rand_1"
             },
             "target": {
-              "node": "0Yaoau68ogOGEhzQ",
+              "node": "GJVeqDGxxNOXLaIu",
               "pin": "in"
             }
           }
-        ],
-        "groups": []
+        ]
       }
     },
     {
-      "id": "6TKPoOfr1vw2mjdf",
-      "name": "Dialog on the curent map",
-      "createdAt": "2026-08-05T17:43:34.329Z",
-      "updatedAt": "2026-08-05T17:43:34.329Z",
+      "id": "GwTagAMkBtraP4UW",
+      "name": "AUTOMATION. HP Trigger = Different Stuff",
+      "createdAt": "2026-07-23T21:02:03.214Z",
+      "updatedAt": "2026-07-23T21:02:03.214Z",
       "graph": {
         "nodes": [
           {
-            "id": "wHJNCEYiwsz5GG50",
-            "type": "trigger.start",
-            "name": "",
-            "x": 429.8199462890625,
-            "y": 550.840087890625,
-            "data": {
-              "label": ""
-            }
-          },
-          {
-            "id": "zUjhbvpuEF9DkBqN",
-            "type": "showOnMap",
-            "name": "",
-            "x": 656.6285400390625,
-            "y": 547.43017578125,
-            "data": {
-              "sceneId": "",
-              "x": 0,
-              "y": 0,
-              "scale": 1,
-              "duration": 2,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "VzAl6qFfeKluofOT",
-            "type": "text",
-            "name": "",
-            "x": 871.92626953125,
-            "y": 547.8262939453125,
-            "data": {
-              "speakerName": "",
-              "portraitPath": "",
-              "bodyHtml": "",
-              "voiceOverPath": "",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
-            }
-          },
-          {
-            "id": "OTRtsQ8gtclJ2eSq",
-            "type": "choice",
-            "name": "",
-            "x": 1102.132080078125,
-            "y": 546.6277465820312,
-            "data": {
-              "prompt": "",
-              "choices": [
-                {
-                  "id": "DwTHdZXi0G3RBXXq",
-                  "label": "CHOICE 1"
-                },
-                {
-                  "id": "vYSGeqJmPi8s9tUq",
-                  "label": "CHOICE 2"
-                }
-              ],
-              "background": "scene",
-              "backdropPath": "",
-              "timeout": false,
-              "timeoutSeconds": 10
-            }
-          },
-          {
-            "id": "iNlP0sqwnkvPzojT",
-            "type": "text",
-            "name": "",
-            "x": 1324.239013671875,
-            "y": 465.4297790527344,
-            "data": {
-              "speakerName": "",
-              "portraitPath": "",
-              "bodyHtml": "",
-              "voiceOverPath": "",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
-            }
-          },
-          {
-            "id": "Eu4mbWvd5IkqO9tk",
-            "type": "text",
-            "name": "",
-            "x": 1343.4954833984375,
-            "y": 639.2305908203125,
-            "data": {
-              "speakerName": "",
-              "portraitPath": "",
-              "bodyHtml": "",
-              "voiceOverPath": "",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
-            }
-          },
-          {
-            "id": "lUotB11SaGNlQyG4",
+            "id": "iCofh2la1t3vTRBC",
             "type": "comment",
             "name": "",
-            "x": 405.360107421875,
-            "y": 354.6900634765625,
+            "x": 38.159969329833984,
+            "y": 83.63992309570312,
             "data": {
-              "text": "# Dialog on the current map\n1) Select point on the map in \"Show on map\" node\n2) Write some text in \"text\" node\n3) Write choices in \"Choice\" node",
+              "text": "# This is HP trigger Node \nIf HP is lower then X => run this graph (check this node for more info)\n",
               "bgColor": "#5f5326",
-              "w": 289,
-              "h": 118
+              "w": 220,
+              "h": 120
+            }
+          },
+          {
+            "id": "lrMWq9pDuiAfSUfB",
+            "type": "comment",
+            "name": "",
+            "x": 26.483606338500977,
+            "y": 319.9963684082031,
+            "data": {
+              "text": "# How to use\n1) Imagine the following situation: when your SELECTED character's health drops below a certain threshold, they can say something to their friends before they die, to make that moment more epic.\n\n2) You can track boss stages and add effects to the map, spawn tokens, etc.\n\n3) You can set it up so that someone shouts something out when HP drops below X.",
+              "bgColor": "#325f26",
+              "w": 307,
+              "h": 297
+            }
+          },
+          {
+            "id": "enGZGz1mHMcOfhsJ",
+            "type": "display",
+            "name": "",
+            "x": 304.9998779296875,
+            "y": 256.72003173828125,
+            "data": {
+              "speakerName": "",
+              "portraitPath": "",
+              "bodyHtml": "",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "iFBV7eykibcHi5dW",
+            "type": "display",
+            "name": "",
+            "x": 564.1204833984375,
+            "y": 257.9999084472656,
+            "data": {
+              "speakerName": "",
+              "portraitPath": "",
+              "bodyHtml": "",
+              "backdropPath": "",
+              "voiceOverPath": "",
+              "ambientPath": "",
+              "typewriter": true,
+              "cps": 40,
+              "autoAdvance": false,
+              "autoAdvanceDelay": 1500
+            }
+          },
+          {
+            "id": "uhbjmHaAAaLXyMqx",
+            "type": "trigger.hp",
+            "name": "",
+            "x": 67.95994567871094,
+            "y": 257.6000671386719,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "mode": "death",
+              "threshold": 50,
+              "stage": "2",
+              "maxFires": 0,
+              "whoTriggers": "specific",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "Q56XUWqiwellSJHf",
+            "type": "audio",
+            "name": "",
+            "x": 646.800048828125,
+            "y": 379.5999755859375,
+            "data": {
+              "audioPath": "",
+              "mode": "once",
+              "volume": 100,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "YjeNQIDpPkMrbPFs",
+            "type": "trigger.hp",
+            "name": "",
+            "x": 386.7245788574219,
+            "y": 383.103515625,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "mode": "death",
+              "threshold": 50,
+              "stage": "2",
+              "maxFires": 0,
+              "whoTriggers": "specific",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "cOO3NVD1M18DS6bq",
+            "type": "trigger.hp",
+            "name": "",
+            "x": 383.60455322265625,
+            "y": 505.8235778808594,
+            "data": {
+              "label": "",
+              "once": false,
+              "enabled": true,
+              "mode": "death",
+              "threshold": 50,
+              "stage": "2",
+              "maxFires": 0,
+              "whoTriggers": "specific",
+              "specificActorIds": []
+            }
+          },
+          {
+            "id": "9TL8dnsPGVcnc6kL",
+            "type": "action.token",
+            "name": "",
+            "x": 621.1201171875,
+            "y": 503.39996337890625,
+            "data": {
+              "operation": "move",
+              "targeting": "captured",
+              "sceneId": "",
+              "tokenIds": [],
+              "tag": "",
+              "tagScope": "active",
+              "actorIds": [],
+              "duration": 1,
+              "actorUuid": "",
+              "destMode": "point",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "",
+              "destTagScope": "active"
             }
           }
         ],
         "edges": [
           {
-            "id": "link_12",
+            "id": "link_1",
             "source": {
-              "node": "wHJNCEYiwsz5GG50",
+              "node": "uhbjmHaAAaLXyMqx",
               "pin": "out"
             },
             "target": {
-              "node": "zUjhbvpuEF9DkBqN",
+              "node": "enGZGz1mHMcOfhsJ",
               "pin": "in"
             }
           },
           {
-            "id": "link_13",
+            "id": "link_2",
             "source": {
-              "node": "zUjhbvpuEF9DkBqN",
+              "node": "enGZGz1mHMcOfhsJ",
               "pin": "out"
             },
             "target": {
-              "node": "VzAl6qFfeKluofOT",
+              "node": "iFBV7eykibcHi5dW",
               "pin": "in"
             }
           },
           {
-            "id": "link_14",
+            "id": "link_3",
             "source": {
-              "node": "VzAl6qFfeKluofOT",
+              "node": "YjeNQIDpPkMrbPFs",
               "pin": "out"
             },
             "target": {
-              "node": "OTRtsQ8gtclJ2eSq",
+              "node": "Q56XUWqiwellSJHf",
               "pin": "in"
             }
           },
           {
             "id": "link_4",
             "source": {
-              "node": "OTRtsQ8gtclJ2eSq",
-              "pin": "choice_0"
+              "node": "cOO3NVD1M18DS6bq",
+              "pin": "out"
             },
             "target": {
-              "node": "iNlP0sqwnkvPzojT",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_5",
-            "source": {
-              "node": "OTRtsQ8gtclJ2eSq",
-              "pin": "choice_1"
-            },
-            "target": {
-              "node": "Eu4mbWvd5IkqO9tk",
+              "node": "9TL8dnsPGVcnc6kL",
               "pin": "in"
             }
           }
-        ],
-        "groups": []
+        ]
       }
     },
     {
-      "id": "hyei4YDXKFklQA2F",
-      "name": "Epic Check",
-      "createdAt": "2026-08-05T17:47:05.957Z",
-      "updatedAt": "2026-08-05T17:47:05.957Z",
+      "id": "keVC52ukZxYdluNs",
+      "name": "AUTOMATION. Timer Node for events",
+      "createdAt": "2026-07-23T21:02:15.347Z",
+      "updatedAt": "2026-07-23T21:02:15.347Z",
       "graph": {
         "nodes": [
           {
-            "id": "iEziPOwhIbgZI52A",
+            "id": "xN5349iwzZbvTGcu",
+            "type": "trigger.timer",
+            "name": "",
+            "x": 12.363228797912598,
+            "y": 266.96710205078125,
+            "data": {
+              "enabled": false,
+              "anchorYear": 735,
+              "anchorMonth": "0",
+              "anchorDay": 3,
+              "anchorHour": 2,
+              "every": 1,
+              "unit": "days",
+              "once": false
+            }
+          },
+          {
+            "id": "021pCRVT8I916FDo",
+            "type": "comment",
+            "name": "",
+            "x": 23.6800537109375,
+            "y": 79.19995880126953,
+            "data": {
+              "text": "# Timer Node\n- Use it when you want to make something happen in exact day and exact time \n",
+              "bgColor": "#5f5326",
+              "w": 220,
+              "h": 120
+            }
+          },
+          {
+            "id": "6dFbY8ZmQRYTQGcU",
+            "type": "quest",
+            "name": "",
+            "x": 412.3199462890625,
+            "y": 260.1600341796875,
+            "data": {
+              "targetType": "quest",
+              "targetUuid": "",
+              "operation": "setStatus",
+              "objectiveId": "",
+              "status": "failed"
+            }
+          },
+          {
+            "id": "OqFS0nuXTjpl29rp",
+            "type": "comment",
+            "name": "",
+            "x": 17.920013427734375,
+            "y": 373.51995849609375,
+            "data": {
+              "text": "# Example\n- In Curse of Strahd you have only X days to save Vallaki. So we created a trigger node \"TImer\" and when will be the day X you automaticly change Quest Status to FAIL ",
+              "bgColor": "#275f26",
+              "w": 232,
+              "h": 160
+            }
+          },
+          {
+            "id": "fV1cwcRiHmm5KWKx",
+            "type": "comment",
+            "name": "",
+            "x": 325.4400939941406,
+            "y": 379.1999816894531,
+            "data": {
+              "text": "# Important \n- Don't forget to Turn off this Automation, if you don't want to show it to your players! \n- Open \"Timer\" node and select \"Disabled\"",
+              "bgColor": "#5d1426",
+              "w": 232,
+              "h": 139
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "link_5",
+            "source": {
+              "node": "xN5349iwzZbvTGcu",
+              "pin": "out"
+            },
+            "target": {
+              "node": "6dFbY8ZmQRYTQGcU",
+              "pin": "in"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "yBK8BLbtM8OvVg5L",
+      "name": "Loot Boxes",
+      "createdAt": "2026-07-23T21:02:18.757Z",
+      "updatedAt": "2026-07-23T21:02:18.757Z",
+      "graph": {
+        "nodes": [
+          {
+            "id": "xggS2hDOjb7Jedx6",
             "type": "trigger.start",
             "name": "",
-            "x": 416,
-            "y": 394,
+            "x": 16,
+            "y": 409,
             "data": {
               "label": ""
             }
           },
           {
-            "id": "srYXPBL4AaE123yJ",
-            "type": "check",
+            "id": "8uurC2h2EJpI3g4r",
+            "type": "crate",
             "name": "",
-            "x": 639.4003295898438,
-            "y": 389.4999694824219,
+            "x": 316.3598937988281,
+            "y": 408.5199279785156,
             "data": {
-              "logicOperator": "AND",
-              "hideBreakdown": true,
-              "quietRoll": false,
-              "checks": [
-                {
-                  "kind": "skill",
-                  "key": "ste",
-                  "dc": 10,
-                  "rollMode": "ask"
-                }
-              ],
-              "kind": "skill",
-              "key": "",
-              "dc": 10,
-              "rollMode": "ask"
+              "title": "",
+              "text": "",
+              "costGold": 0,
+              "maxSpins": 0,
+              "items": [],
+              "audience": "participants"
             }
           },
           {
-            "id": "aHztJCkhTBMSWLT1",
-            "type": "notification",
-            "name": "",
-            "x": 924.9002075195312,
-            "y": 325.2998352050781,
-            "data": {
-              "style": "toast",
-              "text": "You are save! ",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "PsspQ2DYyfI4WNiQ",
-            "type": "notification",
-            "name": "",
-            "x": 933.0001220703125,
-            "y": 454.3998718261719,
-            "data": {
-              "style": "toast",
-              "text": "Some body see you! ",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "u5TeKMb1fpvXeZVy",
+            "id": "v9yFODhFmcyL6uTw",
             "type": "comment",
             "name": "",
-            "x": 402.89990234375,
-            "y": 164.3999481201172,
+            "x": 267.280029296875,
+            "y": 237.8799285888672,
             "data": {
-              "text": "# Epic roll for stealth \n1) Select a skill in \"check\" node\n2) Change text in \"Notification\" node",
-              "bgColor": "#5f5326",
+              "text": "Loot Crate is grate way to make some fun with your players. \n\n**Right Click on \"Crate\" Node and select \"Guide\"**",
+              "bgColor": "#265f39",
               "w": 220,
               "h": 120
             }
@@ -1048,902 +1638,1962 @@
         ],
         "edges": [
           {
-            "id": "link_6",
-            "source": {
-              "node": "iEziPOwhIbgZI52A",
-              "pin": "out"
-            },
-            "target": {
-              "node": "srYXPBL4AaE123yJ",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_7",
-            "source": {
-              "node": "srYXPBL4AaE123yJ",
-              "pin": "success"
-            },
-            "target": {
-              "node": "aHztJCkhTBMSWLT1",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_3",
-            "source": {
-              "node": "srYXPBL4AaE123yJ",
-              "pin": "failure"
-            },
-            "target": {
-              "node": "PsspQ2DYyfI4WNiQ",
-              "pin": "in"
-            }
-          }
-        ],
-        "groups": []
-      }
-    },
-    {
-      "id": "lcIEQqQvLLR0ZzFl",
-      "name": "Region. Remove item and give gold",
-      "createdAt": "2026-08-05T17:54:24.812Z",
-      "updatedAt": "2026-08-05T18:02:46.719Z",
-      "graph": {
-        "nodes": [
-          {
-            "id": "2b5rGVDPoL9qUd8e",
-            "type": "action.giveItem",
-            "name": "",
-            "x": 511.8999938964844,
-            "y": 347.5999755859375,
-            "data": {
-              "mode": "remove",
-              "itemUuid": "Item.i2AZoL6YbblIUr2r",
-              "quantity": 1
-            }
-          },
-          {
-            "id": "RudNoyiUZkFmDTX4",
-            "type": "action.giveGold",
-            "name": "",
-            "x": 744.7998657226562,
-            "y": 346.0998229980469,
-            "data": {
-              "mode": "give",
-              "formula": "10",
-              "target": "trigger"
-            }
-          },
-          {
-            "id": "gvidhB44xbgV2Nsu",
-            "type": "trigger.region",
-            "name": "",
-            "x": 293.5999755859375,
-            "y": 346.4999084472656,
-            "data": {
-              "label": "",
-              "once": false,
-              "enabled": true,
-              "whoTriggers": "any",
-              "specificActorIds": []
-            }
-          },
-          {
-            "id": "K7Fj5vDdIEp6hWPF",
-            "type": "comment",
-            "name": "",
-            "x": 258.9000244140625,
-            "y": 136.20004272460938,
-            "data": {
-              "text": "# Remove item and give some gold.\n\nExample: Player for in the mine and went to some place, where he can sell this item. \n\n",
-              "bgColor": "#5f5326",
-              "w": 244,
-              "h": 143
-            }
-          },
-          {
-            "id": "ksLxhFZLmWBAkeqa",
-            "type": "trigger.start",
-            "name": "",
-            "x": 294.2801208496094,
-            "y": 475.3599853515625,
-            "data": {
-              "label": ""
-            }
-          },
-          {
-            "id": "jHmTkxjEcs2HlvyW",
-            "type": "comment",
-            "name": "",
-            "x": 483.7999267578125,
-            "y": 466.8800354003906,
-            "data": {
-              "text": "You can swap \"Region\" Node with \"Start\" node",
-              "bgColor": "#5f5326",
-              "w": 209,
-              "h": 55
-            }
-          }
-        ],
-        "edges": [
-          {
-            "id": "link_5",
-            "source": {
-              "node": "2b5rGVDPoL9qUd8e",
-              "pin": "out"
-            },
-            "target": {
-              "node": "RudNoyiUZkFmDTX4",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_6",
-            "source": {
-              "node": "gvidhB44xbgV2Nsu",
-              "pin": "out"
-            },
-            "target": {
-              "node": "2b5rGVDPoL9qUd8e",
-              "pin": "in"
-            }
-          }
-        ],
-        "groups": []
-      }
-    },
-    {
-      "id": "d91xCoi9wURvojbw",
-      "name": "Spawn enemy tokens on selected tiles",
-      "createdAt": "2026-08-05T17:59:03.207Z",
-      "updatedAt": "2026-08-05T17:59:03.207Z",
-      "graph": {
-        "nodes": [
-          {
-            "id": "76jmpRqZiQy0swJ4",
-            "type": "trigger.start",
-            "name": "",
-            "x": 246,
-            "y": 338,
-            "data": {
-              "label": ""
-            }
-          },
-          {
-            "id": "gjHBO0AfybL4siB3",
-            "type": "action.token",
-            "name": "",
-            "x": 477,
-            "y": 338,
-            "data": {
-              "operation": "create",
-              "targeting": "captured",
-              "sceneId": "",
-              "tokenIds": [],
-              "tag": "",
-              "tagScope": "active",
-              "actorIds": [],
-              "duration": 1,
-              "actorUuid": "",
-              "destMode": "tag",
-              "destSceneId": "",
-              "destX": 0,
-              "destY": 0,
-              "destTileId": "",
-              "destTag": "",
-              "destTagScope": "active"
-            }
-          },
-          {
-            "id": "4LTbwYK6MOQ7eqqw",
-            "type": "action.token",
-            "name": "",
-            "x": 713,
-            "y": 336,
-            "data": {
-              "operation": "create",
-              "targeting": "captured",
-              "sceneId": "",
-              "tokenIds": [],
-              "tag": "",
-              "tagScope": "active",
-              "actorIds": [],
-              "duration": 1,
-              "actorUuid": "",
-              "destMode": "tag",
-              "destSceneId": "",
-              "destX": 0,
-              "destY": 0,
-              "destTileId": "",
-              "destTag": "",
-              "destTagScope": "active"
-            }
-          },
-          {
-            "id": "N1CspgHyOmpkUnEl",
-            "type": "action.token",
-            "name": "",
-            "x": 930,
-            "y": 335,
-            "data": {
-              "operation": "create",
-              "targeting": "captured",
-              "sceneId": "",
-              "tokenIds": [],
-              "tag": "",
-              "tagScope": "active",
-              "actorIds": [],
-              "duration": 1,
-              "actorUuid": "",
-              "destMode": "tag",
-              "destSceneId": "",
-              "destX": 0,
-              "destY": 0,
-              "destTileId": "",
-              "destTag": "",
-              "destTagScope": "active"
-            }
-          },
-          {
-            "id": "cYbLmuVhaLtupcYS",
-            "type": "comment",
-            "name": "",
-            "x": 224,
-            "y": 51,
-            "data": {
-              "text": "# Spawn tokens on the tile\n1) Open token node\n2) select an actor to spawn \n3) in tagger field write a tag of the tile\n4) In next node select different tag to tile \n\nExample: \nYou want to spawn 3 enemy tokens in exact place. You can swap \"Start\" node with \"Region Trigger\" node",
-              "bgColor": "#5f5326",
-              "w": 357,
-              "h": 201
-            }
-          }
-        ],
-        "edges": [
-          {
-            "id": "link_7",
-            "source": {
-              "node": "76jmpRqZiQy0swJ4",
-              "pin": "out"
-            },
-            "target": {
-              "node": "gjHBO0AfybL4siB3",
-              "pin": "in"
-            }
-          },
-          {
             "id": "link_2",
             "source": {
-              "node": "gjHBO0AfybL4siB3",
+              "node": "xggS2hDOjb7Jedx6",
               "pin": "out"
             },
             "target": {
-              "node": "4LTbwYK6MOQ7eqqw",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_3",
-            "source": {
-              "node": "4LTbwYK6MOQ7eqqw",
-              "pin": "out"
-            },
-            "target": {
-              "node": "N1CspgHyOmpkUnEl",
+              "node": "8uurC2h2EJpI3g4r",
               "pin": "in"
             }
           }
-        ],
-        "groups": []
+        ]
       }
     },
     {
-      "id": "YYd7HRddBYt7erV3",
-      "name": "Complex dialog with quest reveal and jump node",
-      "createdAt": "2026-08-05T18:09:30.019Z",
-      "updatedAt": "2026-08-05T18:09:30.019Z",
+      "id": "UEqwFogskixHPKAj",
+      "name": "ADVANCED. ANIMATIONS FROM REDDIT (Check the video link inside)",
+      "createdAt": "2026-07-23T21:02:22.449Z",
+      "updatedAt": "2026-07-23T21:02:22.449Z",
       "graph": {
         "nodes": [
           {
-            "id": "fDLP7mo8eMhk5BQA",
-            "type": "text",
+            "id": "JKEH31IFJVsWlyMN",
+            "type": "wait",
             "name": "",
-            "x": 774.9951782226562,
-            "y": 489.39642333984375,
+            "x": 1258.2730712890625,
+            "y": 670.5452270507812,
             "data": {
-              "speakerName": "Master",
-              "portraitPath": "5uao5.jpg",
-              "bodyHtml": "The man reeks of a pungent, musty odor; the capillaries in his eyes have burst, and his clothes are completely torn.",
-              "voiceOverPath": "storyflow-recordings/the-man-reeks.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
+              "seconds": 1
             }
           },
           {
-            "id": "I67IkugwOsYlqN0S",
-            "type": "text",
+            "id": "JcMgb1ngEi4cBFit",
+            "type": "wait",
             "name": "",
-            "x": 956.8134155273438,
-            "y": 484.107177734375,
+            "x": 1624.3673095703125,
+            "y": 670.6162719726562,
             "data": {
-              "speakerName": "Stranger",
-              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
-              "bodyHtml": "You have to understand me, we must do what is destined! We must free ourselves! Cast off the shackles of slavery! Tomorrow night, I will be waiting for you in the woods.",
-              "voiceOverPath": "storyflow-recordings/you-have-to.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
+              "seconds": 1
             }
           },
           {
-            "id": "X0a2hxQmjxt9xW2F",
-            "type": "text",
+            "id": "86t2n46VbCTTGoQi",
+            "type": "audio",
             "name": "",
-            "x": 1398.1353759765625,
-            "y": 644.437744140625,
+            "x": 1257,
+            "y": 800,
             "data": {
-              "speakerName": "Stranger",
-              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
-              "bodyHtml": "It doesn't matter who I am, what matters is who you are! Will you come with me?",
-              "voiceOverPath": "storyflow-recordings/it-doesn-t-matter.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
             }
           },
           {
-            "id": "VMPXShrn97gus3X2",
-            "type": "text",
+            "id": "yLzqrij0uRj9laFP",
+            "type": "action.effect",
             "name": "",
-            "x": 1395.16015625,
-            "y": 527.7434692382812,
+            "x": 1438.888916015625,
+            "y": 666.2581176757812,
             "data": {
-              "speakerName": "Stranger",
-              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
-              "bodyHtml": "Excellent! Glory to our path of liberation!",
-              "voiceOverPath": "storyflow-recordings/excellent-glory-to.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
-            }
-          },
-          {
-            "id": "9A3vve2gQVADV4hU",
-            "type": "text",
-            "name": "",
-            "x": 1405.1142578125,
-            "y": 426.22515869140625,
-            "data": {
-              "speakerName": "Stranger",
-              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
-              "bodyHtml": "Fool! I wanted to grant you freedom, and you threw it away so easily!",
-              "voiceOverPath": "storyflow-recordings/fool-i-wanted.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
-            }
-          },
-          {
-            "id": "9kB6uOwAxhvBVgNo",
-            "type": "trigger.region",
-            "name": "",
-            "x": 144.80001831054688,
-            "y": 481.8799743652344,
-            "data": {
-              "label": "",
-              "once": false,
-              "enabled": true,
-              "whoTriggers": "any",
-              "specificActorIds": []
-            }
-          },
-          {
-            "id": "D1z8xYOAfxB7CvGy",
-            "type": "showOnMap",
-            "name": "",
-            "x": 361.9201354980469,
-            "y": 487.8399658203125,
-            "data": {
-              "sceneId": "",
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
               "x": 0,
               "y": 0,
-              "scale": 1,
+              "sourceX": 2350,
+              "sourceY": 1450,
+              "targetX": 2050,
+              "targetY": 1850,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "QSFn5DGk7Y2mECzT",
+            "type": "audio",
+            "name": "",
+            "x": 1585,
+            "y": 793,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "UQSafA5oabKuliCM",
+            "type": "audio",
+            "name": "",
+            "x": 1955,
+            "y": 809,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "cVosj6Xinnpq62Pq",
+            "type": "action.effect",
+            "name": "",
+            "x": 1803.5328369140625,
+            "y": 678.4279174804688,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2050,
+              "sourceY": 1450,
+              "targetX": 1850,
+              "targetY": 1750,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "Fa26eqf7YLqYE0bG",
+            "type": "audio",
+            "name": "",
+            "x": 2190,
+            "y": 808,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "rweVssBs0jWHB0pv",
+            "type": "action.effect",
+            "name": "",
+            "x": 1971.18701171875,
+            "y": 671.2378540039062,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2450,
+              "sourceY": 1450,
+              "targetX": 2550,
+              "targetY": 1950,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "UJHPxfbCgY3VLeot",
+            "type": "action.effect",
+            "name": "",
+            "x": 1957.947021484375,
+            "y": 973.8077392578125,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2450,
+              "sourceY": 1450,
+              "targetX": 2550,
+              "targetY": 1950,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "zcftOhg73PimYet2",
+            "type": "wait",
+            "name": "",
+            "x": 1245.0330810546875,
+            "y": 973.1151123046875,
+            "data": {
+              "seconds": 1
+            }
+          },
+          {
+            "id": "W4yqEZcLRBVJjWHS",
+            "type": "wait",
+            "name": "",
+            "x": 1611.1273193359375,
+            "y": 973.1861572265625,
+            "data": {
+              "seconds": 1
+            }
+          },
+          {
+            "id": "gD2cTL4znGHAHEGm",
+            "type": "audio",
+            "name": "",
+            "x": 1243.760009765625,
+            "y": 1102.5699462890625,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "1YGXwIvjNRz7OMOZ",
+            "type": "action.effect",
+            "name": "",
+            "x": 1425.64892578125,
+            "y": 968.8280029296875,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2350,
+              "sourceY": 1450,
+              "targetX": 2050,
+              "targetY": 1850,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "slY8a6bL5sIjSuJB",
+            "type": "audio",
+            "name": "",
+            "x": 1571.760009765625,
+            "y": 1095.5699462890625,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "7mGjRVGUVZLd5jcg",
+            "type": "audio",
+            "name": "",
+            "x": 1941.760009765625,
+            "y": 1111.5699462890625,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "5Px6mm6ZxWMexs9l",
+            "type": "action.effect",
+            "name": "",
+            "x": 1790.2928466796875,
+            "y": 980.9977416992188,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2050,
+              "sourceY": 1450,
+              "targetX": 1850,
+              "targetY": 1750,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "alTqskV65KiMT9g0",
+            "type": "audio",
+            "name": "",
+            "x": 2176.760986328125,
+            "y": 1110.5699462890625,
+            "data": {
+              "audioPath": "Sounds/Effects/thunder-single-hit.mp3",
+              "mode": "once",
+              "volume": 50,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "M3I1Xh3E1aukCrc3",
+            "type": "action.effect",
+            "name": "",
+            "x": 1020.7098999023438,
+            "y": 971.845703125,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2350,
+              "sourceY": 1450,
+              "targetX": 2650,
+              "targetY": 1850,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "VWTOCKsOhDYwD06T",
+            "type": "wait",
+            "name": "",
+            "x": 2183.2490234375,
+            "y": 665.1508178710938,
+            "data": {
+              "seconds": 3
+            }
+          },
+          {
+            "id": "EbVwoaAe225BJ8zs",
+            "type": "wait",
+            "name": "",
+            "x": 2170.010009765625,
+            "y": 967.720703125,
+            "data": {
+              "seconds": 3
+            }
+          },
+          {
+            "id": "O4Byl0dcSoFX20G5",
+            "type": "action.effect",
+            "name": "",
+            "x": 1033.949951171875,
+            "y": 669.2758178710938,
+            "data": {
+              "animation": "jb2a.chain_lightning.secondary.blue",
+              "target": "line",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 2350,
+              "sourceY": 1450,
+              "targetX": 2650,
+              "targetY": 1850,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 3,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "e1au6b35gqUB5flp",
+            "type": "action.light",
+            "name": "",
+            "x": 1027.8798828125,
+            "y": 520.1500854492188,
+            "data": {
+              "operation": "on",
+              "targeting": "tag",
+              "sceneId": "",
+              "lightIds": [],
+              "tag": "vortex",
+              "tagScope": "active",
+              "setColor": false,
+              "color": "#ffffff",
+              "dim": null,
+              "bright": null,
+              "alpha": null,
+              "angle": null,
+              "animationType": "",
+              "animationSpeed": null,
+              "animationIntensity": null,
+              "animationReverse": "unchanged",
+              "darknessMin": null,
+              "darknessMax": null,
+              "coloration": null,
+              "luminosity": null,
+              "saturation": null,
+              "contrast": null,
+              "attenuation": null,
+              "shadows": null,
+              "negative": "unchanged",
+              "priority": null
+            }
+          },
+          {
+            "id": "X5lQ0MZdVx4PpRMz",
+            "type": "action.light",
+            "name": "",
+            "x": 393.9097595214844,
+            "y": 522.6400756835938,
+            "data": {
+              "operation": "off",
+              "targeting": "tag",
+              "sceneId": "",
+              "lightIds": [],
+              "tag": "Light-torch",
+              "tagScope": "active",
+              "setColor": false,
+              "color": "#ffffff",
+              "dim": null,
+              "bright": null,
+              "alpha": null,
+              "angle": null,
+              "animationType": "",
+              "animationSpeed": null,
+              "animationIntensity": null,
+              "animationReverse": "unchanged",
+              "darknessMin": null,
+              "darknessMax": null,
+              "coloration": null,
+              "luminosity": null,
+              "saturation": null,
+              "contrast": null,
+              "attenuation": null,
+              "shadows": null,
+              "negative": "unchanged",
+              "priority": null
+            }
+          },
+          {
+            "id": "YnsVHu7ijTmoaNLF",
+            "type": "showOnMap",
+            "name": "",
+            "x": 293.43756103515625,
+            "y": 1523.2972412109375,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2376,
+              "y": 2783,
+              "scale": 1.2889774507913858,
               "duration": 2,
               "audience": "all"
             }
           },
           {
-            "id": "DfbTmix9SnBNMFJ6",
-            "type": "text",
+            "id": "HI4ppfHo4ucDyGGk",
+            "type": "action.light",
             "name": "",
-            "x": 577.6397705078125,
-            "y": 485.7600402832031,
+            "x": 547.9998779296875,
+            "y": 1530.7274169921875,
             "data": {
-              "speakerName": "Stranger",
-              "portraitPath": "Images/Old/%D0%9E%D1%82%D0%B5%D1%86%20%D0%9B%D1%83%D0%BA%D1%8C%D1%8F%D0%BD.png",
-              "bodyHtml": "Listen, listen to me. The end is near. You and I both know it, believe me...",
-              "voiceOverPath": "storyflow-recordings/listen-listen-to.mp3",
-              "background": "scene",
-              "typewriter": true,
-              "cps": 40,
-              "autoAdvance": false,
-              "autoAdvanceDelay": 1500
+              "operation": "on",
+              "targeting": "tag",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "lightIds": [
+                "CSxoPCvulC8G9ufS",
+                "pVczcvT61TMY5OQ6"
+              ],
+              "tag": "light-hands",
+              "tagScope": "active",
+              "setColor": false,
+              "color": "#ffffff",
+              "dim": null,
+              "bright": null,
+              "alpha": null,
+              "angle": null,
+              "animationType": "",
+              "animationSpeed": null,
+              "animationIntensity": null,
+              "animationReverse": "unchanged",
+              "darknessMin": null,
+              "darknessMax": null,
+              "coloration": null,
+              "luminosity": null,
+              "saturation": null,
+              "contrast": null,
+              "attenuation": null,
+              "shadows": null,
+              "negative": "unchanged",
+              "priority": null
             }
           },
           {
-            "id": "vOxVsML1iDeUwWjz",
-            "type": "quest",
+            "id": "7lTZWPdofvH5z2AA",
+            "type": "audio",
             "name": "",
-            "x": 1882.396728515625,
-            "y": 524.5897827148438,
+            "x": 966.818359375,
+            "y": 1536.636474609375,
             "data": {
-              "targetType": "quest",
-              "targetUuid": "JournalEntry.kc1gR1jde4E1WZcV.JournalEntryPage.CMWDWf8H5SV3aDDD",
-              "operation": "announce",
-              "objectiveId": "",
-              "status": "active"
+              "audioPath": "Sounds/Effects/dver-skripit--taynaya-komnata.mp3",
+              "mode": "once",
+              "volume": 80,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
             }
           },
           {
-            "id": "h6RMUdWgU4ccnxCl",
-            "type": "notification",
+            "id": "JrMfUZH7EAo46oFg",
+            "type": "action.light",
             "name": "",
-            "x": 1612.825927734375,
-            "y": 525.3555297851562,
+            "x": 753.4550170898438,
+            "y": 1537.091064453125,
             "data": {
-              "style": "toast",
-              "text": "New Quest Available",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
+              "operation": "off",
+              "targeting": "tag",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "lightIds": [
+                "CSxoPCvulC8G9ufS",
+                "pVczcvT61TMY5OQ6"
+              ],
+              "tag": "vortex",
+              "tagScope": "active",
+              "setColor": false,
+              "color": "#ffffff",
+              "dim": null,
+              "bright": null,
+              "alpha": null,
+              "angle": null,
+              "animationType": "",
+              "animationSpeed": null,
+              "animationIntensity": null,
+              "animationReverse": "unchanged",
+              "darknessMin": null,
+              "darknessMax": null,
+              "coloration": null,
+              "luminosity": null,
+              "saturation": null,
+              "contrast": null,
+              "attenuation": null,
+              "shadows": null,
+              "negative": "unchanged",
+              "priority": null
+            }
+          },
+          {
+            "id": "Rs8OmOSlHDYe9liE",
+            "type": "audio",
+            "name": "",
+            "x": 970.4542846679688,
+            "y": 1634.8184814453125,
+            "data": {
+              "audioPath": "Sounds/Effects/dver-skripit--taynaya-komnata.mp3",
+              "mode": "once",
+              "volume": 80,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "J70gP3EqAFAv3FV3",
+            "type": "action.effect",
+            "name": "",
+            "x": 1190.447021484375,
+            "y": 1540.306884765625,
+            "data": {
+              "animation": "jb2a.magic_signs.circle.02.conjuration.complete.dark_yellow",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2350,
+              "y": 2750,
+              "sourceX": 2350,
+              "sourceY": 1450,
+              "targetX": 2650,
+              "targetY": 1850,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 1,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "fqQKnybOq6wSHp3X",
+            "type": "audio",
+            "name": "",
+            "x": 1741.399169921875,
+            "y": 1538.2001953125,
+            "data": {
+              "audioPath": "Sounds/Effects/monster-single-long-moaning.mp3",
+              "mode": "once",
+              "volume": 80,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "vbavpok1RinQPDpr",
+            "type": "action.token",
+            "name": "",
+            "x": 1943.39990234375,
+            "y": 1545.3001708984375,
+            "data": {
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "",
+              "tokenIds": [],
+              "tag": "",
+              "tagScope": "active",
+              "duration": 1,
+              "actorUuid": "Actor.B7lBOr1AahNZs4a6",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "create",
+              "destTagScope": "active"
+            }
+          },
+          {
+            "id": "0U9KE5ForCKD2Znz",
+            "type": "action.effect",
+            "name": "",
+            "x": 2148.300537109375,
+            "y": 1548.1014404296875,
+            "data": {
+              "animation": "jb2a.arms_of_hadar.dark_purple",
+              "target": "tokens",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 0,
+              "y": 0,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [
+                "eUHgzWd2WtlUB1fW"
+              ],
+              "tokenRefs": [
+                {
+                  "tokenId": "eUHgzWd2WtlUB1fW",
+                  "actorId": "B7lBOr1AahNZs4a6",
+                  "name": "Archmage"
+                }
+              ],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 4,
+              "belowTokens": true,
+              "opacity": 1,
+              "fadeIn": 500,
+              "fadeOut": 500,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": true,
+              "name": "token",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "eEsyD9pZwqGjslZR",
+            "type": "action.effect",
+            "name": "",
+            "x": 1420.50048828125,
+            "y": 1541.9033203125,
+            "data": {
+              "animation": "jb2a.bats.loop.01.red",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2350,
+              "y": 2750,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [
+                "eUHgzWd2WtlUB1fW"
+              ],
+              "tokenRefs": [
+                {
+                  "tokenId": "eUHgzWd2WtlUB1fW",
+                  "actorId": "B7lBOr1AahNZs4a6",
+                  "name": "Archmage"
+                }
+              ],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 1,
+              "belowTokens": true,
+              "opacity": 1,
+              "fadeIn": 500,
+              "fadeOut": 500,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "5NRaE24Sr305okKm",
+            "type": "showOnMap",
+            "name": "",
+            "x": 613.1101684570312,
+            "y": 1793.42041015625,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2370,
+              "y": 2337,
+              "scale": 1.3262058240651715,
+              "duration": 2,
               "audience": "all"
             }
           },
           {
-            "id": "sxndhuzR1A7reZaQ",
-            "type": "comment",
+            "id": "JfpsXKq3tjdYVXfb",
+            "type": "action.token",
             "name": "",
-            "x": 32.09093475341797,
-            "y": 319.7274475097656,
+            "x": 1711.7056884765625,
+            "y": 1779.451416015625,
             "data": {
-              "text": "# Example of a complex dialog with Quest Reveal and Jump Node. ",
-              "bgColor": "#5f5326",
-              "w": 346,
-              "h": 69
-            }
-          },
-          {
-            "id": "s812WTB7PrQ1ZjYa",
-            "type": "comment",
-            "name": "",
-            "x": 341.199951171875,
-            "y": 403.20001220703125,
-            "data": {
-              "text": "Show something on the map\n",
-              "bgColor": "#076e29",
-              "w": 173,
-              "h": 48
-            }
-          },
-          {
-            "id": "evtUnxGy7eZpT4wY",
-            "type": "comment",
-            "name": "",
-            "x": 1157.400146484375,
-            "y": 344.00006103515625,
-            "data": {
-              "text": "# CHOICE - 3 WAYS",
-              "bgColor": "#0d558c",
-              "w": 132,
-              "h": 90
-            }
-          },
-          {
-            "id": "0sQE7CfOQmZhi46W",
-            "type": "comment",
-            "name": "",
-            "x": 556.0000610351562,
-            "y": 392.4000244140625,
-            "data": {
-              "text": "# DIALOG ",
-              "bgColor": "#076e29",
-              "w": 547,
-              "h": 48
-            }
-          },
-          {
-            "id": "RMlshoSmM7155Wn1",
-            "type": "choice",
-            "name": "Select options",
-            "x": 1157.67822265625,
-            "y": 476.15704345703125,
-            "data": {
-              "prompt": "",
-              "choices": [
-                {
-                  "id": "ZfLHh0qWz712dWj2",
-                  "label": "I'm not going anywhere with you."
-                },
-                {
-                  "id": "U2USHLHsatiKtVps",
-                  "label": "See you tomorrow night."
-                },
-                {
-                  "id": "RXOT33AExe0hqNmv",
-                  "label": "Who even are you?"
-                }
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "tokenIds": [
+                "GeMQ8ofSfTapgakL"
               ],
-              "background": "scene",
-              "backdropPath": "",
-              "timeout": false,
-              "timeoutSeconds": 10
+              "tag": "",
+              "tagScope": "active",
+              "duration": 1,
+              "actorUuid": "Actor.nU8GN8La8DCt8SDb",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "skeleton",
+              "destTagScope": "active"
             }
           },
           {
-            "id": "2qDwE2MWjm3yV8J5",
-            "type": "jump",
+            "id": "oCuexnOfFUHOtk14",
+            "type": "action.token",
             "name": "",
-            "x": 1681.800048828125,
-            "y": 649.199951171875,
+            "x": 1901.23779296875,
+            "y": 1776.265380859375,
             "data": {
-              "targetNodeId": "RMlshoSmM7155Wn1",
-              "showLink": true
+              "operation": "create",
+              "targeting": "captured",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "tokenIds": [
+                "GeMQ8ofSfTapgakL"
+              ],
+              "tag": "",
+              "tagScope": "active",
+              "duration": 1,
+              "actorUuid": "Actor.nU8GN8La8DCt8SDb",
+              "destMode": "tag",
+              "destSceneId": "",
+              "destX": 0,
+              "destY": 0,
+              "destTileId": "",
+              "destTag": "skeleton-1",
+              "destTagScope": "active"
             }
           },
           {
-            "id": "kFBemvkO9UljY9PN",
+            "id": "gBLReYL9do2f4FXe",
+            "type": "action.effect",
+            "name": "",
+            "x": 1295.8006591796875,
+            "y": 1773.0006103515625,
+            "data": {
+              "animation": "jb2a.magic_signs.circle.02.abjuration.complete.blue",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2050,
+              "y": 2350,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 0.5,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 0,
+              "fadeOut": 0,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "7wqmScuv6PN9tspj",
+            "type": "action.effect",
+            "name": "",
+            "x": 1504.1005859375,
+            "y": 1769.00146484375,
+            "data": {
+              "animation": "jb2a.magic_signs.circle.02.abjuration.complete.blue",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2650,
+              "y": 2350,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 0.5,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 0,
+              "fadeOut": 0,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "TPcwDD8KpH6Fr1cA",
+            "type": "wait",
+            "name": "",
+            "x": 2105.68994140625,
+            "y": 1773.694091796875,
+            "data": {
+              "seconds": 2
+            }
+          },
+          {
+            "id": "uxBmHmMzVEXvPcu3",
+            "type": "showOnMap",
+            "name": "",
+            "x": 2301.235107421875,
+            "y": 1777.882568359375,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2343,
+              "y": 2678,
+              "scale": 0.9971779968179739,
+              "duration": 2,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "B0vCMZiljGk692JD",
+            "type": "showOnMap",
+            "name": "",
+            "x": 2715.780029296875,
+            "y": 1778.7916259765625,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2426,
+              "y": 2458,
+              "scale": 0.39361421774170924,
+              "duration": 2,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "YAhQG9gP2dPYweNj",
+            "type": "showOnMap",
+            "name": "",
+            "x": 2531.234619140625,
+            "y": 1778.791748046875,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2391,
+              "y": 2086,
+              "scale": 1.50870879565569,
+              "duration": 2,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "JmDxfQjfTBl1kRsF",
+            "type": "action.light",
+            "name": "",
+            "x": 2937.972900390625,
+            "y": 1777.542236328125,
+            "data": {
+              "operation": "on",
+              "targeting": "tag",
+              "sceneId": "",
+              "lightIds": [],
+              "tag": "Light-torch",
+              "tagScope": "active",
+              "setColor": false,
+              "color": "#ffffff",
+              "dim": null,
+              "bright": null,
+              "alpha": null,
+              "angle": null,
+              "animationType": "",
+              "animationSpeed": null,
+              "animationIntensity": null,
+              "animationReverse": "unchanged",
+              "darknessMin": null,
+              "darknessMax": null,
+              "coloration": null,
+              "luminosity": null,
+              "saturation": null,
+              "contrast": null,
+              "attenuation": null,
+              "shadows": null,
+              "negative": "unchanged",
+              "priority": null
+            }
+          },
+          {
+            "id": "oy4nagetQdTLipUi",
+            "type": "wait",
+            "name": "",
+            "x": 2452,
+            "y": 1558,
+            "data": {
+              "seconds": 5
+            }
+          },
+          {
+            "id": "0yeOQpUo0Sbprjpo",
+            "type": "action.effect",
+            "name": "",
+            "x": 788.55859375,
+            "y": 1796.985107421875,
+            "data": {
+              "animation": "jb2a.bats.loop.01.red",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2050,
+              "y": 2350,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 0.5,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 0,
+              "fadeOut": 0,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "vrDfIFEHSFdS7DfQ",
+            "type": "action.effect",
+            "name": "",
+            "x": 1036.26953125,
+            "y": 1793.9420166015625,
+            "data": {
+              "animation": "jb2a.bats.loop.01.red",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2650,
+              "y": 2350,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 0.5,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 0,
+              "fadeOut": 0,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "rzmbOiBlYrA391cq",
+            "type": "showOnMap",
+            "name": "",
+            "x": 846.8516845703125,
+            "y": 664.7548217773438,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2400,
+              "y": 1518,
+              "scale": 1.548984686523463,
+              "duration": 5,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "WSL4zfgGTS29J1Iq",
+            "type": "action.effect",
+            "name": "",
+            "x": 666.670654296875,
+            "y": 665.6382446289062,
+            "data": {
+              "animation": "jb2a.detect_magic.circle.blue",
+              "target": "point",
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2350,
+              "y": 1750,
+              "sourceX": 0,
+              "sourceY": 0,
+              "targetX": 0,
+              "targetY": 0,
+              "motion": "stretch",
+              "targeting": "captured",
+              "tokenIds": [],
+              "tokenRefs": [],
+              "tag": "",
+              "tagScope": "active",
+              "attach": true,
+              "fitToToken": true,
+              "scale": 0.5,
+              "belowTokens": false,
+              "opacity": 1,
+              "fadeIn": 300,
+              "fadeOut": 300,
+              "rotation": 0,
+              "randomRotation": false,
+              "repeats": 1,
+              "repeatDelay": 0,
+              "persist": false,
+              "name": "",
+              "aboveUI": false,
+              "waitUntilFinished": false
+            }
+          },
+          {
+            "id": "dRfo0HN8yvfZYI91",
+            "type": "showOnMap",
+            "name": "",
+            "x": 371.976806640625,
+            "y": 665.087158203125,
+            "data": {
+              "sceneId": "qwhnoprsI3m3no5t",
+              "x": 2362,
+              "y": 1966,
+              "scale": 2.924560607498391,
+              "duration": 4,
+              "audience": "all"
+            }
+          },
+          {
+            "id": "K5xh54eYblKOSuus",
+            "type": "audio",
+            "name": "VOICE",
+            "x": 530.3016357421875,
+            "y": 749.6351318359375,
+            "data": {
+              "audioPath": "Sounds/Speech/lord-necro.wav",
+              "mode": "once",
+              "volume": 90,
+              "persistAfterEnd": true,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "0r8UD6Gd4LDHlTFT",
+            "type": "audio",
+            "name": "",
+            "x": 654.3997802734375,
+            "y": 525.2999267578125,
+            "data": {
+              "audioPath": "Sounds/Effects/alien-creature-monster-monster.mp3",
+              "mode": "once",
+              "volume": 68,
+              "persistAfterEnd": false,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "NtTNOcQrLCrEJrkf",
+            "type": "wait",
+            "name": "",
+            "x": 149.72740173339844,
+            "y": 664.0323486328125,
+            "data": {
+              "seconds": 3
+            }
+          },
+          {
+            "id": "dbK18Zga28j3jDmB",
+            "type": "audio",
+            "name": "Main Audio - Persist After END",
+            "x": 366.834716796875,
+            "y": 871.5836791992188,
+            "data": {
+              "audioPath": "Sounds/Battle/Hunt%20or%20be%20hunted_spotdown.org.mp3",
+              "mode": "once",
+              "volume": 70,
+              "persistAfterEnd": true,
+              "name": "",
+              "tracks": [],
+              "selectMode": "random"
+            }
+          },
+          {
+            "id": "PQ5ByGAUo543LCVK",
+            "type": "trigger.start",
+            "name": "",
+            "x": -104,
+            "y": 664,
+            "data": {
+              "label": ""
+            }
+          },
+          {
+            "id": "Thiq9R0mNcn9ekYY",
             "type": "comment",
             "name": "",
-            "x": 1406.7999267578125,
-            "y": 332.79998779296875,
+            "x": -99.33065795898438,
+            "y": 299.8677673339844,
             "data": {
-              "text": "# DIALOG ",
-              "bgColor": "#076e29",
-              "w": 131,
-              "h": 48
-            }
-          },
-          {
-            "id": "Y1u8Y7jwb3IMeHIC",
-            "type": "comment",
-            "name": "",
-            "x": 1689.5999755859375,
-            "y": 686.7999267578125,
-            "data": {
-              "text": "JUMP BACK TO SELECT OPTION\n",
-              "bgColor": "#8d2571",
-              "w": 134,
-              "h": 54
-            }
-          },
-          {
-            "id": "gGw8TeDZUNlgX0Yk",
-            "type": "comment",
-            "name": "",
-            "x": 1618,
-            "y": 427.99993896484375,
-            "data": {
-              "text": "NOTIFICATION TO PLAYERS",
-              "bgColor": "#356c2d",
-              "w": 134,
-              "h": 54
-            }
-          },
-          {
-            "id": "GSWr0bgx7RcXyYr1",
-            "type": "comment",
-            "name": "",
-            "x": 1884.800048828125,
-            "y": 432.39990234375,
-            "data": {
-              "text": "REVEAL A QUEST",
-              "bgColor": "#356c2d",
-              "w": 134,
-              "h": 54
+              "text": "# Hi, this is the hardest part to start. \n=> Check this video, this is an example of this Graph \n\nhttps://www.reddit.com/r/FoundryVTT/comments/1uumqf5/testing_the_boss_spawn_cutscene_and_animations/",
+              "bgColor": "#5f5326",
+              "w": 298,
+              "h": 243
             }
           }
         ],
         "edges": [
           {
-            "id": "Y0hVMlSwd45oBCqQ",
+            "id": "link_12",
             "source": {
-              "node": "DfbTmix9SnBNMFJ6",
+              "node": "WSL4zfgGTS29J1Iq",
               "pin": "out"
             },
             "target": {
-              "node": "fDLP7mo8eMhk5BQA",
+              "node": "rzmbOiBlYrA391cq",
               "pin": "in"
             }
           },
           {
-            "id": "VqViymMSXfXQakoo",
+            "id": "link_13",
             "source": {
-              "node": "fDLP7mo8eMhk5BQA",
+              "node": "rzmbOiBlYrA391cq",
               "pin": "out"
             },
             "target": {
-              "node": "I67IkugwOsYlqN0S",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "Mcpq1mb4G7kG4uTB",
-            "source": {
-              "node": "I67IkugwOsYlqN0S",
-              "pin": "out"
-            },
-            "target": {
-              "node": "RMlshoSmM7155Wn1",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "1K5Qtb8pkpTsut4z",
-            "source": {
-              "node": "RMlshoSmM7155Wn1",
-              "pin": "choice_0"
-            },
-            "target": {
-              "node": "9A3vve2gQVADV4hU",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "R8rPgfgS1nqNrV5h",
-            "source": {
-              "node": "RMlshoSmM7155Wn1",
-              "pin": "choice_1"
-            },
-            "target": {
-              "node": "VMPXShrn97gus3X2",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "BFvBkOwkZaFy6Eqp",
-            "source": {
-              "node": "RMlshoSmM7155Wn1",
-              "pin": "choice_2"
-            },
-            "target": {
-              "node": "X0a2hxQmjxt9xW2F",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "j52vmqZCsOtsWeIY",
-            "source": {
-              "node": "VMPXShrn97gus3X2",
-              "pin": "out"
-            },
-            "target": {
-              "node": "h6RMUdWgU4ccnxCl",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_14",
-            "source": {
-              "node": "9kB6uOwAxhvBVgNo",
-              "pin": "out"
-            },
-            "target": {
-              "node": "D1z8xYOAfxB7CvGy",
+              "node": "O4Byl0dcSoFX20G5",
               "pin": "in"
             }
           },
           {
             "id": "link_15",
             "source": {
-              "node": "D1z8xYOAfxB7CvGy",
+              "node": "cVosj6Xinnpq62Pq",
               "pin": "out"
             },
             "target": {
-              "node": "DfbTmix9SnBNMFJ6",
+              "node": "rweVssBs0jWHB0pv",
               "pin": "in"
             }
           },
           {
             "id": "link_16",
             "source": {
-              "node": "h6RMUdWgU4ccnxCl",
+              "node": "rweVssBs0jWHB0pv",
               "pin": "out"
             },
             "target": {
-              "node": "vOxVsML1iDeUwWjz",
+              "node": "VWTOCKsOhDYwD06T",
               "pin": "in"
             }
           },
           {
-            "id": "link_12",
+            "id": "link_16",
             "source": {
-              "node": "X0a2hxQmjxt9xW2F",
+              "node": "O4Byl0dcSoFX20G5",
               "pin": "out"
             },
             "target": {
-              "node": "2qDwE2MWjm3yV8J5",
-              "pin": "in"
-            }
-          }
-        ],
-        "groups": []
-      }
-    },
-    {
-      "id": "mQL1uCJHaRluahTn",
-      "name": "Normal, Epic and Secret Notification",
-      "createdAt": "2026-08-05T18:40:32.151Z",
-      "updatedAt": "2026-08-05T18:40:32.151Z",
-      "graph": {
-        "nodes": [
-          {
-            "id": "Q6QaMIJNR2BCXcZ8",
-            "type": "choice",
-            "name": "",
-            "x": 333.1819152832031,
-            "y": 339.99993896484375,
-            "data": {
-              "prompt": "",
-              "choices": [
-                {
-                  "id": "eRV2I39G1wuEoj3W",
-                  "label": "Normal Notification"
-                },
-                {
-                  "id": "V1k2blxggncOkG7M",
-                  "label": "Epic Notifcation"
-                },
-                {
-                  "id": "ngEOAOFY1JXHu3ex",
-                  "label": "Secret Notification"
-                }
-              ],
-              "background": "carry",
-              "backdropPath": "",
-              "timeout": false,
-              "timeoutSeconds": 10
-            }
-          },
-          {
-            "id": "GXyFmagZim41mouv",
-            "type": "trigger.start",
-            "name": "",
-            "x": 55.6849365234375,
-            "y": 339.45538330078125,
-            "data": {
-              "label": ""
-            }
-          },
-          {
-            "id": "xSsnrkk3v63YE7qX",
-            "type": "notification",
-            "name": "",
-            "x": 647.4000244140625,
-            "y": 257.8000183105469,
-            "data": {
-              "style": "toast",
-              "text": "Normal",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "U30vHqz8cgLVKcLc",
-            "type": "notification",
-            "name": "",
-            "x": 653.800048828125,
-            "y": 352.9999694824219,
-            "data": {
-              "style": "epic",
-              "text": "Epic",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "pNmwnar8PrXUTS6K",
-            "type": "notification",
-            "name": "",
-            "x": 651.400146484375,
-            "y": 440.9999694824219,
-            "data": {
-              "style": "epic",
-              "text": "Secret",
-              "itemUuid": "",
-              "glowColor": "#ffcf57",
-              "seconds": 4,
-              "audience": "all"
-            }
-          },
-          {
-            "id": "SOZQoXNXFA49Op2l",
-            "type": "comment",
-            "name": "",
-            "x": 2.199951171875,
-            "y": 132.99996948242188,
-            "data": {
-              "text": "# Notification types:\n- Normal\n- Epic\n- Secret\n\nPlace items in Epic and Secret and run this graph",
-              "bgColor": "#5f5326",
-              "w": 257,
-              "h": 154
-            }
-          },
-          {
-            "id": "hWvlVD2IrCZno3cP",
-            "type": "comment",
-            "name": "",
-            "x": 812.407958984375,
-            "y": 368.2158508300781,
-            "data": {
-              "text": "# Place items here",
-              "bgColor": "#3f7d0d",
-              "w": 183,
-              "h": 48
-            }
-          }
-        ],
-        "edges": [
-          {
-            "id": "link_12",
-            "source": {
-              "node": "Q6QaMIJNR2BCXcZ8",
-              "pin": "choice_0"
-            },
-            "target": {
-              "node": "xSsnrkk3v63YE7qX",
+              "node": "JKEH31IFJVsWlyMN",
               "pin": "in"
             }
           },
           {
-            "id": "link_2",
+            "id": "link_17",
             "source": {
-              "node": "Q6QaMIJNR2BCXcZ8",
-              "pin": "choice_1"
-            },
-            "target": {
-              "node": "U30vHqz8cgLVKcLc",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_3",
-            "source": {
-              "node": "Q6QaMIJNR2BCXcZ8",
-              "pin": "choice_2"
-            },
-            "target": {
-              "node": "pNmwnar8PrXUTS6K",
-              "pin": "in"
-            }
-          },
-          {
-            "id": "link_4",
-            "source": {
-              "node": "GXyFmagZim41mouv",
+              "node": "JKEH31IFJVsWlyMN",
               "pin": "out"
             },
             "target": {
-              "node": "Q6QaMIJNR2BCXcZ8",
+              "node": "yLzqrij0uRj9laFP",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_17",
+            "source": {
+              "node": "yLzqrij0uRj9laFP",
+              "pin": "out"
+            },
+            "target": {
+              "node": "JcMgb1ngEi4cBFit",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_18",
+            "source": {
+              "node": "JcMgb1ngEi4cBFit",
+              "pin": "out"
+            },
+            "target": {
+              "node": "cVosj6Xinnpq62Pq",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_34",
+            "source": {
+              "node": "O4Byl0dcSoFX20G5",
+              "pin": "out"
+            },
+            "target": {
+              "node": "86t2n46VbCTTGoQi",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_21",
+            "source": {
+              "node": "yLzqrij0uRj9laFP",
+              "pin": "out"
+            },
+            "target": {
+              "node": "QSFn5DGk7Y2mECzT",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_22",
+            "source": {
+              "node": "cVosj6Xinnpq62Pq",
+              "pin": "out"
+            },
+            "target": {
+              "node": "UQSafA5oabKuliCM",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_23",
+            "source": {
+              "node": "rweVssBs0jWHB0pv",
+              "pin": "out"
+            },
+            "target": {
+              "node": "Fa26eqf7YLqYE0bG",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_25",
+            "source": {
+              "node": "NtTNOcQrLCrEJrkf",
+              "pin": "out"
+            },
+            "target": {
+              "node": "dRfo0HN8yvfZYI91",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "hQPSzOFVbncGV4UP",
+            "source": {
+              "node": "5Px6mm6ZxWMexs9l",
+              "pin": "out"
+            },
+            "target": {
+              "node": "UJHPxfbCgY3VLeot",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "tsvxc1d7PDu7nLlq",
+            "source": {
+              "node": "UJHPxfbCgY3VLeot",
+              "pin": "out"
+            },
+            "target": {
+              "node": "EbVwoaAe225BJ8zs",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "6Q3VAroX8ylII7gL",
+            "source": {
+              "node": "M3I1Xh3E1aukCrc3",
+              "pin": "out"
+            },
+            "target": {
+              "node": "zcftOhg73PimYet2",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "MjOJEWMewDuhnVR2",
+            "source": {
+              "node": "zcftOhg73PimYet2",
+              "pin": "out"
+            },
+            "target": {
+              "node": "1YGXwIvjNRz7OMOZ",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "9FYSsl9Fo90NdOTs",
+            "source": {
+              "node": "1YGXwIvjNRz7OMOZ",
+              "pin": "out"
+            },
+            "target": {
+              "node": "W4yqEZcLRBVJjWHS",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "H8wW8WErzxwFHE5X",
+            "source": {
+              "node": "W4yqEZcLRBVJjWHS",
+              "pin": "out"
+            },
+            "target": {
+              "node": "5Px6mm6ZxWMexs9l",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "BK604nT9tr6aI7SU",
+            "source": {
+              "node": "M3I1Xh3E1aukCrc3",
+              "pin": "out"
+            },
+            "target": {
+              "node": "gD2cTL4znGHAHEGm",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "0DPfbcxzr1XrueqY",
+            "source": {
+              "node": "1YGXwIvjNRz7OMOZ",
+              "pin": "out"
+            },
+            "target": {
+              "node": "slY8a6bL5sIjSuJB",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "nl9Bvx9sC62dq99a",
+            "source": {
+              "node": "5Px6mm6ZxWMexs9l",
+              "pin": "out"
+            },
+            "target": {
+              "node": "7mGjRVGUVZLd5jcg",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "rDJbI2U4HHkc6786",
+            "source": {
+              "node": "UJHPxfbCgY3VLeot",
+              "pin": "out"
+            },
+            "target": {
+              "node": "alTqskV65KiMT9g0",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_35",
+            "source": {
+              "node": "VWTOCKsOhDYwD06T",
+              "pin": "out"
+            },
+            "target": {
+              "node": "M3I1Xh3E1aukCrc3",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_48",
+            "source": {
+              "node": "rzmbOiBlYrA391cq",
+              "pin": "out"
+            },
+            "target": {
+              "node": "e1au6b35gqUB5flp",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_48",
+            "source": {
+              "node": "NtTNOcQrLCrEJrkf",
+              "pin": "out"
+            },
+            "target": {
+              "node": "X5lQ0MZdVx4PpRMz",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_50",
+            "source": {
+              "node": "YnsVHu7ijTmoaNLF",
+              "pin": "out"
+            },
+            "target": {
+              "node": "HI4ppfHo4ucDyGGk",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_51",
+            "source": {
+              "node": "HI4ppfHo4ucDyGGk",
+              "pin": "out"
+            },
+            "target": {
+              "node": "JrMfUZH7EAo46oFg",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_53",
+            "source": {
+              "node": "JrMfUZH7EAo46oFg",
+              "pin": "out"
+            },
+            "target": {
+              "node": "7lTZWPdofvH5z2AA",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_54",
+            "source": {
+              "node": "7lTZWPdofvH5z2AA",
+              "pin": "out"
+            },
+            "target": {
+              "node": "J70gP3EqAFAv3FV3",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_54",
+            "source": {
+              "node": "JrMfUZH7EAo46oFg",
+              "pin": "out"
+            },
+            "target": {
+              "node": "Rs8OmOSlHDYe9liE",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_55",
+            "source": {
+              "node": "dRfo0HN8yvfZYI91",
+              "pin": "out"
+            },
+            "target": {
+              "node": "0r8UD6Gd4LDHlTFT",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_57",
+            "source": {
+              "node": "fqQKnybOq6wSHp3X",
+              "pin": "out"
+            },
+            "target": {
+              "node": "vbavpok1RinQPDpr",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_58",
+            "source": {
+              "node": "vbavpok1RinQPDpr",
+              "pin": "out"
+            },
+            "target": {
+              "node": "0U9KE5ForCKD2Znz",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_59",
+            "source": {
+              "node": "J70gP3EqAFAv3FV3",
+              "pin": "out"
+            },
+            "target": {
+              "node": "eEsyD9pZwqGjslZR",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_60",
+            "source": {
+              "node": "eEsyD9pZwqGjslZR",
+              "pin": "out"
+            },
+            "target": {
+              "node": "fqQKnybOq6wSHp3X",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_66",
+            "source": {
+              "node": "JfpsXKq3tjdYVXfb",
+              "pin": "out"
+            },
+            "target": {
+              "node": "oCuexnOfFUHOtk14",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_64",
+            "source": {
+              "node": "gBLReYL9do2f4FXe",
+              "pin": "out"
+            },
+            "target": {
+              "node": "7wqmScuv6PN9tspj",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_66",
+            "source": {
+              "node": "oCuexnOfFUHOtk14",
+              "pin": "out"
+            },
+            "target": {
+              "node": "TPcwDD8KpH6Fr1cA",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_67",
+            "source": {
+              "node": "TPcwDD8KpH6Fr1cA",
+              "pin": "out"
+            },
+            "target": {
+              "node": "uxBmHmMzVEXvPcu3",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_68",
+            "source": {
+              "node": "uxBmHmMzVEXvPcu3",
+              "pin": "out"
+            },
+            "target": {
+              "node": "YAhQG9gP2dPYweNj",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_69",
+            "source": {
+              "node": "YAhQG9gP2dPYweNj",
+              "pin": "out"
+            },
+            "target": {
+              "node": "B0vCMZiljGk692JD",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_70",
+            "source": {
+              "node": "EbVwoaAe225BJ8zs",
+              "pin": "out"
+            },
+            "target": {
+              "node": "YnsVHu7ijTmoaNLF",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_71",
+            "source": {
+              "node": "B0vCMZiljGk692JD",
+              "pin": "out"
+            },
+            "target": {
+              "node": "JmDxfQjfTBl1kRsF",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_72",
+            "source": {
+              "node": "0U9KE5ForCKD2Znz",
+              "pin": "out"
+            },
+            "target": {
+              "node": "oy4nagetQdTLipUi",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_73",
+            "source": {
+              "node": "oy4nagetQdTLipUi",
+              "pin": "out"
+            },
+            "target": {
+              "node": "5NRaE24Sr305okKm",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_60",
+            "source": {
+              "node": "NtTNOcQrLCrEJrkf",
+              "pin": "out"
+            },
+            "target": {
+              "node": "dbK18Zga28j3jDmB",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_60",
+            "source": {
+              "node": "7wqmScuv6PN9tspj",
+              "pin": "out"
+            },
+            "target": {
+              "node": "JfpsXKq3tjdYVXfb",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_60",
+            "source": {
+              "node": "0yeOQpUo0Sbprjpo",
+              "pin": "out"
+            },
+            "target": {
+              "node": "vrDfIFEHSFdS7DfQ",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_61",
+            "source": {
+              "node": "5NRaE24Sr305okKm",
+              "pin": "out"
+            },
+            "target": {
+              "node": "0yeOQpUo0Sbprjpo",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_62",
+            "source": {
+              "node": "vrDfIFEHSFdS7DfQ",
+              "pin": "out"
+            },
+            "target": {
+              "node": "gBLReYL9do2f4FXe",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_64",
+            "source": {
+              "node": "dRfo0HN8yvfZYI91",
+              "pin": "out"
+            },
+            "target": {
+              "node": "K5xh54eYblKOSuus",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_65",
+            "source": {
+              "node": "K5xh54eYblKOSuus",
+              "pin": "out"
+            },
+            "target": {
+              "node": "WSL4zfgGTS29J1Iq",
+              "pin": "in"
+            }
+          },
+          {
+            "id": "link_63",
+            "source": {
+              "node": "PQ5ByGAUo543LCVK",
+              "pin": "out"
+            },
+            "target": {
+              "node": "NtTNOcQrLCrEJrkf",
               "pin": "in"
             }
           }
-        ],
-        "groups": []
+        ]
       }
     }
   ],

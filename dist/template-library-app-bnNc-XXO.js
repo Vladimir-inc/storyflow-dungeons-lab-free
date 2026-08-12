@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _editor, _query, _searchRestoreFocus, _menuId, _renamingId, _confirmId, _insertedId, _flash, _flashTimer, _selectedId, _preview, _collapsed, _preFullscreen, _TemplateLibraryApp_instances, authoring_fn, toggleFullscreen_fn, bindDragAndDrop_fn, moveById_fn, drawPreview_fn, flashNote_fn, _TemplateLibraryApp_static, rowId_fn, lookup_fn, insertById_fn, commitRename_fn, onInsert_fn, onOpenMenu_fn, onCloseMenus_fn, onEdit_fn, onStartRename_fn, onAskDelete_fn, onCancelDelete_fn, onConfirmDelete_fn, onExport_fn, promptName_fn, onCreate_fn, onAddFolder_fn, onToggleFolder_fn, onRenameFolder_fn, onDeleteFolder_fn, onMoveTemplate_fn, onImport_fn, write_fn, promote_fn, demote_fn;
-import { M as MODULE_ID, S as SETTINGS, r as readTemplateStore, a as readPresetStore, m as moveTemplate, n as nodePresentation, b as renameTemplate, d as deleteTemplate, c as buildTemplateExport, s as slugifyName, T as TEMPLATE_DIR, u as upsertTemplate, e as uniqueTemplateName, f as addFolder, g as renameFolder, h as deleteFolder, p as parseTemplateImport, w as writePresetStore, i as writeTemplateStore } from "./module-C_DMsB8l.js";
+import { M as MODULE_ID, S as SETTINGS, r as readTemplateStore, a as readPresetStore, m as moveTemplate, n as nodePresentation, b as renameTemplate, d as deleteTemplate, c as buildTemplateExport, s as slugifyName, T as TEMPLATE_DIR, u as upsertTemplate, e as uniqueTemplateName, f as addFolder, g as renameFolder, h as deleteFolder, p as parseTemplateImport, w as writePresetStore, i as writeTemplateStore } from "./module-CGuPkFx8.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const FLASH_MS = 2200;
 const BUILTIN_FOLDER = { id: "__dungeons-lab", name: "Dungeons Lab" };
@@ -548,7 +548,7 @@ onEdit_fn = async function(event, target) {
   if (!found) return;
   __privateSet(this, _menuId, null);
   __privateMethod(this, _TemplateLibraryApp_instances, flashNote_fn).call(this, F("FlashEditing", { name: found.template.name }));
-  const { BlueprintCanvasApp } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
   await BlueprintCanvasApp.openTemplate(found.template.id, { preset: found.isPreset });
 };
 onStartRename_fn = function(event, target) {
@@ -627,7 +627,7 @@ onCreate_fn = async function() {
   await __privateMethod(this, _TemplateLibraryApp_instances, write_fn).call(this, next);
   __privateSet(this, _selectedId, template.id);
   __privateMethod(this, _TemplateLibraryApp_instances, flashNote_fn).call(this, F("FlashEditing", { name: template.name }));
-  const { BlueprintCanvasApp } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
   await BlueprintCanvasApp.openTemplate(template.id);
 };
 onAddFolder_fn = async function() {

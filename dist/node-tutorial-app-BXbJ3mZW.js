@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _trail, _running, _query, _searchRestoreFocus, _editing, _draft, _confirmingReset, _customPage, _customEditing, _customDraft, _NodeTutorialApp_instances, currentType_fn, storedOverride_fn, exitEdit_fn, buildEditContext_fn, demoOptions_fn, customCats_fn, saveCustomCats_fn, buildCustomGroups_fn, buildCustomPageContext_fn, promptName_fn, syncDraftFromForm_fn, syncCustomDraftFromForm_fn, _sidebarScroll, _NodeTutorialApp_static, onPickType_fn, onShowType_fn, onCrumbTo_fn, onRunDemo_fn, onShowExample_fn, onCopyExample_fn, onEditGuide_fn, onAddTip_fn, onRemoveTip_fn, onInsertCallout_fn, onAddPair_fn, onRemovePair_fn, onAddSection_fn, onRemoveSection_fn, onSaveGuide_fn, onCancelGuide_fn, onResetGuide_fn, onCancelResetGuide_fn, onConfirmResetGuide_fn, onAddCustomCategory_fn, onRenameCustomCategory_fn, onRemoveCustomCategory_fn, onAddCustomPage_fn, onRemoveCustomPage_fn, onPickCustomPage_fn, onEditCustomPage_fn, onSaveCustomPage_fn, onCancelCustomPage_fn;
-import { R as cleanPayload, N as isKnownNodeType, O as NODE_TYPES, n as nodePresentation, U as categoryPresentation, M as MODULE_ID, S as SETTINGS, V as buildPalette, X as nodeTypeIds } from "./module-C_DMsB8l.js";
+import { U as cleanPayload, O as isKnownNodeType, P as NODE_TYPES, n as nodePresentation, V as categoryPresentation, M as MODULE_ID, S as SETTINGS, X as buildPalette, Y as nodeTypeIds } from "./module-CGuPkFx8.js";
 const say = (id, x, body, extra = {}) => ({
   id,
   type: "display",
@@ -1806,7 +1806,7 @@ onRunDemo_fn = async function() {
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
     const demoUuid = buildTutorialContext(type, __privateMethod(this, _NodeTutorialApp_instances, storedOverride_fn).call(this)).customDemoUuid;
-    const { runTutorialDemo } = await import("./tutorial-run-DuoScDVq.js");
+    const { runTutorialDemo } = await import("./tutorial-run-CzLOKsOe.js");
     await runTutorialDemo(type, demoUuid);
   } catch (err) {
     console.error(`${MODULE_ID} | tutorial demo failed`, err);
@@ -1822,7 +1822,7 @@ onShowExample_fn = async function() {
   this.render();
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
-    const { showTutorialExample } = await import("./tutorial-run-DuoScDVq.js");
+    const { showTutorialExample } = await import("./tutorial-run-CzLOKsOe.js");
     await showTutorialExample(type);
   } catch (err) {
     console.error(`${MODULE_ID} | tutorial example failed`, err);
@@ -1836,7 +1836,7 @@ onCopyExample_fn = async function() {
   if (!game.user.isGM) return;
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
-    const { copyTutorialExample } = await import("./tutorial-run-DuoScDVq.js");
+    const { copyTutorialExample } = await import("./tutorial-run-CzLOKsOe.js");
     const copied = await copyTutorialExample(type);
     ui.notifications[copied ? "info" : "warn"](
       game.i18n.localize(

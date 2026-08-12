@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _date, _eventId, _kind, _graphMode, _stash, _StoryFlowDayEventDialog_static, onSave_fn, onCancel_fn, onEditGraph_fn;
-import { M as MODULE_ID, o as getEvents, q as monthNames, a9 as GRAPH_PAGE_TYPE, aa as saveEvent } from "./module-C_DMsB8l.js";
+import { M as MODULE_ID, q as getEvents, t as monthNames, aa as GRAPH_PAGE_TYPE, ab as saveEvent } from "./module-CGuPkFx8.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const CALENDAR_FOLDER_NAME = "StoryFlow Calendar";
 const CALENDAR_FOLDER_COLOR = "#D98F39";
@@ -178,7 +178,7 @@ onSave_fn = async function() {
     });
     await saveEvent({ ...base, pageUuid: page.uuid, label: base.label || name });
     this.close();
-    const { BlueprintCanvasApp } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+    const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
     BlueprintCanvasApp.open(page);
   } catch (err) {
     console.warn(`${MODULE_ID} | calendar create-graph failed:`, err);
@@ -193,7 +193,7 @@ onEditGraph_fn = async function() {
   const pageUuid = (_b = (_a = this.element.querySelector("form")) == null ? void 0 : _a.elements.pageUuid) == null ? void 0 : _b.value;
   const page = pageUuid ? await fromUuid(pageUuid).catch(() => null) : null;
   if (!page) return void ((_c = ui.notifications) == null ? void 0 : _c.warn(L("NeedGraph", "Pick a graph page.")));
-  const { BlueprintCanvasApp } = await import("./module-C_DMsB8l.js").then((n) => n.al);
+  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
   BlueprintCanvasApp.open(page);
 };
 __privateAdd(_StoryFlowDayEventDialog, _StoryFlowDayEventDialog_static);
