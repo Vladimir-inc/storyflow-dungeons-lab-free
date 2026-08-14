@@ -1,6 +1,6 @@
-{{!-- Контекстное меню по правому клику, рендерится ОТДЕЛЬНО через render({parts:["contextmenu"]}). Корневой
-      <menu> присутствует ВСЕГДА (скрыт, когда закрыт), чтобы у PART всегда был один корневой
-      элемент - на пустом PART рендер AppV2 падает. Повторяет устройство поповера палитры. --}}
+{{!-- Right-click context menu, rendered ALONE via render({parts:["contextmenu"]}). The root
+      <menu> is ALWAYS present (hidden when closed) so the PART always has a single root
+      element - an empty PART makes AppV2's render throw. Mirrors the palette popover. --}}
 <menu class="storyflow-context-menu {{#unless contextMenu.open}}storyflow-hidden{{/unless}}"
       style="left:{{contextMenu.x}}px; top:{{contextMenu.y}}px;">
   {{#if contextMenu.open}}

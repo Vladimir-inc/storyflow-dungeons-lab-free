@@ -1,26 +1,25 @@
 /**
  * @file welcome.mjs
- * @description Приветствие бесплатной версии: карточка Dungeons LAB Discord, отправляемая в
- * журнал чата при каждом запуске мира на каждом клиенте.
+ * @description Free-edition greeting: a Dungeons LAB Discord card posted to the chat log on
+ *              every world launch, on every client.
  *
- * ponytail: карточка рендерится локально через `ui.chat.postOne()` на НЕСОХРАНЕННОМ
- * ChatMessage - никогда `ChatMessage.create()`. Сохраненное приветствие добавляло бы один
- * документ в мировую базу данных за запуск и повторно рассылало бы всем. Ничего здесь не
- * трогает бандл модуля, поэтому оно переживает пересборку `dist/` нетронутым.
+ * ponytail: the card is rendered locally via `ui.chat.postOne()` on an UNSAVED ChatMessage -
+ * never `ChatMessage.create()`. A persisted greeting would add one document to the world
+ * database per launch and re-broadcast to everyone. Nothing here touches the module bundle,
+ * so it survives a `dist/` rebuild untouched.
  */
 
 const DISCORD_URL = "https://discord.gg/MUxsQCf587";
 
 /**
- * @param {string} key Ключ внутри `STORYFLOW_DUNGEONS_LAB.Welcome`.
+ * @param {string} key  Key under `STORYFLOW_DUNGEONS_LAB.Welcome`.
  * @returns {string}
  */
 const t = (key) => game.i18n.localize(`STORYFLOW_DUNGEONS_LAB.Welcome.${key}`);
 
 /**
- * Собрать разметку карточки. Стили inline: карточка должна отрисовываться одинаково
- * независимо от того, затемирована ли собственная таблица стилей модуля скином Dungeons
- * LAB.
+ * Build the card markup. Styles are inline: the card must render identically whether or not
+ * the module's own stylesheet is themed by the Dungeons LAB skin.
  *
  * @returns {string}
  */
@@ -59,8 +58,8 @@ function postWelcome() {
 }
 
 Hooks.once("ready", () => {
-  // Боковая панель рендерится асинхронно - `postOne` тихо отбрасывает карточку,
-  // если журнал еще не готов, поэтому ждем его отрисовки, если это так.
+  // The sidebar renders asynchronously - `postOne` silently drops the card if the log is not
+  // up yet, so wait for its render when that is the case.
   if (ui.chat?.rendered) postWelcome();
   else Hooks.once("renderChatLog", postWelcome);
 });

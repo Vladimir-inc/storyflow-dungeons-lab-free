@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _canvas, _working, _userEdited, _applying, _edges, _meta, _filter, _find, _replace, _caseSensitive, _NodeFieldEditorApp_instances, bindTo_fn, pull_fn, chainViews_fn, scope_fn, applyFilter_fn, onFieldEdit_fn, refreshMatches_fn, setStale_fn, pullFromCanvas_fn, _NodeFieldEditorApp_static, onReplaceAll_fn, onApply_fn, onRefresh_fn, onRevealNode_fn;
-import { M as MODULE_ID, Z as orderDialogueChains, n as nodePresentation, _ as DIALOGUE_TYPES, $ as countMatchesNodes, a0 as findReplaceNodes } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, Z as orderDialogueChains, n as nodePresentation, _ as DIALOGUE_TYPES, $ as countMatchesNodes, a0 as findReplaceNodes } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 let _instance = null;
 const DIALOGUE_FIELDS = ["name", "speakerName", "portraitPath", "bodyHtml"];
@@ -18,50 +18,32 @@ const _NodeFieldEditorApp = class _NodeFieldEditorApp extends HandlebarsApplicat
   constructor() {
     super(...arguments);
     __privateAdd(this, _NodeFieldEditorApp_instances);
-    /**
-     * @type {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp|null} Родительское
-     * приложение холста.
-     */
+    /** @type {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp|null} Owning canvas app. */
     __privateAdd(this, _canvas, null);
-    /**
-     * @type {Object<string, object>} Рабочая копия карты узлов (источник истины для
-     * представления).
-     */
+    /** @type {Object<string, object>} Working copy of the nodes map (the view's source of truth). */
     __privateAdd(this, _working, {});
-    /** @type {boolean} Пользователь ввел/заменил непримененные правки? */
+    /** @type {boolean} Has the user typed/replaced unapplied edits? */
     __privateAdd(this, _userEdited, false);
-    /**
-     * @type {boolean} Подавлять автообновление, пока МЫ применяем изменения обратно на
-     * холст.
-     */
+    /** @type {boolean} Suppress the auto-refresh ping while WE are applying back to the canvas. */
     __privateAdd(this, _applying, false);
-    /**
-     * @type {object[]} Ребра из последнего получения с холста (для
-     * упорядочивания цепочек).
-     */
+    /** @type {object[]} Edges from the last canvas pull (for chain ordering). */
     __privateAdd(this, _edges, []);
-    /**
-     * @type {object} Мета из последнего получения с холста (содержит id
-     * входного узла).
-     */
+    /** @type {object} Meta from the last canvas pull (carries the entry node id). */
     __privateAdd(this, _meta, {});
-    /**
-     * @type {string} Активный фильтр (скрывает узлы, у которых name/speaker не
-     * совпадают).
-     */
+    /** @type {string} Live filter term (hides nodes whose name/speaker don't match). */
     __privateAdd(this, _filter, "");
-    /** @type {string} Активный поисковый термин. */
+    /** @type {string} Live find term. */
     __privateAdd(this, _find, "");
-    /** @type {string} Активный термин замены. */
+    /** @type {string} Live replace term. */
     __privateAdd(this, _replace, "");
-    /** @type {boolean} Регистрозависимый поиск/замена. */
+    /** @type {boolean} Case-sensitive find/replace. */
     __privateAdd(this, _caseSensitive, false);
   }
   /**
-   * Открыть редактор полей - СТРОГО одно окно. Если один уже открыт, он переиспользуется
-   * (получает фокус, и перенаправляется на запрашивающий холст, если другой), никогда не
-   * дублируется. Экземпляр регистрируется синхронно до первого рендера, так что даже быстрые
-   * двойные клики не могут породить второе окно.
+   * Open the field editor — STRICT single window. If one is already open it is reused (focused,
+   * and re-pointed at the requesting canvas if different), never duplicated. The instance is
+   * registered synchronously before the first render, so even rapid double-clicks can't spawn a
+   * second window.
    * @param {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp} canvasApp
    * @returns {NodeFieldEditorApp}
    */
@@ -91,10 +73,7 @@ const _NodeFieldEditorApp = class _NodeFieldEditorApp extends HandlebarsApplicat
       matchCount: countMatchesNodes(__privateGet(this, _working), __privateMethod(this, _NodeFieldEditorApp_instances, scope_fn).call(this))
     };
   }
-  /**
-   * @override - подключать панель поиска + делегированные правки полей (свежий
-   * DOM при каждом рендере).
-   */
+  /** @override — wire the find bar + delegated field edits (fresh DOM each render). */
   _onRender(context, options) {
     super._onRender(context, options);
     const root = this.element;
@@ -135,9 +114,8 @@ const _NodeFieldEditorApp = class _NodeFieldEditorApp extends HandlebarsApplicat
     if (__privateGet(this, _find)) __privateMethod(this, _NodeFieldEditorApp_instances, refreshMatches_fn).call(this);
   }
   /**
-   * Хук автообновления, вызываемый родительским холстом при любом изменении его графа.
-   * Перезагружает с холста, ЕСЛИ ТОЛЬКО у пользователя нет непримененных правок, в противном
-   * случае вместо этого показывает метку устаревших данных.
+   * Auto-refresh hook, called by the owning canvas whenever its graph changes. Reloads from the
+   * canvas UNLESS the user has unapplied edits, in which case it raises the stale badge instead.
    */
   refresh() {
     if (__privateGet(this, _applying) || !this.element) return;
@@ -166,10 +144,7 @@ _find = new WeakMap();
 _replace = new WeakMap();
 _caseSensitive = new WeakMap();
 _NodeFieldEditorApp_instances = new WeakSet();
-/**
- * Направить редактор на холст: перерегистрировать, получить его узлы, сбросить любую
- * предыдущую связь с холстом.
- */
+/** Point the editor at a canvas: re-register, pull its nodes, drop any prior canvas link. */
 bindTo_fn = function(canvasApp) {
   var _a, _b, _c;
   if (__privateGet(this, _canvas) && __privateGet(this, _canvas) !== canvasApp) (_b = (_a = __privateGet(this, _canvas)).unregisterFieldEditor) == null ? void 0 : _b.call(_a, this);
@@ -178,10 +153,7 @@ bindTo_fn = function(canvasApp) {
   __privateSet(this, _userEdited, false);
   (_c = canvasApp.registerFieldEditor) == null ? void 0 : _c.call(canvasApp, this);
 };
-/**
- * Глубоко клонировать текущую карту узлов холста; кэшировать ребра/мету для
- * упорядочивания цепочек.
- */
+/** Deep-clone the canvas's current nodes map; cache edges/meta for chain ordering. */
 pull_fn = function() {
   var _a, _b;
   const model = ((_b = (_a = __privateGet(this, _canvas)) == null ? void 0 : _a.serializeModel) == null ? void 0 : _b.call(_a)) ?? { nodes: {}, edges: [], meta: {} };
@@ -189,13 +161,13 @@ pull_fn = function() {
   __privateSet(this, _meta, model.meta ?? {});
   return foundry.utils.deepClone(model.nodes ?? {});
 };
-/** Цепочки диалога (Display + Text), каждая цветная, с четырьмя полями своих узлов. */
+/** The dialogue chains (Display + Text), each coloured, with its nodes' four fields. */
 chainViews_fn = function() {
   const chains = orderDialogueChains({ nodes: __privateGet(this, _working), edges: __privateGet(this, _edges), meta: __privateGet(this, _meta) });
   return chains.map((chain, i) => ({
     index: i + 1,
     colorIndex: i % 8,
-    // Перебирает 8 мягких цветов цепочек, определенных в field-editor.less
+    // cycles the 8 soft chain colours defined in field-editor.less
     count: chain.nodes.length,
     nodes: chain.nodes.map((node) => {
       var _a, _b, _c;
@@ -209,22 +181,16 @@ chainViews_fn = function() {
         portraitPath: ((_b = node.data) == null ? void 0 : _b.portraitPath) ?? "",
         bodyHtml: ((_c = node.data) == null ? void 0 : _c.bodyHtml) ?? "",
         search: `${name} ${speakerName}`.toLowerCase()
-        // name + speaker, для поля фильтра
+        // name + speaker, for the filter box
       };
     })
   }));
 };
-/**
- * Опции для ограниченного поиска/замены + счетчика совпадений (поля диалога, типы узлов
- * диалога).
- */
+/** Options for the scoped find/replace + match count (dialogue fields, dialogue node types). */
 scope_fn = function(extra = {}) {
   return { find: __privateGet(this, _find), caseSensitive: __privateGet(this, _caseSensitive), fields: DIALOGUE_FIELDS, types: DIALOGUE_TYPES, ...extra };
 };
-/**
- * Скрыть узлы, у которых name/speaker не совпадает с фильтром; скрыть оставшиеся
- * пустыми цепочки.
- */
+/** Hide nodes whose name/speaker don't match the filter term; hide chains left empty. */
 applyFilter_fn = function() {
   var _a, _b;
   const q = __privateGet(this, _filter).trim().toLowerCase();
@@ -236,7 +202,7 @@ applyFilter_fn = function() {
     chain.classList.toggle("is-hidden", !chain.querySelector(".storyflow-fe-node:not(.is-hidden)"));
   }
 };
-/** Применить одну правку ввода field/name в рабочую копию. */
+/** Apply one field/name input edit into the working copy. */
 onFieldEdit_fn = function(el) {
   var _a;
   const nid = (_a = el == null ? void 0 : el.dataset) == null ? void 0 : _a.nodeId;
@@ -267,10 +233,7 @@ onFieldEdit_fn = function(el) {
   }
   __privateMethod(this, _NodeFieldEditorApp_instances, refreshMatches_fn).call(this);
 };
-/**
- * Обновить счетчик совпадений + подсветить совпадающие поля ввода (без
- * повторного рендера).
- */
+/** Update the match counter + highlight matching inputs (no re-render). */
 refreshMatches_fn = function() {
   var _a, _b;
   const count = countMatchesNodes(__privateGet(this, _working), __privateMethod(this, _NodeFieldEditorApp_instances, scope_fn).call(this));
@@ -283,18 +246,12 @@ refreshMatches_fn = function() {
     el.classList.toggle("storyflow-fe-hit", Boolean(term) && v.includes(term));
   }
 };
-/**
- * Переключить бейдж "canvas changed - Refresh" без повторного рендера (который бы затер
- * правки).
- */
+/** Toggle the "canvas changed — Refresh" badge without a re-render (which would clobber edits). */
 setStale_fn = function(on) {
   var _a, _b;
   (_b = (_a = this.element) == null ? void 0 : _a.querySelector(".storyflow-fe-stale")) == null ? void 0 : _b.classList.toggle("is-visible", on);
 };
-/**
- * Перезагрузить рабочую копию с холста и очистить состояние edited/stale, затем
- * перерендерить.
- */
+/** Reload the working copy from the canvas and clear edited/stale state, then re-render. */
 pullFromCanvas_fn = function() {
   __privateSet(this, _working, __privateMethod(this, _NodeFieldEditorApp_instances, pull_fn).call(this));
   __privateSet(this, _userEdited, false);

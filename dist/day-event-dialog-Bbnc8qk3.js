@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _date, _eventId, _kind, _graphMode, _stash, _StoryFlowDayEventDialog_static, onSave_fn, onCancel_fn, onEditGraph_fn;
-import { M as MODULE_ID, q as getEvents, t as monthNames, aa as GRAPH_PAGE_TYPE, ab as saveEvent } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, q as getEvents, t as monthNames, aa as GRAPH_PAGE_TYPE, ab as saveEvent } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const CALENDAR_FOLDER_NAME = "StoryFlow Calendar";
 const CALENDAR_FOLDER_COLOR = "#D98F39";
@@ -27,7 +27,7 @@ const _StoryFlowDayEventDialog = class _StoryFlowDayEventDialog extends Handleba
     __privateAdd(this, _eventId, null);
     __privateAdd(this, _kind, "notification");
     __privateAdd(this, _graphMode, "create");
-    /** Значения формы, сохраняемые между условными перерисовками kind/graphMode. */
+    /** Form values preserved across the kind/graphMode conditional re-renders. */
     __privateAdd(this, _stash, null);
   }
   static open({ date, eventId } = {}) {
@@ -71,16 +71,15 @@ const _StoryFlowDayEventDialog = class _StoryFlowDayEventDialog extends Handleba
       audienceGm: ((existing == null ? void 0 : existing.audience) ?? "gm") === "gm",
       audienceAll: (existing == null ? void 0 : existing.audience) === "all",
       createNew: __privateGet(this, _graphMode) === "create",
-      graphName: ((_h = __privateGet(this, _stash)) == null ? void 0 : _h.graphName) ?? L("EventGraphName", `Event - ${dateName}`).replace("{date}", dateName),
+      graphName: ((_h = __privateGet(this, _stash)) == null ? void 0 : _h.graphName) ?? L("EventGraphName", `Event — ${dateName}`).replace("{date}", dateName),
       graphPages,
       saveLabel: existing ? L("SaveEvent", "Save Event") : L("CreateEvent", "Create Event")
     });
     return context;
   }
   /**
-   * Радиокнопки управляют условными секциями → перерисовка при изменении (подводный камень
-   * декларативного showIf). Сначала сохранить общие поля, чтобы переключение kind никогда
-   * не стирало то, что уже ввел ГМ.
+   * Radios drive conditional sections → re-render on change (declarative showIf gotcha).
+   * Stash the shared fields first so switching kind never wipes what the GM already typed.
    */
   _onRender(context, options) {
     var _a;
@@ -137,7 +136,7 @@ onSave_fn = async function() {
     label: String(get("label") ?? "").trim(),
     kind: __privateGet(this, _kind),
     fired: false
-    // редактирование снова активирует событие
+    // editing re-arms the event
   };
   if (__privateGet(this, _kind) === "notification") {
     const text = String(get("text") ?? "").trim();
@@ -178,7 +177,7 @@ onSave_fn = async function() {
     });
     await saveEvent({ ...base, pageUuid: page.uuid, label: base.label || name });
     this.close();
-    const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+    const { BlueprintCanvasApp } = await import("./module-6vV2bj2T.js").then((n) => n.au);
     BlueprintCanvasApp.open(page);
   } catch (err) {
     console.warn(`${MODULE_ID} | calendar create-graph failed:`, err);
@@ -193,7 +192,7 @@ onEditGraph_fn = async function() {
   const pageUuid = (_b = (_a = this.element.querySelector("form")) == null ? void 0 : _a.elements.pageUuid) == null ? void 0 : _b.value;
   const page = pageUuid ? await fromUuid(pageUuid).catch(() => null) : null;
   if (!page) return void ((_c = ui.notifications) == null ? void 0 : _c.warn(L("NeedGraph", "Pick a graph page.")));
-  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+  const { BlueprintCanvasApp } = await import("./module-6vV2bj2T.js").then((n) => n.au);
   BlueprintCanvasApp.open(page);
 };
 __privateAdd(_StoryFlowDayEventDialog, _StoryFlowDayEventDialog_static);

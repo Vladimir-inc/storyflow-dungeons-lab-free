@@ -1,5 +1,5 @@
-{{!-- Боковая панель инспектора узла. При смене выделения перерисовывается отдельно
-      (parts: ["inspector"]), так что PART холста не трогается. --}}
+{{!-- Node inspector side panel. Re-rendered alone (parts: ["inspector"]) on selection
+      change so the canvas PART is never touched. --}}
 <aside class="storyflow-inspector">
   {{#if hasNode}}
     {{#if missingComponent}}
@@ -23,11 +23,10 @@
         <label>{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.NodeName"}}</label>
         <input type="text" name="sfNodeName" value="{{nodeName}}" placeholder="{{nodeLabel}}" />
       </div>
-      {{!-- Одна строка поля, используется и в сгруппированных, и в несгруппированных секциях. --}}
-      {{!-- Список актеров с drag-drop. Рисуется из двух мест в двух контекстах - группа WHO
-            TRIGGERS (где `actorRows` принадлежит группе) и отдельный fieldset у action.token
-            (где он корневой) - поэтому читает `actorRows` без префикса и дает связаться
-            контексту вызывающего. --}}
+      {{!-- One field row, reused across grouped + ungrouped sections. --}}
+      {{!-- Drag-drop actor list. Rendered from two places against two contexts - the WHO TRIGGERS
+            group (where `actorRows` is the group's) and action.token's standalone fieldset (where
+            it is the root's) - so it reads `actorRows` bare and lets the caller's context bind. --}}
       {{#*inline "actorListRows"}}
         <fieldset class="storyflow-spell-rows">
           <legend>{{localize "STORYFLOW_DUNGEONS_LAB.ActorList.Legend"}}</legend>
@@ -53,9 +52,8 @@
 
       {{#*inline "fieldRow"}}
         <div class="form-group storyflow-insp-field{{#if this.hiddenRow}} storyflow-field-hidden{{/if}}" data-field="{{this.name}}">
-          {{!-- Секция с единственным полем (WHO TRIGGERS / AUDIENCE) уже произносит это слово
-                в своей сводке; hideLabel убирает дублирующую подпись строки, не оставляя
-                пустой. --}}
+          {{!-- A solo-field section (WHO TRIGGERS / AUDIENCE) already says the word in its
+                summary; hideLabel drops the duplicate row label without leaving an empty one. --}}
           {{#unless this.hideLabel}}<label>{{this.label}}</label>{{/unless}}
           {{#if this.isCheckbox}}
             <label class="storyflow-toggle">
@@ -114,8 +112,8 @@
             <p class="storyflow-insp-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Inspector.RefDropHint"}}</p>
           {{/if}}
           {{#if this.isNodePicker}}
-            {{!-- Переиспользует разметку и классы ref-picker (поиск, привязка выбора кликом, оформление);
-                  дополнительный класс storyflow-node-picker цепляет наведение на пункт → подсветку на холсте. --}}
+            {{!-- Reuses the ref-picker markup/classes (search + click-select wiring + styling);
+                  the extra storyflow-node-picker class hooks per-option hover → canvas highlight. --}}
             <div class="storyflow-ref-picker storyflow-node-picker">
               <input type="hidden" name="{{this.name}}" value="{{this.value}}" />
               <input type="text" class="storyflow-ref-search" autocomplete="off"
@@ -216,8 +214,8 @@
         </div>
       {{/inline}}
 
-      {{!-- Адаптивные поля одного правила условия или гейта, с ключами по this.names.*, чтобы одна и та же
-            разметка обслуживала узел Condition и гейт видимости каждого выбора. --}}
+      {{!-- One condition/gate rule's adaptive fields, keyed by this.names.* so the same
+            markup serves the Condition node and each choice's visibility gate. --}}
       {{#*inline "ruleFields"}}
         <select name="{{this.names.source}}" class="storyflow-insp-select">
           {{#each this.sourceOptions}}
@@ -281,14 +279,14 @@
         {{/if}}
       {{/inline}}
 
-      {{!-- Поля по секциям: сначала несгруппированные (без заголовка), затем сворачиваемые группы. --}}
+      {{!-- Fields by section: ungrouped first (no header), then collapsible groups. --}}
       {{#each fieldGroups}}
         {{#if this.label}}
           <details class="storyflow-insp-group" open>
             <summary>{{this.label}}</summary>
             {{#each this.fields}}{{> fieldRow}}{{/each}}
-            {{!-- WHO TRIGGERS владеет своим списком актеров: он имеет смысл только пока секция
-                  говорит "specific", поэтому ему место внутри блока, а не соседом ниже. --}}
+            {{!-- WHO TRIGGERS owns its actor list: it only means anything while the section says
+                  "specific", so it belongs inside the box, not as a sibling further down. --}}
             {{#if this.isActorList}}{{> actorListRows}}{{/if}}
           </details>
         {{else}}
@@ -573,9 +571,9 @@
         </fieldset>
       {{/if}}
 
-      {{!-- `actorIds` у action.token переиспользует этот список для несвязанной цели и держит
-            собственный отдельный fieldset. А `specificActorIds` узла-триггера рисуется ВНУТРИ
-            секции WHO TRIGGERS (в этом случае контекст подавляет isActorList здесь). --}}
+      {{!-- action.token's `actorIds` reuses this list for an unrelated purpose and keeps its own
+            standalone fieldset. A trigger node's `specificActorIds` renders INSIDE the WHO
+            TRIGGERS section instead (the context suppresses isActorList here in that case). --}}
       {{#if isActorList}}{{> actorListRows}}{{/if}}
 
       {{#if isAudio}}

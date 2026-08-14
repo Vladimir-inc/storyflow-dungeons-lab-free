@@ -1,8 +1,8 @@
-{{!-- Окно магазина торговца - баровианское торговое окно (Design/Trade Window.dc.html).
-     Чистый рендер `shop` из кадра; корзина ("ledger") живёт только на клиенте до расчёта. --}}
+{{!-- Trader shop window - Barovian trade window (Design/Trade Window.dc.html).
+     Pure render of the frame's `shop`; cart ("ledger") is client-local until checkout. --}}
 <div class="storyflow-shop">
 
-  {{!-- ============ Шапка окна ============ --}}
+  {{!-- ============ Window header ============ --}}
   <header class="storyflow-shop-head">
     <span class="storyflow-shop-portrait">
       {{#if portraitPath}}<img src="{{portraitPath}}" alt="" />{{else}}<i class="fa-solid fa-store" aria-hidden="true"></i>{{/if}}
@@ -34,7 +34,7 @@
     {{/if}}
   </header>
 
-  {{!-- ============ Вкладки ============ --}}
+  {{!-- ============ Tabs ============ --}}
   <nav class="storyflow-shop-tabs">
     <span class="storyflow-shop-tab {{#if tabBuy}}is-active{{/if}}" data-tab="buy">
       <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>{{buyTabLabel}}
@@ -46,7 +46,7 @@
     {{#if tabBuy}}<span class="storyflow-shop-warecount">{{wareCount}}</span>{{/if}}
   </nav>
 
-  {{!-- ============ Панель инструментов ============ --}}
+  {{!-- ============ Toolbar ============ --}}
   {{#if tabBuy}}
   {{#unless refused}}
     {{#if hasItems}}
@@ -83,7 +83,7 @@
   {{/if}}
   {{/if}}
 
-  {{!-- ============ Тело: список и корзина ============ --}}
+  {{!-- ============ Body: list + ledger ============ --}}
   <div class="storyflow-shop-body">
     {{#if tabBuy}}
     <div class="storyflow-shop-list-pane">
@@ -148,7 +148,7 @@
       {{/if}}
     </div>
 
-    {{!-- Панель корзины (ledger) --}}
+    {{!-- Ledger (cart) panel --}}
     {{#if cartOpen}}
       <aside class="storyflow-shop-ledger">
         <div class="storyflow-shop-ledger-head">
@@ -244,7 +244,7 @@
       {{/if}}
     </div>
 
-    {{!-- Панель корзины продажи - двойник корзины покупки выше, только со стороны продажи. --}}
+    {{!-- Sell ledger (cart) panel - the Sell-side twin of the Buy ledger above. --}}
     {{#if sellCartOpen}}
       <aside class="storyflow-shop-ledger storyflow-shop-sell-ledger">
         <div class="storyflow-shop-ledger-head">
@@ -285,7 +285,7 @@
     {{/if}}
   </div>
 
-  {{!-- ============ Подвал: кошелёк, роль, переключатель корзины ============ --}}
+  {{!-- ============ Footer: purse + role + ledger toggle ============ --}}
   <footer class="storyflow-shop-foot">
     <span class="storyflow-shop-foot-label">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Purse"}}</span>
     {{#if hasBuyer}}
@@ -333,7 +333,7 @@
     </button>
   </footer>
 
-  {{!-- ============ Пергаментная подсказка при наведении (fixed) ============ --}}
+  {{!-- ============ Parchment hover tooltip (fixed) ============ --}}
   <div class="storyflow-shop-tip" hidden>
     <div class="storyflow-shop-tip-name"></div>
     <div class="storyflow-shop-tip-meta"></div>

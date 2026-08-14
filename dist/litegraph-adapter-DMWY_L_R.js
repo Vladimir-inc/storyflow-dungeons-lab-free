@@ -18,7 +18,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
   }
 });
 var _color, _pos, _size, _NodeSlot_instances, centreOffset_get, _node, _malloc, _network, _parentId, _pos2, _Reroute_instances, hoverArea_get, _lastRenderTime, _inputSlot, _outputSlot, contains_fn, _reroute, _offsetMultiplier, _hovering, _showOutline, _width, _height, _desiredWidth, _desiredHeight, _pos3, _boundingRect, _SubgraphIONodeBase_instances, getSlotMenuOptions_fn, onSlotMenuAction_fn, _widget, _node2, _node3, _value, _ComboWidget_instances, getValues_fn, canUseButton_fn, tryChangeValue_fn, _concreteInputs, _concreteOutputs, _renderArea, _boundingRect2, _LGraphNode_instances, getErrorStrokeStyle_fn, getSelectedStrokeStyle_fn, findFreeSlot_fn, findSlotByType_fn, defaultVerticalInputs_get, defaultVerticalOutputs_get, measureSlot_fn, measureSlots_fn, getMouseOverSlot_fn, isMouseOverSlot_fn, isMouseOverWidget_fn, arrangeWidgets_fn, arrangeWidgetInputSlots_fn, _widgetRef, _setConnectingLinks, _LinkConnector_instances, dropOnInput_fn, dropOnOutput_fn, setLegacyLinks_fn, _maxClickDrift, _maxClickDrift2, _finally, _CanvasPointer_instances, completeClick_fn, hasSamePosition_fn, isDoubleClick_fn, setDragStarted_fn, _DragAndScale_instances, stateHasChanged_fn, _temp, _temp_vec2, _tmp_area, _margin_area, _link_bounding, _lTempA, _lTempB, _lTempC, _subgraph, _LGraphCanvas_instances, updateCursorStyle_fn, _maximumFrameGap, _visible_node_ids, _visibleReroutes, _snapToGrid, _shiftDown, _dragZoomStart, validateCanvas_fn, dirty_fn, linkConnectorDrop_fn, getPositionableOnPos_fn, processPrimaryButton_fn, setupNodeSelectionDrag_fn, processNodeClick_fn, processWidgetClick_fn, processMiddleButton_fn, processDragZoom_fn, updateReroutes_fn, startDraggingItems_fn, processDraggedItems_fn, noItemsSelected_fn, handleMultiSelect_fn, getLinkCentreOnPos_fn, getHighlightPosition_fn, renderSnapHighlight_fn, renderFloatingLinks_fn, renderAllLinkSegments_fn, addSplineOffset_fn, _lastFloatingLinkId, _floatingLinks, _reroutes, _LGraph_instances, getDragAndScale_fn, _canvas, _rootGraph, _Subgraph_instances, configureSubgraph_fn, _onPointerDownOrMove, _onPointerUp, _onKeyDownOrUp, _id, _ExecutableNodeDTO_instances, resolveSubgraphOutput_fn, _eventAbortController, _SubgraphNode_instances, addSubgraphInputListeners_fn, setWidget_fn, _graph, _canvas2, _canvasEl, _host, _onChange, _onSelect, _onRequestAddNode, _onRequestEditGroup, _onRequestContextMenu, _contextMenuHandler, _dblClickHandler, _dprMedia, _onDprChange, _hoverId, _LiteGraphAdapter_instances, applyCanvasSize_fn, watchDpr_fn, nodeRect_fn, drawOverlays_fn, drawArrowhead_fn, findBySfId_fn;
-import { L as pinsForType, N as humanizeType, O as isKnownNodeType, P as NODE_TYPES, Q as registerCommentNode, R as nodeColor, U as cleanPayload, k as dateFromWorldTime } from "./module-CGuPkFx8.js";
+import { L as pinsForType, N as humanizeType, O as isKnownNodeType, P as NODE_TYPES, Q as registerCommentNode, R as nodeColor, U as cleanPayload, k as dateFromWorldTime } from "./module-6vV2bj2T.js";
 class CustomEventTarget extends EventTarget {
   dispatch(type, detail) {
     const event = new CustomEvent(type, { detail, cancelable: true });
@@ -17896,8 +17896,8 @@ const LiteGraph = new LiteGraphGlobal();
 loadPolyfills();
 class GraphEditorAdapter {
   /**
-   * Смонтировать редактор в host-элемент. Вызывается один раз из
-   * `_onFirstRender` приложения холста.
+   * Mount the editor onto a host element. Called once from the canvas app's
+   * `_onFirstRender`.
    * @param {HTMLElement} _hostEl
    * @returns {void}
    */
@@ -17905,7 +17905,7 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#init not implemented");
   }
   /**
-   * Заменить содержимое редактора заданной моделью StoryFlow.
+   * Replace the editor's contents with the given StoryFlow model.
    * @param {StoryFlowModel} _model
    * @returns {void}
    */
@@ -17913,24 +17913,24 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#loadGraph not implemented");
   }
   /**
-   * Прочитать текущее состояние редактора обратно как модель StoryFlow.
+   * Read the editor's current state back as a StoryFlow model.
    * @returns {StoryFlowModel}
    */
   serialize() {
     throw new Error("GraphEditorAdapter#serialize not implemented");
   }
   /**
-   * Создать новый узел заданного типа StoryFlow в координатах холста.
+   * Create a new node of the given StoryFlow type at canvas coordinates.
    * @param {string} _type
    * @param {number} _x
    * @param {number} _y
-   * @returns {string} StoryFlow id нового узла.
+   * @returns {string} The new node's StoryFlow id.
    */
   addNode(_type, _x, _y) {
     throw new Error("GraphEditorAdapter#addNode not implemented");
   }
   /**
-   * Удалить узел по его StoryFlow id (вместе со всеми связанными ребрами).
+   * Remove a node by its StoryFlow id (and any attached edges).
    * @param {string} _id
    * @returns {void}
    */
@@ -17938,7 +17938,7 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#removeNode not implemented");
   }
   /**
-   * Обновить выходные пины узла (используется при изменении вариантов узла выбора).
+   * Update the output pins of a node (used when a choice node's options change).
    * @param {string} _id
    * @param {string[]} _outPins
    * @returns {void}
@@ -17947,8 +17947,8 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#setNodeOutputs not implemented");
   }
   /**
-   * Задать пользовательское отображаемое имя узла. Пустая строка сбрасывает
-   * его обратно к заголовку типа по умолчанию.
+   * Set a node's custom display name. An empty string clears it back to the
+   * type's default title.
    * @param {string} _id
    * @param {string} _name
    * @returns {void}
@@ -17957,16 +17957,16 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#setNodeName not implemented");
   }
   /**
-   * Точка в графовом пространстве в центре текущего вида (с учетом пана/зума)
-   * или null, если редактор не смонтирован.
+   * Graph-space point at the center of the current view (pan/zoom aware), or
+   * null when the editor is not mounted.
    * @returns {{x: number, y: number}|null}
    */
   getViewCenter() {
     throw new Error("GraphEditorAdapter#getViewCenter not implemented");
   }
   /**
-   * Зарегистрировать колбэк, вызываемый при любом изменении графа (узел
-   * перемещен/добавлен/удален, ребро соединено/разорвано, изменено выделение).
+   * Register a callback fired whenever the graph changes (node moved/added/removed,
+   * edge connected/disconnected, selection changed).
    * @param {(event: {type: string, nodeId?: string}) => void} _cb
    * @returns {void}
    */
@@ -17974,7 +17974,7 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#onChange not implemented");
   }
   /**
-   * Зарегистрировать колбэк, вызываемый при смене выбранного узла (id или null).
+   * Register a callback fired when the selected node changes (id or null).
    * @param {(nodeId: string|null) => void} _cb
    * @returns {void}
    */
@@ -17982,9 +17982,8 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#onSelect not implemented");
   }
   /**
-   * Зарегистрировать колбэк, вызываемый при двойном клике по пустому холсту
-   * (запрос нового узла). Колбэк получает точку в графовом пространстве, где
-   * этот узел нужно создать.
+   * Register a callback fired when the user double-clicks empty canvas, requesting a new
+   * node. The callback receives the graph-space point to spawn at.
    * @param {(point: {x: number, y: number}) => void} _cb
    * @returns {void}
    */
@@ -17992,14 +17991,14 @@ class GraphEditorAdapter {
     throw new Error("GraphEditorAdapter#onRequestAddNode not implemented");
   }
   /**
-   * Подогнать размер редактора под его host-элемент. Вызывается из ResizeObserver.
+   * Resize the editor to its host element. Called from a ResizeObserver.
    * @returns {void}
    */
   resize() {
     throw new Error("GraphEditorAdapter#resize not implemented");
   }
   /**
-   * Разрушить редактор и освободить ресурсы. Вызывается из `_onClose` приложения.
+   * Tear down the editor and release resources. Called from the app's `_onClose`.
    * @returns {void}
    */
   destroy() {
@@ -18070,11 +18069,10 @@ function toLiteGraph(model) {
     groups,
     extra: { storyflow: { edgeIds, meta: (model == null ? void 0 : model.meta) ?? {} } },
     version: 0.4,
-    // Восстанавливаем счетчики id litegraph, чтобы НОВЫЕ узлы/связи получали
-    // свежие id. Без этого ветка version-0.4 в configure() оставляет lastLinkId
-    // равным 0, следующее соединение переиспользует существующий id связи, и
-    // ребра перекидываются на неверный узел (каскадная порча данных).
-    // nextNum/nextLink на единицу больше последнего выданного id.
+    // Restore litegraph's id counters so NEW nodes/links get fresh ids. Without
+    // these, configure()'s version-0.4 path leaves lastLinkId at 0, so the next
+    // connection reuses an existing link id and edges rewire to the wrong node
+    // (cascading corruption). nextNum/nextLink are one past the last assigned id.
     last_node_id: nextNum - 1,
     last_link_id: nextLink - 1
   };
@@ -18197,7 +18195,7 @@ function registerStoryflowNodes(LiteGraph2) {
         for (const name of staticOut) this.addOutput(name, "flow");
         this.properties = { sfId: "", sfType: type, data: {} };
       }
-      /** Кольцо-свечение вкл/выкл + пилюля ON/OFF - для всех типов триггеров, кроме trigger.start. */
+      /** Enabled/disabled glow ring + ON/OFF pill — every trigger type except trigger.start. */
       onDrawForeground(ctx) {
         var _a, _b, _c;
         if (!isToggleTrigger || ((_a = this.flags) == null ? void 0 : _a.collapsed)) return;
@@ -18205,7 +18203,7 @@ function registerStoryflowNodes(LiteGraph2) {
         drawTriggerGlow(ctx, this.size[0], this.size[1], enabled);
         drawEnabledPill(ctx, ENABLED_PILL_RECT, enabled);
       }
-      /** Переключить enabled по клику на пилюлю; для не-переключаемых типов ничего не делает (и пилюли нет). */
+      /** Toggle enabled when the pill is clicked; no-op (and no pill) on non-toggle types. */
       onMouseDown(_event, pos) {
         if (!isToggleTrigger || !hitTestPill(ENABLED_PILL_RECT, pos)) return false;
         toggleNodeEnabled(this);
@@ -18315,27 +18313,24 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     __privateAdd(this, _dprMedia, null);
     /** @type {(() => void)|null} */
     __privateAdd(this, _onDprChange, null);
-    /**
-     * @type {string|null} StoryFlow id узла, подсвеченного при наведении на вариант цели
-     * прыжка.
-     */
+    /** @type {string|null} StoryFlow id of the node highlighted while hovering a jump-target option. */
     __privateAdd(this, _hoverId, null);
   }
-  // -- ПОЗИЦИОННЫЙ КОНТРАКТ (детерминированный - не полагается на умолчания
-  // библиотек/браузера) -- LiteGraph проверяет попадание указателей в CSS-пикселях
-  // (adjustMouseEvent работает от getBoundingClientRect), поэтому визуальная позиция равна
-  // позиции попадания ТОЛЬКО когда: 1. размер отображения = размер хоста, зафиксированный
-  // через inline-стиль в CSS px 2. backing store = размер отображения × devicePixelRatio
-  // (атрибуты width/height) 3. каждый проход отрисовки начинается с ctx.setTransform(dpr)
-  // - принудительно в onRender, НЕ наследуется из окружающего состояния холста. Сборки
-  // Chromium различаются в том, какое состояние преобразования сохраняется между кадрами
-  // (Electron 132 рисовала слой узлов немасштабированным, пока фоновый слой
-  // масштабировался явно: узлы оказывались в 1/dpr от своих хитбоксов - невыделяемые у
-  // краев, не тот узел, когда два расположены близко - в то время как исходный размер
-  // показывал двухтоновый фон). 4. фон и узлы разделяют ОДИН холст (bgcanvas = canvas),
-  // устраняя отдельный путь блита, масштабирование которого тоже зависело от остаточного
-  // состояния преобразования. 5. изменения devicePixelRatio (зум браузера, перемещение
-  // монитора) повторно применяют размеры через переустанавливающийся matchMedia watcher.
+  // ── POSITIONING CONTRACT (deterministic — trusts no library/browser defaults) ──
+  // LiteGraph hit-tests pointers in CSS pixels (adjustMouseEvent works off
+  // getBoundingClientRect), so visual position equals hit position ONLY when:
+  //   1. display size  = host size, pinned via inline style in CSS px
+  //   2. backing store = display size × devicePixelRatio (width/height attributes)
+  //   3. every render pass starts from ctx.setTransform(dpr) — forced in onRender,
+  //      NOT inherited from ambient canvas state. Chromium builds differ in what
+  //      transform state survives between frames (Electron 132 drew the node layer
+  //      unscaled while the background layer scaled itself explicitly: nodes landed
+  //      at 1/dpr of their hit boxes — unselectable near edges, wrong node when two
+  //      sit close — while the original sizing showed a two-tone background instead).
+  //   4. background and nodes share ONE canvas (bgcanvas = canvas), eliminating the
+  //      separate blit path whose scaling also depended on leftover transform state.
+  //   5. devicePixelRatio changes (browser zoom, monitor move) re-apply sizes via a
+  //      re-arming matchMedia watcher.
   init(hostEl) {
     __privateSet(this, _host, hostEl);
     const canvasEl = document.createElement("canvas");
@@ -18468,7 +18463,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     const node2 = __privateMethod(this, _LiteGraphAdapter_instances, findBySfId_fn).call(this, id);
     if (node2) (_a = __privateGet(this, _graph)) == null ? void 0 : _a.remove(node2);
   }
-  /** Удалить текущие выбранные узел(ы) И группу(ы) на холсте. */
+  /** Remove the currently selected node(s) AND group(s) on the canvas. */
   deleteSelected() {
     var _a, _b, _c, _d, _e;
     const selected = ((_a = __privateGet(this, _canvas2)) == null ? void 0 : _a.selected_nodes) ?? {};
@@ -18478,10 +18473,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     }
     (_e = __privateGet(this, _canvas2)) == null ? void 0 : _e.setDirty(true, true);
   }
-  /**
-   * Удалить ВСЕ связи (входы + выходы) на каждом выбранном узле; сами узлы
-   * сохраняются.
-   */
+  /** Remove ALL links (inputs + outputs) on every selected node; keeps the nodes. */
   disconnectSelected() {
     var _a, _b, _c, _d, _e, _f;
     const selected = Object.values(((_a = __privateGet(this, _canvas2)) == null ? void 0 : _a.selected_nodes) ?? {});
@@ -18498,17 +18490,13 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     if (selected.length) (_e = __privateGet(this, _onChange)) == null ? void 0 : _e.call(this, { type: "connectionChange" });
     (_f = __privateGet(this, _canvas2)) == null ? void 0 : _f.setDirty(true, true);
   }
-  /**
-   * True, если выбран какой-либо узел ИЛИ группа (чтобы клавиша Delete
-   * срабатывала и для групп тоже).
-   */
+  /** True if any node OR group is selected (so the Delete key fires for groups too). */
   hasSelection() {
     var _a, _b;
     return (((_b = (_a = __privateGet(this, _canvas2)) == null ? void 0 : _a.selectedItems) == null ? void 0 : _b.size) ?? 0) > 0 || this.getSelectedIds().length > 0;
   }
   /**
-   * StoryFlow id каждого узла, выбранного на холсте в данный момент (с учетом
-   * множественного выбора).
+   * StoryFlow ids of every node currently selected on the canvas (multi-select aware).
    * @returns {string[]}
    */
   getSelectedIds() {
@@ -18520,9 +18508,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     }).filter(Boolean);
   }
   /**
-   * Заменить выделение на холсте узлами для заданных StoryFlow id. Используется для
-   * подсветки только что продублированных/вставленных узлов, чтобы их можно было
-   * сразу перетаскивать.
+   * Replace the canvas selection with the nodes for the given StoryFlow ids. Used to
+   * highlight freshly duplicated/pasted nodes so they're immediately draggable.
    * @param {string[]} ids
    */
   selectNodes(ids) {
@@ -18538,8 +18525,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     __privateGet(this, _canvas2).setDirty(true, true);
   }
   /**
-   * Легковесный список id/type/name для каждого узла (для поиска узлов). Дешевле, чем
-   * `serialize()` - читает свойства узла напрямую и пропускает ребра.
+   * Lightweight id/type/name list of every node (for the find-node search). Cheaper than
+   * `serialize()` — reads node properties directly and skips edges.
    * @returns {Array<{id: string, type: string, name: string}>}
    */
   listNodes() {
@@ -18550,10 +18537,9 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     }).filter((n) => n.id);
   }
   /**
-   * Переместить камеру, чтобы центрировать узел по StoryFlow id (текущий зум
-   * сохраняется), и выбрать его. Использует собственный `centerOnNode` библиотеки -
-   * безопасный с точки зрения контракта способ перемещения вида (он вычисляет смещение
-   * с учетом dpr внутри себя; мы никогда не трогаем `ds` напрямую).
+   * Pan the camera to center a node by StoryFlow id (current zoom kept) and select it.
+   * Uses the library's own `centerOnNode` — the contract-safe way to move the view (it
+   * computes the dpr-aware offset internally; we never poke `ds` directly).
    * @param {string} id
    */
   focusNode(id) {
@@ -18563,7 +18549,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     this.selectNodes([id]);
   }
   /**
-   * Легковесный список id/title для каждой группы (для поиска).
+   * Lightweight id/title list of every group (for the find search).
    * @returns {Array<{id: string, title: string}>}
    */
   listGroups() {
@@ -18571,9 +18557,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     return (((_a = __privateGet(this, _graph)) == null ? void 0 : _a._groups) ?? []).map((g) => ({ id: String(g.id), title: g.title ?? "" })).filter((g) => g.id);
   }
   /**
-   * Переместить камеру, чтобы центрировать группу по id, и выбрать ее. centerOnNode
-   * читает `.pos`/ `.size`, которые группа предоставляет - безопасный с точки зрения
-   * контракта сдвиг вида (никогда не трогает `ds`).
+   * Pan the camera to center a group by id and select it. centerOnNode reads `.pos`/
+   * `.size`, both of which a group exposes — the contract-safe pan (never pokes `ds`).
    * @param {string} id
    */
   focusGroup(id) {
@@ -18589,11 +18574,10 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     }
   }
   /**
-   * Добавить визуальную групповую рамку в точке графового пространства
-   * (размер/цвет/заголовок по умолчанию). Затем нативный litegraph обрабатывает ее
-   * перемещение (drag заголовка) и изменение размера (за угол).
+   * Add a visual group frame at a graph-space point (default size/color/title). Native
+   * litegraph then handles its move (title-bar drag) and resize (corner).
    * @param {{x: number, y: number, title?: string, color?: string}} opts
-   * @returns {string} id новой группы.
+   * @returns {string} the new group's id.
    */
   addGroup({ x: x2, y, title = "Group", color = "#335577" } = {}) {
     var _a, _b;
@@ -18609,7 +18593,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     return group.id;
   }
   /**
-   * Изменить заголовок/цвет группы по id.
+   * Patch a group's title/color by id.
    * @param {string} id
    * @param {{title?: string, color?: string}} patch
    */
@@ -18636,7 +18620,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     (_b = __privateGet(this, _canvas2)) == null ? void 0 : _b.setDirty(true, true);
   }
   /**
-   * Прочитать идентификатор и полезную нагрузку одного узла (для инспектора).
+   * Read one node's identity + payload (for the inspector).
    * @param {string} id
    * @returns {{id: string, type: string, data: object}|null}
    */
@@ -18651,8 +18635,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     };
   }
   /**
-   * Обновить сохраненную полезную нагрузку узла на месте (вызывается инспектором).
-   * Также ресинхронизирует выходные пины выбора из новой полезной нагрузки.
+   * Update a node's stored payload in place (called by the inspector). Also resyncs
+   * choice output pins from the new payload.
    * @param {string} id
    * @param {object} data
    */
@@ -18665,11 +18649,9 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     this.setNodeOutputs(id, out);
   }
   /**
-   * Задать пользовательское отображаемое имя узла и обновить его нарисованный
-   * заголовок.
+   * Set a node's custom display name and refresh its drawn title.
    * @param {string} id
-   * @param {string} name - "" сбрасывает обратно на типовое значение по
-   * умолчанию.
+   * @param {string} name - "" clears back to the type default.
    */
   setNodeName(id, name) {
     var _a;
@@ -18680,9 +18662,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     (_a = __privateGet(this, _canvas2)) == null ? void 0 : _a.setDirty(true, true);
   }
   /**
-   * Центр видимой области в графовом пространстве. Только ЧТЕНИЕ ds - никогда
-   * не изменять состояние вида здесь (позиционирование холста - неизменный
-   * контракт).
+   * Graph-space center of the visible viewport. READ-only on ds — never mutate
+   * view state here (canvas positioning is a frozen contract).
    * @returns {{x: number, y: number}|null}
    */
   getViewCenter() {
@@ -18695,9 +18676,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     return { x: x2, y };
   }
   /**
-   * Преобразовать точку из клиентского пространства (viewport) в координаты графа.
-   * Только ЧТЕНИЕ ds - никогда не изменять состояние вида здесь (позиционирование
-   * холста - неизменный контракт).
+   * Convert a client-space (viewport) point to graph coordinates. READ-only on ds —
+   * never mutate view state here (canvas positioning is a frozen contract).
    * @returns {{x: number, y: number}|null}
    */
   clientToGraph(clientX, clientY) {
@@ -18711,9 +18691,9 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     return { x: x2, y };
   }
   /**
-   * Сдвинуть вид на дельту в экранном пространстве (drag в режиме размещения).
-   * Тот же сдвиг смещения, который litegraph сам применяет при middle-drag -
-   * контракт преобразования отрисовки остается нетронутым.
+   * Pan the view by a screen-space delta (placement-mode drag). Same offset shift
+   * litegraph itself applies on a middle-drag — the render transform contract is
+   * untouched.
    */
   panBy(dxScreen, dyScreen) {
     var _a;
@@ -18741,10 +18721,7 @@ class LiteGraphAdapter extends GraphEditorAdapter {
   resize() {
     __privateMethod(this, _LiteGraphAdapter_instances, applyCanvasSize_fn).call(this);
   }
-  /**
-   * Перерисовать без изменения графа (метка узла-таймера отслеживает текущее
-   * worldTime).
-   */
+  /** Repaint without any graph mutation (the timer node's label tracks live worldTime). */
   refreshCanvas() {
     var _a;
     (_a = __privateGet(this, _canvas2)) == null ? void 0 : _a.setDirty(true, true);
@@ -18779,9 +18756,8 @@ class LiteGraphAdapter extends GraphEditorAdapter {
     __privateSet(this, _host, null);
   }
   /**
-   * Подсветить (или снять подсветку) узел, предпросматриваемый при наведении на вариант в
-   * выборе цели прыжка.
-   * @param {string|null} id - StoryFlow node id или null/"" для снятия.
+   * Highlight (or clear) the node previewed while hovering an option in the jump-target picker.
+   * @param {string|null} id - StoryFlow node id, or null/"" to clear.
    */
   setHoverHighlight(id) {
     var _a;
@@ -18807,23 +18783,22 @@ _onDprChange = new WeakMap();
 _hoverId = new WeakMap();
 _LiteGraphAdapter_instances = new WeakSet();
 /**
- * Применить размеры позиционного контракта (см. контракт выше): inline-стиль
- * размера отображения в CSS px + dpr-масштабированный backing store. Изменения
- * backing store направляются через LGraphCanvas#resize, когда он доступен (он
- * помечает оба слоя dirty и ничего не делает, если не изменилось).
+ * Apply the positioning contract's sizes (see contract above): inline-style
+ * display size in CSS px + dpr-scaled backing store. Backing-store changes are
+ * routed through LGraphCanvas#resize when available (it marks both layers dirty
+ * and no-ops when unchanged).
  *
- * Изменение размера элемента `<canvas>` (установка атрибутов width/height) всегда
- * стирает его пиксельный буфер, а `LGraphCanvas#resize` только помечает холст dirty
- * - фактическая перерисовка остается на собственном непрерывном rAF-цикле отрисовки
- * LGraphCanvas (запускается автоматически в `new LGraphCanvas(...)` внутри
- * `init()`, см. startRendering там). Этот цикл работает в СВОЕМ rAF-коллбеке
- * независимо от нашего (вызывающий здесь сам уже объединен по rAF, см.
- * ResizeObserver из blueprint-canvas-app.mjs). Два цикла гоняются каждый кадр во
- * время вспышки изменения размера: кто бы ни запустился первым, если это `draw()`
- * цикла отрисовки, он оставляет только что очищенный буфер на экране на целый кадр
- * - заметное мерцание на каждом тике быстрого drag. Принудительный немедленный
- * `draw(true, true)` прямо здесь, в том же тике, что и resize, закрывает эту гонку:
- * буфер никогда не остается пустым между отрисовками.
+ * Resizing a `<canvas>` element (setting its width/height attribute) always wipes
+ * its pixel buffer, and `LGraphCanvas#resize` only marks the canvas dirty — the
+ * actual redraw is left to LGraphCanvas's own continuous rAF render loop (started
+ * automatically in `init()`'s `new LGraphCanvas(...)`, see startRendering there).
+ * That loop runs on its OWN rAF callback, independent of ours (the caller here is
+ * itself already rAF-coalesced, see blueprint-canvas-app.mjs's ResizeObserver). The
+ * two race every frame during a resize burst: whichever runs first, if it's the
+ * render loop's `draw()`, leaves the just-blanked buffer on screen for a whole
+ * frame — a visible flicker on every tick of a fast drag. Forcing an immediate
+ * `draw(true, true)` right here, in the same tick as the resize, closes that race:
+ * the buffer is never left blank across a paint.
  */
 applyCanvasSize_fn = function() {
   var _a, _b;
@@ -18844,7 +18819,7 @@ applyCanvasSize_fn = function() {
     __privateGet(this, _canvasEl).height = h;
   }
 };
-/** Переустановить one-shot слушатель для следующего изменения devicePixelRatio. */
+/** Re-arm a one-shot listener for the next devicePixelRatio change. */
 watchDpr_fn = function() {
   if (__privateGet(this, _dprMedia) && __privateGet(this, _onDprChange)) {
     __privateGet(this, _dprMedia).removeEventListener("change", __privateGet(this, _onDprChange));
@@ -18858,10 +18833,7 @@ watchDpr_fn = function() {
   });
   __privateGet(this, _dprMedia).addEventListener("change", __privateGet(this, _onDprChange), { once: true });
 };
-/**
- * Границы (bounding rect), включая заголовок, litegraph-узла в графовом
- * пространстве.
- */
+/** Bounding rect (including the title bar) of a litegraph node, in graph space. */
 nodeRect_fn = function(node2) {
   const titleH = LiteGraph.NODE_TITLE_HEIGHT ?? 30;
   const [w, h] = node2.size ?? [140, 60];
@@ -18869,9 +18841,8 @@ nodeRect_fn = function(node2) {
   return { x: x2, y: y - titleH, w, h: h + titleH };
 };
 /**
- * Отрисовать авторский оверлей (ctx в графовом пространстве, вызывается litegraph после
- * узлов): пунктирный коннектор от каждого `showLink` jump к его цели, плюс подсветка узла под
- * курсором.
+ * Draw the authoring overlay (graph-space ctx, called by litegraph after the nodes): a dashed
+ * connector from each `showLink` jump to its target, plus the hovered-node highlight.
  */
 drawOverlays_fn = function(ctx) {
   var _a, _b, _c, _d, _e;
@@ -18926,10 +18897,7 @@ drawOverlays_fn = function(ctx) {
     }
   }
 };
-/**
- * Закрашенная стрелка в p2, направленная вдоль p1→p2 (графовое пространство;
- * наследует fillStyle).
- */
+/** Filled arrowhead at p2, pointing along p1→p2 (graph space; inherits fillStyle). */
 drawArrowhead_fn = function(ctx, p1, p2, scale) {
   const ang = Math.atan2(p2.y - p1.y, p2.x - p1.x);
   const len = 10 / scale;

@@ -1,7 +1,7 @@
-{{!-- Карточка-подсказка шага тура и виджет со списком дел (см. guide-step-app.mjs).
-     ОДИН корневой элемент: HandlebarsApplicationMixin в v13 бросает
-     "Template part must render a single HTML element" на втором корне -
-     именно из-за этого окно оставалось невидимым четыре релиза подряд. --}}
+{{!-- Tour step hint-card + to-do widget (see guide-step-app.mjs).
+     ONE root element: v13's HandlebarsApplicationMixin throws
+     "Template part must render a single HTML element" on a second root -
+     which is exactly how this window stayed invisible through four releases. --}}
 <div class="storyflow-guide-step-root">
 <section class="storyflow-guide-step" aria-live="polite">
   <video

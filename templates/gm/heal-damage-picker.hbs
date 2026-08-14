@@ -1,6 +1,6 @@
-{{!-- Выбор цели во время прогона на стороне ГМ для узла Heal/Damage. Рендерится в
-      DialogV2 через renderTemplate, чтобы имена актёров экранировались Handlebars (модуль
-      никогда не собирает HTML-строки в JS). --}}
+{{!-- GM-side runtime target picker for the Heal/Damage node. Rendered into a
+      DialogV2 via renderTemplate so actor names are Handlebars-escaped (the
+      module never assembles HTML strings in JS). --}}
 <div class="storyflow-target-picker">
   {{#each actors}}
     <label class="storyflow-target-option">

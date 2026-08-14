@@ -1,11 +1,11 @@
-import { M as MODULE_ID, N as humanizeType, ak as replaceNodesUpdate } from "./module-CGuPkFx8.js";
-import { e as exampleFor, t as tutorialFor } from "./node-tutorial-app-BXbJ3mZW.js";
+import { M as MODULE_ID, N as humanizeType, ak as replaceNodesUpdate } from "./module-6vV2bj2T.js";
+import { e as exampleFor, t as tutorialFor } from "./node-tutorial-app-CPO-Cphs.js";
 const GRAPH_PAGE_TYPE = `${MODULE_ID}.graph`;
 function buildTutorialPageData(type) {
   const { demo } = tutorialFor(type);
   if (!demo) return null;
   return {
-    name: `Demo - ${humanizeType(type)}`,
+    name: `Demo — ${humanizeType(type)}`,
     type: GRAPH_PAGE_TYPE,
     flags: { [MODULE_ID]: { tutorialType: type } },
     system: { nodes: demo.nodes, edges: demo.edges, meta: { entry: demo.meta.entry } }
@@ -15,7 +15,7 @@ function buildTutorialExamplePageData(type) {
   const example = exampleFor(type);
   if (!example) return null;
   return {
-    name: `Example - ${humanizeType(type)}`,
+    name: `Example — ${humanizeType(type)}`,
     type: GRAPH_PAGE_TYPE,
     flags: { [MODULE_ID]: { tutorialExampleType: type } },
     system: { nodes: example.nodes, edges: example.edges, meta: { entry: example.meta.entry } }
@@ -61,7 +61,7 @@ async function showTutorialExample(type) {
   } else {
     [page] = await entry.createEmbeddedDocuments("JournalEntryPage", [data]);
   }
-  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+  const { BlueprintCanvasApp } = await import("./module-6vV2bj2T.js").then((n) => n.au);
   BlueprintCanvasApp.open(page);
 }
 function exampleClipboardSlice(type) {
@@ -72,7 +72,7 @@ function exampleClipboardSlice(type) {
 async function copyTutorialExample(type) {
   const slice = exampleClipboardSlice(type);
   if (!slice) return false;
-  const { setClipboardSlice } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+  const { setClipboardSlice } = await import("./module-6vV2bj2T.js").then((n) => n.au);
   return setClipboardSlice(slice.nodes, slice.edges);
 }
 export {

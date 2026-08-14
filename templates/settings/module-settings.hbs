@@ -1,4 +1,4 @@
-{{!-- Окно настроек модуля: вкладки General/Calendar/Factions/Trader/Overlay, либо закрытый вид для тех, кто не ГМ и не ассистент ГМ. --}}
+{{!-- Module Settings window: General/Calendar/Factions/Trader/Overlay tabs, or a locked view for non-GM/Assistant-GM users. --}}
 <div class="storyflow-ms-root">
   {{#if isGM}}
     <nav class="storyflow-ms-tabs">
@@ -8,9 +8,12 @@
       <a class="ms-tab {{#if isCalendarTab}}active{{/if}}" data-action="switchTab" data-tabid="calendar">
         <i class="fa-solid fa-calendar-days"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabCalendar"}}
       </a>
-      <a class="ms-tab {{#if isFactionsTab}}active{{/if}}" data-action="switchTab" data-tabid="factions">
-        <i class="fa-solid fa-shield-halved"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabFactions"}}
-      </a>
+      {{!-- Factions tab - gated app-package "app.factions-ui"; absent in builds without it. --}}
+      {{#if hasFactions}}
+        <a class="ms-tab {{#if isFactionsTab}}active{{/if}}" data-action="switchTab" data-tabid="factions">
+          <i class="fa-solid fa-shield-halved"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabFactions"}}
+        </a>
+      {{/if}}
       <a class="ms-tab {{#if isTraderTab}}active{{/if}}" data-action="switchTab" data-tabid="trader">
         <i class="fa-solid fa-coins"></i> {{localize "STORYFLOW_DUNGEONS_LAB.Settings.TabTrader"}}
       </a>
@@ -233,6 +236,8 @@
           <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderBuybackPctHint"}}</p>
         </div>
 
+        {{!-- Per-tier reputation pricing - dead without the Factions UI package, so hidden there. --}}
+        {{#if hasFactions}}
         <div class="ms-field">
           <label>{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRep"}}</label>
           <p class="ms-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Settings.TraderRepHint"}}</p>
@@ -255,6 +260,7 @@
             </tbody>
           </table>
         </div>
+        {{/if}}
       {{/if}}
 
       {{#if isOverlayTab}}

@@ -1,4 +1,4 @@
-{{!-- Редактор страницы торговца: выбор портрета и таблица предметов с приёмом перетаскивания. --}}
+{{!-- Trader page editor: portrait picker + droppable item table. --}}
 <div class="storyflow-trader-edit">
   <div class="form-group storyflow-trader-name-field">
     <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Name"}}</label>
@@ -15,16 +15,19 @@
     </div>
   </div>
 
-  <div class="form-group storyflow-trader-faction-field">
-    <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Faction"}}</label>
-    <select name="system.factionId">
-      <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoFaction"}}</option>
-      {{#each factionOptions}}
-        <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
-      {{/each}}
-    </select>
-    <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.FactionHint"}}</p>
-  </div>
+  {{!-- Faction link - gated app-package "app.factions-ui"; absent in builds without factions. --}}
+  {{#if hasFactions}}
+    <div class="form-group storyflow-trader-faction-field">
+      <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.Faction"}}</label>
+      <select name="system.factionId">
+        <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NoFaction"}}</option>
+        {{#each factionOptions}}
+          <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+        {{/each}}
+      </select>
+      <p class="storyflow-trader-faction-hint">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.FactionHint"}}</p>
+    </div>
+  {{/if}}
 
   <div class="form-group storyflow-trader-npc-field">
     <label>{{localize "STORYFLOW_DUNGEONS_LAB.Trader.NpcLink"}}</label>
@@ -56,15 +59,17 @@
           {{localize "STORYFLOW_DUNGEONS_LAB.Trader.Stock"}}
           <input type="number" name="stock.{{this.index}}" value="{{this.stock}}" min="0" step="1" />
         </label>
-        <label class="storyflow-trader-lock-field" {{#unless ../repLockEnabled}}data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.LockNeedsFaction'}}"{{/unless}}>
-          <i class="fa-solid fa-lock" aria-hidden="true"></i>
-          <select name="repTier.{{this.index}}" {{#unless ../repLockEnabled}}disabled{{/unless}}>
-            <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.LockNone"}}</option>
-            {{#each ../tiers}}
-              <option value="{{this.id}}" {{#if (eq this.id ../repTier)}}selected{{/if}}>{{this.label}}</option>
-            {{/each}}
-          </select>
-        </label>
+        {{#if ../hasFactions}}
+          <label class="storyflow-trader-lock-field" {{#unless ../repLockEnabled}}data-tooltip="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.LockNeedsFaction'}}"{{/unless}}>
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <select name="repTier.{{this.index}}" {{#unless ../repLockEnabled}}disabled{{/unless}}>
+              <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Trader.LockNone"}}</option>
+              {{#each ../tiers}}
+                <option value="{{this.id}}" {{#if (eq this.id ../repTier)}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </label>
+        {{/if}}
         <button type="button" data-action="removeItem" data-index="{{this.index}}"
                 title="{{localize 'STORYFLOW_DUNGEONS_LAB.Trader.RemoveItem'}}">
           <i class="fa-solid fa-trash"></i>

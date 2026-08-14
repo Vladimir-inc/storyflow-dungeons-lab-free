@@ -1,8 +1,7 @@
 /**
  * @file nodes/__TYPE__/__TYPE_SLUG__.test.mjs
- * @description Расположенные рядом модульные тесты для пакета узлов __TYPE__.
- * Регистрация проходит через тот же внутренний фасад, который использует
- * сгенерированный загрузчик.
+ * @description Colocated unit tests for the __TYPE__ node package. Registration goes
+ *              through the same internal façade the generated loader uses.
  */
 import { describe, it, expect, afterEach } from "vitest";
 import { registerBuiltinNode } from "../../api/builtin.mjs";

@@ -1,4 +1,4 @@
-{{!-- Вкладка квестов: боковая панель при свечах (строки карточек по категориям) и деталь. ГМ правит на месте. --}}
+{{!-- Quests tab: candlelit sidebar (categorized card rows) + detail. GM edits inline. --}}
 <section class="storyflow-qb-content qb-quests {{#if isActive}}active{{/if}}">
   <div class="qb-body">
     <aside class="qb-side">
@@ -147,17 +147,20 @@
               <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Xp"}}
                 <input type="number" min="0" data-edit="rewardXp" value="{{selectedQuest.rewards.xp}}" />
               </label>
-              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Faction"}}
-                <select data-edit="rewardFaction">
-                  <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.NoFaction"}}</option>
-                  {{#each selectedQuest.rewards.factionOptions}}
-                    <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
-                  {{/each}}
-                </select>
-              </label>
-              <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Reputation"}}
-                <input type="number" data-edit="rewardRep" value="{{selectedQuest.rewards.reputation}}" />
-              </label>
+              {{!-- Faction reputation reward - gated app-package "app.factions-ui". --}}
+              {{#if hasFactions}}
+                <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Faction"}}
+                  <select data-edit="rewardFaction">
+                    <option value="">{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.NoFaction"}}</option>
+                    {{#each selectedQuest.rewards.factionOptions}}
+                      <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+                    {{/each}}
+                  </select>
+                </label>
+                <label>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.Reputation"}}
+                  <input type="number" data-edit="rewardRep" value="{{selectedQuest.rewards.reputation}}" />
+                </label>
+              {{/if}}
             </div>
             <div class="qb-reward-items">
               {{#each selectedQuest.rewards.items}}
@@ -186,7 +189,7 @@
                 <div class="qb-rewards-summary-body">
                   {{#if selectedQuest.rewards.gold}}<span>{{selectedQuest.rewards.gold}} gp</span>{{/if}}
                   {{#if selectedQuest.rewards.xp}}<span>{{localize "STORYFLOW_DUNGEONS_LAB.Rewards.XpEach" xp=selectedQuest.rewards.xp}}</span>{{/if}}
-                  {{#if selectedQuest.rewards.factionName}}<span>{{selectedQuest.rewards.factionName}} {{#if selectedQuest.rewards.reputation}}{{selectedQuest.rewards.reputation}}{{/if}}</span>{{/if}}
+                  {{#if hasFactions}}{{#if selectedQuest.rewards.factionName}}<span>{{selectedQuest.rewards.factionName}} {{#if selectedQuest.rewards.reputation}}{{selectedQuest.rewards.reputation}}{{/if}}</span>{{/if}}{{/if}}
                   {{#each selectedQuest.rewards.items}}<span>{{this.name}}{{#if (eq this.qty 1)}}{{else}} ×{{this.qty}}{{/if}}</span>{{/each}}
                 </div>
               </div>

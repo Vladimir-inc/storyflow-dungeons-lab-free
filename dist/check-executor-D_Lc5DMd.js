@@ -1,4 +1,4 @@
-import { M as MODULE_ID, a8 as activeFace, a9 as discardedFace } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, a8 as activeFace, a9 as discardedFace } from "./module-6vV2bj2T.js";
 async function rollCheck(check, actor) {
   var _a, _b;
   const { kind, key, rollMode = "normal" } = check ?? {};

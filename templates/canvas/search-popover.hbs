@@ -1,5 +1,5 @@
-{{!-- Поповер поиска узлов: ищет узлы в графе и переводит камеру на найденный. Рендерится
-      ОТДЕЛЬНО через render({parts:["search"]}), чтобы никогда не задевать императивный PART холста. --}}
+{{!-- Find-node popover: search existing graph nodes and jump the camera to one. Rendered
+      ALONE via render({parts:["search"]}) so it never disturbs the imperative canvas PART. --}}
 <div class="storyflow-search-popover {{#unless searchOpen}}storyflow-hidden{{/unless}}">
   {{#if searchOpen}}
     <div class="storyflow-palette-head">

@@ -1,8 +1,8 @@
 /**
  * @file nodes/__TYPE__/overlay.mjs
- * @description Слот оверлея для узла __TYPE__: renderBody / fastPath / rootClass /
- * onRender, используемые шасси player-overlay (спецификация §4). Empty = шасси
- * рендерит тело по умолчанию для фреймов узла.
+ * @description Overlay slot for the __TYPE__ node: renderBody / fastPath / rootClass /
+ *              onRender consumed by the player-overlay chassis (spec §4). Empty = the
+ *              chassis renders its default body for the node's frames.
  */
 
 export const overlay = {};

@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _StoryFlowSeasonConfigApp_static, onSave_fn, onReset_fn;
-import { M as MODULE_ID, D as getSeasons, al as DEFAULT_SEASONS, C as CONDITIONS, am as getMonthNameOverrides, an as getWeatherEffectMap, ao as listWeatherEffects, ap as CORE_PROVIDER, aq as saveSeasons, ar as normalizeSeasons, as as saveMonthNames, at as saveWeatherEffectMap } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, D as getSeasons, al as DEFAULT_SEASONS, C as CONDITIONS, am as getMonthNameOverrides, an as getWeatherEffectMap, ao as listWeatherEffects, ap as CORE_PROVIDER, aq as saveSeasons, ar as normalizeSeasons, as as saveMonthNames, at as saveWeatherEffectMap } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 function L(key, fallback) {
   var _a, _b;
@@ -34,9 +34,9 @@ const _StoryFlowSeasonConfigApp = class _StoryFlowSeasonConfigApp extends Handle
       tempMax: cfg[key].tempMax,
       weights: Object.entries(CONDITIONS).map(([c, meta]) => ({
         key: c,
-        // Предвычисленный путь с точками (не собран через `../` переход контекста в шаблоне -
-        // hbs-форматтер Prettier на базе Glimmer отклоняет "../", склеенный с литеральным
-        // tекстом в значении атрибута, хотя настоящий Handlebars.js прекрасно это поддерживает).
+        // Precomputed dotted path (not built via a `../` context-jump in the template —
+        // Prettier's Glimmer-based hbs formatter rejects "../" concatenated with literal
+        // text in an attribute value, even though real Handlebars.js supports it fine).
         name: `${key}.weights.${c}`,
         icon: meta.icon,
         color: meta.color,

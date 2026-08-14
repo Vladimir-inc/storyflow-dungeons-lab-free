@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _offWorldChanged, _touched, _touchTimer, _status, _StoryFlowPlaneSettingsApp_instances, repaint_fn, wireDock_fn, wireSliders_fn, touch_fn, apply_fn, _StoryFlowPlaneSettingsApp_static, onSelectPlane_fn, onSetCondition_fn, onRollCondition_fn, onTogglePerScene_fn, onOpenSeasons_fn;
-import { ac as activeCondition, ad as activeParams, ae as clampParam, M as MODULE_ID, af as listPlanes, ag as getWorldState, ah as WORLD_CHANGED_HOOK, ai as patchWorldState, aj as planeConditionKeys } from "./module-CGuPkFx8.js";
+import { ac as activeCondition, ad as activeParams, ae as clampParam, M as MODULE_ID, af as listPlanes, ag as getWorldState, ah as WORLD_CHANGED_HOOK, ai as patchWorldState, aj as planeConditionKeys } from "./module-6vV2bj2T.js";
 function paramText(param, value) {
   const shown = param.step && param.step < 1 ? value.toFixed(1) : String(value);
   return `${shown}${param.unit ?? ""}`;
@@ -58,8 +58,8 @@ function buildPlaneSettingsContext({ world, planes, isGM, localize }) {
       max: p.max,
       step: p.step,
       value,
-      // Окно само форматирует показание, пока тянут ползунок, поэтому единица измерения нужна
-      // ему как данные, а не запеченной в строку.
+      // The window formats the readout itself while the slider is being dragged, so it needs
+      // the unit as data, not baked into the string.
       unit: p.unit ?? "",
       text: paramText(p, value)
     };
@@ -85,7 +85,7 @@ function buildPlaneSettingsContext({ world, planes, isGM, localize }) {
     effects,
     showEffects: effects.length > 0,
     perScene: world.perScene,
-    // Сказано в окне прямым текстом, потому что "куда делся мой дождь" - очевидный первый вопрос.
+    // Said plainly in the window, because "where did my rain go" is the obvious first question.
     weatherNote: (active == null ? void 0 : active.weather) ? L2(
       "PlaneWeatherOn",
       "The calendar rolls daily weather on this plane and mirrors it onto the scene."
@@ -118,13 +118,13 @@ const _StoryFlowPlaneSettingsApp = class _StoryFlowPlaneSettingsApp extends Hand
     __privateAdd(this, _StoryFlowPlaneSettingsApp_instances);
     /** @type {(() => void)|null} */
     __privateAdd(this, _offWorldChanged, null);
-    /** Параметр, чье показание должно мигнуть (он только что дошел до мира), и таймер, который это снимает. */
+    /** Param whose readout should flash (it just hit the world), and the timer that clears it. */
     __privateAdd(this, _touched, null);
     __privateAdd(this, _touchTimer, null);
-    /** Бледная строка "план · условие", которую дизайн размещает в обвязке окна. */
+    /** The faint "plane · condition" line the design puts in the window chrome. */
     __privateAdd(this, _status, null);
   }
-  /** Открыть окно (или перевести на него фокус). */
+  /** Open (or focus) the window. */
   static open() {
     __privateGet(_StoryFlowPlaneSettingsApp, _instance) ?? __privateSet(_StoryFlowPlaneSettingsApp, _instance, new _StoryFlowPlaneSettingsApp());
     __privateGet(_StoryFlowPlaneSettingsApp, _instance).render(true);
@@ -140,7 +140,7 @@ const _StoryFlowPlaneSettingsApp = class _StoryFlowPlaneSettingsApp extends Hand
       localize: L
     });
   }
-  /** @override - обвязку рисует AppV2, поэтому строка статуса из дизайна внедряется в нее. */
+  /** @override — AppV2 draws the chrome, so the design's status line is injected into it. */
   async _renderFrame(options) {
     var _a;
     const frame = await super._renderFrame(options);
@@ -178,14 +178,14 @@ _touched = new WeakMap();
 _touchTimer = new WeakMap();
 _status = new WeakMap();
 _StoryFlowPlaneSettingsApp_instances = new WeakSet();
-/** Перерисовать только тело - рамка (и ее строка статуса) обновляется в _onRender. */
+/** Repaint the body only — the frame (and its status line) is updated in _onRender. */
 repaint_fn = function() {
   this.render({ parts: ["main"] });
 };
 /**
- * Док увеличивается в сторону указателя. Управляется здесь, а не в CSS, потому что масштаб
- * плитки зависит от ее расстояния до курсора, а CSS его не видит; transform пишется прямо
- * в узел, поэтому ничего не перерисовывается, пока указатель движется.
+ * The dock magnifies toward the pointer. Driven here rather than in CSS because a tile's
+ * scale depends on its distance to the cursor, which CSS cannot see; the transform is written
+ * straight to the node, so nothing re-renders while the pointer travels.
  * @param {object} context
  */
 wireDock_fn = function(context) {
@@ -209,9 +209,8 @@ wireDock_fn = function(context) {
   dock.addEventListener("pointerleave", () => magnify(null));
 };
 /**
- * У range-инпута не должно быть data-action (клик приходится на середину перетаскивания):
- * живое показание вешается на `input`, а фиксация - на `change`, чтобы перетаскивание
- * не писало по разу на пиксель.
+ * A range input must not carry data-action (the click lands mid-drag): wire the live readout
+ * on `input` and commit on `change`, so dragging does not write once per pixel.
  */
 wireSliders_fn = function() {
   var _a;
@@ -230,9 +229,8 @@ wireSliders_fn = function() {
   }
 };
 /**
- * Пометить показание как только что записанное. Держится на всю длительность вспышки, а не
- * сбрасывается на следующей отрисовке, потому что изменение настройки мира перерисовывает окно
- * не один раз.
+ * Mark a readout as just-written. Held for the length of the flash rather than cleared on the
+ * next render, because a world-setting change repaints the window more than once.
  * @param {string} param
  */
 touch_fn = function(param) {
@@ -263,7 +261,7 @@ onTogglePerScene_fn = async function(_event, target) {
   await __privateMethod(this, _StoryFlowPlaneSettingsApp_instances, apply_fn).call(this, { perScene: target.checked });
 };
 onOpenSeasons_fn = async function() {
-  const { StoryFlowSeasonConfigApp } = await import("./season-config-app-DOwS-vD5.js");
+  const { StoryFlowSeasonConfigApp } = await import("./season-config-app-BOsWvD_A.js");
   StoryFlowSeasonConfigApp.open();
 };
 __privateAdd(_StoryFlowPlaneSettingsApp, _StoryFlowPlaneSettingsApp_static);

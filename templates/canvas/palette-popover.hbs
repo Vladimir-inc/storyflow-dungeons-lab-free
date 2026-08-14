@@ -1,5 +1,5 @@
-{{!-- Палитра добавления узлов: поповер с категориями и поиском. Рендерится ОТДЕЛЬНО через
-      render({parts:["palette"]}), чтобы никогда не задевать императивный PART холста. --}}
+{{!-- Add-node palette: categorized + searchable popover. Rendered ALONE via
+      render({parts:["palette"]}) so it never disturbs the imperative canvas PART. --}}
 <div class="storyflow-palette-popover {{#unless paletteOpen}}storyflow-hidden{{/unless}}">
   {{#if paletteOpen}}
     <div class="storyflow-palette-head">

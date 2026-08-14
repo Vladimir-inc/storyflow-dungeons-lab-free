@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _trail, _running, _query, _searchRestoreFocus, _editing, _draft, _confirmingReset, _customPage, _customEditing, _customDraft, _NodeTutorialApp_instances, currentType_fn, storedOverride_fn, exitEdit_fn, buildEditContext_fn, demoOptions_fn, customCats_fn, saveCustomCats_fn, buildCustomGroups_fn, buildCustomPageContext_fn, promptName_fn, syncDraftFromForm_fn, syncCustomDraftFromForm_fn, _sidebarScroll, _NodeTutorialApp_static, onPickType_fn, onShowType_fn, onCrumbTo_fn, onRunDemo_fn, onShowExample_fn, onCopyExample_fn, onEditGuide_fn, onAddTip_fn, onRemoveTip_fn, onInsertCallout_fn, onAddPair_fn, onRemovePair_fn, onAddSection_fn, onRemoveSection_fn, onSaveGuide_fn, onCancelGuide_fn, onResetGuide_fn, onCancelResetGuide_fn, onConfirmResetGuide_fn, onAddCustomCategory_fn, onRenameCustomCategory_fn, onRemoveCustomCategory_fn, onAddCustomPage_fn, onRemoveCustomPage_fn, onPickCustomPage_fn, onEditCustomPage_fn, onSaveCustomPage_fn, onCancelCustomPage_fn;
-import { U as cleanPayload, O as isKnownNodeType, P as NODE_TYPES, n as nodePresentation, V as categoryPresentation, M as MODULE_ID, S as SETTINGS, X as buildPalette, Y as nodeTypeIds } from "./module-CGuPkFx8.js";
+import { U as cleanPayload, O as isKnownNodeType, P as NODE_TYPES, n as nodePresentation, V as categoryPresentation, M as MODULE_ID, S as SETTINGS, X as buildPalette, Y as nodeTypeIds } from "./module-6vV2bj2T.js";
 const say = (id, x, body, extra = {}) => ({
   id,
   type: "display",
@@ -55,7 +55,7 @@ const NODE_TUTORIALS = {
     demo: {
       nodes: {
         start,
-        n1: say("n1", 260, "Hi! I am a Display node - a speaker, a portrait, and this typewriter text."),
+        n1: say("n1", 260, "Hi! I am a Display node — a speaker, a portrait, and this typewriter text."),
         n2: say("n2", 480, "Chain several of me to build a conversation. The player clicks to advance."),
         end: endAt(700)
       },
@@ -84,8 +84,8 @@ const NODE_TUTORIALS = {
             background: "carry"
           }
         },
-        a: say("a", 500, "You picked the oak door - this branch ran because choice #1 was selected."),
-        b: { ...say("b", 500, "You picked the iron door - each choice pin leads to its own branch."), y: 260 },
+        a: say("a", 500, "You picked the oak door — this branch ran because choice #1 was selected."),
+        b: { ...say("b", 500, "You picked the iron door — each choice pin leads to its own branch."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -111,8 +111,8 @@ const NODE_TUTORIALS = {
           y: 120,
           data: { logicOperator: "AND", hideBreakdown: true, checks: [], kind: "skill", key: "prc", dc: 10, rollMode: "normal" }
         },
-        a: say("a", 500, "Success! Your Perception beat DC 10 - the success pin fired."),
-        b: { ...say("b", 500, "Failed the DC 10 Perception check - the failure pin fired instead."), y: 260 },
+        a: say("a", 500, "Success! Your Perception beat DC 10 — the success pin fired."),
+        b: { ...say("b", 500, "Failed the DC 10 Perception check — the failure pin fired instead."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -139,7 +139,7 @@ const NODE_TUTORIALS = {
           data: { logicOperator: "AND", target: "trigger", targetActorId: "", conditions: [] }
         },
         a: say("a", 500, "TRUE branch: with no conditions configured, the check passes vacuously."),
-        b: { ...say("b", 500, "FALSE branch - you will see this once you add a condition that fails."), y: 260 },
+        b: { ...say("b", 500, "FALSE branch — you will see this once you add a condition that fails."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -156,67 +156,67 @@ const NODE_TUTORIALS = {
     tips: 3,
     pairsWith: ["display", "condition"],
     demo: null
-    // Внешняя точка входа - текст Usage объясняет, как запускаются потоки
+    // external entry point — the Usage text explains how flows are triggered
   },
   "trigger.region": {
     tips: 3,
     pairsWith: ["condition", "display", "notification"],
     demo: null
-    // Нужен настоящий регион сцены + токен, чтобы войти в него
+    // needs a real scene Region + token to enter it
   },
   "trigger.macro": {
     tips: 3,
     pairsWith: ["condition", "branch", "display"],
     demo: null
-    // Нужен вставленный макрос хотбара, запущенный ГМом/триггером тайла
+    // needs a pasted hotbar macro run by a GM/tile trigger
   },
   "trigger.weather": {
     tips: 3,
     pairsWith: ["display", "action.light", "notification"],
     demo: null
-    // Нужно изменение погодного эффекта настоящей сцены
+    // needs a real scene's weather effect to change
   },
   "trigger.time": {
     tips: 3,
     pairsWith: ["display", "condition", "action.changeScene"],
     demo: null
-    // Нужно, чтобы мировые часы перешли границу фазы
+    // needs the world clock to advance across a phase boundary
   },
   "trigger.rest": {
     tips: 3,
     pairsWith: ["condition", "display", "action.healDamage"],
     demo: null
-    // Нужен настоящий актер, чтобы завершить отдых
+    // needs a real actor to complete a rest
   },
   "trigger.door": {
     tips: 3,
     pairsWith: ["action.door", "condition", "display"],
     demo: null
-    // Нужна настоящая стена/дверь сцены (и Tagger), чтобы изменить состояние
+    // needs a real scene wall/door (and Tagger) to change state
   },
   "trigger.timer": {
     tips: 3,
     pairsWith: ["display", "condition", "notification"],
     demo: null
-    // Нужно, чтобы мировые часы пересекли свою сетку интервалов
+    // needs the world clock to cross its interval grid
   },
   "trigger.hp": {
     tips: 3,
     pairsWith: ["condition", "action.healDamage", "display"],
     demo: null
-    // Нужно, чтобы ХП настоящего актера пересекло порог
+    // needs a real actor's HP to cross the threshold
   },
   "trigger.spell": {
     tips: 3,
     pairsWith: ["condition", "display", "check"],
     demo: null
-    // Нужен настоящий предмет заклинания, сотворенный актером
+    // needs a real spell item cast by an actor
   },
   "trigger.roll": {
     tips: 3,
     pairsWith: ["condition", "display", "check"],
     demo: null
-    // Нужен настоящий бросок dnd5e или примененный эффект состояния
+    // needs a real dnd5e roll or applied status effect
   },
   text: {
     tips: 3,
@@ -232,7 +232,7 @@ const NODE_TUTORIALS = {
           data: {
             speakerName: "",
             portraitPath: "",
-            bodyHtml: "<p>The narrator sets the scene - no speaker name, no portrait, just prose.</p>",
+            bodyHtml: "<p>The narrator sets the scene — no speaker name, no portrait, just prose.</p>",
             voiceOverPath: "",
             background: "scene",
             typewriter: true,
@@ -241,7 +241,7 @@ const NODE_TUTORIALS = {
             autoAdvanceDelay: 1500
           }
         },
-        n2: say("n2", 480, "Text is Display's narrator sibling - same typewriter and pacing controls, no speaker/portrait."),
+        n2: say("n2", 480, "Text is Display's narrator sibling — same typewriter and pacing controls, no speaker/portrait."),
         end: endAt(700)
       },
       edges: [
@@ -268,7 +268,7 @@ const NODE_TUTORIALS = {
         shared: say(
           "shared",
           480,
-          "You jumped straight here! Jump redirects the run to any node in the graph by id - no output pin required, so many branches can converge on one shared beat like this."
+          "You jumped straight here! Jump redirects the run to any node in the graph by id — no output pin required, so many branches can converge on one shared beat like this."
         ),
         end: endAt(700)
       },
@@ -285,9 +285,9 @@ const NODE_TUTORIALS = {
     demo: {
       nodes: {
         start,
-        n1: say("n1", 260, "Beat one - a short pause is coming before the story continues."),
+        n1: say("n1", 260, "Beat one — a short pause is coming before the story continues."),
         n2: { id: "n2", type: "wait", x: 480, y: 120, data: { seconds: 2 } },
-        n3: say("n3", 700, "Beat two - two seconds of silence just passed. Wait paces a scene without asking for a click."),
+        n3: say("n3", 700, "Beat two — two seconds of silence just passed. Wait paces a scene without asking for a click."),
         end: endAt(920)
       },
       edges: [
@@ -319,8 +319,8 @@ const NODE_TUTORIALS = {
             ]
           }
         },
-        a: say("a", 500, "You (the GM) picked the safe road - path_0 fired."),
-        b: { ...say("b", 500, "You (the GM) picked the shortcut - path_1 fired instead."), y: 260 },
+        a: say("a", 500, "You (the GM) picked the safe road — path_0 fired."),
+        b: { ...say("b", 500, "You (the GM) picked the shortcut — path_1 fired instead."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -351,8 +351,8 @@ const NODE_TUTORIALS = {
             ]
           }
         },
-        a: say("a", 500, "The 70%-weighted path fired - a common encounter."),
-        b: { ...say("b", 500, "The 30%-weighted path fired instead - a rare encounter. Run it again to see the odds play out."), y: 260 },
+        a: say("a", 500, "The 70%-weighted path fired — a common encounter."),
+        b: { ...say("b", 500, "The 30%-weighted path fired instead — a rare encounter. Run it again to see the odds play out."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -378,7 +378,7 @@ const NODE_TUTORIALS = {
           y: 120,
           data: { confirmBeforeRun: false, timeoutSeconds: 20 }
         },
-        n2: say("n2", 480, "The barrier just waited for every connected client to finish fetching this graph's assets before continuing - invisible solo, essential with a full table."),
+        n2: say("n2", 480, "The barrier just waited for every connected client to finish fetching this graph's assets before continuing — invisible solo, essential with a full table."),
         end: endAt(700)
       },
       edges: [
@@ -409,7 +409,7 @@ const NODE_TUTORIALS = {
     tips: 2,
     pairsWith: ["jump", "condition"],
     demo: null
-    // Нет пинов вообще - недостижимо по замыслу, нечего запускать
+    // no pins at all — unreachable by design, nothing to run
   },
   showImage: {
     tips: 2,
@@ -442,7 +442,7 @@ const NODE_TUTORIALS = {
           y: 120,
           data: { style: "toast", text: "This toast came from the Notification node." }
         },
-        n2: say("n2", 480, "Notifications fire and the flow moves on immediately - no click needed."),
+        n2: say("n2", 480, "Notifications fire and the flow moves on immediately — no click needed."),
         end: endAt(700)
       },
       edges: [
@@ -457,45 +457,45 @@ const NODE_TUTORIALS = {
     tips: 3,
     pairsWith: ["condition", "notification", "action.giveGold"],
     demo: null
-    // Нужен настоящий uuid брошенного предмета, и изменяет инвентарь актера-триггера
+    // needs a real dropped item uuid, and mutates the trigger actor's inventory
   },
   "action.healDamage": {
     tips: 3,
     pairsWith: ["trigger.hp", "condition", "check"],
     demo: null
-    // Бросает настоящую формулу и применяет ее к ХП настоящего актера - не безопасное демо
+    // rolls a real formula and applies it to a real actor's HP — not a safe demo
   },
   "action.giveGold": {
     tips: 3,
     pairsWith: ["trader", "condition", "notification"],
-    // Пустая формула + цель триггера валидируются без мировых ссылок, но узел БРОСАЕТ
-    // формулу и реально пишет actor.system.currency.gp - он изменяет кошелек персонажа,
-    // поэтому не проходит планку "безопасности" даже без ссылок для удовлетворения.
+    // A blank formula + trigger target validates fine with no world refs, but the node
+    // ROLLS the formula and writes actor.system.currency.gp for real — it mutates a
+    // character's purse, so it fails the "safe" bar even with no refs to satisfy.
     demo: null
   },
   "action.applyEffect": {
     tips: 3,
     pairsWith: ["condition", "check", "trigger.roll"],
     demo: null
-    // effectId - обязательный выбор из выпадающего списка во время выполнения, и он изменяет эффекты состояния цели
+    // effectId is a required runtime dropdown pick, and it mutates the target's status effects
   },
   "action.changeScene": {
     tips: 3,
     pairsWith: ["action.preloadScene", "trigger.time", "display"],
     demo: null
-    // sceneId - обязательная ссылка, и активация сцены меняет то, что видит каждый клиент
+    // sceneId is a required reference and activating a scene changes what every client sees
   },
   "action.preloadScene": {
     tips: 2,
     pairsWith: ["action.changeScene", "preload"],
     demo: null
-    // sceneId - обязательная ссылка на Scene - нечего предзагружать без нее
+    // sceneId is a required Scene reference — nothing to preload without one
   },
   "action.token": {
     tips: 3,
     pairsWith: ["action.door", "trigger.region", "condition"],
     demo: null
-    // Перемещение/создание/удаление все нуждаются в захваченной сцене + токенах или актере для появления, и изменяют сцену
+    // move/create/delete all need a captured scene + tokens or an actor to spawn, and mutate the scene
   },
   "action.macro": {
     tips: 3,
@@ -513,7 +513,7 @@ const NODE_TUTORIALS = {
         n2: say(
           "n2",
           480,
-          "Check your F12 console - that inline code just ran on the GM-authority client (open your console before running this demo)."
+          "Check your F12 console — that inline code just ran on the GM-authority client (open your console before running this demo)."
         ),
         end: endAt(700)
       },
@@ -529,19 +529,19 @@ const NODE_TUTORIALS = {
     tips: 3,
     pairsWith: ["trigger.door", "action.light", "condition"],
     demo: null
-    // Режим захвата нуждается в выборе настоящей стены; режим тега рискует совпасть с настоящей помеченной дверью, если Tagger активен
+    // captured mode needs a real wall selection; tag mode risks matching a real tagged door if Tagger is active
   },
   "action.light": {
     tips: 3,
     pairsWith: ["trigger.weather", "action.door", "action.effect"],
     demo: null
-    // Режим захвата нуждается в выборе настоящего источника света; режим тега рискует совпасть с настоящим помеченным источником света, если Tagger активен
+    // captured mode needs a real light selection; tag mode risks matching a real tagged light if Tagger is active
   },
   "action.effect": {
     tips: 3,
     pairsWith: ["action.endEffect", "check", "notification"],
     demo: null
-    // animation - обязательный путь к базе данных Sequencer/JB2A - нет готового ассета, на который можно указать
+    // animation is a required Sequencer/JB2A database path — no canned asset to point at
   },
   "action.endEffect": {
     tips: 3,
@@ -559,7 +559,7 @@ const NODE_TUTORIALS = {
         n2: say(
           "n2",
           480,
-          `mode "all" only ends THIS module's own persistent effects (namespaced storyflow:) - safe to run even with none playing, and it never touches another module's Sequencer effects.`
+          `mode "all" only ends THIS module's own persistent effects (namespaced storyflow:) — safe to run even with none playing, and it never touches another module's Sequencer effects.`
         ),
         end: endAt(700)
       },
@@ -575,25 +575,25 @@ const NODE_TUTORIALS = {
     tips: 3,
     pairsWith: ["action.endEffect", "action.effect", "condition"],
     demo: null
-    // animation - обязательный путь Sequencer/JB2A, и он массово размещает настоящие тайлы на сцене
+    // animation is a required Sequencer/JB2A path AND it mass-places real tiles on a scene
   },
   showOnMap: {
     tips: 3,
     pairsWith: ["display", "trader", "notification"],
     demo: null
-    // sceneId - обязательная захваченная позиция камеры - нечего показывать без нее
+    // sceneId is a required captured camera location — nothing to pan to without one
   },
   trader: {
     tips: 3,
     pairsWith: ["action.giveGold", "condition", "showOnMap"],
     demo: null
-    // traderUuid - обязательная ссылка на настоящую страницу журнала торговца
+    // traderUuid is a required reference to a real Trader journal page
   },
   journal: {
     tips: 3,
     pairsWith: ["parchment", "condition", "notification"],
     demo: null
-    // open/write/createPage нуждаются в настоящей ссылке Journal; createEntry навсегда создает новый документ мира
+    // open/write/createPage need a real Journal reference; createEntry permanently creates a new world document
   },
   parchment: {
     tips: 3,
@@ -615,7 +615,7 @@ const NODE_TUTORIALS = {
             audience: "all"
           }
         },
-        n2: say("n2", 500, "A blank pageUuid falls back to inline text like that - you never needed a real Journal page for this demo."),
+        n2: say("n2", 500, "A blank pageUuid falls back to inline text like that — you never needed a real Journal page for this demo."),
         end: endAt(720)
       },
       edges: [
@@ -630,7 +630,7 @@ const NODE_TUTORIALS = {
     tips: 2,
     pairsWith: ["display", "transition", "stopAudio"],
     demo: null
-    // audioPath - настоящий путь к файлу из вашего мира - нет готового ассета, на который можно указать
+    // audioPath is a real file path from your world — no canned asset to point at
   },
   stopAudio: {
     tips: 2,
@@ -648,7 +648,7 @@ const NODE_TUTORIALS = {
         n2: say(
           "n2",
           480,
-          `mode "all" only stops sounds THIS module started - safe to run even with nothing playing, and it never touches another module's music.`
+          `mode "all" only stops sounds THIS module started — safe to run even with nothing playing, and it never touches another module's music.`
         ),
         end: endAt(700)
       },
@@ -666,7 +666,7 @@ const NODE_TUTORIALS = {
     demo: {
       nodes: {
         start,
-        n1: say("n1", 260, "Watch the screen as this beat ends - a cinematic Transition is about to sweep in."),
+        n1: say("n1", 260, "Watch the screen as this beat ends — a cinematic Transition is about to sweep in."),
         n2: {
           id: "n2",
           type: "transition",
@@ -682,7 +682,7 @@ const NODE_TUTORIALS = {
             audience: "all"
           }
         },
-        n3: say("n3", 700, 'That was phase "both" - cover and reveal in one node, masking the swap to this very beat.'),
+        n3: say("n3", 700, 'That was phase "both" — cover and reveal in one node, masking the swap to this very beat.'),
         end: endAt(920)
       },
       edges: [
@@ -700,7 +700,7 @@ const NODE_TUTORIALS = {
     demo: {
       nodes: {
         start,
-        n1: say("n1", 260, "Brace yourself - a quick Screen Animation is about to shake the view."),
+        n1: say("n1", 260, "Brace yourself — a quick Screen Animation is about to shake the view."),
         n2: {
           id: "n2",
           type: "screenAnimation",
@@ -714,7 +714,7 @@ const NODE_TUTORIALS = {
             waitForCompletion: true
           }
         },
-        n3: say("n3", 700, "The screen shook and snapped right back - the camera's zoom and position are untouched."),
+        n3: say("n3", 700, "The screen shook and snapped right back — the camera's zoom and position are untouched."),
         end: endAt(920)
       },
       edges: [
@@ -730,7 +730,7 @@ const NODE_TUTORIALS = {
     tips: 3,
     pairsWith: ["action.giveGold", "trader", "notification"],
     demo: null
-    // Каждая строка каталога нуждается в настоящей ссылке на брошенный Item - нет готового каталога, на который можно указать
+    // every catalog row needs a real dropped Item reference — no canned catalog to point at
   },
   "prop.cryptex": {
     tips: 3,
@@ -754,8 +754,8 @@ const NODE_TUTORIALS = {
             image: ""
           }
         },
-        a: say("a", 500, 'The rings matched "CAT" - solved! The success pin fired.'),
-        b: { ...say("b", 500, "Out of attempts - the failure pin fired instead. Start the demo again for another try."), y: 260 },
+        a: say("a", 500, 'The rings matched "CAT" — solved! The success pin fired.'),
+        b: { ...say("b", 500, "Out of attempts — the failure pin fired instead. Start the demo again for another try."), y: 260 },
         end: endAt(740, 190)
       },
       edges: [
@@ -768,44 +768,44 @@ const NODE_TUTORIALS = {
       meta: { entry: "start" }
     }
   },
-  // Зарегистрировано плагином (официальный плагин Quests) - контент живет здесь, как и любой встроенный.
+  // Plugin-registered (first-party Quests plugin) — content lives here like any built-in.
   quest: {
     tips: 3,
     pairsWith: ["display", "notification", "condition"],
     demo: null
-    // targetUuid - обязательная ссылка на настоящую страницу доски Quest/Lore
+    // targetUuid is a required reference to a real Quest/Lore board page
   },
-  // Зарегистрировано плагином (официальный плагин Factions).
+  // Plugin-registered (first-party Factions plugin).
   "action.modifyReputation": {
     tips: 3,
     pairsWith: ["condition", "notification", "choice"],
     demo: null
-    // factionId - обязательная ссылка на настоящую фракцию, и он изменяет репутацию
+    // factionId is a required reference to a real faction, and it mutates reputation
   },
   "trigger.combat": {
     tips: 2,
     pairsWith: ["display", "condition", "transition"],
     demo: null
-    // Нужна настоящая боевая встреча, чтобы начать/завершить/сменить раунды
+    // needs a real combat encounter to start/end/change rounds
   },
   "trigger.levelup": {
     tips: 2,
     pairsWith: ["display", "notification", "action.giveItem"],
     demo: null
-    // Нужен настоящий актер, получающий уровень класса
+    // needs a real actor gaining a class level
   },
-  // Зарегистрировано плагином (официальный плагин Boss Bar).
+  // Plugin-registered (first-party Boss Bar plugin).
   "action.bossBar": {
     tips: 2,
     pairsWith: ["trigger.combat", "trigger.hp", "display"],
     demo: null
-    // actorUuid - обязательная ссылка на настоящего актера мира
+    // actorUuid is a required reference to a real world actor
   },
   "action.modifyAffinity": {
     tips: 2,
     pairsWith: ["choice", "condition", "display"],
     demo: null
-    // actorUuid - обязательная ссылка на настоящего NPC-актера, и он изменяет симпатию
+    // actorUuid is a required reference to a real NPC actor, and it mutates affinity
   }
 };
 NODE_TUTORIALS.display.example = withComments(NODE_TUTORIALS.display.demo, [
@@ -821,10 +821,10 @@ NODE_TUTORIALS.condition.example = withComments(NODE_TUTORIALS.condition.demo, [
   noteBelow("c1", NODE_TUTORIALS.condition.demo.nodes, 260, "This **Condition** node tests actor or world state and branches true/false.\nFill: **Target**, **Conditions** list.\nWith no conditions it passes vacuously in this example.", 360, 150, "#5f5326")
 ]);
 NODE_TUTORIALS.text.example = withComments(NODE_TUTORIALS.text.demo, [
-  noteBelow("c1", NODE_TUTORIALS.text.demo.nodes, 260, "This **Text** node is Display without a speaker box - narrator prose.\nFill: **Body HTML**, **Background**, **Typewriter**, **CPS**.", 360, 120, "#5f5326")
+  noteBelow("c1", NODE_TUTORIALS.text.demo.nodes, 260, "This **Text** node is Display without a speaker box — narrator prose.\nFill: **Body HTML**, **Background**, **Typewriter**, **CPS**.", 360, 120, "#5f5326")
 ]);
 NODE_TUTORIALS.jump.example = withComments(NODE_TUTORIALS.jump.demo, [
-  noteBelow("c1", NODE_TUTORIALS.jump.demo.nodes, 260, "This **Jump** node redirects the run to another node by id.\nFill: **Target Node Id**, **Show Link**.\nNo output pin - many branches can converge on one target.", 360, 150, "#5f5326")
+  noteBelow("c1", NODE_TUTORIALS.jump.demo.nodes, 260, "This **Jump** node redirects the run to another node by id.\nFill: **Target Node Id**, **Show Link**.\nNo output pin — many branches can converge on one target.", 360, 150, "#5f5326")
 ]);
 NODE_TUTORIALS.wait.example = withComments(NODE_TUTORIALS.wait.demo, [
   noteBelow("c1", NODE_TUTORIALS.wait.demo.nodes, 480, "This **Wait** node pauses the flow for a number of seconds.\nFill: **Seconds**.", 360, 120, "#5f5326")
@@ -870,7 +870,7 @@ NODE_TUTORIALS.end.example = withComments(NODE_TUTORIALS.end.demo, [
     start: { ...start, data: pay("trigger.start", {}) },
     note: { id: "note", type: "comment", x: 260, y: 120, data: pay("comment", { text: "Example sticky note: mark intents, TODOs, or reminders for other authors.", bgColor: "#5f5326", w: 340, h: 82 }) }
   };
-  nodes.c1 = noteBelow("c1", nodes, 260, "The **Comment** node is a sticky note with no pins.\nIt is never reachable at runtime - use it to leave author notes.", 360, 120, "#5f5326");
+  nodes.c1 = noteBelow("c1", nodes, 260, "The **Comment** node is a sticky note with no pins.\nIt is never reachable at runtime — use it to leave author notes.", 360, 120, "#5f5326");
   NODE_TUTORIALS.comment.example = { nodes, edges: [], meta: { entry: "start" } };
 }
 NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
@@ -880,7 +880,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
   const nodes = {
     start: { ...start, data: pay("trigger.start", {}) },
     n1: { id: "n1", type: "audio", x: 260, y: 120, data: pay("audio", { audioPath: "", mode: "once", volume: 100, persistAfterEnd: false, name: "", tracks: [], selectMode: "random" }) },
-    n2: cleanSay("n2", 500, "The audio path is blank - no reliable core sound asset exists, so this example stays silent."),
+    n2: cleanSay("n2", 500, "The audio path is blank — no reliable core sound asset exists, so this example stays silent."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 260, "The **Audio** node plays a sound or playlist track.\nThe audio path is left blank because no reliable core sound asset exists.", 360, 120, "#5f5326");
@@ -905,7 +905,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.region", x: 40, y: 120, data: pay("trigger.region", { label: "Enter the region", once: false, enabled: true, whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "A token entered the region - the trigger fired."),
+    n2: cleanSay("n2", 260, "A token entered the region — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Region Trigger** fires when a token enters a drawing region.\nFill: **Label**, **Who Triggers**. Needs a real scene region to fire live.", 360, 120, "#5f5326");
@@ -917,7 +917,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.macro", x: 40, y: 120, data: pay("trigger.macro", { label: "Macro run", once: false, enabled: true, whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "The linked macro ran - the trigger fired."),
+    n2: cleanSay("n2", 260, "The linked macro ran — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Macro Trigger** fires when its linked hotbar macro runs.\nFill: **Label**, **Who Triggers**. Needs a real macro and a hotbar click.", 360, 120, "#5f5326");
@@ -929,7 +929,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.weather", x: 40, y: 120, data: pay("trigger.weather", { label: "Weather changes", once: false, enabled: true, weather: "" }) },
-    n2: cleanSay("n2", 260, "The scene weather effect changed - the trigger fired."),
+    n2: cleanSay("n2", 260, "The scene weather effect changed — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Weather Trigger** fires when the scene weather effect changes.\nFill: **Label**, **Weather**. Needs a real scene weather setup.", 360, 120, "#5f5326");
@@ -941,7 +941,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.time", x: 40, y: 120, data: pay("trigger.time", { label: "Dawn", once: false, enabled: true, phase: "dawn" }) },
-    n2: cleanSay("n2", 260, "The world clock entered dawn - the trigger fired."),
+    n2: cleanSay("n2", 260, "The world clock entered dawn — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Time Trigger** fires when the world clock enters a new phase.\nFill: **Label**, **Phase**. Needs the calendar to advance.", 360, 120, "#5f5326");
@@ -953,7 +953,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.rest", x: 40, y: 120, data: pay("trigger.rest", { label: "Rest finished", once: false, enabled: true, restType: "any", whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "An actor finished a rest - the trigger fired."),
+    n2: cleanSay("n2", 260, "An actor finished a rest — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Rest Trigger** fires when an actor finishes a rest.\nFill: **Label**, **Rest Type**, **Who Triggers**. Needs a real actor.", 360, 120, "#5f5326");
@@ -965,7 +965,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.door", x: 40, y: 120, data: pay("trigger.door", { label: "Door opens", once: false, enabled: true, doorState: "open", tag: "", tagScope: "active" }) },
-    n2: cleanSay("n2", 260, "A matching door changed state - the trigger fired."),
+    n2: cleanSay("n2", 260, "A matching door changed state — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Door Trigger** fires when a matching door changes state.\nFill: **Label**, **Door State**, **Tag**. Needs a real door wall and Tagger.", 360, 120, "#5f5326");
@@ -977,7 +977,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.timer", x: 40, y: 120, data: pay("trigger.timer", { enabled: true, anchorYear: 735, anchorMonth: "0", anchorDay: 1, anchorHour: 0, every: 1, unit: "days", once: false }) },
-    n2: cleanSay("n2", 260, "The calendar interval fired - the repeating timer triggered."),
+    n2: cleanSay("n2", 260, "The calendar interval fired — the repeating timer triggered."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Timer Trigger** fires on repeating calendar intervals.\nFill: **Anchor**, **Every**, **Unit**. Needs the world clock to advance.", 360, 120, "#5f5326");
@@ -989,7 +989,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.hp", x: 40, y: 120, data: pay("trigger.hp", { label: "HP drops", once: false, enabled: true, mode: "percent", threshold: 50, stage: "2", maxFires: 0, whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "Actor HP crossed the threshold - the trigger fired."),
+    n2: cleanSay("n2", 260, "Actor HP crossed the threshold — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **HP Trigger** fires when actor HP crosses a threshold.\nFill: **Mode**, **Threshold**, **Who Triggers**. Needs a real actor.", 360, 120, "#5f5326");
@@ -1001,7 +1001,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.spell", x: 40, y: 120, data: pay("trigger.spell", { label: "Spell cast", once: false, enabled: true, spells: [], whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "A watched spell was cast - the trigger fired."),
+    n2: cleanSay("n2", 260, "A watched spell was cast — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Spell Trigger** fires when a watched spell is cast.\nFill: **Label**, **Spells**, **Who Triggers**. Needs a real actor and spell.", 360, 120, "#5f5326");
@@ -1013,7 +1013,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.roll", x: 40, y: 120, data: pay("trigger.roll", { label: "Roll made", once: false, enabled: true, rules: [], whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "A matching d20 roll happened - the trigger fired."),
+    n2: cleanSay("n2", 260, "A matching d20 roll happened — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Roll Trigger** fires on matching d20 rolls or status effects.\nFill: **Label**, **Rules**, **Who Triggers**. Needs a real roll.", 360, 120, "#5f5326");
@@ -1025,7 +1025,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.combat", x: 40, y: 120, data: pay("trigger.combat", { label: "Combat starts", once: false, enabled: true, event: "start", round: 0 }) },
-    n2: cleanSay("n2", 260, "Combat started - the trigger fired."),
+    n2: cleanSay("n2", 260, "Combat started — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Combat Trigger** fires when combat starts, ends, or changes round.\nFill: **Label**, **Event**. Needs a real combat encounter.", 360, 120, "#5f5326");
@@ -1037,7 +1037,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
 {
   const nodes = {
     n1: { id: "n1", type: "trigger.levelup", x: 40, y: 120, data: pay("trigger.levelup", { label: "Level gained", once: false, enabled: true, level: 0, whoTriggers: "any", specificActorIds: [] }) },
-    n2: cleanSay("n2", 260, "An actor gained a level - the trigger fired."),
+    n2: cleanSay("n2", 260, "An actor gained a level — the trigger fired."),
     end: endAt(700)
   };
   nodes.c1 = noteBelow("c1", nodes, 40, "The **Level Up Trigger** fires when an actor gains a level.\nFill: **Label**, **Level**, **Who Triggers**. Needs a real actor.", 360, 120, "#5f5326");
@@ -1067,7 +1067,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
     n2: cleanSay("n2", 500, "This node would roll a formula and change actor HP. The formula is left as a harmless example."),
     end: endAt(700)
   };
-  nodes.c1 = noteBelow("c1", nodes, 260, "The **Heal / Damage** action rolls a formula and changes actor HP.\nFill: **Mode**, **Formula**, **Target**. This is a Show-only example - it will not run automatically.", 360, 120, "#5f5326");
+  nodes.c1 = noteBelow("c1", nodes, 260, "The **Heal / Damage** action rolls a formula and changes actor HP.\nFill: **Mode**, **Formula**, **Target**. This is a Show-only example — it will not run automatically.", 360, 120, "#5f5326");
   NODE_TUTORIALS["action.healDamage"].example = { nodes, edges: [
     edge("e1", "start", "out", "n1", "in"),
     edge("e2", "n1", "out", "n2", "in"),
@@ -1081,7 +1081,7 @@ NODE_TUTORIALS.showImage.example = withComments(NODE_TUTORIALS.showImage.demo, [
     n2: cleanSay("n2", 500, "This node would change actor currency. The formula is left as a harmless example."),
     end: endAt(700)
   };
-  nodes.c1 = noteBelow("c1", nodes, 260, "The **Give Gold** action changes actor currency.\nFill: **Mode**, **Formula**, **Target**. This is a Show-only example - it will not run automatically.", 360, 120, "#5f5326");
+  nodes.c1 = noteBelow("c1", nodes, 260, "The **Give Gold** action changes actor currency.\nFill: **Mode**, **Formula**, **Target**. This is a Show-only example — it will not run automatically.", 360, 120, "#5f5326");
   NODE_TUTORIALS["action.giveGold"].example = { nodes, edges: [
     edge("e1", "start", "out", "n1", "in"),
     edge("e2", "n1", "out", "n2", "in"),
@@ -1452,57 +1452,30 @@ const _NodeTutorialApp = class _NodeTutorialApp extends HandlebarsApplicationMix
   constructor() {
     super(...arguments);
     __privateAdd(this, _NodeTutorialApp_instances);
-    /**
-     * @type {string[]} Навигационный след; текущий тип всегда является последним
-     * элементом.
-     */
+    /** @type {string[]} Navigation trail; the current type is always the last element. */
     __privateAdd(this, _trail, ["display"]);
-    /** @type {boolean} Демо-прогон в полете (устраняет дребезг кнопки). */
+    /** @type {boolean} Demo run in flight (debounces the button). */
     __privateAdd(this, _running, false);
-    /** @type {string} Активный поисковый запрос боковой панели. */
+    /** @type {string} Live sidebar search query. */
     __privateAdd(this, _query, "");
-    /**
-     * @type {boolean} Восстановить фокус + каретку в поиск боковой панели после
-     * повторного рендера.
-     */
+    /** @type {boolean} Restore focus + caret to the sidebar search after a re-render. */
     __privateAdd(this, _searchRestoreFocus, false);
-    /** @type {boolean} Режим редактирования ГМ активен для текущего типа. */
+    /** @type {boolean} GM edit mode active for the current type. */
     __privateAdd(this, _editing, false);
-    /**
-     * @type {import("../data/nodes/tutorial-overrides.mjs").TutorialOverride|null} Рабочая копия во время
-     * редактирования.
-     */
+    /** @type {import("../data/nodes/tutorial-overrides.mjs").TutorialOverride|null} Working copy while editing. */
     __privateAdd(this, _draft, null);
-    /**
-     * @type {boolean} Показана встроенная строка подтверждения "сбросить по
-     * умолчанию".
-     */
+    /** @type {boolean} Inline "reset to default" confirm row shown. */
     __privateAdd(this, _confirmingReset, false);
-    /**
-     * @type {{categoryId: string, pageId: string}|null} Выбранная
-     * пользовательская страница.
-     */
+    /** @type {{categoryId: string, pageId: string}|null} Selected custom page. */
     __privateAdd(this, _customPage, null);
-    /**
-     * @type {boolean} Режим редактирования ГМ активен для выбранной
-     * пользовательской страницы.
-     */
+    /** @type {boolean} GM edit mode active for the selected custom page. */
     __privateAdd(this, _customEditing, false);
-    /**
-     * @type {{title: string, text: string}|null} Рабочая копия при редактировании
-     * пользовательской страницы.
-     */
+    /** @type {{title: string, text: string}|null} Working copy while editing a custom page. */
     __privateAdd(this, _customDraft, null);
-    /**
-     * @type {number} Позиция прокрутки боковой панели, сохраняемая при полных
-     * повторных рендерах.
-     */
+    /** @type {number} Sidebar scroll position, carried across full-part re-renders. */
     __privateAdd(this, _sidebarScroll, 0);
   }
-  /**
-   * Открыть (или вернуть фокус) руководство по типу узла - всегда сбрасывает цепочку
-   * только на этот тип.
-   */
+  /** Open (or refocus) the guide on a node type — always resets the trail to just that type. */
   static open(type) {
     if (!__privateGet(_NodeTutorialApp, _instance)) __privateSet(_NodeTutorialApp, _instance, new _NodeTutorialApp());
     const app = __privateGet(_NodeTutorialApp, _instance);
@@ -1531,9 +1504,9 @@ const _NodeTutorialApp = class _NodeTutorialApp extends HandlebarsApplicationMix
       hasSidebarItems: groups.length > 0 || customGroups.length > 0,
       crumbs,
       isGM,
-      // Создание руководств/пользовательских страниц (редактор переопределений + CRUD
-      // категорий/страниц) - только инструмент разработки - см. защиту `__FEATURE_DEV_TOOLS__` в
-      // каждом обработчике мутации ниже. Каждая реальная production-сборка сводит это к `false`.
+      // Guide/custom-page authoring (override editor + custom category/page CRUD) is a
+      // dev-only surface — see the `__FEATURE_DEV_TOOLS__` guard on every mutating action
+      // handler below. Every real production build folds this to `false`.
       canEditGuides: isGM && false
     };
     if (__privateGet(this, _customPage)) {
@@ -1559,20 +1532,14 @@ const _NodeTutorialApp = class _NodeTutorialApp extends HandlebarsApplicationMix
     if (__privateGet(this, _editing) && __privateGet(this, _draft)) context.edit = __privateMethod(this, _NodeTutorialApp_instances, buildEditContext_fn).call(this, __privateGet(this, _draft));
     return context;
   }
-  /**
-   * @override - каждый рендер заменяет всю часть тела; запомнить прокрутку боковой
-   * панели.
-   */
+  /** @override — every render replaces the whole body part; remember the sidebar scroll. */
   async _preRender(context, options) {
     var _a;
     await super._preRender(context, options);
     const list = (_a = this.element) == null ? void 0 : _a.querySelector(".storyflow-tutorial-sidebar-list");
     if (list) __privateSet(this, _sidebarScroll, list.scrollTop);
   }
-  /**
-   * @override - подключать поиск боковой панели при каждом рендере (свежий DOM ->
-   * слушатели не накапливаются).
-   */
+  /** @override — wire the sidebar search each render (fresh DOM → listeners never stack). */
   _onRender(context, options) {
     super._onRender(context, options);
     const list = this.element.querySelector(".storyflow-tutorial-sidebar-list");
@@ -1608,25 +1575,16 @@ _customPage = new WeakMap();
 _customEditing = new WeakMap();
 _customDraft = new WeakMap();
 _NodeTutorialApp_instances = new WeakSet();
-/**
- * @returns {string} Тип, отображаемый в данный момент, - всегда последний
- * элемент цепочки.
- */
+/** @returns {string} Type currently shown — always the last trail entry. */
 currentType_fn = function() {
   return __privateGet(this, _trail)[__privateGet(this, _trail).length - 1];
 };
-/**
- * @returns {import("../data/nodes/tutorial-overrides.mjs").TutorialOverride|null} Сохраненное переопределение
- * для текущего типа.
- */
+/** @returns {import("../data/nodes/tutorial-overrides.mjs").TutorialOverride|null} Stored override for the current type. */
 storedOverride_fn = function() {
   const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
   return normalizeOverrides(game.settings.get(MODULE_ID, SETTINGS.TUTORIAL_OVERRIDES))[type] ?? null;
 };
-/**
- * Уход с текущего руководства отбрасывает любые несохраненные правки (v1: без защиты от
- * несохраненных изменений).
- */
+/** Navigating away from the current guide discards any unsaved edit (v1: no dirty-guard). */
 exitEdit_fn = function() {
   __privateSet(this, _editing, false);
   __privateSet(this, _draft, null);
@@ -1635,7 +1593,7 @@ exitEdit_fn = function() {
   __privateSet(this, _customDraft, null);
 };
 /**
- * Контекст рендера для формы редактирования из рабочего черновика.
+ * Render context for the edit form from the working draft.
  * @param {import("../data/nodes/tutorial-overrides.mjs").TutorialOverride} draft
  */
 buildEditContext_fn = function(draft) {
@@ -1654,8 +1612,7 @@ buildEditContext_fn = function(draft) {
   };
 };
 /**
- * Опции `<select>` демо-страницы: встроенная демонстрация, затем каждая
- * страница графа мира.
+ * Demo-page `<select>` options: the built-in demo, then every world graph page.
  * @param {string} selectedUuid
  */
 demoOptions_fn = function(selectedUuid) {
@@ -1689,9 +1646,8 @@ saveCustomCats_fn = async function(cats) {
   void this.render();
 };
 /**
- * Группы боковой панели для пользовательских категорий, отфильтрованные по
- * активному поисковому запросу. Категории без подходящих страниц скрываются,
- * пока запрос активен.
+ * Sidebar groups for custom categories, filtered by the live search query.
+ * Categories with no matching pages are hidden while a query is active.
  */
 buildCustomGroups_fn = function() {
   const q = __privateGet(this, _query).trim().toLowerCase();
@@ -1707,7 +1663,7 @@ buildCustomGroups_fn = function() {
   })).filter((cat) => !q || cat.pages.length > 0);
 };
 /**
- * Контекст рендера для выбранной пользовательской страницы.
+ * Render context for the selected custom page.
  * @param {string} categoryId
  * @param {string} pageId
  */
@@ -1733,10 +1689,7 @@ promptName_fn = async function(titleKey, current = "") {
   }).catch(() => null);
   return result;
 };
-/**
- * Копировать текущие значения формы редактирования в #draft (действия, изменяющие список,
- * вызывают это первым).
- */
+/** Copy the edit form's current values into #draft (list-mutating actions call this first). */
 syncDraftFromForm_fn = function() {
   var _a;
   const form = (_a = this.element) == null ? void 0 : _a.querySelector(".storyflow-tutorial-edit-form");
@@ -1756,10 +1709,7 @@ syncDraftFromForm_fn = function() {
   }));
   __privateGet(this, _draft).demoPageUuid = str2(fd.get("demoPageUuid"));
 };
-/**
- * Копировать текущие значения формы редактирования пользовательской страницы в
- * #customDraft.
- */
+/** Copy the custom-page edit form's current values into #customDraft. */
 syncCustomDraftFromForm_fn = function() {
   var _a;
   const form = (_a = this.element) == null ? void 0 : _a.querySelector(".storyflow-tutorial-custom-edit-form");
@@ -1806,7 +1756,7 @@ onRunDemo_fn = async function() {
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
     const demoUuid = buildTutorialContext(type, __privateMethod(this, _NodeTutorialApp_instances, storedOverride_fn).call(this)).customDemoUuid;
-    const { runTutorialDemo } = await import("./tutorial-run-CzLOKsOe.js");
+    const { runTutorialDemo } = await import("./tutorial-run-JVtC6W2R.js");
     await runTutorialDemo(type, demoUuid);
   } catch (err) {
     console.error(`${MODULE_ID} | tutorial demo failed`, err);
@@ -1822,7 +1772,7 @@ onShowExample_fn = async function() {
   this.render();
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
-    const { showTutorialExample } = await import("./tutorial-run-CzLOKsOe.js");
+    const { showTutorialExample } = await import("./tutorial-run-JVtC6W2R.js");
     await showTutorialExample(type);
   } catch (err) {
     console.error(`${MODULE_ID} | tutorial example failed`, err);
@@ -1836,7 +1786,7 @@ onCopyExample_fn = async function() {
   if (!game.user.isGM) return;
   try {
     const type = __privateMethod(this, _NodeTutorialApp_instances, currentType_fn).call(this);
-    const { copyTutorialExample } = await import("./tutorial-run-CzLOKsOe.js");
+    const { copyTutorialExample } = await import("./tutorial-run-JVtC6W2R.js");
     const copied = await copyTutorialExample(type);
     ui.notifications[copied ? "info" : "warn"](
       game.i18n.localize(
@@ -1956,7 +1906,7 @@ onCancelCustomPage_fn = function() {
   this.render();
 };
 __privateAdd(_NodeTutorialApp, _NodeTutorialApp_static);
-/** @type {NodeTutorialApp|null} Единственный экземпляр (singleton). */
+/** @type {NodeTutorialApp|null} singleton instance. */
 __privateAdd(_NodeTutorialApp, _instance, null);
 __publicField(_NodeTutorialApp, "DEFAULT_OPTIONS", {
   id: "storyflow-node-tutorial",

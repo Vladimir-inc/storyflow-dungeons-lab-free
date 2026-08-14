@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _view, _selected, _draft, _rollText, _condMenuOpen, _StoryFlowCalendarApp_instances, fitToScreen_fn, _onWinResize, _refresh, selectDay_fn, openEventDialog_fn, _StoryFlowCalendarApp_static, onPrevMonth_fn, onNextMonth_fn, onGoToday_fn, onSelectDay_fn, onToggleCondMenu_fn, onSetCondition_fn, onTempUp_fn, onTempDown_fn, onRollWeather_fn, onApplyWeather_fn, onClearWeather_fn, onAddEvent_fn, onEditEvent_fn, onDeleteEvent_fn, onOpenSeasons_fn, bumpScale_fn, onScaleDown_fn, onScaleUp_fn, onOpenHelp_fn;
-import { M as MODULE_ID, j as calendarScale, k as dateFromWorldTime, l as getWeatherMap, o as groupEventsByDay, q as getEvents, t as monthNames, v as buildDayPanel, x as compareDate, C as CONDITIONS, y as buildMonthGrid, W as WINDS, z as seasonOf, A as dayKey, B as pickWeather, D as getSeasons, E as setDayWeather, F as applySceneWeather, G as clearDayWeather, H as deleteEvent, S as SETTINGS, I as MONTHS_PER_YEAR, J as moonName, K as moonPhase } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, j as calendarScale, k as dateFromWorldTime, l as getWeatherMap, o as groupEventsByDay, q as getEvents, t as monthNames, v as buildDayPanel, x as compareDate, C as CONDITIONS, y as buildMonthGrid, W as WINDS, z as seasonOf, A as dayKey, B as pickWeather, D as getSeasons, E as setDayWeather, F as applySceneWeather, G as clearDayWeather, H as deleteEvent, S as SETTINGS, I as MONTHS_PER_YEAR, J as moonName, K as moonPhase } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 function L(key, fallback) {
   var _a, _b;
@@ -21,10 +21,7 @@ const _StoryFlowCalendarApp = class _StoryFlowCalendarApp extends HandlebarsAppl
   constructor() {
     super(...arguments);
     __privateAdd(this, _StoryFlowCalendarApp_instances);
-    /**
-     * Просматриваемый месяц/год + выбранный день + черновик погоды (со стороны ГМ, не
-     * сохраняется до нажатия Apply).
-     */
+    /** Viewed month/year + selected day + weather draft (GM-side, not persisted until Apply). */
     __privateAdd(this, _view, null);
     // {year, month}
     __privateAdd(this, _selected, null);
@@ -33,13 +30,10 @@ const _StoryFlowCalendarApp = class _StoryFlowCalendarApp extends HandlebarsAppl
     __privateAdd(this, _rollText, null);
     __privateAdd(this, _condMenuOpen, false);
     __privateAdd(this, _onWinResize, foundry.utils.debounce(() => __privateMethod(this, _StoryFlowCalendarApp_instances, fitToScreen_fn).call(this), 150));
-    /**
-     * Обновление (с debounce) при изменениях мирового времени и данных
-     * календаря, пока окно открыто.
-     */
+    /** Refresh (debounced) on world-time + calendar-data changes while open. */
     __privateAdd(this, _refresh, foundry.utils.debounce(() => this.rendered && this.render({ parts: ["body"] }), 100));
   }
-  /** Масштабировать дизайнерский кадр 1180×760 коэффициентом относительно 1920×1080 (содержимое зумится в CSS). */
+  /** Scale the design's 1180×760 frame by the 1920×1080-relative factor (content zooms in CSS). */
   _initializeApplicationOptions(options) {
     const opts = super._initializeApplicationOptions(options);
     const s = calendarScale();
@@ -135,7 +129,7 @@ const _StoryFlowCalendarApp = class _StoryFlowCalendarApp extends HandlebarsAppl
       label: L(`Conditions.${key}`, key),
       flavor: L(`Flavor.${key}`, ""),
       on: __privateGet(this, _draft).cond === key,
-      // Пошаговая задержка для каждого элемента при анимации появления.
+      // Per-item stagger delay for the entry animation.
       delay: `${i * 22}ms`
     }));
     context.windOptions = WINDS.map((w) => ({
@@ -152,10 +146,7 @@ const _StoryFlowCalendarApp = class _StoryFlowCalendarApp extends HandlebarsAppl
     context.footerNote = isGM ? L("FooterGm", "GM · charted weather is revealed to players when its day dawns") : L("FooterPlayer", "Player · the calendar is read-only; only revealed weather is shown");
     return context;
   }
-  /**
-   * Подключить слушатели, не связанные с действиями: выбор ветра <select> (никогда не
-   * data-action) и двойной клик по дню.
-   */
+  /** Wire the non-action listeners: wind <select> (never data-action) + day double-click. */
   _onRender(context, options) {
     var _a, _b;
     (_a = super._onRender) == null ? void 0 : _a.call(this, context, options);
@@ -204,12 +195,11 @@ _rollText = new WeakMap();
 _condMenuOpen = new WeakMap();
 _StoryFlowCalendarApp_instances = new WeakSet();
 /**
- * Рассчитать размер рамки от дизайнерского значения 1180×760 × коэффициент масштаба
- * относительно 1920×1080 (всегда от значения по умолчанию, чтобы снова выросший экран вернул
- * полный размер), ограничить его вьюпортом и удержать рамку целиком на экране. СОДЕРЖИМОЕ
- * масштабируется через `zoom: var(--sf-cal-scale)` в calendar.less - рамка здесь просто
- * подстраивается под него. Выполняется при открытии и, с debounce, на каждое изменение
- * размера окна браузера, пока окно отрисовано.
+ * Size the frame from the 1180×760 design default × the 1920×1080-relative scale factor
+ * (always from the default, so a re-grown screen gets the full size back), clamp it to
+ * the viewport, and keep it fully on screen. The CONTENT scales via `zoom:
+ * var(--sf-cal-scale)` in calendar.less — the frame here just matches it. Runs on open
+ * and, debounced, on every browser-window resize while rendered.
  */
 fitToScreen_fn = function() {
   if (!this.rendered) return;
@@ -223,10 +213,7 @@ fitToScreen_fn = function() {
 };
 _onWinResize = new WeakMap();
 _refresh = new WeakMap();
-/**
- * Выбрать день - инициализировать черновик по отображенной погоде (проектное
- * поведение).
- */
+/** Select a day → seed the draft from its charted weather (design behavior). */
 selectDay_fn = function(day) {
   __privateSet(this, _selected, { year: __privateGet(this, _view).year, month: __privateGet(this, _view).month, day });
   const w = getWeatherMap()[dayKey(__privateGet(this, _selected))];
@@ -237,7 +224,7 @@ selectDay_fn = function(day) {
 };
 openEventDialog_fn = async function({ day, eventId } = {}) {
   if (day) __privateMethod(this, _StoryFlowCalendarApp_instances, selectDay_fn).call(this, day);
-  const { StoryFlowDayEventDialog } = await import("./day-event-dialog-Cjfo54e3.js");
+  const { StoryFlowDayEventDialog } = await import("./day-event-dialog-Bbnc8qk3.js");
   StoryFlowDayEventDialog.open({ date: { ...__privateGet(this, _selected) }, eventId });
 };
 _StoryFlowCalendarApp_static = new WeakSet();
@@ -305,7 +292,7 @@ onDeleteEvent_fn = async function(_ev, target) {
   await deleteEvent(target.dataset.eventId);
 };
 onOpenSeasons_fn = async function() {
-  const { StoryFlowPlaneSettingsApp } = await import("./plane-settings-app-DshonJms.js");
+  const { StoryFlowPlaneSettingsApp } = await import("./plane-settings-app-D1M9ZN-8.js");
   StoryFlowPlaneSettingsApp.open();
 };
 bumpScale_fn = async function(delta) {
@@ -327,7 +314,7 @@ onOpenHelp_fn = function() {
     (s) => `<p><strong>${L(`Help.${s}.Title`, s)}</strong><br>${L(`Help.${s}.Body`, "")}</p>`
   ).join("");
   void foundry.applications.api.DialogV2.prompt({
-    window: { title: L("HelpTitle", "Calendar - Help"), icon: "fa-solid fa-circle-info" },
+    window: { title: L("HelpTitle", "Calendar — Help"), icon: "fa-solid fa-circle-info" },
     position: { width: 480 },
     content,
     ok: { label: L("HelpClose", "Got it") }

@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _editor, _query, _searchRestoreFocus, _menuId, _renamingId, _confirmId, _insertedId, _flash, _flashTimer, _selectedId, _preview, _collapsed, _preFullscreen, _TemplateLibraryApp_instances, authoring_fn, toggleFullscreen_fn, bindDragAndDrop_fn, moveById_fn, drawPreview_fn, flashNote_fn, _TemplateLibraryApp_static, rowId_fn, lookup_fn, insertById_fn, commitRename_fn, onInsert_fn, onOpenMenu_fn, onCloseMenus_fn, onEdit_fn, onStartRename_fn, onAskDelete_fn, onCancelDelete_fn, onConfirmDelete_fn, onExport_fn, promptName_fn, onCreate_fn, onAddFolder_fn, onToggleFolder_fn, onRenameFolder_fn, onDeleteFolder_fn, onMoveTemplate_fn, onImport_fn, write_fn, promote_fn, demote_fn;
-import { M as MODULE_ID, S as SETTINGS, r as readTemplateStore, a as readPresetStore, m as moveTemplate, n as nodePresentation, b as renameTemplate, d as deleteTemplate, c as buildTemplateExport, s as slugifyName, T as TEMPLATE_DIR, u as upsertTemplate, e as uniqueTemplateName, f as addFolder, g as renameFolder, h as deleteFolder, p as parseTemplateImport, w as writePresetStore, i as writeTemplateStore } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, S as SETTINGS, r as readTemplateStore, a as readPresetStore, m as moveTemplate, n as nodePresentation, b as renameTemplate, d as deleteTemplate, c as buildTemplateExport, s as slugifyName, T as TEMPLATE_DIR, u as upsertTemplate, e as uniqueTemplateName, f as addFolder, g as renameFolder, h as deleteFolder, p as parseTemplateImport, w as writePresetStore, i as writeTemplateStore } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const FLASH_MS = 2200;
 const BUILTIN_FOLDER = { id: "__dungeons-lab", name: "Dungeons Lab" };
@@ -41,60 +41,35 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
   constructor() {
     super(...arguments);
     __privateAdd(this, _TemplateLibraryApp_instances);
-    /**
-     * @type {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp|null}
-     * родительский редактор.
-     */
+    /** @type {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp|null} owning editor. */
     __privateAdd(this, _editor, null);
-    /**
-     * @type {string} Активный поисковый запрос (подстрока без учета регистра в
-     * имени).
-     */
+    /** @type {string} Live search query (case-insensitive substring on the name). */
     __privateAdd(this, _query, "");
-    /**
-     * @type {boolean} Восстановить фокус на поле поиска после следующего
-     * рендера.
-     */
+    /** @type {boolean} Restore focus to the search input after the next render. */
     __privateAdd(this, _searchRestoreFocus, false);
-    /** @type {string|null} Строка, для которой открыто меню kebab. */
+    /** @type {string|null} Row whose kebab menu is open. */
     __privateAdd(this, _menuId, null);
-    /** @type {string|null} Строка, переименовываемая на месте. */
+    /** @type {string|null} Row being renamed inline. */
     __privateAdd(this, _renamingId, null);
-    /** @type {string|null} Строка, показывающая подтверждение удаления на месте. */
+    /** @type {string|null} Row showing the inline delete-confirm. */
     __privateAdd(this, _confirmId, null);
-    /**
-     * @type {string|null} Строка, у которой кнопка Insert отображает "Inserted
-     * ✓".
-     */
+    /** @type {string|null} Row whose Insert button reads "Inserted ✓". */
     __privateAdd(this, _insertedId, null);
-    /**
-     * @type {string|null} Временная подсказка в подвале ("… inserted into the
-     * editor.").
-     */
+    /** @type {string|null} Transient footer note ("… inserted into the editor."). */
     __privateAdd(this, _flash, null);
     /** @type {ReturnType<typeof setTimeout>|null} */
     __privateAdd(this, _flashTimer, null);
-    /** @type {string|null} Шаблон, отображаемый в панели предпросмотра справа. */
+    /** @type {string|null} Template shown in the right-hand preview pane. */
     __privateAdd(this, _selectedId, null);
-    /**
-     * @type {{name: string, graph: {nodes: object[], edges: object[]}}|null} Сохранено _prepareContext для
-     * _onRender.
-     */
+    /** @type {{name: string, graph: {nodes: object[], edges: object[]}}|null} Stashed by _prepareContext for _onRender. */
     __privateAdd(this, _preview, null);
-    /**
-     * @type {Set<string>} Идентификаторы свернутых папок (только на время
-     * сессии).
-     */
+    /** @type {Set<string>} Collapsed folder ids (session-only). */
     __privateAdd(this, _collapsed, /* @__PURE__ */ new Set());
-    /**
-     * @type {object|null} Позиция, сохраненная перед переходом в полноэкранный режим, или
-     * null, когда не полноэкранный режим
-     */
+    /** @type {object|null} position saved before going fullscreen, or null when not fullscreen */
     __privateAdd(this, _preFullscreen, null);
   }
   /**
-   * Открыть (или сфокусировать) библиотеку. Последний открывший становится целью
-   * Insert.
+   * Open (or focus) the library. The most recent opener becomes the Insert target.
    * @param {import("./blueprint-canvas-app.mjs").BlueprintCanvasApp} [editor]
    */
   static open(editor = null) {
@@ -105,10 +80,7 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
     if (app.rendered) app.bringToFront();
     return app;
   }
-  /**
-   * Перерендерить библиотеку, если она открыта (хранилище изменилось в другом месте:
-   * создание флоу, сохранение режима редактирования).
-   */
+  /** Re-render the library if it's open (store changed elsewhere: create flow, edit-mode save). */
   static refreshIfOpen() {
     var _a;
     if ((_a = __privateGet(_TemplateLibraryApp, _instance)) == null ? void 0 : _a.rendered) __privateGet(_TemplateLibraryApp, _instance).render();
@@ -141,8 +113,8 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
         insertLabel: __privateGet(this, _insertedId) === t.id ? L("InsertedLabel") : L("InsertLabel"),
         inserted: __privateGet(this, _insertedId) === t.id,
         preset,
-        // Строки пресетов можно перетаскивать (чтобы понизить), и они получают kebab только во время
-        // авторинга; locked = только для чтения (только Insert). Строки мира всегда полностью интерактивны.
+        // Preset rows are draggable (to demote) and get a kebab only while authoring; locked =
+        // read-only (Insert only). World rows are always fully interactive.
         draggable: preset ? authoring : true,
         lockedPreset: preset && !authoring
       };
@@ -194,7 +166,7 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
       hasPreview: !!selected,
       previewName: (selected == null ? void 0 : selected.name) ?? "",
       previewId: (selected == null ? void 0 : selected.id) ?? "",
-      // Заблокированный пресет можно вставить + предпросмотреть, но не отредактировать; кнопка Edit в предпросмотре скрывается.
+      // A locked preset can be inserted + previewed but not edited; the preview's Edit button hides.
       previewCanEdit: !!selected && (!selectedIsPreset || authoring),
       items,
       showEmpty: empty,
@@ -206,10 +178,7 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
       countNote: empty ? "" : F(n === 1 ? "CountOne" : "CountMany", { count: n })
     };
   }
-  /**
-   * @override - видимый переключатель полноэкранного режима в заголовке окна (тот же
-   * паттерн, что и у deck).
-   */
+  /** @override — visible fullscreen toggle in the window header (same pattern as the deck). */
   _onFirstRender(context, options) {
     super._onFirstRender(context, options);
     const btn = document.createElement("button");
@@ -220,10 +189,9 @@ const _TemplateLibraryApp = class _TemplateLibraryApp extends HandlebarsApplicat
     this.window.close.before(btn);
   }
   /**
-   * @override - подключать императивные части при каждом рендере (свежий DOM -> слушатели
-   * не накапливаются): живой поиск (с восстановлением фокуса, чтобы ввод продолжал
-   * работать между рендерами), поле переименования на месте (Enter/Esc/blur) и двойной
-   * клик по строке для вставки.
+   * @override — wire the imperative bits each render (fresh DOM → listeners never stack):
+   * live search (with focus restore so typing keeps flowing across re-renders), the inline
+   * rename input (Enter/Esc/blur), and row double-click to insert.
    */
   _onRender(context, options) {
     super._onRender(context, options);
@@ -304,10 +272,7 @@ _preview = new WeakMap();
 _collapsed = new WeakMap();
 _preFullscreen = new WeakMap();
 _TemplateLibraryApp_instances = new WeakSet();
-/**
- * Авторинг папок пресетов разблокирован? (клиентская настройка только для разработки,
- * по умолчанию false => заблокировано).
- */
+/** Preset-folder authoring unlocked? (dev-only client setting, default false ⇒ locked). */
 authoring_fn = function() {
   return Boolean(game.settings.get(MODULE_ID, SETTINGS.PRESET_AUTHORING));
 };
@@ -323,10 +288,7 @@ toggleFullscreen_fn = function(btn) {
   btn.classList.toggle("fa-expand", !__privateGet(this, _preFullscreen));
   btn.classList.toggle("fa-compress", !!__privateGet(this, _preFullscreen));
 };
-/**
- * Перетащить строку шаблона на папку, чтобы разместить в ней; на фон списка, чтобы
- * исключить из папки.
- */
+/** Drag a template row onto a folder to file it; onto the list background to unfile it. */
 bindDragAndDrop_fn = function() {
   const MIME = "text/sf-template-id";
   for (const row of this.element.querySelectorAll(".storyflow-tpl-row[draggable]")) {
@@ -379,9 +341,8 @@ moveById_fn = async function(templateId, folderId) {
   await __privateMethod(this, _TemplateLibraryApp_instances, write_fn).call(this, moveTemplate(found.store, templateId, folderId));
 };
 /**
- * Статический превью в виде SVG только для чтения графа выбранного шаблона - простая
- * отрисовка данных, намеренно НЕ живой холст LiteGraph (контракт замороженного холста
- * остается нетронутым).
+ * Static read-only SVG preview of the selected template's graph — plain data drawing,
+ * deliberately NOT a live LiteGraph canvas (frozen canvas contract stays untouched).
  */
 drawPreview_fn = function(stage) {
   var _a, _b;
@@ -469,10 +430,7 @@ drawPreview_fn = function(stage) {
   }
   stage.replaceChildren(svg);
 };
-/**
- * Показать временную подсказку в подвале; также очищает метку "Inserted ✓", когда
- * она истекает.
- */
+/** Show a transient footer note; also clears the "Inserted ✓" label when it expires. */
 flashNote_fn = function(msg) {
   if (__privateGet(this, _flashTimer)) clearTimeout(__privateGet(this, _flashTimer));
   __privateSet(this, _flash, msg);
@@ -548,7 +506,7 @@ onEdit_fn = async function(event, target) {
   if (!found) return;
   __privateSet(this, _menuId, null);
   __privateMethod(this, _TemplateLibraryApp_instances, flashNote_fn).call(this, F("FlashEditing", { name: found.template.name }));
-  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+  const { BlueprintCanvasApp } = await import("./module-6vV2bj2T.js").then((n) => n.au);
   await BlueprintCanvasApp.openTemplate(found.template.id, { preset: found.isPreset });
 };
 onStartRename_fn = function(event, target) {
@@ -602,10 +560,7 @@ onExport_fn = async function(event, target) {
     ui.notifications.error(L("ExportFailed"));
   }
 };
-/**
- * Маленький запрос имени (используется при создании/переименовании папки). @returns
- * {Promise<string|null>}
- */
+/** Small name prompt (used by folder create/rename). @returns {Promise<string|null>} */
 promptName_fn = function(titleKey, current = "") {
   const { DialogV2 } = foundry.applications.api;
   return DialogV2.prompt({
@@ -627,7 +582,7 @@ onCreate_fn = async function() {
   await __privateMethod(this, _TemplateLibraryApp_instances, write_fn).call(this, next);
   __privateSet(this, _selectedId, template.id);
   __privateMethod(this, _TemplateLibraryApp_instances, flashNote_fn).call(this, F("FlashEditing", { name: template.name }));
-  const { BlueprintCanvasApp } = await import("./module-CGuPkFx8.js").then((n) => n.au);
+  const { BlueprintCanvasApp } = await import("./module-6vV2bj2T.js").then((n) => n.au);
   await BlueprintCanvasApp.openTemplate(template.id);
 };
 onAddFolder_fn = async function() {
@@ -769,7 +724,7 @@ demote_fn = async function(presetId, folderId) {
   __privateMethod(this, _TemplateLibraryApp_instances, flashNote_fn).call(this, F("FlashDemoted", { name }));
 };
 __privateAdd(_TemplateLibraryApp, _TemplateLibraryApp_static);
-/** @type {TemplateLibraryApp|null} Единственный экземпляр (singleton). */
+/** @type {TemplateLibraryApp|null} singleton instance. */
 __privateAdd(_TemplateLibraryApp, _instance, null);
 __publicField(_TemplateLibraryApp, "DEFAULT_OPTIONS", {
   id: "storyflow-template-library",
@@ -800,8 +755,8 @@ __publicField(_TemplateLibraryApp, "DEFAULT_OPTIONS", {
   }
 });
 __publicField(_TemplateLibraryApp, "PARTS", {
-  // `scrollable` позволяет миксину сохранять/восстанавливать прокрутку списка между рендерами
-  // (клики по кнопкам, фильтр, переключение папок) - без него каждый рендер сбрасывается в начало.
+  // `scrollable` lets the mixin save/restore the list scroll across re-renders (button clicks,
+  // filter, folder toggle) — without it every render snaps back to the top.
   list: {
     template: "modules/storyflow-dungeons-lab/templates/canvas/template-library.hbs",
     scrollable: [".storyflow-tpl-scroll"]

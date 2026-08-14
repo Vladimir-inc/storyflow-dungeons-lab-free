@@ -9799,9 +9799,9 @@ body.storyflow-reduce-motion .storyflow-card-reveal * {
   }
 }
 /**
- * Узел Screen Animation - оверлей Screen Flash. Эффекты движения (shake/zoom/punch/tilt)
- * делаются инлайновыми transform на #board и CSS здесь не требуют. z-index 9050 лежит выше доски
- * и оверлея игрока (9000), но ниже диалогов ГМ, уведомлений и переходов (9100+).
+ * Screen Animation node — Screen Flash overlay. The motion effects (shake/zoom/punch/tilt)
+ * are inline transforms on #board and need no CSS here. z-index 9050 sits above the board
+ * and the player overlay (9000) but below GM dialogs / notifications / transition (9100+).
  */
 .storyflow-screen-flash {
   position: fixed;

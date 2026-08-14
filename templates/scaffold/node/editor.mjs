@@ -1,9 +1,9 @@
 /**
  * @file nodes/__TYPE__/editor.mjs
- * @description Слот редактора для узла __TYPE__: внешний вид холста (цвет, хуки
- * отрисовки, размер), используемый ТОЛЬКО внутри границы litegraph-adapter
- * (спецификация §4). Обычный CanvasRenderingContext2D + структуры представления -
- * litegraph никогда не входит в пакет.
+ * @description Editor slot for the __TYPE__ node: canvas appearance (color, draw hooks,
+ *              size) consumed ONLY inside the litegraph-adapter boundary (spec §4).
+ *              Plain CanvasRenderingContext2D + view structs - litegraph never enters
+ *              the package.
  */
 
 export const editor = {};

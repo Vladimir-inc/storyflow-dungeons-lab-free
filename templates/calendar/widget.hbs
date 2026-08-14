@@ -70,8 +70,8 @@
     {{/if}}
     <span class="cw-time">{{timeText}}</span>
     <span class="cw-cond">{{condLabel}}</span>
-    {{! Показания перемотки неба - скрыты, пока ГМ не тянет небо (на корне появляется .scrubbing). Текст
-        обновляется вживую точечными записями в DOM из calendar-widget.mjs (scrubPreview). }}
+    {{! Sky-scrub readout - hidden until the GM drags the sky (root gets .scrubbing). Text is
+        updated live via targeted DOM writes in calendar-widget.mjs (scrubPreview). }}
     <div class="cw-scrub" aria-hidden="true">
       <span class="cw-scrub-time">{{timeText}}</span>
       <div class="cw-scrub-marks">
@@ -179,7 +179,7 @@
         class="fa-solid {{trayDawnIcon}}"
         aria-hidden="true"
       ></i>{{trayDawn}}</button>
-    {{! Сначала шаги − (от большего к меньшему, так как −2w < −5m), затем шаги + (от меньшего к большему). }}
+    {{! − steps first (largest→smallest, since −2w < −5m), then + steps (smallest→largest). }}
     {{#each trayStepsDesc}}
       <button
         type="button"

@@ -15,7 +15,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
   }
 });
 var _root, _els, _view, _ghostPct, _deathPhase, _timers, _token, _BossBarWidget_static, config_fn, teardown_fn, addT_fn, kick_fn, build_fn, applySteady_fn, applyTransition_fn, dieSeq_fn, particle_fn, splash_fn, impact_fn, healMotes_fn, crumbleGrains_fn, onTokenHud_fn;
-import { a1 as sanitizeBossBarConfig, M as MODULE_ID, a2 as BOSS_BAR_SETTING, a3 as DEFAULT_BOSS_BAR, a4 as bossBarView, a5 as classifyTransition } from "./module-CGuPkFx8.js";
+import { a1 as sanitizeBossBarConfig, M as MODULE_ID, a2 as BOSS_BAR_SETTING, a3 as DEFAULT_BOSS_BAR, a4 as bossBarView, a5 as classifyTransition } from "./module-6vV2bj2T.js";
 const CLIP_FULL = "polygon(calc(0% - 26px) -26px, calc(100% + 26px) -26px, calc(100% + 26px) calc(100% + 26px), calc(0% - 26px) calc(100% + 26px))";
 const CLIP_GONE = "polygon(calc(0% - 26px) -26px, calc(0% - 26px) -26px, calc(0% - 26px) calc(100% + 26px), calc(0% - 26px) calc(100% + 26px))";
 const SAND_SHADES = ["#D65A43", "#B03426", "#8F2418", "#4A4046", "#6B5F66", "#2B2429"];
@@ -26,10 +26,7 @@ function L(key, fallback) {
   return ((_b = (_a = game.i18n) == null ? void 0 : _a.has) == null ? void 0 : _b.call(_a, full)) ? game.i18n.localize(full) : fallback;
 }
 const _BossBarWidget = class _BossBarWidget {
-  /**
-   * Подключить хуки обновления. Вызывается один раз из регистратора плагина на
-   * ready (все клиенты).
-   */
+  /** Wire refresh hooks. Called once from the plugin registrar at ready (all clients). */
   static mount() {
     Hooks.on("updateActor", (actor) => {
       var _a;
@@ -43,12 +40,10 @@ const _BossBarWidget = class _BossBarWidget {
     void _BossBarWidget.refresh();
   }
   /**
-   * Показать полосу для boss-актора на каждом клиенте (только ГМ - запись мировой
-   * настройки).
+   * Show the bar for a boss actor on every client (GM only — world-setting write).
    * @param {string} actorUuid
    * @param {{label?: string}} [options]
-   * @returns {Promise<boolean>} false, если не ГМ или актор не может быть
-   * разрешен.
+   * @returns {Promise<boolean>} false when not GM or the actor cannot be resolved.
    */
   static async show(actorUuid, { label = "" } = {}) {
     if (!game.user.isGM) {
@@ -67,7 +62,7 @@ const _BossBarWidget = class _BossBarWidget {
     });
     return true;
   }
-  /** Скрыть полосу на каждом клиенте (только ГМ). @returns {Promise<boolean>} */
+  /** Hide the bar on every client (GM only). @returns {Promise<boolean>} */
   static async hide() {
     if (!game.user.isGM) {
       console.warn(`${MODULE_ID} | bossBar.hide is GM-only`);
@@ -76,10 +71,7 @@ const _BossBarWidget = class _BossBarWidget {
     await game.settings.set(MODULE_ID, BOSS_BAR_SETTING, { ...DEFAULT_BOSS_BAR });
     return true;
   }
-  /**
-   * Повторно синхронизировать DOM с настройкой + актором. Безопасно вызывать в
-   * любое время, на любом клиенте.
-   */
+  /** Re-sync the DOM with the setting + actor. Safe to call any time, on any client. */
   static async refresh() {
     var _a, _b, _c, _d, _e, _f;
     const cfg = __privateMethod(_a = _BossBarWidget, _BossBarWidget_static, config_fn).call(_a);
@@ -405,16 +397,13 @@ __privateAdd(_BossBarWidget, _BossBarWidget_static);
 __privateAdd(_BossBarWidget, _root, null);
 /** @type {Record<string, HTMLElement>|null} */
 __privateAdd(_BossBarWidget, _els, null);
-/** Последнее примененное представление (видимая форма из bossBarView). */
+/** Last applied view (visible shape from bossBarView). */
 __privateAdd(_BossBarWidget, _view, null);
-/** Ширина слоя-призрака в % (отстает от заполнения после урона). */
+/** Ghost-layer width in % (trails the fill after damage). */
 __privateAdd(_BossBarWidget, _ghostPct, 0);
 /** null | "drain" | "blink" | "crumble" | "gone" */
 __privateAdd(_BossBarWidget, _deathPhase, null);
-/**
- * Ожидающие таймауты; обновленный токен аннулирует устаревшие последовательности
- * (повторный показ посреди интро).
- */
+/** Pending timeouts; bumped token invalidates stale sequences (re-show mid-intro). */
 __privateAdd(_BossBarWidget, _timers, []);
 __privateAdd(_BossBarWidget, _token, 0);
 let BossBarWidget = _BossBarWidget;

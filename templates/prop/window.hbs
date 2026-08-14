@@ -1,6 +1,6 @@
-{{!-- Полноэкранный слой интерактивного реквизита (повторяет схему сцены и закрытия кинематографичного оверлея).
-      Фабрика рендереров монтирует сам виджет (кольца, диски, …) в .storyflow-prop-body
-      - этот шаблон вообще не знает, какой у реквизита propType. --}}
+{{!-- Interactive Prop full-screen layer (mirrors the cinematic overlay's stage/close pattern).
+      The renderer factory mounts the actual widget (rings, dials, …) into .storyflow-prop-body
+      - this template never knows what propType it is. --}}
 <div class="storyflow-prop" data-phase="idle">
   {{#if isGM}}
     <button type="button" class="storyflow-prop-close"

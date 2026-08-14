@@ -1,11 +1,11 @@
-{{!-- Кинематографичный оверлей: подложка, говорящий, реплика, управление. Чистый рендер
-      последнего кадра RENDER_STATE.
-      Основной текст состоит из двух слоёв: печатаемого (обычный текст, раскрываемый
-      печатной машинкой) и обогащённого (enriched HTML, показывается по завершении печати
-      через класс .typing-done) - JS никогда не собирает HTML-строки. --}}
-{{!-- Здесь нет класса появления: этот PART пересобирается на КАЖДОМ кадре RENDER_STATE, поэтому любая
-      анимация входа на нём проигрывалась бы каждый кадр (то есть чёрная вспышка между узлами).
-      Однократное на прогон проявление живёт на постоянном корне приложения в player-overlay.less. --}}
+{{!-- Cinematic overlay: backdrop + speaker + dialogue + controls. A pure render of
+      the latest RENDER_STATE frame.
+      Body text is two layers: the typed layer (plain text, revealed by the
+      typewriter) and the rich layer (enriched HTML, shown when typing completes via
+      the .typing-done class) - JS never assembles HTML strings. --}}
+{{!-- No fade-in class here: this PART is rebuilt on EVERY RENDER_STATE frame, so any
+      entry animation on it replays per frame (= black flash between nodes). The
+      once-per-run fade lives on the persistent app root in player-overlay.less. --}}
 <div class="storyflow-stage">
   {{#if showCloseButton}}
     <button type="button" class="storyflow-overlay-close"
@@ -21,14 +21,14 @@
 
   {{#if checkView}}
     {{#if checkView.isResult}}{{#if checkView.dice}}
-      {{!-- Полноэкранные слои FX критов (на уровне сцены: transform панели проверки
-            сломал бы их position:fixed). Скрыты, пока драйвер FX-последовательности не раскроет
-            их на нужном шаге - JS только переключает `hidden`, но не строит HTML. --}}
+      {{!-- Full-screen crit FX layers (stage level: the check panel's transform would
+            hijack their position:fixed). Hidden until the FX sequence driver un-hides
+            them per step - JS only toggles `hidden`, never builds HTML. --}}
       <div class="storyflow-fx-screen storyflow-fx-screen-warn" data-fx="warn" hidden></div>
       <div class="storyflow-fx-screen storyflow-fx-screen-explode" data-fx="explode" hidden></div>
       <div class="storyflow-fx-screen storyflow-fx-screen-heaven" data-fx="succ-flash" hidden></div>
-      {{!-- Божественное свечение тоже живёт здесь: внутри панели проверки его ореол в 660px обрезается
-            в квадрат из-за overflow панели (артефакт "рама загораживает свет"). --}}
+      {{!-- Divine glow lives here too: inside the check panel its 660px halo gets clipped
+            square by the panel's overflow (the "frame blocking the light" artifact). --}}
       <div class="storyflow-fx-divine" data-fx="succ-glow" hidden><div></div></div>
     {{/if}}{{/if}}
     <div class="storyflow-check-panel is-{{checkView.phase}}">
@@ -107,7 +107,7 @@
         <div class="storyflow-check-result {{#if checkView.result.isSuccess}}is-success{{else}}is-failure{{/if}}{{#if checkView.dice.isCrit}} is-crit{{/if}}{{#if checkView.dice.isFumble}} is-fumble{{/if}}">
           {{#if checkView.dice}}
             <div class="storyflow-die-3d-mount" data-mount="die">
-              {{!-- FX критов вокруг кубика (скрыты; включаются по шагам FX-последовательности). --}}
+              {{!-- Around-the-die crit FX (hidden; toggled per FX sequence step). --}}
               <div class="storyflow-fx-warn-ring {{#if checkView.dice.otherDie}}is-dual{{/if}}" data-fx="warn" hidden></div>
               <div class="storyflow-fx-ring is-1" data-fx="explode" hidden></div>
               <div class="storyflow-fx-ring is-2" data-fx="explode" hidden></div>

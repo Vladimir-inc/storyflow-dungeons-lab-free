@@ -1,6 +1,10 @@
-{{!-- Вкладка фракций: кодекс фракций. ГМ заполняет (логотип / название / цвет / описание);
-      игроки читают. Репутация живёт на листе актёра, а не здесь. --}}
+{{!-- Factions tab: faction codex. GM authors (logo / name / color / description);
+      players read it. Standings live on the actor sheet, not here.
+      Empty in builds that exclude the gated "app.factions-ui" package - the <section> itself
+      stays, because an AppV2 Handlebars PART that renders to nothing has no root element for
+      _replaceHTML to stamp. --}}
 <section class="storyflow-qb-content qb-factions {{#if isActive}}active{{/if}}">
+  {{#if hasFactions}}
   <div class="qb-body">
     <aside class="qb-side">
       <div class="qb-side-head">
@@ -139,4 +143,5 @@
       </button>
     {{/if}}
   </footer>
+  {{/if}}
 </section>

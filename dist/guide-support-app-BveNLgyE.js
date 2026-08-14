@@ -10,7 +10,7 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _instance, _GuideSupportApp_instances, mascot_fn, play_fn, _GuideSupportApp_static, onKofi_fn, onDecline_fn;
-import { M as MODULE_ID, a6 as setClip, a7 as hideVideoUntilDecoded } from "./module-CGuPkFx8.js";
+import { M as MODULE_ID, a6 as setClip, a7 as hideVideoUntilDecoded } from "./module-6vV2bj2T.js";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const KOFI_URL = "https://ko-fi.com/dungeonslab";
 const ASSETS = "modules/storyflow-dungeons-lab/assets/images/guide";
@@ -19,10 +19,7 @@ const _GuideSupportApp = class _GuideSupportApp extends HandlebarsApplicationMix
     super(...arguments);
     __privateAdd(this, _GuideSupportApp_instances);
   }
-  /**
-   * Открыть карточку (повторный show() просто перерисовывает ее).
-   * @returns {GuideSupportApp} приложение.
-   */
+  /** Open the card (a second show() just re-renders). @returns {GuideSupportApp} the app. */
   static show() {
     const app = __privateGet(_GuideSupportApp, _instance) ?? __privateSet(_GuideSupportApp, _instance, new _GuideSupportApp());
     app.render(true);
@@ -32,10 +29,7 @@ const _GuideSupportApp = class _GuideSupportApp extends HandlebarsApplicationMix
   _prepareContext() {
     return { kofiUrl: KOFI_URL, mascotSrc: `${ASSETS}/ready.webm` };
   }
-  /**
-   * @override - наведение на "decline" проигрывает смерть; уход с него
-   * воскрешает его.
-   */
+  /** @override — hover on "decline" plays the death; leaving it revives him. */
   _onRender(context, options) {
     super._onRender(context, options);
     hideVideoUntilDecoded(__privateMethod(this, _GuideSupportApp_instances, mascot_fn).call(this));
@@ -57,15 +51,15 @@ const _GuideSupportApp = class _GuideSupportApp extends HandlebarsApplicationMix
 };
 _instance = new WeakMap();
 _GuideSupportApp_instances = new WeakSet();
-/** @returns {HTMLVideoElement|null} видео маскота карточки. */
+/** @returns {HTMLVideoElement|null} the card's mascot video. */
 mascot_fn = function() {
   var _a;
   return ((_a = this.element) == null ? void 0 : _a.querySelector(".storyflow-guide-support-mascot")) ?? null;
 };
 /**
- * Сменить клип маскота.
- * @param {string} clip - основа имени файла внутри assets/images/guide.
- * @param {boolean} loop - зацикливать его.
+ * Swap the mascot's clip.
+ * @param {string} clip - file stem under assets/images/guide.
+ * @param {boolean} loop - loop it.
  * @returns {void}
  */
 play_fn = function(clip, loop) {
@@ -88,7 +82,7 @@ onDecline_fn = function() {
   this.close();
 };
 __privateAdd(_GuideSupportApp, _GuideSupportApp_static);
-/** @type {GuideSupportApp|null} Живой синглтон (null, пока окно закрыто). */
+/** @type {GuideSupportApp|null} The live singleton (null while closed). */
 __privateAdd(_GuideSupportApp, _instance, null);
 __publicField(_GuideSupportApp, "DEFAULT_OPTIONS", {
   id: "storyflow-guide-support",
